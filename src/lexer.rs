@@ -61,6 +61,7 @@ fn parse_generic(input: &str, output: &mut Vec<Token>, mut cursor: usize) -> usi
 
     while cursor < end {
         if let Some(m) = KEYWORD.find_at(input, cursor) {
+            println!("{}", m.as_str());
             if m.start() == cursor {
                 output.push(Token::Keyword {
                     keyword: match m.as_str() {
@@ -76,7 +77,7 @@ fn parse_generic(input: &str, output: &mut Vec<Token>, mut cursor: usize) -> usi
                         "println" => Keyword::PRINTLN,
                         "else" => Keyword::ELSE,
                         "success" => Keyword::SUCCESS,
-                        &_ => panic!("Invalid keyword"),
+                        &_ => {panic!("Invalid keyword")}
                     },
                 });
                 cursor = m.end();
@@ -163,8 +164,10 @@ fn parse_generic(input: &str, output: &mut Vec<Token>, mut cursor: usize) -> usi
 
 fn parse_double_quoted(input: &str, output: &mut Vec<Token>, mut cursor: usize) -> usize {
     lazy_static! {
-        static ref LOPERATOR: Regex = Regex::new(r"\?").unwrap();
+        static ref DQUOTES: Regex = Regex::new("\"").unwrap();
     }
+
+panic!("stop");
 
     let end = input.len();
 
@@ -172,76 +175,13 @@ fn parse_double_quoted(input: &str, output: &mut Vec<Token>, mut cursor: usize) 
         if let Some(m) = DQUOTES.find_at(input, cursor) {
             if m.start() == cursor {
                 output.push(Token::DoubleQuotes {});
-
-                continue;
-            }
-        }
-
-        if let Some(m) = IDENTIFIER.find_at(input, cursor) {
-            if m.start() == cursor {
-                output.push(Token::Identifier {
-                    name: String::from(m.as_str()),
-                });
                 cursor = m.end();
-                continue;
-            }
-        }
-
-        if let Some(m) = VARIABLE.find_at(input, cursor) {
-            if m.start() == cursor {
-                let mut without_dollar = String::from(m.as_str());
-                without_dollar.remove(0);
-                output.push(Token::Variable {
-                    name: without_dollar,
-                });
-                cursor = m.end();
-                continue;
-            }
-        }
-
-        if let Some(m) = OBRACE.find_at(input, cursor) {
-            if m.start() == cursor {
-                output.push(Token::BlockBegin {});
-                cursor = m.end();
-                continue;
-            }
-        }
-
-        if let Some(m) = CBRACE.find_at(input, cursor) {
-            if m.start() == cursor {
-                output.push(Token::BlockEnd {});
-                cursor = m.end();
-                continue;
-            }
-        }
-
-        if let Some(m) = SEMICOLON.find_at(input, cursor) {
-            if m.start() == cursor {
-                output.push(Token::LineEnd {});
-                cursor = m.end();
-                continue;
-            }
-        }
-
-        if let Some(m) = LOPERATOR.find_at(input, cursor) {
-            if m.start() == cursor {
-                output.push(Token::UnaryLeftOperator {
-                    operator: UnaryLeftOperator::NOTNULL,
-                });
-                cursor = m.end();
-                continue;
-            }
-        }
-
-        if let Some(m) = SPACING.find_at(input, cursor) {
-            if m.start() == cursor {
-                cursor = m.end();
-                continue;
+                return cursor;
             }
         }
 
         panic!("Invalid character at position {}", cursor);
     }
 
-    return cursor;
+    panic!("Hit EOF while parsing string");
 }
