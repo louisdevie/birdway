@@ -53,7 +53,7 @@ fn parse_generic(input: &str, output: &mut Vec<Token>, mut cursor: usize) -> usi
         static ref SEMICOLON: Regex = Regex::new(r";").unwrap();
         static ref DQUOTES: Regex = Regex::new("\"").unwrap();
         static ref IDENTIFIER: Regex = Regex::new(r"\b\w+\b").unwrap();
-        static ref VARIABLE: Regex = Regex::new(r"$[A-Za-z0-9_]*").unwrap();
+        static ref VARIABLE: Regex = Regex::new(r"\$[A-Za-z0-9_]*").unwrap();
         static ref LOPERATOR: Regex = Regex::new(r"\?").unwrap();
     }
 
@@ -62,7 +62,6 @@ fn parse_generic(input: &str, output: &mut Vec<Token>, mut cursor: usize) -> usi
     while cursor < end {
         if let Some(m) = KEYWORD.find_at(input, cursor) {
             if m.start() == cursor {
-            println!("{}", m.as_str());
                 output.push(Token::Keyword {
                     keyword: match m.as_str() {
                         "meta" => Keyword::META,
@@ -77,7 +76,9 @@ fn parse_generic(input: &str, output: &mut Vec<Token>, mut cursor: usize) -> usi
                         "println" => Keyword::PRINTLN,
                         "else" => Keyword::ELSE,
                         "success" => Keyword::SUCCESS,
-                        &_ => {panic!("Invalid keyword")}
+                        &_ => {
+                            panic!("Invalid keyword")
+                        }
                     },
                 });
                 cursor = m.end();
@@ -166,7 +167,7 @@ fn parse_double_quoted(input: &str, output: &mut Vec<Token>, mut cursor: usize) 
     lazy_static! {
         static ref DQUOTES: Regex = Regex::new("\"").unwrap();
         static ref ANYCHAR: Regex = Regex::new(r".").unwrap();
-        static ref VARIABLE: Regex = Regex::new(r"$[A-Za-z0-9_]*").unwrap();
+        static ref VARIABLE: Regex = Regex::new(r"\$[A-Za-z0-9_]*").unwrap();
     }
 
     let end = input.len();
@@ -175,7 +176,9 @@ fn parse_double_quoted(input: &str, output: &mut Vec<Token>, mut cursor: usize) 
     while cursor < end {
         if let Some(m) = DQUOTES.find_at(input, cursor) {
             if m.start() == cursor {
-                output.push(Token::StringContent {value:buffer.clone()});
+                output.push(Token::StringContent {
+                    value: buffer.clone(),
+                });
                 buffer.truncate(0);
                 output.push(Token::DoubleQuotes {});
                 cursor = m.end();
@@ -185,7 +188,9 @@ fn parse_double_quoted(input: &str, output: &mut Vec<Token>, mut cursor: usize) 
 
         if let Some(m) = VARIABLE.find_at(input, cursor) {
             if m.start() == cursor {
-                output.push(Token::StringContent {value:buffer.clone()});
+                output.push(Token::StringContent {
+                    value: buffer.clone(),
+                });
                 buffer.truncate(0);
                 let mut without_dollar = String::from(m.as_str());
                 without_dollar.remove(0);
