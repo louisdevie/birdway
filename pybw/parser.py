@@ -1,2 +1,109 @@
+from autorepr import AutoRepr
+from tokens import *
+from birdway import Type
+from exceptions import *
+
+
+class Program(AutoRepr):
+    metadata = None
+    arguments = None
+    script = None
+
+
+class Table(AutoRepr):
+    key_type = Type.UNKNOWN
+    value_type = Type.UNKNOWN
+    values = dict()
+
+
 def parse(tokens):
-	pass
+    parser = Parser(tokens)
+    return parser.parse_program()
+
+
+class Parser:
+    def __init__(self, tokens):
+        self.tokens = tokens
+
+    def peek(self, pos):
+        return self.tokens[0]
+
+    def eat(self, howmany=1):
+        for _ in range(howmany):
+            self.tokens.pop(0)
+
+    def remaining(self):
+        return len(self.tokens) > 0
+
+    def parse_program(self):
+        prog = Program()
+
+        if self.peek(0) == KeywordMeta():
+            self.eat()
+            prog.metadata = self.parse_expression()
+            if self.peek(0) != LineEnd():
+                raise BirdwaySyntaxError(
+                    f"missing semicolon on line {self.peek(0)._line}"
+                )
+            self.eat()
+
+        return prog
+
+    def parse_expression(self):
+        if self.peek(0) == TableBegin():
+            self.eat()
+            lhs = self.parse_table()
+
+        else:
+            raise BirdwaySyntaxError(
+                f"unexpected {self.peek(0)} at line {self.peek(0)._line} while parsing expression"
+            )
+
+    def parse_table(self):
+        table = Table()
+
+        while self.remaining():
+            val_or_key = self.parse_expression()
+
+            if self.peek(0) == Association():
+                self.eat()
+                val = self.parse_expression()
+
+                if table.key_type == Type.UNKNOWN:
+                    table.key_type = val_or_key.type
+                else:
+                    if val_or_key.type != table.key_type:
+                        raise BirdwayTypeError(
+                            f"inconsistent table keys types (expected {table.key_type}, found {val_or_key.type}) around {self.peek(0)._line}"
+                        )
+
+                if table.value_type == Type.UNKNOWN:
+                    table.value_type = val.type
+                else:
+                    if val.type != table.value_type:
+                        raise BirdwayTypeError(
+                            f"inconsistent table values types (expected {table.value_type}, found {val.type}) around {self.peek(0)._line}"
+                        )
+
+                table.values[val_or_key] = val
+
+            else:
+                if table.key_type == Type.UNKNOWN:
+                    table.key_type = val_or_key.type
+                else:
+                    if val_or_key.type != table.key_type:
+                        raise BirdwayTypeError(
+                            f"missing table keys around {self.peek(0)._line}"
+                        )
+
+                if table.value_type == Type.UNKNOWN:
+                    table.value_type = val.type
+                else:
+                    if val.type != table.value_type:
+                        raise BirdwayTypeError(
+                            f"inconsistent table values types (expected {table.value_type}, found {val.type})"
+                        )
+
+                table.values[val_or_key] = val
+
+        raise BirdwaySyntaxError("hit EOF while parsing table")

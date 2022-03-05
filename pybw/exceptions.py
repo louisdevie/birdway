@@ -1,0 +1,2 @@
+class BirdwaySyntaxError(Exception):
+    pass

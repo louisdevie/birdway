@@ -1,19 +1,15 @@
-meta {
-	name "greet";
-};
+meta [ "name": "greet" ];
+
 args {
-	param NAME {
-		optional;
-		description "Name of the person to greet";
-	};
+	param? name "Name of the person to greet";
 };
+
 run {
-	if ? $NAME
+	if ?name
 	then {
-		println "Hello $NAME !";
+		println "Hello $name !";
 	}
 	else {
 		println "Hello !";
 	};
-	success;
 };

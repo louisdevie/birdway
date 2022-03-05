@@ -1,0 +1,15 @@
+meta [
+	"name": "Birdway",
+];
+
+args {
+	param str* input "Scripts to compile"; 
+};
+
+run {
+	for i from 0 to (#input)-1 do {
+		let path = input[i];
+
+		println "Compiling $path ... ($(i+1)/$(#input))";
+	};
+};
