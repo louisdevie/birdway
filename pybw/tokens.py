@@ -5,9 +5,6 @@ from autorepr import AutoRepr
 class Unary(Enum):
     ISDEF = auto()
 
-    def __repr__(self):
-        return super().__str__()
-
 
 class Token:
     def __init__(self, line=None, **attributes):

@@ -5,15 +5,40 @@ from exceptions import *
 
 
 class Program(AutoRepr):
-    metadata = None
-    arguments = None
-    script = None
+     def __init__(self):
+        self.metadata = None
+        self.arguments = None
+        self.script = None
+
+class Typed:
+    def __getattr__(self, attr):
+        if attr == 'type':
+            return self._type()
+        else:
+            return super().__getattr__(attr)
+
+    def _type(self):
+        raise NotImplementedError()
 
 
-class Table(AutoRepr):
-    key_type = Type.UNKNOWN
-    value_type = Type.UNKNOWN
-    values = dict()
+class Table(AutoRepr, Typed):
+    def __init__(self):
+        self.key_type = Type.UNKNOWN
+        self.value_type = Type.UNKNOWN
+        self.values = dict()
+
+
+class FormattedString(AutoRepr, Typed):
+    def __init__(self):
+        self.content = list()
+
+    def _type(self):
+        return Type.STRING
+
+
+class Block(AutoRepr, Typed):
+    def __init__(self):
+        self.statements = list()
 
 
 def parse(tokens):
@@ -38,14 +63,35 @@ class Parser:
     def parse_program(self):
         prog = Program()
 
-        if self.peek(0) == KeywordMeta():
-            self.eat()
-            prog.metadata = self.parse_expression()
-            if self.peek(0) != LineEnd():
-                raise BirdwaySyntaxError(
-                    f"missing semicolon on line {self.peek(0)._line}"
-                )
-            self.eat()
+        while self.remaining():
+            match self.peek(0):
+                case KeywordMeta():
+                    self.eat()
+                    prog.metadata = self.parse_expression()
+                    if self.peek(0) != LineEnd():
+                        raise BirdwaySyntaxError(
+                            f"missing semicolon on line {self.peek(0)._line}"
+                        )
+                    self.eat()
+
+                case KeywordArgs():
+                    self.eat()
+                    if self.peek(0) != BlockBegin():
+                        raise BirdwaySyntaxError(
+                            f"expected block on line {self.peek(0)._line}"
+                        )
+                    self.eat()
+                    prog.arguments = self.parse_args_block()
+                    if self.peek(0) != LineEnd():
+                        raise BirdwaySyntaxError(
+                            f"missing semicolon on line {self.peek(0)._line}"
+                        )
+                    self.eat()
+
+                case other:
+                    raise BirdwaySyntaxError(
+                        f"unexpected {other} at line {other._line} while parsing program body"
+                    )
 
         return prog
 
@@ -54,10 +100,16 @@ class Parser:
             self.eat()
             lhs = self.parse_table()
 
+        elif self.peek(0) == FormattedStringDelimiter():
+            self.eat()
+            lhs = self.parse_formatted_string()
+
         else:
             raise BirdwaySyntaxError(
                 f"unexpected {self.peek(0)} at line {self.peek(0)._line} while parsing expression"
             )
+
+        return lhs
 
     def parse_table(self):
         table = Table()
@@ -106,4 +158,40 @@ class Parser:
 
                 table.values[val_or_key] = val
 
+            if self.peek(0) == TableEnd():
+                self.eat()
+                return table
+
         raise BirdwaySyntaxError("hit EOF while parsing table")
+
+    def parse_formatted_string(self):
+        string = FormattedString()
+
+        while self.remaining():
+            match self.peek(0):
+                case FormattedStringDelimiter():
+                    self.eat()
+                    return string
+
+                case StringContent(value=val):
+                    self.eat()
+                    string.content.append(val)
+
+                case other:
+                    raise BirdwaySyntaxError(
+                        f"unexpected {other} at line {other._line} while parsing string"
+                    )
+
+        raise BirdwaySyntaxError("hit EOF while parsing string")
+
+    def parse_args_block(self):
+        block = Block()
+
+        while self.remaining():
+            match self.peek(0):
+                case other:
+                    raise BirdwaySyntaxError(
+                        f"unexpected {other} at line {other._line} while parsing arguments block"
+                    )
+
+        raise BirdwaySyntaxError("hit EOF while parsing arguments block")
