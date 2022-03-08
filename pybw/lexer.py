@@ -14,6 +14,7 @@ RE_PUNCTUATION = re.compile(r";|:|\{|\}|\[|\]")
 RE_OPERATOR = re.compile(r"\?")
 RE_IDENTIFIER = re.compile(r"[A-Za-z0-9_]+")
 RE_VARIABLE = re.compile(r"\$[A-Za-z0-9_]*")
+RE_TYPE = re.compile(r"str")
 
 
 def parse(text):
@@ -49,6 +50,15 @@ def parse_body(source, output, cursor, line):
             cursor = m.end()
             continue
 
+        if m := RE_TYPE.match(source, cursor):
+            match m.group():
+                case "str":
+                    output.append(TypeName(line, type=Type.STRING))
+                case other:
+                    raise BirdwayLexicalError(f"unknown type {other}")
+            cursor = m.end()
+            continue
+
         if m := RE_PUNCTUATION.match(source, cursor):
             match m.group():
                 case "{":
@@ -76,7 +86,7 @@ def parse_body(source, output, cursor, line):
         if m := RE_OPERATOR.match(source, cursor):
             match m.group():
                 case "?":
-                    output.append(UnaryOperator(line, type=Unary.ISDEF))
+                    output.append(UnaryOperator(line, operator=Unary.ISDEF))
                 case other:
                     raise LexicalError(f"unknown operator ‘{other}’")
             cursor = m.end()

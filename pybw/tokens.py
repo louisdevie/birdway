@@ -1,9 +1,6 @@
 from enum import Enum, auto
 from autorepr import AutoRepr
-
-
-class Unary(Enum):
-    ISDEF = auto()
+from birdway import Unary, Type
 
 
 class Token:
@@ -96,8 +93,12 @@ class Identifier(Token, AutoRepr):
 
 
 class UnaryOperator(Token, AutoRepr):
-    type = Unary(1)
+    operator = Unary(1)
 
 
 class Variable(Token, AutoRepr):
     name = str()
+
+
+class TypeName(Token, AutoRepr):
+    type = Type

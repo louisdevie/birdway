@@ -1,7 +1,7 @@
 meta [ "name": "greet" ];
 
 args {
-	param? name "Name of the person to greet";
+	param str? name "Name of the person to greet";
 };
 
 run {

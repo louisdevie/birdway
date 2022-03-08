@@ -2,7 +2,13 @@ from autorepr import AutoRepr
 from tokens import *
 from birdway import Type
 from exceptions import *
+from enum import Enum, auto
 
+class ArgumentModifier(Enum):
+    NONE = auto()
+    UNIQUE = auto()
+    OPTIONAL = auto()
+    VARIADIC = auto()
 
 class Program(AutoRepr):
      def __init__(self):
@@ -39,6 +45,13 @@ class FormattedString(AutoRepr, Typed):
 class Block(AutoRepr, Typed):
     def __init__(self):
         self.statements = list()
+
+class Parameter(AutoRepr, Typed):
+    def __init__(self):
+        self.type = Type.UNKNOWN
+        self.modifier = ArgumentModifier.NONE
+        self.name = str()
+        self.description = str()
 
 
 def parse(tokens):
@@ -81,7 +94,7 @@ class Parser:
                             f"expected block on line {self.peek(0)._line}"
                         )
                     self.eat()
-                    prog.arguments = self.parse_args_block()
+                    prog.arguments = self.parse_arguments_block()
                     if self.peek(0) != LineEnd():
                         raise BirdwaySyntaxError(
                             f"missing semicolon on line {self.peek(0)._line}"
@@ -184,14 +197,45 @@ class Parser:
 
         raise BirdwaySyntaxError("hit EOF while parsing string")
 
-    def parse_args_block(self):
+    def parse_arguments_block(self):
         block = Block()
 
         while self.remaining():
             match self.peek(0):
+                case KeywordParam():
+                    self.eat()
+                    block.statements.append(self.parse_parameter())
+
                 case other:
                     raise BirdwaySyntaxError(
                         f"unexpected {other} at line {other._line} while parsing arguments block"
                     )
 
         raise BirdwaySyntaxError("hit EOF while parsing arguments block")
+
+    def parse_parameter(self):
+        parameter = Parameter()
+
+        match self.peek(0):
+            case TypeName(type=t):
+                self.eat()
+                parameter.type = t
+
+            case other:
+                raise BirdwaySyntaxError(f"expected type, got {other} at line {other._line}") 
+
+        if self.peek(0) == UnaryOperator(operator=Unary.ISDEF):
+            self.eat()
+            parameter.modifier = ArgumentModifier.OPTIONAL
+
+        match self.peek(0):
+            case Identifier(name=ident):
+                self.eat()
+                parameter.name = ident
+
+            case other:
+                raise BirdwaySyntaxError(f"expected identifier, got {other} at line {other._line}")
+
+        if self.peek(0) == FormattedStringDelimiter():
+            self.eat()
+            parameter.description = self.parse_formatted_string()
