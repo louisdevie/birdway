@@ -1,5 +1,3 @@
-meta [ "name": "greet" ];
-
 args {
 	param str? name "Name of the person to greet";
 };
