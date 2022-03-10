@@ -35,7 +35,7 @@ def main():
             checks.check_types(ast)
             # print(ast)
 
-            output = generator.transpile(ast)
+            output = generator.transpile(ast, name=name)
 
             with open(tempdst, "wt+") as fd:
                 fd.write(output)
