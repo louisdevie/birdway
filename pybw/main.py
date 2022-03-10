@@ -2,9 +2,13 @@ import os, sys
 
 import lexer
 import parser
+import checks
 import generator
 
+from exceptions import *
+
 # vR771.0.0
+
 
 def main():
     count = len(sys.argv) - 1
@@ -19,17 +23,29 @@ def main():
         try:
             with open(target, "rt") as fd:
                 content = fd.read()
+
             tokens = lexer.parse(content)
-            for t in tokens:
-                print(" ", t)
+            # for t in tokens:
+            #     print(" ", t)
+
             ast = parser.parse(tokens)
-            print(ast)
+            # print(ast)
+
+            checks.resolve_variables(ast)
+            checks.check_types(ast)
+            # print(ast)
+
             output = generator.transpile(ast)
+
             with open(tempdst, "wt+") as fd:
                 fd.write(output)
+
+            print("  Done")
+
         except IOError as err:
             print(f"  Can't open file {target}: {err}")
-        except (lexer.BirdwayLexicalError, parser.BirdwaySyntaxError) as err:
+
+        except (BirdwayCompilationError) as err:
             print(f"  Error parsing file {target}: {err}")
 
 

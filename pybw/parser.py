@@ -1,56 +1,53 @@
 from autorepr import AutoRepr, PrettyAutoRepr
 from tokens import *
-from birdway import Type, Composite
+from birdway import *
 from exceptions import *
 from enum import Enum, auto
 
-class ArgumentModifier(Enum):
-    NONE = auto()
-    UNIQUE = auto()
-    OPTIONAL = auto()
-    VARIADIC = auto()
 
 class SyntaxNodeABC:
     pass
 
+
+class InContext:
+    def __init__(self):
+        self.context = dict()
+
+
 class Program(SyntaxNodeABC, PrettyAutoRepr):
-     def __init__(self):
+    def __init__(self):
         self.metadata = None
         self.arguments = None
         self.script = None
 
-class Typed:
-    def __getattr__(self, attr):
-        if attr == 'type':
-            return self._type()
-        else:
-            return super().__getattr__(attr)
 
-    def _type(self):
-        raise NotImplementedError()
-
-
-class Table(SyntaxNodeABC, PrettyAutoRepr, Typed):
+class Table(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext):
     def __init__(self):
+        super().__init__()
         self.key_type = Type.UNKNOWN
         self.value_type = Type.UNKNOWN
         self.values = dict()
-        
+
     def _type(self):
-    	return Composite.Table(self.value_type, self.key_type)
+        return Composite.Table(self.value_type, self.key_type)
 
 
-class FormattedString(SyntaxNodeABC, PrettyAutoRepr, Typed):
+class FormattedString(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext):
     def __init__(self):
+        super().__init__()
         self.content = list()
 
     def _type(self):
         return Type.STRING
 
 
-class Block(SyntaxNodeABC, PrettyAutoRepr, Typed):
+class Block(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext):
     def __init__(self):
+        super().__init__()
         self.statements = list()
+
+    def _type(self):
+        return Type.VOID
 
 
 class Parameter(SyntaxNodeABC, PrettyAutoRepr):
@@ -59,32 +56,49 @@ class Parameter(SyntaxNodeABC, PrettyAutoRepr):
         self.modifier = ArgumentModifier.NONE
         self.name = str()
         self.description = str()
-        
-class IfThenElse(SyntaxNodeABC, PrettyAutoRepr, Typed):
+
+
+class IfThenElse(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext):
     def __init__(self):
+        super().__init__()
         self.condition = None
         self.statements = None
         self.alternative = None
-        
+
     def _type(self):
-    	return self.statements.type
-        
-class UnaryOperation(SyntaxNodeABC, PrettyAutoRepr, Typed):
+        return self.statements.type
+
+
+class UnaryOperation(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext):
     def __init__(self):
+        super().__init__()
         self.operator = None
         self.operand = None
-        
+
     def _type(self):
-    	return OPERATION_RESULT[self.operator][self.operand]
-        
-class ReadVariable(SyntaxNodeABC, PrettyAutoRepr, Typed):
+        return OPERATION_RESULT[self.operator](self.operand.type)
+
+
+class ReadVariable(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext):
     def __init__(self):
+        super().__init__()
         self.name = str()
-        
-class PrintLine(SyntaxNodeABC, PrettyAutoRepr, Typed):
+        self.id = 0
+        self._t = Type.UNKNOWN
+
+    def _type(self):
+        return self._t
+
+
+class PrintLine(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext):
     def __init__(self):
+        super().__init__()
         self.content = None
-        
+
+    def _type(self):
+        return Type.VOID
+
+
 def parse(tokens):
     parser = Parser(tokens)
     return parser.parse_program()
@@ -100,7 +114,7 @@ class Parser:
     def eat(self, howmany=1):
         for _ in range(howmany):
             self.tokens.pop(0)
-            
+
     def pop(self):
         return self.tokens.pop(0)
 
@@ -134,7 +148,7 @@ class Parser:
                             f"missing semicolon on line {self.peek(0)._line}"
                         )
                     self.eat()
-                    
+
                 case KeywordRun():
                     self.eat()
                     if self.peek(0) != BlockBegin():
@@ -165,33 +179,35 @@ class Parser:
             case FormattedStringDelimiter():
                 self.eat()
                 lhs = self.parse_formatted_string()
-            
+
             case KeywordIf():
                 self.eat()
                 lhs = self.parse_if()
-            
+
             case KeywordPrintln():
                 self.eat()
                 lhs = self.parse_println()
-            
+
             case Identifier(name=var):
                 self.eat()
                 lhs = ReadVariable()
                 lhs.name = var
-                
+
             case BlockBegin():
                 self.eat()
                 lhs = self.parse_block()
-            
+
             case UnaryOperator(operator=op):
                 self.eat()
                 operation = UnaryOperation()
                 operation.operator = op
                 operation.operand = self.parse_expression()
                 return operation
-                
+
             case other:
-                raise BirdwaySyntaxError(f"unexpected {other} at line {other._line} while parsing expression")
+                raise BirdwaySyntaxError(
+                    f"unexpected {other} at line {other._line} while parsing expression"
+                )
 
         return lhs
 
@@ -260,7 +276,7 @@ class Parser:
                 case StringContent(value=val):
                     self.eat()
                     string.content.append(val)
-                    
+
                 case Variable(name=var):
                     self.eat()
                     formatting = ReadVariable()
@@ -283,9 +299,11 @@ class Parser:
                     self.eat()
                     block.statements.append(self.parse_parameter())
                     if self.peek(0) != LineEnd():
-                        raise BirdwaySyntaxError(f"missing semicolon on line {self.peek(0)._line} after parameter")
+                        raise BirdwaySyntaxError(
+                            f"missing semicolon on line {self.peek(0)._line} after parameter"
+                        )
                     self.eat()
-                    
+
                 case BlockEnd():
                     self.eat()
                     return block
@@ -306,7 +324,9 @@ class Parser:
                 parameter.type = t
 
             case other:
-                raise BirdwaySyntaxError(f"expected type, got {other} at line {other._line}") 
+                raise BirdwaySyntaxError(
+                    f"expected type, got {other} at line {other._line}"
+                )
 
         if self.peek(0) == UnaryOperator(operator=Unary.ISDEF):
             self.eat()
@@ -318,14 +338,16 @@ class Parser:
                 parameter.name = ident
 
             case other:
-                raise BirdwaySyntaxError(f"expected identifier or modifier, got {other} at line {other._line}")
+                raise BirdwaySyntaxError(
+                    f"expected identifier or modifier, got {other} at line {other._line}"
+                )
 
         if self.peek(0) == FormattedStringDelimiter():
             self.eat()
             parameter.description = self.parse_formatted_string()
-            
+
         return parameter
-            
+
     def parse_block(self):
         block = Block()
 
@@ -338,31 +360,35 @@ class Parser:
                 case _:
                     block.statements.append(self.parse_expression())
                     if self.peek(0) != LineEnd():
-                        raise BirdwaySyntaxError(f"missing semicolon on line {self.peek(0)._line}")
+                        raise BirdwaySyntaxError(
+                            f"missing semicolon on line {self.peek(0)._line}"
+                        )
                     self.eat()
 
         raise BirdwaySyntaxError("hit EOF while parsing block")
-        
+
     def parse_if(self):
         ifthenelse = IfThenElse()
-    
+
         ifthenelse.condition = self.parse_expression()
-        
+
         tok = self.pop()
         if tok != KeywordThen():
-            raise BirdwaySyntaxError(f"expected keyword then, got {tok} on line {tok._line}")
+            raise BirdwaySyntaxError(
+                f"expected keyword then, got {tok} on line {tok._line}"
+            )
 
         ifthenelse.statements = self.parse_expression()
-        
+
         if self.peek(0) == KeywordElse():
             self.eat()
             ifthenelse.alternative = self.parse_expression()
-            
+
         return ifthenelse
-            
+
     def parse_println(self):
         println = PrintLine()
-    
+
         println.content = self.parse_expression()
-        
+
         return println
