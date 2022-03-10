@@ -1,6 +1,6 @@
 from autorepr import AutoRepr, PrettyAutoRepr
 from tokens import *
-from birdway import Type
+from birdway import Type, Composite
 from exceptions import *
 from enum import Enum, auto
 
@@ -35,6 +35,9 @@ class Table(SyntaxNodeABC, PrettyAutoRepr, Typed):
         self.key_type = Type.UNKNOWN
         self.value_type = Type.UNKNOWN
         self.values = dict()
+        
+    def _type(self):
+    	return Composite.Table(self.value_type, self.key_type)
 
 
 class FormattedString(SyntaxNodeABC, PrettyAutoRepr, Typed):
@@ -49,6 +52,7 @@ class Block(SyntaxNodeABC, PrettyAutoRepr, Typed):
     def __init__(self):
         self.statements = list()
 
+
 class Parameter(SyntaxNodeABC, PrettyAutoRepr):
     def __init__(self):
         self.type = Type.UNKNOWN
@@ -62,10 +66,16 @@ class IfThenElse(SyntaxNodeABC, PrettyAutoRepr, Typed):
         self.statements = None
         self.alternative = None
         
+    def _type(self):
+    	return self.statements.type
+        
 class UnaryOperation(SyntaxNodeABC, PrettyAutoRepr, Typed):
     def __init__(self):
         self.operator = None
         self.operand = None
+        
+    def _type(self):
+    	return OPERATION_RESULT[self.operator][self.operand]
         
 class ReadVariable(SyntaxNodeABC, PrettyAutoRepr, Typed):
     def __init__(self):
