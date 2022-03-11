@@ -4,10 +4,6 @@ args {
 
 run {
 	if ?name
-	then {
-		println "Hello $name !";
-	}
-	else {
-		println "Hello !";
-	};
+	then println "Hello $name !"
+	else println "Hello !";
 };

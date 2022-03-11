@@ -15,13 +15,13 @@ class VariableCounter:
 def resolve_variables(ast):
     var_count = VariableCounter()
 
-    for arg in ast.arguments.statements:
+    for i, arg in enumerate(ast.arguments.statements):
         if isinstance(arg, syntax.Parameter):
             if arg.modifier == ArgumentModifier.OPTIONAL:
                 if arg.name in ast.script.context:
                     raise BirdwayNameError(f"found two parameters named {arg.name}")
                 ast.script.context[arg.name] = (
-                    var_count.register(),
+                    str(i),
                     Composite.Nullable(arg.type),
                 )
 

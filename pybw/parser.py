@@ -83,7 +83,7 @@ class ReadVariable(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext):
     def __init__(self):
         super().__init__()
         self.name = str()
-        self.id = 0
+        self.id = str()
         self._t = Type.UNKNOWN
 
     def _type(self):

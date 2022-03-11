@@ -33,7 +33,7 @@ def main():
 
             checks.resolve_variables(ast)
             checks.check_types(ast)
-            # print(ast)
+            print(ast)
 
             output = generator.transpile(ast, name=name)
 
