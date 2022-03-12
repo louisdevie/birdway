@@ -15,33 +15,37 @@ class VariableCounter:
 def resolve_variables(ast):
     var_count = VariableCounter()
 
-    for i, arg in enumerate(ast.arguments.statements):
-        if isinstance(arg, syntax.Parameter):
-            if arg.modifier == ArgumentModifier.OPTIONAL:
-                if arg.name in ast.script.context:
-                    raise BirdwayNameError(f"found two parameters named {arg.name}")
-                ast.script.context[arg.name] = (
-                    str(i),
-                    Composite.Nullable(arg.type),
-                )
+    if ast.arguments is not None:
+        for i, arg in enumerate(ast.arguments.statements):
+            if isinstance(arg, syntax.Parameter):
+                if arg.modifier == ArgumentModifier.OPTIONAL:
+                    if arg.name in ast.script.context:
+                        raise BirdwayNameError(f"found two parameters named {arg.name}")
+                    arg.id = str(i)
+                    ast.script.context[arg.name] = (
+                        str(i),
+                        Composite.Nullable(arg.type),
+                    )
+                    if arg.type == Type.STRING:
+                        ast.standard_features |= FEATURE_STRING
 
-    propagate(ast.script)
+    propagate(ast, ast.script)
 
 
-def propagate(node):
+def propagate(ast, node):
     if isinstance(node, syntax.Block):
         for child in node.statements:
             child.context = node.context.copy()
-            propagate(child)
+            propagate(ast, child)
 
     elif isinstance(node, syntax.IfThenElse):
         for child in (node.condition, node.statements, node.alternative):
             child.context = node.context.copy()
-            propagate(child)
+            propagate(ast, child)
 
     elif isinstance(node, syntax.UnaryOperation):
         node.operand.context = node.context.copy()
-        propagate(node.operand)
+        propagate(ast, node.operand)
 
     elif isinstance(node, syntax.ReadVariable):
         if node.name in node.context:
@@ -51,14 +55,16 @@ def propagate(node):
             raise BirdwayNameError(f'no entity named "{node.name}"')
 
     elif isinstance(node, syntax.PrintLine):
+        ast.standard_features |= FEATURE_PRINTLN
         node.content.context = node.context.copy()
-        propagate(node.content)
+        propagate(ast, node.content)
 
     elif isinstance(node, syntax.FormattedString):
+        ast.standard_features |= FEATURE_STRING
         for child in node.content:
             if not isinstance(child, str):
                 child.context = node.context.copy()
-                propagate(child)
+                propagate(ast, child)
 
     else:
         raise TypeError(f"can't propagate context to node of type {type(node)}")
