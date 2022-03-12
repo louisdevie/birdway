@@ -1,1 +1,1 @@
-run println "Hello, World!";
+run println 'Hello, World!';

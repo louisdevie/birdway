@@ -57,30 +57,41 @@ def transpile_script(ast, kwargs):
     return f"""
         int birdwayMain(void **globals) 
         {{
-            {transpile_node(ast.script)}
+            {transpile_node(ast.script, 'tmp')}
             return {SUCCESS};
         }}"""
 
-def transpile_node(node):
+def transpile_node(node, tui):
     match node:
         case syntax.PrintLine(content=c):
-            return f"birdwayPrintln({transpile_node(c)});"
+            return f"""
+                {transpile_node(c, f"{tui}1")}
+                birdwayPrintln(&{tui}1);"""
+
+        case syntax.StringLiteral(id=n, string=v):
+            return f"""
+                struct BirdwayString {tui};
+                birdwayStringLiteral(&{tui}, {n}, {len(v)});"""
+
+        case other:
+            raise TypeError(f"no implementation for node of type {type(other)}")
 
 def initialise_script(ast, kwargs):
     return initialise_node(ast.script)
 
 def initialise_node(node):
     match node:
-        case syntax.PrintLine(content=content):
-            return initialise_node(content)
+        case syntax.PrintLine(content=value):
+            return initialise_node(value)
 
-        case syntax.FormattedString(content=content):
-            return "\n".join([
-                initialise_node(c)
-                for child in content
-                if not isinstance(child, str)
-            ])
-                    
+        case syntax.StringLiteral(id=name, string=value):
+            return f"""const uint32_t {
+                name
+            }[{
+                len(value)
+            }] = {{{
+                ', '.join([str(ord(char)) for char in value])
+            }}};"""
 
         case other:
             raise TypeError(f"can't initialise node of type {type(other)}")
@@ -164,6 +175,22 @@ def features(ast, kwargs):
                     ++str->length;
                     ++src;
                 }}
+            }}
+            int birdwayStringLiteral(struct BirdwayString *str, const uint32_t *src, size_t len)
+            {{
+                birdwayStringEmpty(str);
+                str->end = malloc(sizeof (struct BirdwayChar));
+                str->start = str->end;
+                str->end->ucp = src[0];
+                str->end->next = NULL;
+                for (int i=1; i<len; i++)
+                {{
+                    str->end->next = malloc(sizeof (struct BirdwayChar));
+                    str->end = str->end->next;
+                    str->end->ucp = src[i];
+                    str->end->next = NULL;
+                }}
+                str->length = len;
             }}"""
 
     if kwargs.get("features", 0) & FEATURE_FORMATTING:
@@ -174,7 +201,13 @@ def features(ast, kwargs):
         std_funcs += f"""
             int birdwayPrintln(struct BirdwayString *content)
             {{
-
+                struct BirdwayChar *cursor = content->start;
+                while(cursor != NULL)
+                {{
+                    putchar(cursor->ucp);
+                    cursor = cursor->next;
+                }}
+                putchar(10);
             }}"""
 
     return std_types + std_funcs

@@ -14,6 +14,7 @@ class VariableCounter:
 
 def resolve_variables(ast):
     var_count = VariableCounter()
+    const_count = VariableCounter()
 
     if ast.arguments is not None:
         for i, arg in enumerate(ast.arguments.statements):
@@ -29,23 +30,23 @@ def resolve_variables(ast):
                     if arg.type == Type.STRING:
                         ast.standard_features |= FEATURE_STRING
 
-    propagate(ast, ast.script)
+    propagate(ast, ast.script, var_count, const_count)
 
 
-def propagate(ast, node):
+def propagate(ast, node, vc, cc):
     if isinstance(node, syntax.Block):
         for child in node.statements:
             child.context = node.context.copy()
-            propagate(ast, child)
+            propagate(ast, child, vc, cc)
 
     elif isinstance(node, syntax.IfThenElse):
         for child in (node.condition, node.statements, node.alternative):
             child.context = node.context.copy()
-            propagate(ast, child)
+            propagate(ast, child, vc, cc)
 
     elif isinstance(node, syntax.UnaryOperation):
         node.operand.context = node.context.copy()
-        propagate(ast, node.operand)
+        propagate(ast, node.operand, vc, cc)
 
     elif isinstance(node, syntax.ReadVariable):
         if node.name in node.context:
@@ -57,14 +58,18 @@ def propagate(ast, node):
     elif isinstance(node, syntax.PrintLine):
         ast.standard_features |= FEATURE_PRINTLN
         node.content.context = node.context.copy()
-        propagate(ast, node.content)
+        propagate(ast, node.content, vc, cc)
 
     elif isinstance(node, syntax.FormattedString):
         ast.standard_features |= FEATURE_STRING
         for child in node.content:
             if not isinstance(child, str):
                 child.context = node.context.copy()
-                propagate(ast, child)
+                propagate(ast, child, vc, cc)
+
+    elif isinstance(node, syntax.StringLiteral):
+        ast.standard_features |= FEATURE_STRING
+        node.id = f"STRING_LITERAL_{cc.register()}"
 
     else:
         raise TypeError(f"can't propagate context to node of type {type(node)}")
@@ -95,6 +100,9 @@ def check_type_of(node, expected):
             check_type_of(node.content, Type.STRING)
 
         elif isinstance(node, syntax.FormattedString):
+            pass
+
+        elif isinstance(node, syntax.StringLiteral):
             pass
 
         else:

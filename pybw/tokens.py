@@ -76,6 +76,10 @@ class FormattedStringDelimiter(Token, AutoRepr):
     pass
 
 
+class StringDelimiter(Token, AutoRepr):
+    pass
+
+
 class StringContent(Token, AutoRepr):
     value = str()
 

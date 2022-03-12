@@ -10,6 +10,7 @@ RE_KEYWORD = re.compile(r"\b(args|else|if|meta|param|println|run|then)\b")
 RE_NEWLINE = re.compile(r"\n|\r\n")
 RE_IGNORE = re.compile(r"\s+")
 RE_DOUBLEQUOTES = re.compile(r'"')
+RE_SINGLEQUOTE = re.compile(r"'")
 RE_PUNCTUATION = re.compile(r";|:|\{|\}|\[|\]")
 RE_OPERATOR = re.compile(r"\?")
 RE_IDENTIFIER = re.compile(r"[A-Za-z0-9_]+")
@@ -83,6 +84,11 @@ def parse_body(source, output, cursor, line):
             cursor = parse_formatted_string(source, output, m.end(), line)
             continue
 
+        if m := RE_SINGLEQUOTE.match(source, cursor):
+            output.append(StringDelimiter(line))
+            cursor = parse_string(source, output, m.end(), line)
+            continue
+
         if m := RE_OPERATOR.match(source, cursor):
             match m.group():
                 case "?":
@@ -127,6 +133,21 @@ def parse_formatted_string(source, output, cursor, line):
             output.append(Variable(line, name=m.group()[1:]))
             cursor = m.end()
             continue
+
+        buffer += source[cursor]
+        cursor += 1
+
+    raise BirdwayLexicalError(f"hit EOF while parsing string literal")
+
+def parse_string(source, output, cursor, line):
+    buffer = str()
+
+    while cursor < len(source):
+        if m := RE_SINGLEQUOTE.match(source, cursor):
+            output.append(StringContent(line, value=buffer))
+            buffer = str()
+            output.append(StringDelimiter(line))
+            return m.end()
 
         buffer += source[cursor]
         cursor += 1

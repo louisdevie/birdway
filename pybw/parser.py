@@ -14,6 +14,11 @@ class InContext:
         self.context = dict()
 
 
+class Identified:
+    def __init__(self):
+        self.id = str()
+
+
 class Program(SyntaxNodeABC, PrettyAutoRepr):
     def __init__(self):
         self.metadata = None
@@ -51,13 +56,12 @@ class Block(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext):
         return Type.VOID
 
 
-class Parameter(SyntaxNodeABC, PrettyAutoRepr):
+class Parameter(SyntaxNodeABC, PrettyAutoRepr, Identified):
     def __init__(self):
         self.type = Type.UNKNOWN
         self.modifier = ArgumentModifier.NONE
         self.name = str()
         self.description = str()
-        self.id = str()
 
 
 class IfThenElse(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext):
@@ -81,11 +85,10 @@ class UnaryOperation(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext):
         return OPERATION_RESULT[self.operator](self.operand.type)
 
 
-class ReadVariable(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext):
+class ReadVariable(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext, Identified):
     def __init__(self):
         super().__init__()
         self.name = str()
-        self.id = str()
         self._t = Type.UNKNOWN
 
     def _type(self):
@@ -99,6 +102,15 @@ class PrintLine(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext):
 
     def _type(self):
         return Type.VOID
+
+
+class StringLiteral(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext, Identified):
+    def __init__(self):
+        super().__init__()
+        self.string = str()
+
+    def _type(self):
+        return Type.STRING
 
 
 def parse(tokens):
@@ -176,6 +188,10 @@ class Parser:
             case TableBegin():
                 self.eat()
                 lhs = self.parse_table()
+
+            case StringDelimiter():
+                self.eat()
+                lhs = self.parse_string()
 
             case FormattedStringDelimiter():
                 self.eat()
@@ -276,13 +292,35 @@ class Parser:
 
                 case StringContent(value=val):
                     self.eat()
-                    string.content.append(val)
+                    literal = StringLiteral()
+                    literal.string = val
+                    string.content.append(literal)
 
                 case Variable(name=var):
                     self.eat()
                     formatting = ReadVariable()
                     formatting.name = var
                     string.content.append(formatting)
+
+                case other:
+                    raise BirdwaySyntaxError(
+                        f"unexpected {other} at line {other._line} while parsing string"
+                    )
+
+        raise BirdwaySyntaxError("hit EOF while parsing string")
+
+    def parse_string(self):
+        string = StringLiteral()
+
+        while self.remaining():
+            match self.peek(0):
+                case StringDelimiter():
+                    self.eat()
+                    return string
+
+                case StringContent(value=val):
+                    self.eat()
+                    string.string += val
 
                 case other:
                     raise BirdwaySyntaxError(
