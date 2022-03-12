@@ -21,11 +21,11 @@ class Type(Enum):
     def __str__(self):
         match self.value:
             case Type.UNKNOWN.value:
-                return "!"
+                return "~"
             case Type.STRING.value:
                 return "str"
             case Type.VOID.value:
-                return "~"
+                return "void"
             case Type.BOOLEAN.value:
                 return "bool"
             case other:
@@ -72,3 +72,14 @@ class ArgumentModifier(Enum):
     UNIQUE = auto()
     OPTIONAL = auto()
     VARIADIC = auto()
+
+
+def _genfeats(*features):
+    for i, f in enumerate(features):
+        exec(f"global FEATURE_{f}; FEATURE_{f} = {2**i}")
+
+_genfeats(
+    "STRING",
+    "FORMATTING",
+    "PRINTLN",
+)

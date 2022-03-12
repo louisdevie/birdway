@@ -19,6 +19,7 @@ class Program(SyntaxNodeABC, PrettyAutoRepr):
         self.metadata = None
         self.arguments = None
         self.script = None
+        self.standard_features = 0;
 
 
 class Table(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext):
@@ -56,6 +57,7 @@ class Parameter(SyntaxNodeABC, PrettyAutoRepr):
         self.modifier = ArgumentModifier.NONE
         self.name = str()
         self.description = str()
+        self.id = str()
 
 
 class IfThenElse(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext):
@@ -151,12 +153,11 @@ class Parser:
 
                 case KeywordRun():
                     self.eat()
-                    if self.peek(0) != BlockBegin():
-                        raise BirdwaySyntaxError(
-                            f"expected block on line {self.peek(0)._line}"
-                        )
-                    self.eat()
-                    prog.script = self.parse_block()
+                    if self.peek(0) == BlockBegin():
+                        self.eat()
+                        prog.script = self.parse_block()
+                    else:
+                        prog.script = self.parse_expression()
                     if self.peek(0) != LineEnd():
                         raise BirdwaySyntaxError(
                             f"missing semicolon on line {self.peek(0)._line}"
