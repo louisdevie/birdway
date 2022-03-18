@@ -12,6 +12,7 @@ class SyntaxNodeABC:
 class InContext:
     def __init__(self):
         self.context = dict()
+        self.using = set()
 
 
 class Identified:
@@ -384,6 +385,9 @@ class Parser:
         if self.peek(0) == FormattedStringDelimiter():
             self.eat()
             parameter.description = self.parse_formatted_string()
+        elif self.peek(0) == StringDelimiter():
+            self.eat()
+            parameter.description = self.parse_string()
 
         return parameter
 

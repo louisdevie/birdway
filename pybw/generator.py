@@ -93,6 +93,15 @@ def initialise_node(node):
                 ', '.join([str(ord(char)) for char in value])
             }}};"""
 
+        #case syntax.Block():
+        #    return f"""const uint32_t {
+        #        name
+        #    }[{
+        #        len(value)
+        #    }] = {{{
+        #        ', '.join([str(ord(char)) for char in value])
+        #    }}};"""
+
         case other:
             raise TypeError(f"can't initialise node of type {type(other)}")
 
