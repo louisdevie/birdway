@@ -8,12 +8,12 @@ Break and Skip
 These two statements can be used inside any of the following loops.
 If used inside a block, they will propagate and affect the containing loop.
 
-.. note:: Syntax
+.. syntax::
    **break**
 
 Exits the loop immediately, skipping the ``then end`` part if there is one.
 
-.. note:: Syntax
+.. syntax::
    **skip**
 
 Skip to the next iteration of the loop immediately.
@@ -22,7 +22,7 @@ Skip to the next iteration of the loop immediately.
 For Loop
 ----------
 
-.. note:: Syntax
+.. syntax::
    **for** variable **from** a **to** b [**step** increment] **do** expression [**then** end]
 
 ``variable`` should be a valid identifier, and a *constant* with this name will
@@ -38,7 +38,7 @@ the statement will be the type of ``expression``.
 For each Loop
 --------------
 
-.. note:: Syntax
+.. syntax::
    **foreach** variable **in** table **do** expression [**then** end]
 
 ``variable`` should be a valid identifier, and a *constant* with this name will
@@ -55,7 +55,7 @@ and [int: str] maps to str.
 While Loop
 ------------
 
-.. note:: Syntax
+.. syntax::
    **while** condition **do** expression [**then** end]
 
 ``expression`` will be evaluated as long as ``condition`` is true, and
@@ -65,7 +65,7 @@ condition is false from the start, there will be no iterations.
 Until Loop
 ------------
 
-.. note:: Syntax
+.. syntax::
    **do** expression **until** condition [**then** end]
 
 ``expression`` will be evaluated until ``condition`` is false, and

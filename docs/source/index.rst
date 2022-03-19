@@ -11,5 +11,6 @@ A language to build small command-line applications
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
+   :numbered:
 
-   specs
+   specs/index
