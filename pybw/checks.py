@@ -37,45 +37,46 @@ def propagate(ast, node, vc, cc):
     if isinstance(node, syntax.Block):
         for child in node.statements:
             child.context = node.context.copy()
-            node.using += propagate(ast, child, vc, cc)
+            node.using |= propagate(ast, child, vc, cc)
         return node.using
 
     elif isinstance(node, syntax.IfThenElse):
         for child in (node.condition, node.statements, node.alternative):
             child.context = node.context.copy()
-            node.using += propagate(ast, child, vc, cc)
+            node.using |= propagate(ast, child, vc, cc)
         return node.using
 
     elif isinstance(node, syntax.UnaryOperation):
         node.operand.context = node.context.copy()
-        node.using += propagate(ast, node.operand, vc, cc)
+        node.using |= propagate(ast, node.operand, vc, cc)
         return node.using
 
     elif isinstance(node, syntax.ReadVariable):
         if node.name in node.context:
             node.id, node._t = node.context[node.name]
-            return [node.name]
+            return {node.name}
         else:
             raise BirdwayNameError(f'no entity named "{node.name}"')
 
     elif isinstance(node, syntax.PrintLine):
         ast.standard_features |= FEATURE_PRINTLN
         node.content.context = node.context.copy()
-        node.using += propagate(ast, node.content, vc, cc)
+        node.using |= propagate(ast, node.content, vc, cc)
         return node.using
 
     elif isinstance(node, syntax.FormattedString):
         ast.standard_features |= FEATURE_STRING
         for child in node.content:
             if not isinstance(child, str):
+                ast.standard_features |= FEATURE_FORMATTING
                 child.context = node.context.copy()
-                node.using += propagate(ast, child, vc, cc)
+                node.using |= propagate(ast, child, vc, cc)
         return node.using
 
     elif isinstance(node, syntax.StringLiteral):
         ast.standard_features |= FEATURE_STRING
         node.id = f"STRING_LITERAL_{cc.register()}"
-        return []
+        return set()
 
     else:
         raise TypeError(f"can't propagate context to node of type {type(node)}")

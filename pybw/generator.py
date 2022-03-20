@@ -57,6 +57,7 @@ def transpile_script(ast, kwargs):
     return f"""
         int birdwayMain(void **globals) 
         {{
+            int err;
             {transpile_node(ast.script, 'tmp')}
             return {SUCCESS};
         }}"""
@@ -65,13 +66,55 @@ def transpile_node(node, tui):
     match node:
         case syntax.PrintLine(content=c):
             return f"""
-                {transpile_node(c, f"{tui}1")}
+                {transpile_node(c, tui+"1")}
                 birdwayPrintln(&{tui}1);"""
 
         case syntax.StringLiteral(id=n, string=v):
             return f"""
                 struct BirdwayString {tui};
                 birdwayStringLiteral(&{tui}, {n}, {len(v)});"""
+
+        case syntax.Block():
+            return f"""
+                err = block();
+                if (err) return err;"""
+
+        case syntax.IfThenElse(condition=cond, statements=res, alternative=alt):
+            return f"""
+                bool {tui}1;
+                {transpile_node(cond, tui+"1")}
+                if ({tui}1)
+                {{
+                    {transpile_node(res, tui+"2")}
+                }}
+                else
+                {{
+                    {transpile_node(alt, tui+"3")}
+                }}"""
+
+        case syntax.UnaryOperation(operand=val, operator=op):
+            if op == Unary.ISDEF:
+                return f"""
+                    {transpile_node(val, tui+"1")}
+                    {tui} = {tui}1 != NULL;"""
+            else:
+                raise TypeError(f"unknown unary operator {op}")
+
+        case syntax.ReadVariable(id=var):
+            return f"void *{tui} = var{var};"
+
+        case syntax.FormattedString(content=c):
+            return f"""
+                struct BirdwayString {tui};
+                birdwayStringEmpty(&{tui});
+                {
+                    "".join([
+                        transpile_node(n, tui+str(i))
+                        + formatter(n, tui+str(i))
+                        + f"birdwayStringConcat(&{tui}, &{tui}{i});"
+                        for i, n in enumerate(c)
+                    ])
+                }"""
 
         case other:
             raise TypeError(f"no implementation for node of type {type(other)}")
@@ -85,22 +128,46 @@ def initialise_node(node):
             return initialise_node(value)
 
         case syntax.StringLiteral(id=name, string=value):
-            return f"""const uint32_t {
-                name
-            }[{
-                len(value)
-            }] = {{{
-                ', '.join([str(ord(char)) for char in value])
-            }}};"""
+            # TODO : pre-build the string in the stack
+            return f"""
+                const uint32_t {
+                    name
+                }[{
+                    len(value)
+                }] = {{{
+                    ', '.join([str(ord(char)) for char in value])
+                }}};"""
 
-        #case syntax.Block():
-        #    return f"""const uint32_t {
-        #        name
-        #    }[{
-        #        len(value)
-        #    }] = {{{
-        #        ', '.join([str(ord(char)) for char in value])
-        #    }}};"""
+        case syntax.Block():
+            return f"""
+                {"".join([initialise_node(s) for s in node.statements])}
+                int block() {{
+                    int err;
+                    {"".join([transpile_node(s, "tmp"+str(i)) for i, s in enumerate(node.statements)])}
+                    return {SUCCESS};
+                }}"""
+
+        case syntax.IfThenElse(condition=cond, statements=res, alternative=alt):
+            return f"""
+                {initialise_node(cond)}
+                {initialise_node(res)}
+                {initialise_node(alt)}"""
+
+        case syntax.UnaryOperation(operand=val):
+            return f"""
+                {initialise_node(val)}"""
+
+        case syntax.ReadVariable():
+            return ""
+
+        case syntax.FormattedString(content=content):
+            return "\n".join(
+                [
+                    initialise_node(lit)
+                    for lit in content
+                    if isinstance(lit, syntax.StringLiteral)
+                ]
+            )
 
         case other:
             raise TypeError(f"can't initialise node of type {type(other)}")
@@ -200,10 +267,25 @@ def features(ast, kwargs):
                     str->end->next = NULL;
                 }}
                 str->length = len;
+            }}
+            int birdwayStringConcat(struct BirdwayString *str1, struct BirdwayString *str2)
+            {{
+                str->end = malloc(sizeof (struct BirdwayChar));
+                str->start = str->end;
+                str->end->ucp = src[0];
+                str->end->next = NULL;
+                for (int i=1; i<len; i++)
+                {{
+                    str->end->next = malloc(sizeof (struct BirdwayChar));
+                    str->end = str->end->next;
+                    str->end->ucp = src[i];
+                    str->end->next = NULL;
+                }}
+                str->length = len;
             }}"""
 
     if kwargs.get("features", 0) & FEATURE_FORMATTING:
-        std += f"""
+        std_funcs += f"""
             """
 
     if kwargs.get("features", 0) & FEATURE_PRINTLN:
@@ -234,3 +316,17 @@ def generate_argument_checker(i, node):
 def initialise_argument(i, node):
     return f"""
         struct BirdwayString *arg{i} = NULL;"""
+
+def formatter(node, tui):
+    match node.type:
+        case Type.STRING:
+            return ""
+
+        case Composite.Nullable():
+            return f"""
+                struct BirdwayString {tui}F;
+                err = birdwayFormatNullable(&{tui}, &{tui}F);
+                if (err) return err;"""
+
+        case other:
+            raise TypeError(f"no formatter available for <{other}>")
