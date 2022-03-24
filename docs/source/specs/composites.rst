@@ -12,9 +12,9 @@ Nullable types
 Represents a type that may be uninitialised.
 A nullable type ``T?`` can be either a value of type ``T`` or ``null``.
 Everything that can be done with ``T`` can be done with ``T?``,
-except that an error will occur if it is null.
+except that an error will occur if it is ``null``.
 (Example: if ``a`` has type ``int?``, then ``a + 5`` is valid and will compile,
-but an error will be thrown at runtime if ``a`` happens to be null.)
+but an error will be thrown at runtime if ``a`` happens to be ``null``.)
 
 
 .. _table:
@@ -39,7 +39,7 @@ Dictionary tables
 In a dictionary, the values are indexed manully by any type.
 Dictionaries can be created literally using the syntax ``[key1: a, key2: b, key3: c]``.
 
-Dictionary types are represented as ``[U: T]``
+Dictionary types are represented as ``[U:T]``
 where T is the type of the values and U the type of the keys.
 
 
