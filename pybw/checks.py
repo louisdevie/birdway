@@ -14,41 +14,43 @@ class VariableCounter:
 
 def resolve_variables(ast):
     var_count = VariableCounter()
-    const_count = VariableCounter()
+    literal_count = VariableCounter()
+    block_count = VariableCounter()
 
     if ast.arguments is not None:
-        for i, arg in enumerate(ast.arguments.statements):
+        for i, arg in enumerate(ast.arguments):
             if isinstance(arg, syntax.Parameter):
                 if arg.modifier == ArgumentModifier.OPTIONAL:
                     if arg.name in ast.script.context:
                         raise BirdwayNameError(f"found two parameters named {arg.name}")
-                    arg.id = str(i)
+                    arg.id = f"const_{var_count.register()}"
                     ast.script.context[arg.name] = (
-                        str(i),
+                        arg.id,
                         Composite.Nullable(arg.type),
                     )
                     if arg.type == Type.STRING:
                         ast.standard_features |= FEATURE_STRING
 
-    propagate(ast, ast.script, var_count, const_count)
+    propagate(ast, ast.script, var_count, literal_count, block_count)
 
 
-def propagate(ast, node, vc, cc):
+def propagate(ast, node, vc, lc, bc):
     if isinstance(node, syntax.Block):
+        node.id = f"block_{bc.register()}"
         for child in node.statements:
             child.context = node.context.copy()
-            node.using |= propagate(ast, child, vc, cc)
+            node.using |= propagate(ast, child, vc, lc, bc)
         return node.using
 
     elif isinstance(node, syntax.IfThenElse):
         for child in (node.condition, node.statements, node.alternative):
             child.context = node.context.copy()
-            node.using |= propagate(ast, child, vc, cc)
+            node.using |= propagate(ast, child, vc, lc, bc)
         return node.using
 
     elif isinstance(node, syntax.UnaryOperation):
         node.operand.context = node.context.copy()
-        node.using |= propagate(ast, node.operand, vc, cc)
+        node.using |= propagate(ast, node.operand, vc, lc, bc)
         return node.using
 
     elif isinstance(node, syntax.ReadVariable):
@@ -61,7 +63,7 @@ def propagate(ast, node, vc, cc):
     elif isinstance(node, syntax.PrintLine):
         ast.standard_features |= FEATURE_PRINTLN
         node.content.context = node.context.copy()
-        node.using |= propagate(ast, node.content, vc, cc)
+        node.using |= propagate(ast, node.content, vc, lc, bc)
         return node.using
 
     elif isinstance(node, syntax.FormattedString):
@@ -70,12 +72,12 @@ def propagate(ast, node, vc, cc):
             if not isinstance(child, str):
                 ast.standard_features |= FEATURE_FORMATTING
                 child.context = node.context.copy()
-                node.using |= propagate(ast, child, vc, cc)
+                node.using |= propagate(ast, child, vc, lc, bc)
         return node.using
 
     elif isinstance(node, syntax.StringLiteral):
         ast.standard_features |= FEATURE_STRING
-        node.id = f"STRING_LITERAL_{cc.register()}"
+        node.id = f"STRING_LITERAL_{lc.register()}"
         return set()
 
     else:

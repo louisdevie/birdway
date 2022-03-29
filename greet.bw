@@ -1,9 +1,13 @@
-args {
-	param str? name 'Name of the person to greet';
-};
+param str? name 'Name of the person to greet';
 
-run {
-	if ?name
-	then println "Hello $name !"
-	else println 'Hello !';
+run
+{
+	if ?name then
+	{
+	    println "Hello $name !";
+	}
+	else
+	{
+	    println 'Hello !';
+	};
 };
