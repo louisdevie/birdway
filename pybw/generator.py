@@ -76,7 +76,7 @@ def transpile_node(node, tui):
 
         case syntax.Block(id=block):
             return f"""
-                err = {block}();
+                err = {block}({"".join([node.context[v][0] for v in node.using])});
                 if (err) return err;"""
 
         case syntax.IfThenElse(condition=cond, statements=res, alternative=alt):
@@ -108,7 +108,7 @@ def transpile_node(node, tui):
                     "".join([
                         transpile_node(n, tui+str(i))
                         + formatter(n, tui+str(i))
-                        + f"birdwayStringConcat(&{tui}, &{tui}{i});"
+                        + f"birdwayStringConcat(&{tui}, &{tui}{i}F);"
                         for i, n in enumerate(c)
                     ])
                 }"""
@@ -138,7 +138,14 @@ def initialise_node(node):
         case syntax.Block(id=block):
             return f"""
                 {"".join([initialise_node(s) for s in node.statements])}
-                int {block}() {{
+                int {block}({
+                    "".join(
+                        [
+                            ctype(node.context[v][1]) + node.context[v][0]
+                            for v in node.using
+                        ]
+                    )
+                }) {{
                     int err;
                     {"".join([transpile_node(s, "tmp"+str(i)) for i, s in enumerate(node.statements)])}
                     return {SUCCESS};
@@ -280,18 +287,8 @@ def features(ast, kwargs):
             }}
             int birdwayStringConcat(struct BirdwayString *str1, struct BirdwayString *str2)
             {{
-                str->end = malloc(sizeof (struct BirdwayChar));
-                str->start = str->end;
-                str->end->ucp = src[0];
-                str->end->next = NULL;
-                for (int i=1; i<len; i++)
-                {{
-                    str->end->next = malloc(sizeof (struct BirdwayChar));
-                    str->end = str->end->next;
-                    str->end->ucp = src[i];
-                    str->end->next = NULL;
-                }}
-                str->length = len;
+                str1->end->next = str2->start;
+                str1->length += str2->length;
             }}"""
 
     if kwargs.get("features", 0) & FEATURE_FORMATTING:
@@ -335,8 +332,19 @@ def formatter(node, tui):
         case Composite.Nullable():
             return f"""
                 struct BirdwayString {tui}F;
-                err = birdwayFormatNullable(&{tui}, &{tui}F);
+                err = birdwayFormatNullable({reference_node(node, tui+"1")}, &{tui}F);
                 if (err) return err;"""
 
         case other:
             raise TypeError(f"no formatter available for <{other}>")
+
+def ctype(T):
+    match T:
+        case Type.STRING:
+            return "struct BirdwayString "
+
+        case Composite.Nullable(val=val):
+            return ctype(val)+"*"
+
+        case other:
+            raise TypeError(f"no internal type for <{other}>")
