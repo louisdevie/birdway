@@ -1,0 +1,79 @@
+%YAML 1.2
+---
+file_extensions:
+  - bw
+scope: source.birdway
+contexts:
+  main:
+    - match: "'"
+      scope: punctuation.definition.string.begin.birdway
+      push: single_quoted_string
+
+    - match: '"'
+      scope: punctuation.definition.string.begin.birdway
+      push: double_quoted_string
+
+    - match: '/:'
+      scope: punctuation.definition.comment.birdway
+      push: line_comment
+
+    - match: '\b(if|else|for|while|meta|param|run|from|to|do|let|println|then|func|forward|try|on)\b'
+      scope: keyword.control.birdway
+
+    - match: ->
+      scope: keyword.control.birdway
+
+    - match: (&&|&|~|##|#|-|\||\^|\+|==|%|\*|<<|<=|<|>>|>=|>|\?|//|/|!=|!)
+      scope: keyword.operator.birdway
+
+    - match: =
+      scope: keyword.control.birdway
+
+    - match: '\b(-)?[0-9.]+\b'
+      scope: constant.numeric.birdway
+
+    - match: ;
+      scope: punctuation.terminator.birdway
+
+    - match: ','
+      scope: punctuation.separator.sequence.birdway
+
+    - match: ':'
+      scope: punctuation.separator.key-value.birdway
+
+    - match: (str)(\s*)(\*|\?)?
+      captures:
+        1: storage.type.birdway
+        3: storage.modifier.birdway
+
+  single_quoted_string:
+    - meta_scope: string.quoted.single.birdway
+    - match: '\\(n|r|e|t)'
+      scope: constant.character.escape.birdway
+    - match: '\\.'
+      scope: invalid.illegal.birdway
+    - match: "'"
+      scope: punctuation.definition.string.end.birdway
+      pop: true
+
+  line_comment:
+    - meta_scope: comment.line.birdway
+    - match: $
+      pop: true
+
+  double_quoted_string:
+    - match: '\\(n|r|e|t)'
+      scope: constant.character.escape.birdway
+    - match: '\\.'
+      scope: invalid.illegal.birdway
+    - match: '"'
+      scope: punctuation.definition.string.end.birdway
+      pop: true
+    - match: (\$)([A-Za-z0-9_]+)
+      captures:
+        1: punctuation.definition.string.birdway
+        2: variable.birdway
+    - match: \$\(
+      scope: punctuation.definition.string.birdway
+    - match: .
+      scope: string.quoted.double.birdway

@@ -1,15 +1,21 @@
 meta [
-	"name": "Birdway",
+	'name': 'Birdway',
 ];
 
-args {
-	param str* input "Scripts to compile"; 
-};
+param str* input 'Scripts to compile';
 
 run {
-	for i from 0 to (#input)-1 do {
+	forward compile;
+
+	for i from 0 to #input do {
 		let path = input[i];
 
-		println "Compiling $path ... ($(i+1)/$(#input))";
+		println "Compiling $path ... ($(i+1)/$(##input))";
+
+		try compile(path) on USER do {};
+	};
+
+	func compile(source) -> {
+
 	};
 };
