@@ -17,6 +17,8 @@ The special satements ``meta``, ``param``, ``option``, ``flag``,
 can be used in a script body, and can only be used there.
 They must be separated by semicolons.
 
+.. _metadata:
+
 The metadata
 ------------
 
@@ -35,8 +37,10 @@ with the following fields used:
    * - Key
      - Value
 
-   * - name
+   * - ``'name'``
+     - the name of the application
 
-   * - Row 2, column 1
-     - Row 2, column 2
-     - Row 2, column 3
+.. _parameters:
+.. _subcommands:
+.. _types:
+.. _program:

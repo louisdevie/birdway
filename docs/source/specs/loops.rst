@@ -2,6 +2,8 @@ Loops
 =====
 
 
+.. _break_skip:
+
 Break and Skip
 --------------
 

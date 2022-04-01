@@ -108,7 +108,11 @@ def transpile_node(node, tui):
                     "".join([
                         transpile_node(n, tui+str(i))
                         + formatter(n, tui+str(i))
-                        + f"birdwayStringConcat(&{tui}, &{tui}{i}F);"
+                        + (
+                            f"birdwayStringConcat(&{tui}, &{tui}{i}F);"
+                            if not n.type == Type.STRING
+                            else f"birdwayStringConcat(&{tui}, &{tui}{i});"
+                        )
                         for i, n in enumerate(c)
                     ])
                 }"""
@@ -141,7 +145,7 @@ def initialise_node(node):
                 int {block}({
                     "".join(
                         [
-                            ctype(node.context[v][1]) + node.context[v][0]
+                            ctype(node.context[v][1]) + "*" + node.context[v][0]
                             for v in node.using
                         ]
                     )
@@ -325,18 +329,26 @@ def initialise_argument(i, node):
         struct BirdwayString *arg{i} = NULL;"""
 
 def formatter(node, tui):
-    match node.type:
-        case Type.STRING:
-            return ""
+    if node.type == Type.STRING:
+        return ""
 
-        case Composite.Nullable():
-            return f"""
-                struct BirdwayString {tui}F;
-                err = birdwayFormatNullable({reference_node(node, tui+"1")}, &{tui}F);
-                if (err) return err;"""
+    else:
+        return f"""
+            struct BirdwayString {tui}F;
+            err = birdwayFormat{nameof(node.type)}({
+                reference_node(node, tui+"1")}, &{tui}F);
+            if (err) return err;"""
+
+def nameof(T):
+    match(T):
+        case Type.STRING:
+            return "String"
+
+        case Composite.Nullable(val=val):
+            return "Nullable"+nameof(val)
 
         case other:
-            raise TypeError(f"no formatter available for <{other}>")
+            raise TypeError(f"no type name for <{other}>")
 
 def ctype(T):
     match T:
