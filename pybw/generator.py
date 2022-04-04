@@ -10,8 +10,9 @@ def transpile(ast, **kwargs):
         #include <stdbool.h>
         #include <stdlib.h>
         #include <stdint.h>"""
-    code += generate_string_constants(ast, kwargs)
-    code += features(ast, kwargs)
+    code += features_types(ast, kwargs)
+    code += generate_constants(ast, kwargs)
+    code += features_functions(ast, kwargs)
     code += initialise_script(ast, kwargs)
     code += generate_argument_parser(ast, kwargs)
     code += transpile_script(ast, kwargs)
@@ -19,9 +20,10 @@ def transpile(ast, **kwargs):
     return code
 
 
-def generate_string_constants(ast, kwargs):
+def generate_constants(ast, kwargs):
     return f"""
-        const char BIRDWAY_APPLICATION_IDENTIFICATION[] = "{kwargs.get("name", "[unnamed]")}";"""
+        const char BIRDWAY_APPLICATION_IDENTIFICATION[] = "{kwargs.get("name", "[unnamed]")}";
+        const uint32_t NULL_REPR[6] = {{60, 110, 117, 108, 108, 62}};"""
 
 
 def generate_main_function(ast, kwargs):
@@ -57,9 +59,9 @@ def transpile_script(ast, kwargs):
     return f"""
         int birdwayMain(void **globals) 
         {{
-            int err;
+            int err = {SUCCESS};
             {transpile_node(ast.script, 'tmp')}
-            return {SUCCESS};
+            return err;
         }}"""
 
 def transpile_node(node, tui):
@@ -150,9 +152,9 @@ def initialise_node(node):
                         ]
                     )
                 }) {{
-                    int err;
+                    int err = {SUCCESS};
                     {"".join([transpile_node(s, "tmp"+str(i)) for i, s in enumerate(node.statements)])}
-                    return {SUCCESS};
+                    return err;
                 }}"""
 
         case syntax.IfThenElse(condition=cond, statements=res, alternative=alt):
@@ -219,18 +221,8 @@ def generate_argument_parser(ast, kwargs):
         }}"""
 
 
-def features(ast, kwargs):
+def features_types(ast, kwargs):
     std_types = ""
-
-    std_funcs = f"""
-        int birdwayParseOneArgument(char *arg, int *pos, bool *isShort, char **name, char **value)
-        {{
-            *isShort = false;
-            *name = NULL;
-            *value = arg;
-            ++*pos;
-            return 0;
-        }}"""
 
     if kwargs.get("features", 0) & FEATURE_STRING:
         std_types += f"""
@@ -245,6 +237,21 @@ def features(ast, kwargs):
                 struct BirdwayChar *end;
                 size_t length;
             }};"""
+
+    return std_types
+
+def features_functions(ast, kwargs):
+    std_funcs = f"""
+        int birdwayParseOneArgument(char *arg, int *pos, bool *isShort, char **name, char **value)
+        {{
+            *isShort = false;
+            *name = NULL;
+            *value = arg;
+            ++*pos;
+            return 0;
+        }}"""
+
+    if kwargs.get("features", 0) & FEATURE_STRING:
         std_funcs += f"""
             int birdwayStringEmpty(struct BirdwayString *str)
             {{
@@ -297,7 +304,17 @@ def features(ast, kwargs):
 
     if kwargs.get("features", 0) & FEATURE_FORMATTING:
         std_funcs += f"""
-            """
+            int birdwayFormatNullableString(struct BirdwayString **input, struct BirdwayString *output)
+            {{
+                if (*input == NULL)
+                {{
+                    birdwayStringLiteral(output, NULL_REPR, 6);
+                }}
+                else
+                {{
+                    *output = **input;
+                }}
+            }}"""
 
     if kwargs.get("features", 0) & FEATURE_PRINTLN:
         std_funcs += f"""
@@ -312,7 +329,7 @@ def features(ast, kwargs):
                 putchar(10);
             }}"""
 
-    return std_types + std_funcs
+    return std_funcs
 
 
 def generate_argument_checker(i, node):
@@ -335,9 +352,8 @@ def formatter(node, tui):
     else:
         return f"""
             struct BirdwayString {tui}F;
-            err = birdwayFormat{nameof(node.type)}({
-                reference_node(node, tui+"1")}, &{tui}F);
-            if (err) return err;"""
+            err = birdwayFormat{nameof(node.type)}({reference_node(node, tui+"1")}, &{tui}F);
+            if (err) return err;\n"""
 
 
 
