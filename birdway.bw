@@ -5,14 +5,14 @@ meta [
 param str* input 'Scripts to compile';
 
 run {
-	forward compile;
+	func compile;
 
 	for i from 0 to #input do {
 		let path = input[i];
 
 		println "Compiling $path ... ($(i+1)/$(##input))";
 
-		try compile(path) on USER do {};
+		try compile(path) on USER do logerr();
 	};
 
 	func compile(source) -> {

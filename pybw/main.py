@@ -33,12 +33,16 @@ def main():
 
             checks.resolve_variables(ast)
             checks.check_types(ast)
-            print(ast)
+
+            with open(name + ".tree", "wt+") as fd:
+                print(ast, file=fd)
 
             output = generator.transpile(ast, name=name, features=ast.standard_features)
 
             with open(tempdst, "wt+") as fd:
                 fd.write(output)
+
+            os.system(f"gcc {tempdst} -o build/{name} -std=c99 -Wall -ggdb3")
 
             print("  Done")
 
@@ -50,4 +54,5 @@ def main():
 
 
 if __name__ == "__main__":
+    sys.path.insert(0, os.path.dirname(__file__))
     main()

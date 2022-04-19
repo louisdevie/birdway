@@ -1,6 +1,7 @@
 from enum import Enum, auto
 from exceptions import *
 
+
 class Typed:
     def __getattr__(self, attr):
         if attr == "type":
@@ -52,6 +53,7 @@ class Composite:
 class Unary(Enum):
     ISDEF = auto()
 
+
 def isdef_result(t):
     if t == Type.UNKNOWN:
         return Type.UNKNOWN
@@ -60,7 +62,8 @@ def isdef_result(t):
         return Type.BOOLEAN
 
     else:
-        raise BirdwayTypeError(f'the ? operator can only be used on nullable types')
+        raise BirdwayTypeError(f"the ? operator can only be used on nullable types")
+
 
 OPERATION_RESULT = {
     Unary.ISDEF: isdef_result,
@@ -77,6 +80,7 @@ class ArgumentModifier(Enum):
 def _genfeats(*features):
     for i, f in enumerate(features):
         exec(f"global FEATURE_{f}; FEATURE_{f} = {2**i}")
+
 
 _genfeats(
     "STRING",

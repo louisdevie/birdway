@@ -139,6 +139,7 @@ def parse_formatted_string(source, output, cursor, line):
 
     raise BirdwayLexicalError(f"hit EOF while parsing string literal")
 
+
 def parse_string(source, output, cursor, line):
     buffer = str()
 

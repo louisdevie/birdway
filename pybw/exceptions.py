@@ -8,3 +8,7 @@ class BirdwaySyntaxError(BirdwayCompilationError):
 
 class BirdwayNameError(BirdwayCompilationError):
     pass
+
+
+class BirdwayTypeError(BirdwayCompilationError):
+    pass

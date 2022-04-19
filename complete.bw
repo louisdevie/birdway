@@ -1,0 +1,13 @@
+meta [
+	'name': 'Complete',
+	'version': '1.2.3',
+	'authors': 'Louis DEVIE',
+	'url': 'github.com/louisdevie/birdway',
+	'description': 'A program that use all the features of the language',
+];
+
+subcmd helloworld;
+
+flag COUNT C 'The program will display the number of times this flag is passed';
+flag! quiet q 'Disable any output';
+option int 

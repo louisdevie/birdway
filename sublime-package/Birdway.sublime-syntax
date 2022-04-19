@@ -17,17 +17,37 @@ contexts:
       scope: punctuation.definition.comment.birdway
       push: line_comment
 
-    - match: '\b(if|else|for|while|meta|param|run|from|to|do|let|println|then|func|forward|try|on)\b'
-      scope: keyword.control.birdway
+    - match: '\b(if|else|then)\b'
+      scope: keyword.control.conditional.birdway
+
+    - match: '\b(for|while|from|to|do)\b'
+      scope: keyword.control.loop.birdway
+
+    - match: '\b(meta|param|run)\b'
+      scope: keyword.other.birdway
+
+    - match: '\b(try|on)\b'
+      scope: keyword.control.exception.birdway
+
+    - match: \blet\b
+      scope: keyword.declaration.birdway
+
+    - match: \bprintln\b
+      scope: keyword.other.birdway
+
+    - match: '(\bfunc\b\s*)([A-Aa-z0-9_]+)'
+      captures:
+        1: keyword.declaration.function.birdway
+        2: entity.name.function.birdway
 
     - match: ->
-      scope: keyword.control.birdway
+      scope: keyword.declaration.birdway
 
     - match: (&&|&|~|##|#|-|\||\^|\+|==|%|\*|<<|<=|<|>>|>=|>|\?|//|/|!=|!)
       scope: keyword.operator.birdway
 
     - match: =
-      scope: keyword.control.birdway
+      scope: keyword.declaration.birdway
 
     - match: '\b(-)?[0-9.]+\b'
       scope: constant.numeric.birdway
@@ -45,6 +65,18 @@ contexts:
       captures:
         1: storage.type.birdway
         3: storage.modifier.birdway
+
+    - match: \(
+      push: main
+
+    - match: \)
+      pop: true
+
+    - match: '([A-Aa-z0-9_]+)(\s*)(\()'
+      captures:
+        1: variable.function.birdway
+        2: text.birdway
+        3: punctuation.section.parens.begin.birdway
 
   single_quoted_string:
     - meta_scope: string.quoted.single.birdway
@@ -75,5 +107,10 @@ contexts:
         2: variable.birdway
     - match: \$\(
       scope: punctuation.definition.string.birdway
+      push: main
+      with_prototype:
+        - match: \)
+          pop: true
+          scope: punctuation.definition.string.birdway
     - match: .
       scope: string.quoted.double.birdway
