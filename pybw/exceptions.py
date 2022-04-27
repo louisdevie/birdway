@@ -12,3 +12,7 @@ class BirdwayNameError(BirdwayCompilationError):
 
 class BirdwayTypeError(BirdwayCompilationError):
     pass
+
+
+class BirdwayLexicalError(BirdwayCompilationError):
+    pass

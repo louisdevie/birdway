@@ -52,6 +52,31 @@ class Composite:
 
 class Unary(Enum):
     ISDEF = auto()
+    ISNTDEF = auto()
+    LAST = auto()
+    SIZE = auto()
+    INVERSE = auto()
+    OPPOSITE = auto()
+    BITWISENOT = auto()
+    LOGICALNOT = auto()
+
+
+class Binary(Enum):
+    ADDITION = auto()
+    SUBSTRACTION = auto()
+    MULTIPLICATION = auto()
+    DIVISION = auto()
+    MODULO = auto()
+    INTDIVISON = auto()
+    BITWISEAND = auto()
+    BITWISEOR = auto()
+    BITWISEXOR = auto()
+    BITSHIFTL = auto()
+    BITSHIFTR = auto()
+    LOGICALAND = auto()
+    LOGICALOR = auto()
+    LOGICALXOR = auto()
+    CONCATENATION = auto()
 
 
 def isdef_result(t):

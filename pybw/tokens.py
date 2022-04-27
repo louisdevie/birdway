@@ -1,6 +1,6 @@
 from enum import Enum, auto
 from autorepr import AutoRepr
-from birdway import Unary, Type
+from birdway import Unary, Type, Binary
 
 
 class Token:
@@ -24,72 +24,45 @@ class Token:
             return False
 
 
-class KeywordMeta(Token, AutoRepr):
-    pass
-
-
-class KeywordArgs(Token, AutoRepr):
-    pass
-
-
-class KeywordParam(Token, AutoRepr):
-    pass
-
-
-class KeywordRun(Token, AutoRepr):
-    pass
-
-
-class KeywordIf(Token, AutoRepr):
-    pass
-
-
-class KeywordThen(Token, AutoRepr):
-    pass
-
-
-class KeywordElse(Token, AutoRepr):
-    pass
-
-
-class KeywordPrintln(Token, AutoRepr):
-    pass
-
-
-class BlockBegin(Token, AutoRepr):
-    pass
-
-
-class BlockEnd(Token, AutoRepr):
-    pass
-
-
-class TableBegin(Token, AutoRepr):
-    pass
-
-
-class TableEnd(Token, AutoRepr):
-    pass
-
-
-class FormattedStringDelimiter(Token, AutoRepr):
-    pass
-
-
-class StringDelimiter(Token, AutoRepr):
-    pass
+for name in [
+    "KeywordMeta",
+    "KeywordArgs",
+    "KeywordParam",
+    "KeywordRun",
+    "KeywordIf",
+    "KeywordThen",
+    "KeywordElse",
+    "KeywordPrintln",
+    "KeywordOption",
+    "BlockBegin",
+    "BlockEnd",
+    "TableBegin",
+    "TableEnd",
+    "OpeningParens",
+    "ClosingParens",
+    "FormattedStringDelimiter",
+    "StringDelimiter",
+    "LineEnd",
+    "Association",
+    "Separator",
+    "Assignment",
+    "Return",
+    "FormattingExpressionBegin",
+    "KeywordStruct",
+    "KeywordEnum",
+    "KeywordFunc",
+    "KeywordFor",
+    "KeywordFrom",
+    "KeywordTo",
+    "KeywordDo",
+    "KeywordTry",
+    "KeywordOn",
+]:
+    exec(f"class {name} (Token, AutoRepr): pass")
 
 
 class StringContent(Token, AutoRepr):
     value = str()
-
-
-class LineEnd(Token, AutoRepr):
-    pass
-
-
-class Association(Token, AutoRepr):
-    pass
 
 
 class Identifier(Token, AutoRepr):
@@ -98,6 +71,10 @@ class Identifier(Token, AutoRepr):
 
 class UnaryOperator(Token, AutoRepr):
     operator = Unary(1)
+
+
+class BinaryOperator(Token, AutoRepr):
+    operator = Binary(1)
 
 
 class Variable(Token, AutoRepr):

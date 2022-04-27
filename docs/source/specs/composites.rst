@@ -49,7 +49,7 @@ Enumerations
 ------------
 
 Enumerations are a finite set of values,
-declared with the ``enum`` statement in the ``types`` block.
+declared with the ``enum`` statement.
 An ``enum`` is an enumeration, while ``enum E`` is a value of ``E``.
 
 .. _struct:
@@ -58,7 +58,7 @@ Structures
 ----------
 
 Structure are used to group together different types.
-Use the ``struct`` statement in the ``types`` block to declare a structure.
+Use the ``struct`` statement to declare a structure.
 Each field is named and that name must always be explicitly stated,
 there are no anonymous structures. Structures can be created literally
 using the syntax ``MyStruct (field1: value1, field2: value2)``.

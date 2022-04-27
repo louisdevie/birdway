@@ -65,6 +65,15 @@ class Parser:
                         )
                     self.eat()
 
+                case KeywordOption():
+                    self.eat()
+                    prog.arguments.append(self.parse_parameter())
+                    if self.peek(0) != LineEnd():
+                        raise BirdwaySyntaxError(
+                            f"missing semicolon on line {self.peek(0)._line} after parameter"
+                        )
+                    self.eat()
+
                 case other:
                     raise BirdwaySyntaxError(
                         f"unexpected {other} at line {other._line} while parsing program body"
@@ -164,9 +173,18 @@ class Parser:
 
                 table.values[val_or_key] = val
 
-            if self.peek(0) == TableEnd():
+            if self.peek(0) == Separator():
                 self.eat()
-                return table
+                if self.peek(0) == TableEnd():
+                    self.eat()
+                    return table
+            else:
+                if self.peek(0) == TableEnd():
+                    self.eat()
+                    return table
+                else:
+                    raise BirdwaySyntaxError(f"expected colon between values of table (line {self.peek(0)._line})")
+
 
         raise BirdwaySyntaxError("hit EOF while parsing table")
 

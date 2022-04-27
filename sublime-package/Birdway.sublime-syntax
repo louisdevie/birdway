@@ -17,25 +17,47 @@ contexts:
       scope: punctuation.definition.comment.birdway
       push: line_comment
 
+    - match: '/\*'
+      scope: punctuation.definition.comment.begin.birdway
+      push: block_comment
+
     - match: '\b(if|else|then)\b'
       scope: keyword.control.conditional.birdway
 
     - match: '\b(for|while|from|to|do)\b'
       scope: keyword.control.loop.birdway
 
-    - match: '\b(meta|param|run)\b'
+    - match: '\b(meta|param|run|option)\b'
       scope: keyword.other.birdway
 
     - match: '\b(try|on)\b'
       scope: keyword.control.exception.birdway
 
-    - match: \blet\b
-      scope: keyword.declaration.birdway
+    - match: '(\bstruct\b\s*)([A-Za-z0-9_]+)(\s*\()'
+      captures:
+        1: keyword.declaration.struct.birdway
+        2: entity.name.struct.birdway
+
+    - match: '(\benum\b\s*)([A-Za-z0-9_]+)(\s*\()'
+      captures:
+        1: keyword.declaration.enum.birdway
+        2: entity.name.enum.birdway
+
+    - match: '\bstruct\b\s*[A-Za-z0-9_]+'
+      scope: storage.type.struct.birdway
+
+    - match: '\benum\b\s*[A-Za-z0-9_]+'
+      scope: storage.type.struct.birdway
+
+    - match: (\blet\b\s*)([A-Za-z0-9_]+)(\s*=)
+      captures:
+        1: keyword.declaration.birdway
+        3: keyword.declaration.birdway
 
     - match: \bprintln\b
       scope: keyword.other.birdway
 
-    - match: '(\bfunc\b\s*)([A-Aa-z0-9_]+)'
+    - match: '(\bfunc\b\s*)([A-Za-z0-9_]+)'
       captures:
         1: keyword.declaration.function.birdway
         2: entity.name.function.birdway
@@ -43,11 +65,8 @@ contexts:
     - match: ->
       scope: keyword.declaration.birdway
 
-    - match: (&&|&|~|##|#|-|\||\^|\+|==|%|\*|<<|<=|<|>>|>=|>|\?|//|/|!=|!)
+    - match: (&&|&|~|##|#|-|\||\^|\+|==|=|%|\*|<<|<=|<|>>|>=|>|\?|//|/|!=|!)
       scope: keyword.operator.birdway
-
-    - match: =
-      scope: keyword.declaration.birdway
 
     - match: '\b(-)?[0-9.]+\b'
       scope: constant.numeric.birdway
@@ -61,10 +80,8 @@ contexts:
     - match: ':'
       scope: punctuation.separator.key-value.birdway
 
-    - match: (str)(\s*)(\*|\?)?
-      captures:
-        1: storage.type.birdway
-        3: storage.modifier.birdway
+    - match: \bstr\b
+      scope: storage.type.birdway
 
     - match: \(
       push: main
@@ -72,7 +89,7 @@ contexts:
     - match: \)
       pop: true
 
-    - match: '([A-Aa-z0-9_]+)(\s*)(\()'
+    - match: '([A-Za-z0-9_]+)(\s*)(\()'
       captures:
         1: variable.function.birdway
         2: text.birdway
@@ -91,6 +108,12 @@ contexts:
   line_comment:
     - meta_scope: comment.line.birdway
     - match: $
+      pop: true
+
+  block_comment:
+    - meta_scope: comment.line.birdway
+    - match: \*/
+      scope: punctuation.definition.comment.end.birdway
       pop: true
 
   double_quoted_string:

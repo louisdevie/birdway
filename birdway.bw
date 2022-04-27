@@ -2,20 +2,28 @@ meta [
 	'name': 'Birdway',
 ];
 
-param str* input 'Scripts to compile';
+option! str OUTPUT_DIR o;
+param* str INPUT 'Scripts to compile';
+
+/: lexical tokens 
+struct Token (
+	enum TokenType type,
+	str value,
+);
+enum TokenType (
+	KEYWORD_META,
+)
 
 run {
 	func compile;
 
-	for i from 0 to #input do {
-		let path = input[i];
+	for i from 0 to #INPUT do {
+		println "Compiling $(input[i]) ... ($(i+1)/$(##input))";
 
-		println "Compiling $path ... ($(i+1)/$(##input))";
-
-		try compile(path) on USER do logerr();
+		try compile(input[i]) on USER do logerr();
 	};
 
 	func compile(source) -> {
-
+		println '  Not implemented';
 	};
 };
