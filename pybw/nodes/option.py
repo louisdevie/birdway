@@ -1,61 +1,66 @@
 from .base import *
 from birdway import Type, ArgumentModifier, Composite
 
-from .string_literal import StringLiteral
 
-
-class Parameter(SyntaxNodeABC, PrettyAutoRepr, Identified):
+class Option(SyntaxNodeABC, PrettyAutoRepr, Identified):
     def __init__(self):
         self.type = Type.UNKNOWN
         self.modifier = ArgumentModifier.NONE
         self.name = str()
+        self.shortcut = str()
         self.description = str()
 
     @classmethod
     def _parse(cls, parser):
-        parameter = cls()
+        option = cls()
 
         if parser.peek(0) == UnaryOperator(operator=Unary.ISDEF):
-            parser.eat()
-            parameter.modifier = ArgumentModifier.OPTIONAL
-        elif parser.peek(0) == UnaryOperator(operator=Unary.ISNTDEF):
             raise BirdwaySyntaxError(
-                "The unique modifier ‘!’ can't be used on parameters"
+                "The optional modifier ‘?’ can't be used on options"
             )
-        elif parser.peek(0) == BinaryOperator(operator=Binary.MULTIPLICATION):
+        elif parser.peek(0) == UnaryOperator(operator=Unary.ISNTDEF):
             parser.eat()
-            parameter.modifier = ArgumentModifier.MULTIPLE
+            option.modifier = ArgumentModifier.UNIQUE
+        elif parser.peek(0) == BinaryOperator(operator=Binary.MULTIPLICATION):
+            raise BirdwaySyntaxError(
+                "The multiple modifier ‘*’ can't be used on options"
+            )
 
         match parser.peek(0):
             case TypeName(type=t):
                 parser.eat()
-                parameter.type = t
+                option.type = t
 
             case other:
                 raise BirdwaySyntaxError(
                     f"""expected type{
-                        ' or modifier' if parameter.modifier == ArgumentModifier.NONE else ''
+                        ' or modifier' if option.modifier == ArgumentModifier.NONE else ''
                     }, got {other} at line {other._line}"""
                 )
 
         match parser.peek(0):
             case Identifier(name=ident):
                 parser.eat()
-                parameter.name = ident
+                option.name = ident
 
             case other:
                 raise BirdwaySyntaxError(
                     f"expected identifier, got {other} at line {other._line}"
                 )
 
+        match parser.peek(0):
+            case Identifier(name=ident):
+                parser.eat()
+                option.shortcut = ident
+
         if parser.peek(0) == FormattedStringDelimiter():
             parser.eat()
-            parameter.description = parser.parse_formatted_string()
+            option.description = parser.parse_formatted_string()
         elif parser.peek(0) == StringDelimiter():
             parser.eat()
-            parameter.description = StringLiteral._parse(parser)
+            option.description = parser.parse_string()
 
-        return parameter
+        return option
 
     def _initialise(self):
         if self.modifier == ArgumentModifier.OPTIONAL:

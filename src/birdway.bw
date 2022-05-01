@@ -2,23 +2,15 @@ meta [
 	'name': 'Birdway',
 ];
 
+use birdway_lexer;
+
 option! str OUTPUT_DIR o;
 param* str INPUT 'Scripts to compile';
 
-/: lexical tokens 
-struct Token (
-	enum TokenType type,
-	str value,
-);
-enum TokenType (
-	KEYWORD_META,
-)
-
 run {
 	func compile;
-
-	for i from 0 to #INPUT do {
-		println "Compiling $(input[i]) ... ($(i+1)/$(##input))";
+	for i in [0..##INPUT] do {
+		println "Compiling $(input[i]) ... ($(i+1)/$(#input))";
 
 		try compile(input[i]) on USER do logerr();
 	};

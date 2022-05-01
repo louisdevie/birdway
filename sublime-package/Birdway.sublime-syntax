@@ -21,13 +21,16 @@ contexts:
       scope: punctuation.definition.comment.begin.birdway
       push: block_comment
 
+    - match: \blogerr\b
+      scope: support.function.birdway
+
     - match: '\b(if|else|then)\b'
       scope: keyword.control.conditional.birdway
 
-    - match: '\b(for|while|from|to|do)\b'
+    - match: '\b(for|while|in|do)\b'
       scope: keyword.control.loop.birdway
 
-    - match: '\b(meta|param|run|option)\b'
+    - match: '\b(meta|param|run|option|use)\b'
       scope: keyword.other.birdway
 
     - match: '\b(try|on)\b'
@@ -68,7 +71,10 @@ contexts:
     - match: (&&|&|~|##|#|-|\||\^|\+|==|=|%|\*|<<|<=|<|>>|>=|>|\?|//|/|!=|!)
       scope: keyword.operator.birdway
 
-    - match: '\b(-)?[0-9.]+\b'
+    - match: \.\.
+      scope: keyword.other.birdway
+
+    - match: '\b(-)?[0-9]+(\.[0-9]+)?\b'
       scope: constant.numeric.birdway
 
     - match: ;

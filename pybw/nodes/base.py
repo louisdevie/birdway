@@ -1,6 +1,8 @@
 from abc import ABC
 from birdway import Typed, Type, Composite
 from autorepr import PrettyAutoRepr
+from tokens import *
+from exceptions import *
 
 SUCCESS = 0
 
@@ -35,7 +37,7 @@ def ctype(T):
             return "struct BirdwayString "
 
         case Composite.Nullable(val=val):
-            return ctype(val)+"*"
+            return ctype(val) + "*"
 
         case other:
             raise TypeError(f"no internal type for <{other}>")

@@ -8,6 +8,25 @@ class IfThenElse(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext):
         self.statements = None
         self.alternative = None
 
+    @classmethod
+    def _parse(cls, parser):
+        ifthenelse = cls()
+
+        ifthenelse.condition = parser.parse_expression()
+
+        if (tok := parser.pop()) != KeywordThen():
+            raise BirdwaySyntaxError(
+                f"expected keyword then, got {tok} on line {tok._line}"
+            )
+
+        ifthenelse.statements = parser.parse_expression()
+
+        if parser.peek(0) == KeywordElse():
+            parser.eat()
+            ifthenelse.alternative = parser.parse_expression()
+
+        return ifthenelse
+
     def _type(self):
         return self.statements.type
 

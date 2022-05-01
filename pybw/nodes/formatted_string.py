@@ -31,16 +31,40 @@ class FormattedString(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext):
         super().__init__()
         self.content = list()
 
+    @classmethod
+    def _parse(cls, parser):
+        string = cls()
+
+        while parser.remaining():
+            match parser.peek(0):
+                case FormattedStringDelimiter():
+                    parser.eat()
+                    return string
+
+                case StringContent(value=val):
+                    parser.eat()
+                    literal = StringLiteral()
+                    literal.string = val
+                    string.content.append(literal)
+
+                case Variable(name=var):
+                    parser.eat()
+                    formatting = ReadVariable()
+                    formatting.name = var
+                    string.content.append(formatting)
+
+                case other:
+                    raise BirdwaySyntaxError(
+                        f"unexpected {other} at line {other._line} while parsing string"
+                    )
+
+        raise BirdwaySyntaxError("hit EOF while parsing string")
+
     def _type(self):
         return Type.STRING
 
     def _initialise(self):
-        return "\n".join(
-            [
-                lit._initialise()
-                for lit in self.content
-            ]
-        )
+        return "\n".join([lit._initialise() for lit in self.content])
 
     def _transpile(self, tui):
         return f"""

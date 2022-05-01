@@ -25,8 +25,6 @@ def main():
                 content = fd.read()
 
             tokens = lexer.parse(content)
-            for t in tokens:
-                print(" ", t)
 
             ast = parser.parse(tokens)
             # print(ast)

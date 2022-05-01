@@ -7,6 +7,12 @@ class PrintLine(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext):
         super().__init__()
         self.content = None
 
+    @classmethod
+    def _parse(cls, parser):
+        println = cls()
+        println.content = parser.parse_expression()
+        return println
+
     def _type(self):
         return Type.VOID
 

@@ -9,7 +9,7 @@ class UnaryOperation(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext):
         self.operand = None
 
     def _type(self):
-        return OPERATION_RESULT[self.operator](self.operand.type)
+        return OPERATION_RESULT[self.operator][self.operand.type]
 
     def _initialise(self):
         return self.operand._initialise()

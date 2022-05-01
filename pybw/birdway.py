@@ -17,6 +17,7 @@ class Type(Enum):
     UNKNOWN = auto()
     VOID = auto()
     BOOLEAN = auto()
+    INTEGER = auto()
     STRING = auto()
 
     def __str__(self):
@@ -29,6 +30,8 @@ class Type(Enum):
                 return "void"
             case Type.BOOLEAN.value:
                 return "bool"
+            case Type.INTEGER.value:
+                return "int"
             case other:
                 raise ValueError(f"unknown type")
 
@@ -48,6 +51,22 @@ class Composite:
 
         def __repr__(self):
             return f"[{self.val}]" if self.key is None else f"[{self.key}: {self.val}]"
+
+
+class BaseUserTypePromise:
+    def __init__(self, name):
+        self.name = name
+
+    def __repr__(self):
+        return f"{type(self)}"
+
+
+class StructPromise(BaseUserTypePromise):
+    pass
+
+
+class EnumPromise(BaseUserTypePromise):
+    pass
 
 
 class Unary(Enum):
@@ -79,19 +98,36 @@ class Binary(Enum):
     CONCATENATION = auto()
 
 
-def isdef_result(t):
-    if t == Type.UNKNOWN:
-        return Type.UNKNOWN
+class _IsdefResult:
+    def __getitem__(self, t):
+        if t == Type.UNKNOWN:
+            return Type.UNKNOWN
 
-    elif isinstance(t, Composite.Nullable):
-        return Type.BOOLEAN
+        elif isinstance(t, Composite.Nullable):
+            return Type.BOOLEAN
 
-    else:
-        raise BirdwayTypeError(f"the ? operator can only be used on nullable types")
+        else:
+            raise BirdwayTypeError(f"the ? operator can only be used on nullable types")
+
+class _LastResult:
+    def __getitem__(self, t):
+        if t == Type.UNKNOWN:
+            return Type.UNKNOWN
+
+        elif t == Type.STRING:
+            return Type.INTEGER
+
+        elif isinstance(t, Composite.Table):
+            if t.key != Type.UNKNOWN:
+                raise BirdwayTypeError(f"the ## operator can't be used on dictionary tables")
+
+        else:
+            raise BirdwayTypeError(f"the ## operator can't be used on {t}")
 
 
 OPERATION_RESULT = {
-    Unary.ISDEF: isdef_result,
+    Unary.ISDEF: _IsdefResult(),
+    Unary.LAST: _LastResult()
 }
 
 
@@ -99,7 +135,7 @@ class ArgumentModifier(Enum):
     NONE = auto()
     UNIQUE = auto()
     OPTIONAL = auto()
-    VARIADIC = auto()
+    MULTIPLE = auto()
 
 
 def _genfeats(*features):

@@ -7,6 +7,27 @@ class StringLiteral(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext, Identified)
         super().__init__()
         self.string = str()
 
+    @classmethod
+    def _parse(cls, parser):
+        string = cls()
+
+        while parser.remaining():
+            match parser.peek(0):
+                case StringDelimiter():
+                    parser.eat()
+                    return string
+
+                case StringContent(value=val):
+                    parser.eat()
+                    string.string += val
+
+                case other:
+                    raise BirdwaySyntaxError(
+                        f"unexpected {other} at line {other._line} while parsing string"
+                    )
+
+        raise BirdwaySyntaxError("hit EOF while parsing string")
+
     def _type(self):
         return Type.STRING
 

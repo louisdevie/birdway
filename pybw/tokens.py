@@ -57,8 +57,12 @@ for name in [
     "KeywordDo",
     "KeywordTry",
     "KeywordOn",
+    "Range",
+    "KeywordUse",
+    "KeywordIn",
 ]:
     exec(f"class {name} (Token, AutoRepr): pass")
+del name
 
 
 class StringContent(Token, AutoRepr):
@@ -67,6 +71,10 @@ class StringContent(Token, AutoRepr):
 
 class Identifier(Token, AutoRepr):
     name = str()
+
+
+class Integer(Token, AutoRepr):
+    value = int()
 
 
 class UnaryOperator(Token, AutoRepr):
@@ -82,4 +90,4 @@ class Variable(Token, AutoRepr):
 
 
 class TypeName(Token, AutoRepr):
-    type = Type
+    type = Type(1)
