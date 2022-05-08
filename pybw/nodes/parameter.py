@@ -6,6 +6,7 @@ from .string_literal import StringLiteral
 
 class Parameter(SyntaxNodeABC, PrettyAutoRepr, Identified):
     def __init__(self):
+        super().__init__()
         self.type = Type.UNKNOWN
         self.modifier = ArgumentModifier.NONE
         self.name = str()

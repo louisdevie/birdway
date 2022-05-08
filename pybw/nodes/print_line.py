@@ -1,5 +1,5 @@
 from .base import *
-from birdway import Type
+from birdway import Type, FEATURE_PRINTLN
 
 
 class PrintLine(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext):
@@ -15,6 +15,15 @@ class PrintLine(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext):
 
     def _type(self):
         return Type.VOID
+
+    def _propagate(self, ast, vc, lc, bc):
+        ast.standard_features |= FEATURE_PRINTLN
+        self.content.context = self.context.copy()
+        self.using |= self.content._propagate(ast, vc, lc, bc)
+        return self.using
+
+    def _check(self):
+        check_type(self.content, Type.STRING)
 
     def _initialise(self):
         return self.content._initialise()

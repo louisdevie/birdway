@@ -57,7 +57,7 @@ for name in [
     "KeywordDo",
     "KeywordTry",
     "KeywordOn",
-    "Range",
+    "RangeSymbol",
     "KeywordUse",
     "KeywordIn",
 ]:

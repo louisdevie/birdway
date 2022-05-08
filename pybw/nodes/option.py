@@ -4,6 +4,7 @@ from birdway import Type, ArgumentModifier, Composite
 
 class Option(SyntaxNodeABC, PrettyAutoRepr, Identified):
     def __init__(self):
+        super().__init__()
         self.type = Type.UNKNOWN
         self.modifier = ArgumentModifier.NONE
         self.name = str()

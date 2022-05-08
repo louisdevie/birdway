@@ -4,6 +4,7 @@ from birdway import Type, Composite
 
 class EnumDefinition(SyntaxNodeABC, PrettyAutoRepr, Identified):
     def __init__(self):
+        super().__init__()
         self.values = list()
         self.name = str()
 

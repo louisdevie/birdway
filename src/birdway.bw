@@ -10,9 +10,9 @@ param* str INPUT 'Scripts to compile';
 run {
 	func compile;
 	for i in [0..##INPUT] do {
-		println "Compiling $(input[i]) ... ($(i+1)/$(#input))";
+		println "Compiling $(INPUT[i]) ... ($(i+1)/$(#INPUT))";
 
-		try compile(input[i]) on USER do logerr();
+		compile(INPUT[i]);
 	};
 
 	func compile(source) -> {

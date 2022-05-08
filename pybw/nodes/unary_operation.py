@@ -11,6 +11,15 @@ class UnaryOperation(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext):
     def _type(self):
         return OPERATION_RESULT[self.operator][self.operand.type]
 
+    def _propagate(self, ast, vc, lc, bc):
+        self.operand.context = self.context.copy()
+        self.using |= self.operand._propagate(ast, vc, lc, bc)
+        return self.using
+
+    def _check(self):
+        self._type()
+        self.operand._check()
+
     def _initialise(self):
         return self.operand._initialise()
 

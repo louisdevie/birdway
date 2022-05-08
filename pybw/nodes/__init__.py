@@ -15,6 +15,9 @@ __all__ = [
     "FunctionDefinition",
     "ForLoop",
     "IntegerLiteral",
+    "TableAccess",
+    "BinaryOperation",
+    "FunctionCall",
 ]
 
 # program structure
@@ -39,7 +42,9 @@ from .integer_literal import IntegerLiteral
 from .print_line import PrintLine
 
 # operations
+from .binary_operation import BinaryOperation
 from .read_variable import ReadVariable
+from .table_access import TableAccess
 from .unary_operation import UnaryOperation
 
 # user-defined types
@@ -47,4 +52,5 @@ from .struct_definition import StructDefinition
 from .enum_definition import EnumDefinition
 
 # functions
+from .function_call import FunctionCall
 from .function_definition import FunctionDefinition

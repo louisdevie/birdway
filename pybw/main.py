@@ -27,7 +27,8 @@ def main():
             tokens = lexer.parse(content)
 
             ast = parser.parse(tokens)
-            # print(ast)
+            with open(name + "_nr.tree", "wt+") as fd:
+                print(ast, file=fd)
 
             checks.resolve_variables(ast)
             checks.check_types(ast)

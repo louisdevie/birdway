@@ -1,6 +1,7 @@
 from .base import *
 from birdway import Type
 from exceptions import *
+from .function_definition import FunctionDefinition
 
 
 class Block(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext, Identified):
@@ -30,6 +31,20 @@ class Block(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext, Identified):
 
     def _type(self):
         return Type.VOID
+
+    def _propagate(self, ast, vc, lc, bc):
+        self.id = f"block_{bc.register()}"
+        for child in self.statements:
+            if isinstance(child, FunctionDefinition):
+                child.id = f"func_{vc.register()}"
+                self.context[child.name] = (child.id, Type.FUNCTION)
+            child.context = self.context.copy()
+            self.using |= child._propagate(ast, vc, lc, bc)
+        return self.using
+
+    def _check(self):
+        for child in self.statements:
+            check_type(child, Type.VOID)
 
     def _initialise(self):
         return f"""

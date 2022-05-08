@@ -1,5 +1,5 @@
 from enum import Enum
-from birdway import Typed
+from birdway import Typed, Composite
 
 
 class AutoRepr:
@@ -56,7 +56,11 @@ class PrettyAutoRepr(AutoRepr):
 
     @staticmethod
     def _smart_repr(obj):
-        if isinstance(obj, Enum):
+        if (
+            isinstance(obj, Enum)
+            or isinstance(obj, Composite.Nullable)
+            or isinstance(obj, Composite.Table)
+        ):
             return str(obj)
         elif isinstance(obj, list):
             return (

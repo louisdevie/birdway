@@ -10,6 +10,12 @@ class IntegerLiteral(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext, Identified
     def _type(self):
         return Type.INTEGER
 
+    def _propagate(self, ast, vc, lc, bc):
+        return set()
+
+    def _check(self):
+        pass
+
     # def _initialise(self):
     #     return f"""struct BirdwayChar {self.id}[{len(self.string)}] = {{{
     #         ', '.join([f"{{{ord(char)}, NULL}}" for char in self.string])

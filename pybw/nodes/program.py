@@ -9,6 +9,7 @@ from .enum_definition import EnumDefinition
 
 class Program(SyntaxNodeABC, PrettyAutoRepr):
     def __init__(self):
+        super().__init__()
         self.metadata = None
         self.arguments = list()
         self.script = None
@@ -64,3 +65,4 @@ class Program(SyntaxNodeABC, PrettyAutoRepr):
             parser.eat()
 
         return prog
+

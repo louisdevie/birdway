@@ -61,7 +61,7 @@ class Parser:
 
             case FormattedStringDelimiter():
                 self.eat()
-                lhs = self.parse_formatted_string()
+                lhs = FormattedString._parse(self)
 
             case KeywordIf():
                 self.eat()
@@ -73,7 +73,7 @@ class Parser:
 
             case KeywordPrintln():
                 self.eat()
-                lhs = self.parse_println()
+                lhs = PrintLine._parse(self)
 
             case Identifier(name=var):
                 self.eat()
@@ -82,7 +82,7 @@ class Parser:
 
             case BlockBegin():
                 self.eat()
-                lhs = self.parse_block()
+                lhs = Block._parse(self)
 
             case UnaryOperator(operator=op):
                 self.eat()
@@ -105,4 +105,54 @@ class Parser:
                     f"unexpected {other} at line {other._line} while parsing expression"
                 )
 
-        return lhs
+        match self.peek(0):
+            case TableBegin():
+                self.eat()
+                ta = TableAccess()
+                ta.table = lhs
+                ta.index = self.parse_expression()
+                if (invalid := self.pop()) != TableEnd():
+                    raise BirdwaySyntaxError(
+                            f"expected closing bracket, got {invalid} at line {invalid._line}"
+                        )
+                lhs = ta
+
+            case OpeningParens():
+                if not isinstance(lhs, ReadVariable):
+                    raise BirdwaySyntaxError(f"unexpected parenthesis around line {self.peek(0)._line}")
+                self.eat()
+                fc = FunctionCall()
+                fc.name = lhs.name
+
+                while self.remaining():
+                    fc.arguments.append(self.parse_expression())
+
+                    if self.peek(0) == Separator():
+                        self.eat()
+                        if self.peek(0) == ClosingParens():
+                            self.eat()
+                            lhs = fc
+                            break
+                    else:
+                        if self.peek(0) == ClosingParens():
+                            self.eat()
+                            lhs = fc
+                            break
+                        else:
+                            raise BirdwaySyntaxError(
+                                f"expected colon between function arguments (line {self.peek(0)._line})"
+                            )
+                else:
+                    raise BirdwaySyntaxError("hit EOF while parsing function call")
+
+        match self.peek(0):
+            case BinaryOperator(operator = op):
+                self.eat()
+                expr = BinaryOperation()
+                expr.operator = op
+                expr.loperand = lhs
+                expr.roperand = self.parse_expression()
+                return expr
+
+            case _:
+                return lhs

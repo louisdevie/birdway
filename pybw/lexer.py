@@ -155,7 +155,7 @@ def parse_body(source, output, cursor, line):
             continue
 
         if m := RE_RANGE.match(source, cursor):
-            output.append(Range(int(line)))
+            output.append(RangeSymbol(int(line)))
             cursor = m.end()
             continue
 

@@ -2,12 +2,14 @@ from .base import *
 
 
 from .string_literal import StringLiteral
+from .range import Range
+from birdway import FEATURE_TABLE
 
 
 class Table(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext):
     def __init__(self):
         super().__init__()
-        self.key_type = Type.UNKNOWN
+        self.key_type = None
         self.value_type = Type.UNKNOWN
         self.values = dict()
 
@@ -22,7 +24,7 @@ class Table(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext):
                 parser.eat()
                 val = parser.parse_expression()
 
-                if table.key_type == Type.UNKNOWN:
+                if table.key_type == None:
                     table.key_type = val_or_key.type
                 else:
                     if val_or_key.type != table.key_type:
@@ -40,13 +42,23 @@ class Table(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext):
 
                 table.values[val_or_key] = val
 
-            elif parser.peek(0) == Range():
+            elif parser.peek(0) == RangeSymbol():
                 parser.eat()
 
-                end = parser.parse_expression()
+                r = Range()
+                r.start = val_or_key
 
-                print(val_or_key, end)
-                raise tamer
+                r.end = parser.parse_expression()
+
+                if table.value_type == Type.UNKNOWN:
+                    table.value_type = val_or_key.type
+                else:
+                    if val_or_key.type != table.value_type:
+                        raise BirdwayTypeError(
+                            f"inconsistent table values types (expected {table.value_type}, found {val.type})"
+                        )
+
+                table.values[r] = None
 
             else:
                 if table.value_type == Type.UNKNOWN:
@@ -77,3 +89,13 @@ class Table(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext):
 
     def _type(self):
         return Composite.Table(self.value_type, self.key_type)
+
+    def _propagate(self, ast, vc, lc, bc):
+        ast.standard_features |= FEATURE_TABLE
+        for val in self.values:
+            val.context = self.context.copy()
+            self.using |= val._propagate(ast, vc, lc, bc)
+        return self.using
+
+    def _check(self):
+        pass

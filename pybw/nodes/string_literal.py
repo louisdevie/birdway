@@ -1,5 +1,5 @@
 from .base import *
-from birdway import Type
+from birdway import Type, FEATURE_STRING
 
 
 class StringLiteral(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext, Identified):
@@ -30,6 +30,14 @@ class StringLiteral(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext, Identified)
 
     def _type(self):
         return Type.STRING
+
+    def _propagate(self, ast, vc, lc, bc):
+        ast.standard_features |= FEATURE_STRING
+        self.id = f"STRING_LITERAL_{lc.register()}"
+        return set()
+
+    def _check(self):
+        pass
 
     def _initialise(self):
         return f"""struct BirdwayChar {self.id}[{len(self.string)}] = {{{

@@ -4,6 +4,7 @@ from birdway import Type, Composite
 
 class StructDefinition(SyntaxNodeABC, PrettyAutoRepr, Identified):
     def __init__(self):
+        super().__init__()
         self.fields = dict()
         self.name = str()
 

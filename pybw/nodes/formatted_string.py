@@ -1,5 +1,5 @@
 from .base import *
-from birdway import Type
+from birdway import Type, FEATURE_STRING, FEATURE_FORMATTING
 from .string_literal import StringLiteral
 
 
@@ -53,6 +53,15 @@ class FormattedString(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext):
                     formatting.name = var
                     string.content.append(formatting)
 
+                case FormattingExpressionBegin():
+                    parser.eat()
+                    formatting = parser.parse_expression()
+                    string.content.append(formatting)
+                    if (invalid := parser.pop()) != ClosingParens():
+                        raise BirdwaySyntaxError(
+                                f"expected closing penthesis, got {invalid} at line {invalid._line}"
+                            )
+
                 case other:
                     raise BirdwaySyntaxError(
                         f"unexpected {other} at line {other._line} while parsing string"
@@ -62,6 +71,19 @@ class FormattedString(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext):
 
     def _type(self):
         return Type.STRING
+
+    def _propagate(self, ast, vc, lc, bc):
+        ast.standard_features |= FEATURE_STRING
+        for child in self.content:
+            if not isinstance(child, str):
+                ast.standard_features |= FEATURE_FORMATTING
+                child.context = self.context.copy()
+                self.using |= child._propagate(ast, vc, lc, bc)
+        return self.using
+
+    def _check(self):
+        for child in self.content:
+            child._check()
 
     def _initialise(self):
         return "\n".join([lit._initialise() for lit in self.content])

@@ -15,6 +15,7 @@ class Typed:
 
 class Type(Enum):
     UNKNOWN = auto()
+    FUNCTION = auto()
     VOID = auto()
     BOOLEAN = auto()
     INTEGER = auto()
@@ -32,8 +33,10 @@ class Type(Enum):
                 return "bool"
             case Type.INTEGER.value:
                 return "int"
+            case Type.FUNCTION.value:
+                return "func"
             case other:
-                raise ValueError(f"unknown type")
+                raise ValueError(f"unknown type {repr(self)}")
 
 
 class Composite:
@@ -41,7 +44,7 @@ class Composite:
         def __init__(self, val):
             self.val = val
 
-        def __repr__(self):
+        def __str__(self):
             return f"{self.val}?"
 
     class Table:
@@ -49,9 +52,28 @@ class Composite:
             self.val = val
             self.key = key
 
-        def __repr__(self):
+        def __str__(self):
             return f"[{self.val}]" if self.key is None else f"[{self.key}: {self.val}]"
 
+class _IterableCategory:
+    def __eq__(self, t):
+        if isinstance(t, Composite.Table):
+            return True
+        elif t == Type.STRING:
+            return True
+        else:
+            return False
+
+class _GroupCategory:
+    def __init__(self, *types):
+        self._types = types
+
+    def __eq__(self, t):
+        return t in self._types 
+
+class Category:
+    ITERABLE = _IterableCategory()
+    INDEX = _GroupCategory(Type.INTEGER)
 
 class BaseUserTypePromise:
     def __init__(self, name):
@@ -118,16 +140,45 @@ class _LastResult:
             return Type.INTEGER
 
         elif isinstance(t, Composite.Table):
-            if t.key != Type.UNKNOWN:
+            if t.key != None:
                 raise BirdwayTypeError(f"the ## operator can't be used on dictionary tables")
 
         else:
             raise BirdwayTypeError(f"the ## operator can't be used on {t}")
 
+class _SizeResult:
+    def __getitem__(self, t):
+        if t == Type.UNKNOWN:
+            return Type.UNKNOWN
+
+        elif t == Type.STRING or isinstance(t, Composite.Table):
+            return Type.INTEGER
+
+        else:
+            raise BirdwayTypeError(f"the ## operator can't be used on {t}")
+
+class _AddResult:
+    def __getitem__(self, ts):
+        t1, t2 = ts.start, ts.stop
+
+        if t1 == Type.UNKNOWN:
+            return Type.UNKNOWN
+
+        elif t1 == Type.INTEGER:
+            if t2 == Type.UNKNOWN:
+                return Type.UNKNOWN
+
+            elif t2 == Type.INTEGER:
+                return Type.INTEGER
+
+        raise BirdwayTypeError(f"the + operator can't be used between {t1} and {t2}")
+
 
 OPERATION_RESULT = {
     Unary.ISDEF: _IsdefResult(),
-    Unary.LAST: _LastResult()
+    Unary.LAST: _LastResult(),
+    Unary.SIZE: _SizeResult(),
+    Binary.ADDITION: _AddResult(),
 }
 
 
@@ -147,4 +198,5 @@ _genfeats(
     "STRING",
     "FORMATTING",
     "PRINTLN",
+    "TABLE",
 )
