@@ -13,16 +13,22 @@ contexts:
       scope: punctuation.definition.string.begin.birdway
       push: double_quoted_string
 
-    - match: '/:'
-      scope: punctuation.definition.comment.birdway
-      push: line_comment
-
-    - match: '/\*'
+    - match: '---'
       scope: punctuation.definition.comment.begin.birdway
       push: block_comment
 
+    - match: '--'
+      scope: punctuation.definition.comment.birdway
+      push: line_comment
+
     - match: \blogerr\b
       scope: support.function.birdway
+
+    - match: \b(READ|TEXT)\b
+      scope: support.constant.birdway
+
+    - match: \b(IO_ERROR)\b
+      scope: support.constant.birdway
 
     - match: '\b(if|else|then)\b'
       scope: keyword.control.conditional.birdway
@@ -30,7 +36,7 @@ contexts:
     - match: '\b(for|while|in|do)\b'
       scope: keyword.control.loop.birdway
 
-    - match: '\b(meta|param|run|option|use)\b'
+    - match: '\b(meta|param|run|option|use|open|mode|as|close)\b'
       scope: keyword.other.birdway
 
     - match: '\b(try|on)\b'
@@ -52,12 +58,12 @@ contexts:
     - match: '\benum\b\s*[A-Za-z0-9_]+'
       scope: storage.type.struct.birdway
 
-    - match: (\blet\b\s*)([A-Za-z0-9_]+)(\s*=)
+    - match: (\b(let|const)\b\s*)([A-Za-z0-9_]+)(\s*=)
       captures:
         1: keyword.declaration.birdway
-        3: keyword.declaration.birdway
+        4: keyword.declaration.birdway
 
-    - match: \bprintln\b
+    - match: \b(println|read|to|from)\b
       scope: keyword.other.birdway
 
     - match: '(\bfunc\b\s*)([A-Za-z0-9_]+)'
@@ -89,6 +95,13 @@ contexts:
     - match: \bstr\b
       scope: storage.type.birdway
 
+    - match: '{\*'
+      scope: punctuation.section.birdway
+      push: C.sublime-syntax
+      with_prototype:
+        - match: '\*}'
+          pop: true
+
     - match: \(
       push: main
 
@@ -103,7 +116,7 @@ contexts:
 
   single_quoted_string:
     - meta_scope: string.quoted.single.birdway
-    - match: '\\(n|r|e|t)'
+    - match: "\\\\(n|r|e|t|')"
       scope: constant.character.escape.birdway
     - match: '\\.'
       scope: invalid.illegal.birdway
@@ -117,8 +130,8 @@ contexts:
       pop: true
 
   block_comment:
-    - meta_scope: comment.line.birdway
-    - match: \*/
+    - meta_scope: comment.block.birdway
+    - match: ---
       scope: punctuation.definition.comment.end.birdway
       pop: true
 

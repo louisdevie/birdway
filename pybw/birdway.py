@@ -64,16 +64,26 @@ class _IterableCategory:
         else:
             return False
 
+    def __str__(self):
+        return "#iter"
+
+
 class _GroupCategory:
-    def __init__(self, *types):
+    def __init__(self, name, *types):
         self._types = types
+        self._name = name
 
     def __eq__(self, t):
-        return t in self._types 
+        return t in self._types
+
+    def __str__(self):
+        return "#" + self._name
+
 
 class Category:
     ITERABLE = _IterableCategory()
-    INDEX = _GroupCategory(Type.INTEGER)
+    INDEX = _GroupCategory("index", Type.INTEGER)
+
 
 class BaseUserTypePromise:
     def __init__(self, name):
@@ -131,6 +141,7 @@ class _IsdefResult:
         else:
             raise BirdwayTypeError(f"the ? operator can only be used on nullable types")
 
+
 class _LastResult:
     def __getitem__(self, t):
         if t == Type.UNKNOWN:
@@ -141,10 +152,13 @@ class _LastResult:
 
         elif isinstance(t, Composite.Table):
             if t.key != None:
-                raise BirdwayTypeError(f"the ## operator can't be used on dictionary tables")
+                raise BirdwayTypeError(
+                    f"the ## operator can't be used on dictionary tables"
+                )
 
         else:
             raise BirdwayTypeError(f"the ## operator can't be used on {t}")
+
 
 class _SizeResult:
     def __getitem__(self, t):
@@ -156,6 +170,7 @@ class _SizeResult:
 
         else:
             raise BirdwayTypeError(f"the ## operator can't be used on {t}")
+
 
 class _AddResult:
     def __getitem__(self, ts):
@@ -189,14 +204,11 @@ class ArgumentModifier(Enum):
     MULTIPLE = auto()
 
 
-def _genfeats(*features):
-    for i, f in enumerate(features):
-        exec(f"global FEATURE_{f}; FEATURE_{f} = {2**i}")
-
-
-_genfeats(
-    "STRING",
-    "FORMATTING",
-    "PRINTLN",
-    "TABLE",
-)
+for i, f in enumerate(
+    [
+        "STRING",
+        "FORMATTING",
+        "PRINTLN",
+    ]
+):
+    exec(f"FEATURE_{f} = {2**i}")

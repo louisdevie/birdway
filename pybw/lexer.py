@@ -4,14 +4,14 @@ from exceptions import BirdwayLexicalError
 
 
 RE_KEYWORD = re.compile(
-    r"\b(args|do|else|enum|for|from|func|if|in|meta|on|option|param|println|run|struct|then|to|try|use)\b"
+    r"\b(args|as|close|do|else|enum|for|from|func|if|in|let|meta|mode|open|option|on|param|println|run|struct|then|to|try|use)\b"
 )
 RE_NEWLINE = re.compile(r"\n|\r\n")
 RE_IGNORE = re.compile(r"\s+")
 RE_DOUBLEQUOTES = re.compile(r'"')
 RE_SINGLEQUOTE = re.compile(r"'")
 RE_PUNCTUATION = re.compile(r";|:|\{|\}|\[|\]|,|\(|\)")
-RE_OPERATOR = re.compile(r"\?|!|\*|##|#|-|\+")
+RE_OPERATOR = re.compile(r"\?|!|\*|##|#|-|\+|&")
 RE_DECINT = re.compile(r"[0-9_]+")
 RE_IDENTIFIER = re.compile(r"[A-Za-z0-9_]+")
 RE_VARIABLE = re.compile(r"(\$)([A-Za-z0-9_]*)")
@@ -21,6 +21,7 @@ RE_ASSIGNMENT = re.compile(r"=")
 RE_RETURN = re.compile(r"->")
 RE_RANGE = re.compile(r"\.\.")
 RE_LINECOMMENT = re.compile(r"/:.*(\n|\r\n)")
+RE_ESCAPE = re.compile(r"(\\)(.)")
 
 
 class Counter:
@@ -56,49 +57,8 @@ def parse_body(source, output, cursor, line):
             continue
 
         if m := RE_KEYWORD.match(source, cursor):
-            match m.group():
-                case "args":
-                    output.append(KeywordArgs(int(line)))
-                case "else":
-                    output.append(KeywordElse(int(line)))
-                case "if":
-                    output.append(KeywordIf(int(line)))
-                case "meta":
-                    output.append(KeywordMeta(int(line)))
-                case "option":
-                    output.append(KeywordOption(int(line)))
-                case "param":
-                    output.append(KeywordParam(int(line)))
-                case "println":
-                    output.append(KeywordPrintln(int(line)))
-                case "run":
-                    output.append(KeywordRun(int(line)))
-                case "then":
-                    output.append(KeywordThen(int(line)))
-                case "struct":
-                    output.append(KeywordStruct(int(line)))
-                case "enum":
-                    output.append(KeywordEnum(int(line)))
-                case "func":
-                    output.append(KeywordFunc(int(line)))
-                case "for":
-                    output.append(KeywordFor(int(line)))
-                case "from":
-                    output.append(KeywordFrom(int(line)))
-                case "to":
-                    output.append(KeywordTo(int(line)))
-                case "do":
-                    output.append(KeywordDo(int(line)))
-                case "try":
-                    output.append(KeywordTry(int(line)))
-                case "on":
-                    output.append(KeywordOn(int(line)))
-                case "use":
-                    output.append(KeywordUse(int(line)))
-                case "in":
-                    output.append(KeywordIn(int(line)))
-                case other:
-                    raise BirdwayLexicalError(f"unknown keyword {other}")
+            keyword_class = eval(f'Keyword{m.group().title()}')
+            output.append(keyword_class(int(line)))
             cursor = m.end()
             continue
 
@@ -179,6 +139,8 @@ def parse_body(source, output, cursor, line):
                     )
                 case "+":
                     output.append(BinaryOperator(int(line), operator=Binary.ADDITION))
+                case "&":
+                    output.append(BinaryOperator(int(line), operator=Binary.BITWISEAND))
                 case other:
                     raise BirdwayLexicalError(f"unknown operator ‘{other}’")
             cursor = m.end()
@@ -255,6 +217,14 @@ def parse_string(source, output, cursor, line):
             buffer = str()
             output.append(StringDelimiter(int(line)))
             return m.end()
+
+        if m := RE_ESCAPE.match(source, cursor):
+            match m.group(2):
+                case "'":
+                    buffer += "'"
+                case other:
+                    raise ValueError(f"invalid escape ‘{other}’")
+            cursor = m.end() 
 
         buffer += source[cursor]
         cursor += 1

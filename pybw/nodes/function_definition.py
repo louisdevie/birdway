@@ -6,7 +6,8 @@ class FunctionDefinition(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext, Identi
     def __init__(self):
         super().__init__()
         self.name = str()
-        self.parameters = list()
+        self.parameters = dict()
+        self.calls = list()
         self.result = None
 
     @classmethod
@@ -28,18 +29,27 @@ class FunctionDefinition(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext, Identi
                 parser.eat()
 
             case other:
-                return function
+                raise BirdwaySyntaxError(
+                    f"expected opening parenthesis, got {other} at line {other._line}"
+                )
 
         while parser.remaining():
             match parser.peek(0):
                 case Identifier(name=ident):
                     parser.eat()
-                    function.parameters.append(ident)
+                    name = ident
 
                 case other:
                     raise BirdwaySyntaxError(
                         f"expected function parameter name, got {other} at line {other._line}"
                     )
+
+            if (invalid := parser.pop()) != Association():
+                raise BirdwaySyntaxError(
+                    f"expected a colon, got {invalid} at line {invalid._line}"
+                )
+
+            function.parameters[name] = parser.parse_type()
 
             if parser.peek(0) == Separator():
                 parser.eat()
@@ -58,7 +68,9 @@ class FunctionDefinition(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext, Identi
             raise BirdwaySyntaxError("hit EOF while parsing function parameters")
 
         if (invalid := parser.pop()) != Return():
-            raise BirdwaySyntaxError(f"expected ‘->’, got {invalid} at line {invalid._line}")
+            raise BirdwaySyntaxError(
+                f"expected ‘->’, got {invalid} at line {invalid._line}"
+            )
 
         function.result = parser.parse_expression()
 
@@ -76,4 +88,31 @@ class FunctionDefinition(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext, Identi
             return set()
 
     def _check(self):
-        pass
+        self.result._check()
+
+    def _initialise(self):
+        return (
+            self.result._initialise()
+            + "int "
+            + self.id
+            + "("
+            + ",".join(
+                (
+                    [ctype(self.result.type) + "*RESULT"]
+                    if self.result.type != Type.VOID
+                    else []
+                )
+                + [
+                    ctype(self.parameters[p]) + "*param" + str(i)
+                    for i, p in enumerate(self.parameters)
+                ]
+                + [
+                    ctype(self.result.context[v][1]) + "*" + self.result.context[v][0]
+                    for v in self.result.using
+                ]
+            )
+            + ") {}"
+        )
+
+    def _transpile(self, tui):
+        return ""

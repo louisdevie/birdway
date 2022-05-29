@@ -1,6 +1,7 @@
 from .base import *
 from birdway import Type, FEATURE_STRING, FEATURE_FORMATTING
 from .string_literal import StringLiteral
+from .read_variable import ReadVariable
 
 
 def formatter(node, tui):
@@ -12,18 +13,6 @@ def formatter(node, tui):
             struct BirdwayString {tui}F;
             err = birdwayFormat{nameof(node.type)}({node._reference(tui+"1")}, &{tui}F);
             if (err) return err;\n"""
-
-
-def nameof(T):
-    match T:
-        case Type.STRING:
-            return "String"
-
-        case Composite.Nullable(val=val):
-            return "Nullable" + nameof(val)
-
-        case other:
-            raise TypeError(f"no type name for <{other}>")
 
 
 class FormattedString(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext):
@@ -59,8 +48,8 @@ class FormattedString(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext):
                     string.content.append(formatting)
                     if (invalid := parser.pop()) != ClosingParens():
                         raise BirdwaySyntaxError(
-                                f"expected closing penthesis, got {invalid} at line {invalid._line}"
-                            )
+                            f"expected closing penthesis, got {invalid} at line {invalid._line}"
+                        )
 
                 case other:
                     raise BirdwaySyntaxError(
@@ -97,7 +86,7 @@ class FormattedString(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext):
                     (
                         f"birdwayStringAppendLiteral(&{tui}, {n.id}, {len(n.string)});"
                         if isinstance(n, StringLiteral)
-                        else f"birdwayStringConcat(&{tui}, {n._reference()})"
+                        else f"{n._transpile(tui+str(i))};birdwayStringConcat(&{tui}, {n._reference(tui+str(i))});"
                     )
                     if n.type == Type.STRING
                     else (

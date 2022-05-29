@@ -60,6 +60,11 @@ for name in [
     "RangeSymbol",
     "KeywordUse",
     "KeywordIn",
+    "KeywordLet",
+    "KeywordOpen",
+    "KeywordMode",
+    "KeywordAs",
+    "KeywordClose",
 ]:
     exec(f"class {name} (Token, AutoRepr): pass")
 del name

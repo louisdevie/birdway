@@ -22,3 +22,20 @@ class Range(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext, Identified):
             self.step.context = self.context.copy()
             self.using |= self.step._propagate(ast, vc, lc, bc)
         return self.using
+
+    def _check(self):
+        pass
+
+    def _initialise(self):
+        return (
+            self.start._initialise()
+            + self.end._initialise()
+            + (self.step._initialise() if self.step is not None else "")
+        )
+
+    def _transpile(self, tui):
+        return (
+            self.start._transpile(tui + "1")
+            + self.end._transpile(tui + "2")
+            + (self.step._transpile(tui + "3") if self.step is not None else "")
+        )

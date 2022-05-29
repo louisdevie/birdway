@@ -1,0 +1,7 @@
+use birdway_lexer;
+
+run {
+	const TEST = '{}';
+
+	
+}

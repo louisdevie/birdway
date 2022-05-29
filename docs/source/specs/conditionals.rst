@@ -30,6 +30,6 @@ Takes the value of the first ``case`` that match ``value``. The types
 accepted for ``value`` are :ref:`integers <int>`, :ref:`bytes <byte>`
 and :ref:`enumerations <enum>`. If a ``case`` have
 the same type as ``value`` it will match if the two values are equal,
-if it is a list of the type of ``value`` (e.g. [int]) it will match if
+if it is a list of the type of ``value`` (e.g. ``[int]``) it will match if
 the value is in the list, and any other type is invalid. All ``values``
 have to be of the same type, wich will be the type of the statement.

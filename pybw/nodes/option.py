@@ -1,5 +1,6 @@
 from .base import *
 from birdway import Type, ArgumentModifier, Composite
+from .string_literal import StringLiteral
 
 
 class Option(SyntaxNodeABC, PrettyAutoRepr, Identified):
@@ -59,14 +60,14 @@ class Option(SyntaxNodeABC, PrettyAutoRepr, Identified):
             option.description = parser.parse_formatted_string()
         elif parser.peek(0) == StringDelimiter():
             parser.eat()
-            option.description = parser.parse_string()
+            option.description = StringLiteral._parse(parser)
 
         return option
 
     def _initialise(self):
-        if self.modifier == ArgumentModifier.OPTIONAL:
-            T = Composite.Nullable(self.type)
-            init = "= NULL"
+        if self.modifier == ArgumentModifier.MULTIPLE:
+            ...
         else:
-            raise NotImplementedError()
+            T = self.type
+            init = ""
         return f"{ctype(T)} {self.id} {init};\n"

@@ -1,6 +1,11 @@
-__pycache__
 *.bwtmp.c
 *.tree
+*.tok
+
 docs/build
+
 *.sublime-workspace
+
 build
+
+__pycache__

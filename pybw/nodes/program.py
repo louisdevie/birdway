@@ -11,10 +11,12 @@ class Program(SyntaxNodeABC, PrettyAutoRepr):
     def __init__(self):
         super().__init__()
         self.metadata = None
-        self.arguments = list()
+        self.parameters = list()
+        self.flags_and_options = list()
         self.script = None
         self.user_types = list()
         self.standard_features = 0
+        self.table_list_types = list()
 
     @classmethod
     def _parse(cls, parser):
@@ -28,7 +30,7 @@ class Program(SyntaxNodeABC, PrettyAutoRepr):
 
                 case KeywordParam():
                     parser.eat()
-                    prog.arguments.append(Parameter._parse(parser))
+                    prog.parameters.append(Parameter._parse(parser))
 
                 case KeywordRun():
                     parser.eat()
@@ -40,7 +42,7 @@ class Program(SyntaxNodeABC, PrettyAutoRepr):
 
                 case KeywordOption():
                     parser.eat()
-                    prog.arguments.append(Option._parse(parser))
+                    prog.flags_and_options.append(Option._parse(parser))
 
                 case KeywordStruct():
                     parser.eat()
@@ -65,4 +67,3 @@ class Program(SyntaxNodeABC, PrettyAutoRepr):
             parser.eat()
 
         return prog
-

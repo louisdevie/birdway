@@ -1,5 +1,5 @@
 from .base import *
-from birdway import OPERATION_RESULT, Unary
+from birdway import OPERATION_RESULT, Binary
 
 
 class BinaryOperation(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext):
@@ -11,9 +11,6 @@ class BinaryOperation(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext):
 
     def _type(self):
         return OPERATION_RESULT[self.operator][self.loperand.type : self.roperand.type]
-
-    def _initialise(self):
-        return self.operand._initialise()
 
     def _propagate(self, ast, vc, lc, bc):
         self.loperand.context = self.context.copy()
@@ -27,14 +24,23 @@ class BinaryOperation(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext):
         self.loperand._check()
         self.roperand._check()
 
-    # def _transpile(self, tui):
-    #     if self.operator == Unary.ISDEF:
-    #         return f"{self.operand._transpile(tui+'1')}"
-    #     else:
-    #         raise TypeError(f"unknown unary operator {self.operator}")
+    def _initialise(self):
+        return self.loperand._initialise() + self.roperand._initialise()
 
-    # def _reference(self, tui):
-    #     if self.operator == Unary.ISDEF:
-    #         return f"""(*{self.operand._reference(tui+"1")}) != NULL"""
-    #     else:
-    #         raise TypeError(f"unknown unary operator {self.operator}")
+    def _transpile(self, tui):
+        if self.operator == Binary.ADDITION:
+            return self.loperand._transpile(tui + "1") + self.roperand._transpile(
+                tui + "2"
+            )
+        else:
+            raise TypeError(f"unknown unary operator {self.operator}")
+
+    def _reference(self, tui):
+        if self.operator == Binary.ADDITION:
+            return f"""({
+                self.loperand._reference(tui + "1")
+            }) + ({
+                self.roperand._reference(tui + "2")
+            })"""
+        else:
+            raise TypeError(f"unknown unary operator {self.operator}")

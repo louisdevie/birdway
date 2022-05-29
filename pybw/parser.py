@@ -75,6 +75,18 @@ class Parser:
                 self.eat()
                 lhs = PrintLine._parse(self)
 
+            case KeywordLet():
+                self.eat()
+                lhs = VariableDeclaration._parse(self)
+
+            case KeywordTry():
+                self.eat()
+                lhs = TryOnThen._parse(self)
+
+            case KeywordOpen():
+                self.eat()
+                lhs = OpenFile._parse(self)
+
             case Identifier(name=var):
                 self.eat()
                 lhs = ReadVariable()
@@ -113,13 +125,15 @@ class Parser:
                 ta.index = self.parse_expression()
                 if (invalid := self.pop()) != TableEnd():
                     raise BirdwaySyntaxError(
-                            f"expected closing bracket, got {invalid} at line {invalid._line}"
-                        )
+                        f"expected closing bracket, got {invalid} at line {invalid._line}"
+                    )
                 lhs = ta
 
             case OpeningParens():
                 if not isinstance(lhs, ReadVariable):
-                    raise BirdwaySyntaxError(f"unexpected parenthesis around line {self.peek(0)._line}")
+                    raise BirdwaySyntaxError(
+                        f"unexpected parenthesis around line {self.peek(0)._line}"
+                    )
                 self.eat()
                 fc = FunctionCall()
                 fc.name = lhs.name
@@ -146,7 +160,7 @@ class Parser:
                     raise BirdwaySyntaxError("hit EOF while parsing function call")
 
         match self.peek(0):
-            case BinaryOperator(operator = op):
+            case BinaryOperator(operator=op):
                 self.eat()
                 expr = BinaryOperation()
                 expr.operator = op

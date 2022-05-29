@@ -7,13 +7,14 @@ class ReadVariable(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext, Identified):
         super().__init__()
         self.name = str()
         self._t = Type.UNKNOWN
+        self.local = False
 
     def _type(self):
         return self._t
 
     def _propagate(self, ast, vc, lc, bc):
         if self.name in self.context:
-            self.id, self._t = self.context[self.name]
+            self.id, self._t, self.local = self.context[self.name]
             return {self.name}
         else:
             raise BirdwayNameError(f'no variable/constant named "{self.name}"')
@@ -28,4 +29,4 @@ class ReadVariable(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext, Identified):
         return ""
 
     def _reference(self, tui):
-        return self.id
+        return ("&" if self.local else "") + self.id

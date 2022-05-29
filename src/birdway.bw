@@ -1,21 +1,30 @@
 meta [
-	'name': 'Birdway',
+    'name': 'Birdway',
 ];
 
 use birdway_lexer;
 
-option! str OUTPUT_DIR o;
-param* str INPUT 'Scripts to compile';
+option str OUTPUT_DIR o 'The destination of the executable';
+param str INPUT 'The script to compile';
 
 run {
-	func compile;
-	for i in [0..##INPUT] do {
-		println "Compiling $(INPUT[i]) ... ($(i+1)/$(#INPUT))";
+    println 'WARNING: the Birdway compiler (version A-220528) '
+            'doesn\'t support all the features of the language';
 
-		compile(INPUT[i]);
-	};
+    println "Compiling $INPUT ...";
+    indent("  ");
 
-	func compile(source) -> {
-		println '  Not implemented';
-	};
+    let source_code = '';
+    try {
+        open INPUT mode READ & TEXT as source_file;
+        read source_code from source_file;
+        close source_file;
+    }
+    on IO_ERROR do {
+        print "Unable to open file $INPUT : ";
+        printerr();
+        exit IO_ERROR;
+    }
+
+    const tokens = lexer_parse(source_code);
 };

@@ -3,7 +3,6 @@ from .base import *
 
 from .string_literal import StringLiteral
 from .range import Range
-from birdway import FEATURE_TABLE
 
 
 class Table(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext):
@@ -23,24 +22,13 @@ class Table(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext):
             if parser.peek(0) == Association():
                 parser.eat()
                 val = parser.parse_expression()
-
-                if table.key_type == None:
-                    table.key_type = val_or_key.type
-                else:
-                    if val_or_key.type != table.key_type:
-                        raise BirdwayTypeError(
-                            f"inconsistent table keys types (expected {table.key_type}, found {val_or_key.type}) around {parser.peek(0)._line}"
-                        )
-
-                if table.value_type == Type.UNKNOWN:
-                    table.value_type = val.type
-                else:
-                    if val.type != table.value_type:
-                        raise BirdwayTypeError(
-                            f"inconsistent table values types (expected {table.value_type}, found {val.type}) around {parser.peek(0)._line}"
-                        )
-
                 table.values[val_or_key] = val
+                table.key_type = Type.UNKNOWN
+
+            elif table.key_type == Type.UNKNOWN:
+                raise BirdwaySyntaxError(
+                    f"missing colon in dictionary table (line {parser.peek(0)._line})"
+                )
 
             elif parser.peek(0) == RangeSymbol():
                 parser.eat()
@@ -50,25 +38,9 @@ class Table(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext):
 
                 r.end = parser.parse_expression()
 
-                if table.value_type == Type.UNKNOWN:
-                    table.value_type = val_or_key.type
-                else:
-                    if val_or_key.type != table.value_type:
-                        raise BirdwayTypeError(
-                            f"inconsistent table values types (expected {table.value_type}, found {val.type})"
-                        )
-
                 table.values[r] = None
 
             else:
-                if table.value_type == Type.UNKNOWN:
-                    table.value_type = val_or_key.type
-                else:
-                    if val_or_key.type != table.value_type:
-                        raise BirdwayTypeError(
-                            f"inconsistent table values types (expected {table.value_type}, found {val.type})"
-                        )
-
                 table.values[val_or_key] = None
 
             if parser.peek(0) == Separator():
@@ -91,11 +63,65 @@ class Table(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext):
         return Composite.Table(self.value_type, self.key_type)
 
     def _propagate(self, ast, vc, lc, bc):
-        ast.standard_features |= FEATURE_TABLE
+        if self.key_type is None:
+            for val in self.values:
+                if self.value_type == Type.UNKNOWN:
+                    self.value_type = val.type
+                else:
+                    if val.type != self.value_type:
+                        raise BirdwayTypeError(
+                            f"inconsistent table value types (expected {self.value_type}, found {val.type})"
+                        )
+        else:
+            for key, val in self.values.items():
+                if self.key_type == Type.UNKNOWN:
+                    self.key_type = key.type
+                else:
+                    if key.type != self.key_type:
+                        raise BirdwayTypeError(
+                            f"inconsistent table key types (expected {self.key_type}, found {key.type})"
+                        )
+                if self.value_type == Type.UNKNOWN:
+                    self.value_type = val.type
+                else:
+                    if val.type != self.value_type:
+                        raise BirdwayTypeError(
+                            f"inconsistent table value types (expected {self.value_type}, found {val.type})"
+                        )
+
+        if self.key_type is None:
+            ast.table_list_types.append(self.value_type)
         for val in self.values:
             val.context = self.context.copy()
             self.using |= val._propagate(ast, vc, lc, bc)
         return self.using
 
     def _check(self):
-        pass
+        if self.key_type is None:
+            for val in self.values:
+                val._check()
+        else:
+            for key, val in self.values.items():
+                key._check()
+                val._check()
+
+    def _initialise(self):
+        return "".join([k._initialise() for k in self.values.keys()])
+
+    def _transpile(self, tui):
+        return f"""
+            {ctype(self.type)}{tui} = {{NULL, NULL, 0, -1}};
+            {"".join([
+                (
+                    val._transpile(tui + str(i))
+                    + f"for (int val=({val.start._reference(tui + str(i) + '1')});"
+                    + f"val<=({val.end._reference(tui + str(i) + '2')});val++)"
+                    + "{birdwayListTableAppend" + nameof(self.value_type)
+                    + "(&" + tui + ", val);}"
+                ) if isinstance(val, Range) else (
+                    val._transpile(tui + str(i))
+                    + "birdwayListTableAppend" + nameof(self.value_type)
+                    + "(&" + tui + "," + val._reference(tui + str(i)) + ");"
+                ) 
+                for i, val in enumerate(self.values)
+            ])}"""

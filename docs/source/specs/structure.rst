@@ -28,7 +28,7 @@ The metadata of the application is defined with the ``meta`` statement.
 .. syntax::
    **meta** table
 
-``table`` need to be a dictionary table of type ``[str:str]``,
+``table`` need to be a dictionary table of type ``[str: str]``,
 with the following fields used:
 
 .. list-table::
@@ -93,7 +93,7 @@ Options
 ^^^^^^^
 
 .. syntax::
-   **option** [ modifier ] type name [ shortcut ] [ description ]
+   **option** [ modifier ] type name [ **=** default ] [ shortcut ] [ description ]
 
 Options are similar to flags, except they are followed by
 an equal sign ``=`` and a value. Thus, a option named ``MY_OPTION``
@@ -101,10 +101,13 @@ will be passed as ``--my-option=34``.
 
 If there is no modifier, the option may only be passed once,
 and the result will be the value passed converted into a nullable ``type``.
-If no value is passed, the result will be ``<null>``.
+If no value is passed, the result will be ``null``. If there is a
+default value, the result will be a ``type`` instead of a ``type?``,
+and when no value is passed, the result will be that default value.
 
 If the multiple modifier ``*`` is used, the result will be a
-:ref:`list table <table>` containing all the values given.
+:ref:`list table <table>` containing all the values given, and 
+default values connot be used.
 
 Option shortcuts can be used by passing ``-o=56``,
 but they cannot be grouped together like flags.
@@ -114,7 +117,15 @@ Parameters
 ^^^^^^^^^^
 
 .. syntax::
-   **param** [ modifier ] type name [ description ]
+   **param** [ modifier ] type name [ **=** default ] [ description ]
+
+Parameters are always passed after options and flags. They're identified
+by their position, so the order in wich you declare them is important.
+
+There can be : one or more parameters without modifier,
+followed by one or more parameters with the optional modifier,
+followed by only one parameter with the multiple modifier.
+The parameters with the optional modifier ``?`` 
 
 
 .. _types:

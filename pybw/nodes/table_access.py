@@ -22,4 +22,22 @@ class TableAccess(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext, Identified):
 
     def _check(self):
         check_type(self.index, Category.INDEX)
-        self.table._check()
+        check_type(self.table, Category.ITERABLE)
+
+    def _initialise(self):
+        return self.table._initialise() + self.index._initialise()
+
+    def _transpile(self, tui):
+        return (
+            self.table._transpile(tui + "1")
+            + self.index._transpile(tui + "2")
+            + ctype(self.table.type.val)
+            + tui
+            + ";err = birdwayListTableElement"
+            + nameof(self.table.type.val)
+            + "(&"
+            + self.table._reference(tui + "1")
+            + ","
+            + self.index._reference(tui + "2")
+            + ");"
+        )

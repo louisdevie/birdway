@@ -35,19 +35,43 @@ class Identified:
         self.id = str()
 
 
-def ctype(T):
+def nameof(T):
     match T:
         case Type.STRING:
+            return "Str"
+
+        case Type.INTEGER:
+            return "Int"
+
+        case Composite.Nullable(val=val):
+            return "Nullable" + nameof(val)
+
+        case other:
+            raise TypeError(f"no type name for <{other}>")
+
+
+def ctype(T):
+    match T:
+        case Type.VOID:
+            return "void "
+
+        case Type.STRING:
             return "struct BirdwayString "
+
+        case Type.INTEGER:
+            return "int32_t "
 
         case Composite.Nullable(val=val):
             return ctype(val) + "*"
 
+        case Composite.Table(val=val, key=None):
+            return f"struct BirdwayListTable{nameof(val)} "
+
         case other:
-            raise TypeError(f"no internal type for <{other}>")
+            raise TypeError(f"no equivalent C type for <{other}>")
+
 
 def check_type(node, expected):
-    if node.type == expected:
-        node._check()
-    else:
+    node._check()
+    if node.type != expected:
         raise BirdwayTypeError(f"expected type <{expected}>, got <{node.type}>")

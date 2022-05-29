@@ -15,7 +15,10 @@ class StringLiteral(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext, Identified)
             match parser.peek(0):
                 case StringDelimiter():
                     parser.eat()
-                    return string
+                    if parser.peek(0) == StringDelimiter():
+                        parser.eat()
+                    else:
+                        return string
 
                 case StringContent(value=val):
                     parser.eat()

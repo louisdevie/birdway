@@ -18,4 +18,6 @@ All Birdway implementations should follow the following specifications.
    conditionals
    loops
    block
+   comments
+   functions
    signals

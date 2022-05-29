@@ -33,13 +33,17 @@ class Block(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext, Identified):
         return Type.VOID
 
     def _propagate(self, ast, vc, lc, bc):
-        self.id = f"block_{bc.register()}"
+        self.id = f"block{bc.register()}"
+        children_context = {n: (self.context[n][0], self.context[n][1], False) for n in self.context}
+        declarations = set()
         for child in self.statements:
             if isinstance(child, FunctionDefinition):
-                child.id = f"func_{vc.register()}"
-                self.context[child.name] = (child.id, Type.FUNCTION)
-            child.context = self.context.copy()
+                child.id = f"func{vc.register()}"
+                children_context[child.name] = (child.id, Type.FUNCTION, True)
+                declarations.add(child.name)
+            child.context = children_context.copy()
             self.using |= child._propagate(ast, vc, lc, bc)
+        self.using -= declarations
         return self.using
 
     def _check(self):
@@ -50,10 +54,11 @@ class Block(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext, Identified):
         return f"""
             {"".join([s._initialise() for s in self.statements])}
             int {self.id}({
-                "".join(
+                ",".join(
                     [
                         ctype(self.context[v][1]) + "*" + self.context[v][0]
                         for v in self.using
+                        if self.context[v][1] != Type.FUNCTION
                     ]
                 )
             }) {{
@@ -67,6 +72,10 @@ class Block(SyntaxNodeABC, PrettyAutoRepr, Typed, InContext, Identified):
 
     def _transpile(self, tui):
         return (
-            f"err = {self.id}({''.join([self.context[v][0] for v in self.using])});"
+            f"""err = {self.id}({','.join([
+                ("&" if self.context[v][2] else "") + self.context[v][0]
+                for v in self.using
+                if self.context[v][1] != Type.FUNCTION
+            ])});"""
             "if (err) {return err;}"
         )

@@ -7,10 +7,17 @@ import generator
 
 from exceptions import *
 
-# vR771.0.0
+from version import VERSION
+
+# R771
 
 
 def main():
+    print(
+        f"WARNING: the PyBw compiler (version {VERSION}) "
+        "doesn't support all the features of the language"
+    )
+
     count = len(sys.argv) - 1
     for i, target in enumerate(sys.argv[1:]):
         directory, filename = os.path.split(target)
@@ -25,6 +32,8 @@ def main():
                 content = fd.read()
 
             tokens = lexer.parse(content)
+            with open(name + ".tok", "wt+") as fd:
+                print(*tokens, sep="\n", file=fd)
 
             ast = parser.parse(tokens)
             with open(name + "_nr.tree", "wt+") as fd:

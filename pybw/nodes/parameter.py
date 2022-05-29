@@ -61,7 +61,11 @@ class Parameter(SyntaxNodeABC, PrettyAutoRepr, Identified):
     def _initialise(self):
         if self.modifier == ArgumentModifier.OPTIONAL:
             T = Composite.Nullable(self.type)
-            init = "= NULL"
+            init = " = NULL"
+        elif self.modifier == ArgumentModifier.MULTIPLE:
+            T = Composite.Table(val=self.type)
+            init = ""
         else:
-            raise NotImplementedError()
-        return f"{ctype(T)} {self.id} {init};\n"
+            T = self.type
+            init = ""
+        return f"{ctype(T)} {self.id}{init};\n"
