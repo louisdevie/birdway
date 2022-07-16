@@ -5,10 +5,6 @@ file_extensions:
 scope: source.birdway
 contexts:
   main:
-    - match: "'"
-      scope: punctuation.definition.string.begin.birdway
-      push: single_quoted_string
-
     - match: '"'
       scope: punctuation.definition.string.begin.birdway
       push: double_quoted_string
@@ -21,13 +17,13 @@ contexts:
       scope: punctuation.definition.comment.birdway
       push: line_comment
 
-    - match: \blogerr\b
+    - match: \b(indent|open|close)\b
       scope: support.function.birdway
 
     - match: \b(READ|TEXT)\b
       scope: support.constant.birdway
 
-    - match: \b(IO_ERROR)\b
+    - match: \b(ERROR|ERR_IO|FAIL)\b
       scope: support.constant.birdway
 
     - match: '\b(if|else|then)\b'
@@ -36,34 +32,34 @@ contexts:
     - match: '\b(for|while|in|do)\b'
       scope: keyword.control.loop.birdway
 
-    - match: '\b(meta|param|run|option|use|open|mode|as|close)\b'
+    - match: '\b(meta|param|option|use|alias|is)\b'
       scope: keyword.other.birdway
 
-    - match: '\b(try|on)\b'
+    - match: '\b(throw|try|on)\b'
       scope: keyword.control.exception.birdway
 
-    - match: '(\bstruct\b\s*)([A-Za-z0-9_]+)(\s*\()'
+    - match: '(\bstruct\b\s*)([A-Za-z0-9_]+)'
       captures:
         1: keyword.declaration.struct.birdway
         2: entity.name.struct.birdway
 
-    - match: '(\benum\b\s*)([A-Za-z0-9_]+)(\s*\()'
+    - match: '(\benum\b\s*)([A-Za-z0-9_]+)'
       captures:
         1: keyword.declaration.enum.birdway
         2: entity.name.enum.birdway
 
-    - match: '\bstruct\b\s*[A-Za-z0-9_]+'
+    - match: '\bStruct\b\s*[A-Za-z0-9_]+'
       scope: storage.type.struct.birdway
 
-    - match: '\benum\b\s*[A-Za-z0-9_]+'
-      scope: storage.type.struct.birdway
+    - match: '\bEnum\b\s*[A-Za-z0-9_]+'
+      scope: storage.type.enum.birdway
 
     - match: (\b(let|const)\b\s*)([A-Za-z0-9_]+)(\s*=)
       captures:
         1: keyword.declaration.birdway
         4: keyword.declaration.birdway
 
-    - match: \b(println|read|to|from)\b
+    - match: \b(print|println|read|to|from)\b
       scope: keyword.other.birdway
 
     - match: '(\bfunc\b\s*)([A-Za-z0-9_]+)'
@@ -83,6 +79,12 @@ contexts:
     - match: '\b(-)?[0-9]+(\.[0-9]+)?\b'
       scope: constant.numeric.birdway
 
+    - match: '\b(TRUE|FALSE)\b'
+      scope: constant.language.boolean.birdway
+
+    - match: '\bNULL\b'
+      scope: constant.language.null.birdway
+
     - match: ;
       scope: punctuation.terminator.birdway
 
@@ -92,7 +94,7 @@ contexts:
     - match: ':'
       scope: punctuation.separator.key-value.birdway
 
-    - match: \bstr\b
+    - match: \b(Void|Int|Byte|Float|Str|Bool|File|RegEx)\b
       scope: storage.type.birdway
 
     - match: '{\*'
@@ -111,18 +113,8 @@ contexts:
     - match: '([A-Za-z0-9_]+)(\s*)(\()'
       captures:
         1: variable.function.birdway
-        2: text.birdway
         3: punctuation.section.parens.begin.birdway
-
-  single_quoted_string:
-    - meta_scope: string.quoted.single.birdway
-    - match: "\\\\(n|r|e|t|')"
-      scope: constant.character.escape.birdway
-    - match: '\\.'
-      scope: invalid.illegal.birdway
-    - match: "'"
-      scope: punctuation.definition.string.end.birdway
-      pop: true
+      push: main
 
   line_comment:
     - meta_scope: comment.line.birdway
@@ -136,23 +128,24 @@ contexts:
       pop: true
 
   double_quoted_string:
-    - match: '\\(n|r|e|t)'
+    - match: '\\(n|r|e|t|\\|")'
       scope: constant.character.escape.birdway
     - match: '\\.'
       scope: invalid.illegal.birdway
     - match: '"'
       scope: punctuation.definition.string.end.birdway
       pop: true
-    - match: (\$)([A-Za-z0-9_]+)
+    - match: (\$)(ERROR\b)
+      captures:
+        1: punctuation.definition.string.birdway
+        2: support.constant.birdway
+    - match: (\$)(.+?\b)
       captures:
         1: punctuation.definition.string.birdway
         2: variable.birdway
-    - match: \$\(
-      scope: punctuation.definition.string.birdway
+    - match: (\$)(\()
+      captures:
+        1: punctuation.definition.string.birdway
       push: main
-      with_prototype:
-        - match: \)
-          pop: true
-          scope: punctuation.definition.string.birdway
     - match: .
       scope: string.quoted.double.birdway

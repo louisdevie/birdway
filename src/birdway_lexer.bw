@@ -1,0 +1,9 @@
+-- lexical tokens 
+struct Token (
+	type: TokenType,
+	value: Str,
+);
+
+enum TokenType (
+	KEYWORD_META,
+);

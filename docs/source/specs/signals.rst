@@ -1,20 +1,20 @@
 Signals
 =======
 
-Signals are codes that are propagated in the stack until catched.
-If a signal reach the bottom of the stack, the program stops and an error message is shown.
+Signals are codes that are propagated down the stack until they're *received*.
+If a signal reach the bottom of the stack, the signal code is displayed and the program stops.
 
 
 Error signals
 -------------
 
-Error signals are used to stop the program after something went wrog (e.g. a division by zero),
-or if the program has successfully finished (:ref:`success` statement).
-They can be recieved by a :ref:`try` statement.
+Error signals are used to stop the program after something went wrong (e.g. a division by zero),
+or if the program has successfully finished.
+They can be received by a :ref:`try` statement.
 
 
 Loop break signals
 ------------------
 
-The :ref:`break_skip` statements emit a signal to stop the loop immediately,
-and can only be recieved by loops.
+The :ref:`break_next` statements emit a signal to stop the loop immediately,
+and can only be received by loops.

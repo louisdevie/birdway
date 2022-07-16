@@ -1,30 +1,26 @@
-meta [
-    'name': 'Birdway',
-];
+meta name "Birdway";
 
-use birdway_lexer;
+option OUTPUT_DIR: Str ("The destination of the executable");
+param INPUT: Str ("The script to compile");
 
-option str OUTPUT_DIR o 'The destination of the executable';
-param str INPUT 'The script to compile';
-
-run {
-    println 'WARNING: the Birdway compiler (version A-220528) '
-            'doesn\'t support all the features of the language';
+func main() -> {
+    println "WARNING: the Birdway compiler (version A-220710) "
+         && "doesn't support all the features of the language";
 
     println "Compiling $INPUT ...";
     indent("  ");
 
-    let source_code = '';
+    let source_code = "";
     try {
-        open INPUT mode READ & TEXT as source_file;
+        let source_file = open(INPUT, READ + TEXT);
         read source_code from source_file;
-        close source_file;
-    }
-    on IO_ERROR do {
-        print "Unable to open file $INPUT : ";
-        printerr();
-        exit IO_ERROR;
-    }
+        close(source_file);
+    } on ERR_IO do {
+        println "Unable to read file $INPUT : $ERROR";
+        throw;
+    };
 
-    const tokens = lexer_parse(source_code);
+    print source_code;
+
+    -- const tokens = tokenise(source_code);
 };

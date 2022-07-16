@@ -11,8 +11,8 @@ If Statements
 
 Takes the value ``a`` if ``condition`` is true, or ``b`` otherwise.
 ``condition`` has to be a boolean while ``a`` and ``b`` need to be
-of the same type, wich will be the type of the if statement.
-If ``a`` has type :ref:`void <void>`, the ``else b`` part can be ommitted and nothing
+of the same type, which will be the type of the if statement.
+If ``a`` has type :ref:`void <void>`, the ``else b`` part can be omitted and nothing
 will be done otherwise.
 
 
@@ -32,4 +32,4 @@ and :ref:`enumerations <enum>`. If a ``case`` have
 the same type as ``value`` it will match if the two values are equal,
 if it is a list of the type of ``value`` (e.g. ``[int]``) it will match if
 the value is in the list, and any other type is invalid. All ``values``
-have to be of the same type, wich will be the type of the statement.
+have to be of the same type, which will be the type of the statement.

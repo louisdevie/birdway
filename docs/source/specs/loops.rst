@@ -4,7 +4,7 @@ Loops
 
 .. _break_skip:
 
-Break and Skip
+Break and Next
 --------------
 
 These two statements can be used inside any of the following loops.
@@ -16,9 +16,9 @@ If used inside a block, they will propagate and affect the containing loop.
 Exits the loop immediately, skipping the ``then end`` part if there is one.
 
 .. syntax::
-   **skip**
+   **next**
 
-Skip to the next iteration of the loop immediately.
+Jump to the next iteration of the loop immediately.
 
 
 For Loop

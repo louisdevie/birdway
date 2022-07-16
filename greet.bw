@@ -1,9 +1,9 @@
-param? str NAME 'Name of the person to greet';
+param? NAME: Str ("Name of the person to greet");
 
-run {
+func main() -> {
 	if ?NAME then {
-	    println "Hello $NAME !";
+		println "Hello $NAME !";
 	} else {
-	    println 'Hello !';
+		println "Hello !";
 	};
-};
+}

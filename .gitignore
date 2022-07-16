@@ -3,6 +3,7 @@
 *.tok
 
 docs/build
+spelling
 
 *.sublime-workspace
 

@@ -2,12 +2,10 @@ import os, sys
 
 
 def run_test(name):
-    ec = os.system(f"python3 pybw/main.py tests/test_{name}.bw")
-    if ec:
+    if ec := os.system(f"python3 pybw/main.py tests/test_{name}.bw")
         sys.exit(ec)
 
-    ec = os.system(f"build/test_{name}")
-    if ec:
+    if ec := os.system(f"build/test_{name}")
         sys.exit(ec)
 
 

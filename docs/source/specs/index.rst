@@ -15,6 +15,7 @@ All Birdway implementations should follow the following specifications.
    structure
    types
    composites
+   implicit_conversion
    conditionals
    loops
    block

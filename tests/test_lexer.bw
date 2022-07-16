@@ -1,7 +1,7 @@
 use birdway_lexer;
 
 run {
-	const TEST = '{}';
+	const TEST = '&&&~"abc$abc$(abc)"###\'{\'{}()[]---|---|--\n-`_`_\\^@+===$%***!:::///.?123,1.23;1_2_3true false null';
 
 	
 }

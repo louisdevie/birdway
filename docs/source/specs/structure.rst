@@ -5,7 +5,7 @@
 Structure of a Birdway script
 =============================
 
-A birdway script is divided into five parts:
+A Birdway script is divided into five parts:
 
 * `metadata`_
 * `parameters`_
@@ -13,8 +13,8 @@ A birdway script is divided into five parts:
 * `types`_
 * `program`_
 
-The satements ``meta``, ``param``, ``option``, ``flag``,
-``subcmd``, ``enum``, ``struct``, et ``run`` are the only ones that
+The statements ``meta``, ``param``, ``option``, ``flag``,
+``subcmd``, ``enum``, ``struct``, and ``run`` are the only ones that
 can be used in a script body, and can only be used there.
 They must be separated by semicolons.
 
@@ -79,7 +79,7 @@ and with hyphens in place of the underscores. Thus, a flag
 named ``MY_FLAG`` will be passed as ``--my-flag``.
 
 If there is no modifier, the flag can be passed only once,
-and the result is a ``bool``, wether the flag was passed or not.
+and the result is a ``bool``, whether the flag was passed or not.
 
 If the multiple modifier (an asterisk ``*``) is used,
 the resulting value is the number of times the flag was passed (type ``size``).
@@ -120,7 +120,7 @@ Parameters
    **param** [ modifier ] type name [ **=** default ] [ description ]
 
 Parameters are always passed after options and flags. They're identified
-by their position, so the order in wich you declare them is important.
+by their position, so the order in which you declare them is important.
 
 There can be : one or more parameters without modifier,
 followed by one or more parameters with the optional modifier,
