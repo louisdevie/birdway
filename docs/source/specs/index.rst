@@ -11,14 +11,18 @@ All Birdway implementations should follow the following specifications.
 
 .. toctree::
    :maxdepth: 2
+   :numbered:
 
+   syntaxdef
+   lextok
    structure
    types
    composites
+   userdef
    implicit_conversion
    conditionals
    loops
    block
-   comments
    functions
    signals
+   appendices

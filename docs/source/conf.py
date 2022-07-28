@@ -41,6 +41,14 @@ templates_path = ["_templates"]
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = []
 
+# -- Custom Syntax highlighting ----------------------------------------------
+
+from sphinx.highlighting import lexers
+from birdway_lexer import BirdwayLexer
+
+lexers["bw"] = BirdwayLexer(startinline=True)
+
+pygments_style = "material"
 
 # -- Options for HTML output -------------------------------------------------
 

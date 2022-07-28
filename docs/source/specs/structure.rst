@@ -26,10 +26,9 @@ The metadata
 The metadata of the application is defined with the ``meta`` statement.
 
 .. syntax::
-   **meta** table
+   **meta** field **=** value
 
-``table`` need to be a dictionary table of type ``[str: str]``,
-with the following fields used:
+``value`` need to be of type ``str``, and field must be one of:
 
 .. list-table::
    :widths: 20 80
@@ -38,19 +37,19 @@ with the following fields used:
    * - Key
      - Value
 
-   * - ``'name'``
+   * - ``name``
      - the name of the application
 
-   * - ``'version'``
+   * - ``ver``
      - the version of the application
 
-   * - ``'authors'``
+   * - ``auth'``
      - the authors of the application, separated by semicolons
 
-   * - ``'url'``
+   * - ``url``
      - a link to the homepage of the application
 
-   * - ``'description'``
+   * - ``desc``
      - a short description
 
 
@@ -70,9 +69,9 @@ Flags
 ^^^^^
 
 .. syntax::
-   **flag** [ modifier ] name [ shortcut ] [ description ]
+   **flag** *[* modifier *]* name *[* **(** description **)** *]*
 
-Flags starts with two hyphens ``--``. As ``name`` is a constant,
+As ``name`` will be a constant,
 it should be all uppercase with underscores between words,
 like ``MY_FLAG``. The flag name will be the same, but lowercase
 and with hyphens in place of the underscores. Thus, a flag
@@ -93,7 +92,7 @@ Options
 ^^^^^^^
 
 .. syntax::
-   **option** [ modifier ] type name [ **=** default ] [ shortcut ] [ description ]
+   **option** *[* modifier *]* name **:** type *[* **=** default *]* *[* **(** description **)** *]*
 
 Options are similar to flags, except they are followed by
 an equal sign ``=`` and a value. Thus, a option named ``MY_OPTION``
@@ -117,7 +116,7 @@ Parameters
 ^^^^^^^^^^
 
 .. syntax::
-   **param** [ modifier ] type name [ **=** default ] [ description ]
+   **param** *[* modifier *]* name **:** type *[* **=** default *]* *[* **(** description **)** *]*
 
 Parameters are always passed after options and flags. They're identified
 by their position, so the order in which you declare them is important.
@@ -125,7 +124,6 @@ by their position, so the order in which you declare them is important.
 There can be : one or more parameters without modifier,
 followed by one or more parameters with the optional modifier,
 followed by only one parameter with the multiple modifier.
-The parameters with the optional modifier ``?`` 
 
 
 .. _types:

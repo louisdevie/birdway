@@ -2,7 +2,7 @@ Loops
 =====
 
 
-.. _break_skip:
+.. _break_next:
 
 Break and Next
 --------------
@@ -25,7 +25,7 @@ For Loop
 --------
 
 .. syntax::
-   **for** variable **in** table **do** expression [**then** end]
+   **for** variable **in** <table> **do** <expression> *[* **then** <end> *]*
 
 ``variable`` should be a valid identifier, and a *constant* with this name will
 take the *values* inside ``table``. ``expression`` will be evaluated for each iteration

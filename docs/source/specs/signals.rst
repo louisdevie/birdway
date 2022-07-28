@@ -10,11 +10,12 @@ Error signals
 
 Error signals are used to stop the program after something went wrong (e.g. a division by zero),
 or if the program has successfully finished.
-They can be received by a :ref:`try` statement.
+They can be thrown by the user with a :ref:`throw` statement
+and received by a :ref:`try` statement.
 
 
-Loop break signals
+Others signals
 ------------------
 
-The :ref:`break_next` statements emit a signal to stop the loop immediately,
-and can only be received by loops.
+The :ref:`return`, :ref:`break_next` statements throws specials signals that can't be
+received by :ref:`try` statements.

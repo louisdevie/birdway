@@ -101,6 +101,6 @@ RegEx
 -----
 
 
-.. _stream:
-Stream
-------
+.. _file:
+File
+----

@@ -17,9 +17,6 @@ contexts:
       scope: punctuation.definition.comment.birdway
       push: line_comment
 
-    - match: \b(indent|open|close)\b
-      scope: support.function.birdway
-
     - match: \b(READ|TEXT)\b
       scope: support.constant.birdway
 
@@ -54,18 +51,25 @@ contexts:
     - match: '\bEnum\b\s*[A-Za-z0-9_]+'
       scope: storage.type.enum.birdway
 
-    - match: (\b(let|const)\b\s*)([A-Za-z0-9_]+)(\s*=)
+    - match: (\b(let|const)\b)(\s*)(\$)?
       captures:
         1: keyword.declaration.birdway
-        4: keyword.declaration.birdway
+        4: storage.modifier.birdway
 
     - match: \b(print|println|read|to|from)\b
       scope: keyword.other.birdway
 
-    - match: '(\bfunc\b\s*)([A-Za-z0-9_]+)'
+    - match: '(\bfunc\b\s*)(\b(main|exit)\b)'
       captures:
         1: keyword.declaration.function.birdway
-        2: entity.name.function.birdway
+        2: support.function.birdway
+
+    - match: '(\bfunc\b\s*)((::)([A-Za-z0-9_]+)\s*)?([A-Za-z0-9_]+)'
+      captures:
+        1: keyword.declaration.function.birdway
+        3: punctuation.accessor.double-colon.birdway
+        4: variable.function.birdway
+        5: entity.name.function.birdway
 
     - match: ->
       scope: keyword.declaration.birdway
@@ -84,6 +88,9 @@ contexts:
 
     - match: '\bNULL\b'
       scope: constant.language.null.birdway
+
+    - match: \b(indent|open|close|err)\b
+      scope: support.function.birdway
 
     - match: ;
       scope: punctuation.terminator.birdway
@@ -130,22 +137,23 @@ contexts:
   double_quoted_string:
     - match: '\\(n|r|e|t|\\|")'
       scope: constant.character.escape.birdway
+
     - match: '\\.'
       scope: invalid.illegal.birdway
+
     - match: '"'
       scope: punctuation.definition.string.end.birdway
       pop: true
-    - match: (\$)(ERROR\b)
-      captures:
-        1: punctuation.definition.string.birdway
-        2: support.constant.birdway
-    - match: (\$)(.+?\b)
+
+    - match: (\$)(\w+?\b)
       captures:
         1: punctuation.definition.string.birdway
         2: variable.birdway
+
     - match: (\$)(\()
       captures:
         1: punctuation.definition.string.birdway
       push: main
+
     - match: .
       scope: string.quoted.double.birdway

@@ -1,1 +1,1 @@
-# ![birdway](bw.svg)
+# Birdway
