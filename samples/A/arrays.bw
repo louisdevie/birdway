@@ -2,21 +2,51 @@
   Arrays
 
   https://rosettacode.org/wiki/Arrays
-
-  This task is about arrays.
-  For hashes or associative arrays, please see Creating an Associative Array.
-  For a definition and in-depth discussion of what an array is, see Array.
   
-  Task
+  === Task ===
   Show basic array syntax in your language.
-  Basically, create an array, assign a value to it, and retrieve an element   (if available, show both fixed-length arrays and
-dynamic arrays, pushing a value into it).
-  Please discuss at Village Pump:   Arrays.
-  Please merge code in from these obsolete tasks:
-  Creating an Array
-   Assigning Values to an Array
-   Retrieving an Element of an Array
-  
-  Related tasks
-  
+  Basically, create an array, assign a value to it, and retrieve an element
+  (if available, show both fixed-length arrays and dynamic arrays,
+  pushing a value into it).  
 ---
+
+func main() -> {
+    -- creating a list
+    let list1 = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55];
+
+    -- accessing an element
+    println list1[4]; --> 5, lists are 0-indexed
+
+    -- accessing a slice of the list
+    println list1[4..7]; --> [5, 8, 13]
+
+    -- creating a mutable list
+    let $list2 = []
+
+    -- adding an element at the end
+    list2::insert("after");
+    println list2; --> ["after"]
+
+    -- adding an element at a specific index
+    list2::insert("before", 0);
+    println list2; --> ["before", "after"]
+
+    -- removing the last element
+    list2::pop()
+    println list2; --> ["before"]
+
+    -- removing an element at a specific index
+    list2::pop(0);
+    println list2; --> []
+
+    -- creating a list from a loop
+    let list3 = for i in 1..10 do i**2;
+    println list3; --> [1, 4, 9, 16, 25, 36, 49, 64, 81]
+
+    -- lists inside a list ...
+    let list4 = [
+        [2,  4,  6 ],
+        [7,  14],     -- ... can have different sizes
+        [12, 24, 36],
+    ];
+};

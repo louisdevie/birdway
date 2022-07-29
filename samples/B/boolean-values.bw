@@ -3,10 +3,24 @@
 
   https://rosettacode.org/wiki/Boolean_values
 
-  Task
+  === Task ===
   Show how to represent the boolean states "true" and "false" in a language.
   If other objects represent "true" or "false" in conditionals, note it.
-  
-  Related tasks
-  
 ---
+
+func main() -> {
+    -- true
+    let yes = TRUE;
+
+    -- false
+    let no = FALSE;
+
+    -- anything can be converted to a boolean
+    println to_bool(NULL); -- FALSE
+    println to_bool(0); -- FALSE
+    println to_bool('123); -- TRUE
+    println to_bool(1.23); -- TRUE
+    println to_bool("strawberry yakisoba"); -- TRUE
+    println to_bool([]); -- FALSE
+    println to_bool(x -> x+1); -- TRUE
+}

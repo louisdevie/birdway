@@ -22,7 +22,7 @@ Below is the list of all tasks from [rosetta code](https://rosettacode.org) (as 
 
 ## A
 
-- [ ] [A+B](./A/a+b.bw)
+- [x] [A+B](./A/a+b.bw)
 - [ ] [ABC problem](./A/abc-problem.bw)
 - [ ] [AKS test for primes](./A/aks-test-for-primes.bw)
 - [ ] [ASCII art diagram converter](./A/ascii-art-diagram-converter.bw)
@@ -73,10 +73,11 @@ Below is the list of all tasks from [rosetta code](https://rosettacode.org) (as 
   - [ ] [Calculate Pi](./A/Arithmetic-geometric mean/calculate-pi.bw)
 - [ ] Arithmetic
   - [ ] [Complex](./A/Arithmetic/complex.bw)
+  - [x] [Integer](./A/Arithmetic/integer.bw)
   - [ ] [Rational](./A/Arithmetic/rational.bw)
-- [ ] [Array concatenation](./A/array-concatenation.bw)
-- [ ] [Array length](./A/array-length.bw)
-- [ ] [Arrays](./A/arrays.bw)
+- [x] [Array concatenation](./A/array-concatenation.bw)
+- [x] [Array length](./A/array-length.bw)
+- [x] [Arrays](./A/arrays.bw)
 - [ ] [Ascending primes](./A/ascending-primes.bw)
 - [ ] [Assertions](./A/assertions.bw)
 - [ ] Associative array
@@ -129,7 +130,7 @@ Below is the list of all tasks from [rosetta code](https://rosettacode.org) (as 
 - [ ] [Bitmap](./B/Bitmap/bitmap.bw)
 - [ ] [Bitwise IO](./B/bitwise-io.bw)
 - [ ] [Bitwise operations](./B/bitwise-operations.bw)
-- [ ] [Boolean values](./B/boolean-values.bw)
+- [x] [Boolean values](./B/boolean-values.bw)
 - [ ] [Box the compass](./B/box-the-compass.bw)
 - [ ] [Brace expansion](./B/brace-expansion.bw)
 - [ ] [Brazilian numbers](./B/brazilian-numbers.bw)
@@ -137,6 +138,7 @@ Below is the list of all tasks from [rosetta code](https://rosettacode.org) (as 
 - [ ] [Brilliant numbers](./B/brilliant-numbers.bw)
 - [ ] [Brownian tree](./B/brownian-tree.bw)
 - [ ] [Bulls and cows](./B/bulls-and-cows.bw)
+  - [ ] Player
 - [ ] [Burrows–Wheeler transform](./B/burrows–wheeler-transform.bw)
 
 ## C
@@ -162,6 +164,7 @@ Below is the list of all tasks from [rosetta code](https://rosettacode.org) (as 
 - [ ] [Case-sensitivity of identifiers](./C/case-sensitivity-of-identifiers.bw)
 - [ ] [Casting out nines](./C/casting-out-nines.bw)
 - [ ] [Catalan numbers](./C/catalan-numbers.bw)
+  - [ ] Pascal's triangle
 - [ ] [Catamorphism](./C/catamorphism.bw)
 - [ ] [Catmull–Clark subdivision surface](./C/catmull–clark-subdivision-surface.bw)
 - [ ] [Chaocipher](./C/chaocipher.bw)
@@ -191,6 +194,11 @@ Below is the list of all tasks from [rosetta code](https://rosettacode.org) (as 
 - [ ] [Color quantization](./C/color-quantization.bw)
 - [ ] [Color wheel](./C/color-wheel.bw)
 - [ ] [Colorful numbers](./C/colorful-numbers.bw)
+- [ ] Colour bars
+  - [ ] Display
+- [ ] Colour pinstripe
+  - [ ] Display
+  - [ ] Printer
 - [ ] [Combinations and permutations](./C/combinations-and-permutations.bw)
 - [ ] [Combinations with repetitions](./C/combinations-with-repetitions.bw)
 - [ ] [Combinations](./C/combinations.bw)
@@ -287,6 +295,11 @@ Below is the list of all tasks from [rosetta code](https://rosettacode.org) (as 
 - [ ] [Diversity prediction theorem](./D/diversity-prediction-theorem.bw)
 - [ ] [Documentation](./D/documentation.bw)
 - [ ] [Dot product](./D/dot-product.bw)
+- [ ] Doubly-linked list
+  - [ ] Definition
+  - [ ] Element definition
+  - [ ] Element insertion
+  - [ ] Traversal
 - [ ] [Dragon curve](./D/dragon-curve.bw)
 - [ ] [Draw a clock](./D/draw-a-clock.bw)
 - [ ] [Draw a cuboid](./D/draw-a-cuboid.bw)
@@ -318,6 +331,7 @@ Below is the list of all tasks from [rosetta code](https://rosettacode.org) (as 
 - [ ] [Empty string](./E/empty-string.bw)
 - [ ] [Enforced immutability](./E/enforced-immutability.bw)
 - [ ] [Entropy](./E/entropy.bw)
+  - [ ] Narcissist
 - [ ] [Enumerations](./E/enumerations.bw)
 - [ ] [Environment variables](./E/environment-variables.bw)
 - [ ] [Equal prime and composite sums](./E/equal-prime-and-composite-sums.bw)
@@ -447,6 +461,8 @@ Below is the list of all tasks from [rosetta code](https://rosettacode.org) (as 
 - [ ] [Greatest common divisor](./G/greatest-common-divisor.bw)
 - [ ] [Greatest element of a list](./G/greatest-element-of-a-list.bw)
 - [ ] [Greatest subsequential sum](./G/greatest-subsequential-sum.bw)
+- [ ] Greyscale bars
+  - [ ] Display
 - [ ] [Guess the number/With feedback (player)](./G/Guess the number/with-feedback-(player).bw)
 - [ ] [Guess the number/With feedback](./G/Guess the number/with-feedback.bw)
 - [ ] [Guess the number](./G/Guess the number/guess-the-number.bw)
@@ -467,11 +483,14 @@ Below is the list of all tasks from [rosetta code](https://rosettacode.org) (as 
 - [ ] [Hash from two arrays](./H/hash-from-two-arrays.bw)
 - [ ] [Hash join](./H/hash-join.bw)
 - [ ] [Haversine formula](./H/haversine-formula.bw)
-- [ ] [Hello world/Line printer](./H/Hello world/line-printer.bw)
-- [ ] [Hello world/Newbie](./H/Hello world/newbie.bw)
-- [ ] [Hello world/Newline omission](./H/Hello world/newline-omission.bw)
-- [ ] [Hello world/Standard error](./H/Hello world/standard-error.bw)
-- [ ] [Hello world/Web server](./H/Hello world/web-server.bw)
+- [ ] Hello World
+  - [ ] Graphical
+  - [ ] [Line printer](./H/Hello world/line-printer.bw)
+  - [ ] [Newbie](./H/Hello world/newbie.bw)
+  - [ ] [Newline omission](./H/Hello world/newline-omission.bw)
+  - [ ] [Standard error](./H/Hello world/standard-error.bw)
+  - [ ] Text
+  - [ ] [Web server](./H/Hello world/web-server.bw)
 - [ ] [Here document](./H/here-document.bw)
 - [ ] [Heronian triangles](./H/heronian-triangles.bw)
 - [ ] [Hickerson series of almost integers](./H/hickerson-series-of-almost-integers.bw)
@@ -717,7 +736,10 @@ Below is the list of all tasks from [rosetta code](https://rosettacode.org) (as 
 - [ ] [Next highest int from digits](./N/next-highest-int-from-digits.bw)
 - [ ] [Nim game](./N/nim-game.bw)
 - [ ] [Non-continuous subsequences](./N/non-continuous-subsequences.bw)
-- [ ] [Non-decimal radices/Convert](./N/Non-decimal radices/convert.bw)
+- [ ] Non-decimal radices
+  - [ ] [Convert](./N/Non-decimal radices/convert.bw)
+  - [ ] Input
+  - [ ] Output
 - [ ] [Non-transitive dice](./N/non-transitive-dice.bw)
 - [ ] [Nonoblock](./N/nonoblock.bw)
 - [ ] [Nonogram solver](./N/nonogram-solver.bw)
@@ -963,6 +985,7 @@ Below is the list of all tasks from [rosetta code](https://rosettacode.org) (as 
 - [ ] [Sequence: nth number with exactly n divisors](./S/sequence-nth-number-with-exactly-n-divisors.bw)
 - [ ] [Sequence: smallest number greater than previous term with exactly n divisors](./S/sequence-smallest-number-greater-than-previous-term-with-exactly-n-divisors.bw)
 - [ ] [Sequence: smallest number with exactly n divisors](./S/sequence-smallest-number-with-exactly-n-divisors.bw)
+- [ ] Set
 - [ ] [Set consolidation](./S/set-consolidation.bw)
 - [ ] [Set of real numbers](./S/set-of-real-numbers.bw)
 - [ ] [Set puzzle](./S/set-puzzle.bw)
@@ -980,6 +1003,7 @@ Below is the list of all tasks from [rosetta code](https://rosettacode.org) (as 
 - [ ] [Sierpinski pentagon](./S/sierpinski-pentagon.bw)
 - [ ] [Sierpinski square curve](./S/sierpinski-square-curve.bw)
 - [ ] [Sierpinski triangle](./S/sierpinski-triangle.bw)
+  - [ ] Graphical
 - [ ] [Sieve of Eratosthenes](./S/sieve-of-eratosthenes.bw)
 - [ ] [Simple database](./S/simple-database.bw)
 - [ ] [Simple turtle graphics](./S/simple-turtle-graphics.bw)
@@ -1040,6 +1064,8 @@ Below is the list of all tasks from [rosetta code](https://rosettacode.org) (as 
 - [ ] [Special variables](./S/special-variables.bw)
 - [ ] [Speech synthesis](./S/speech-synthesis.bw)
 - [ ] [Spelling of ordinal numbers](./S/spelling-of-ordinal-numbers.bw)
+- [ ] Spinning rod animation
+  - [ ] Text
 - [ ] [Spiral matrix](./S/spiral-matrix.bw)
 - [ ] [Split a character string based on change of character](./S/split-a-character-string-based-on-change-of-character.bw)
 - [ ] [Square but not cube](./S/square-but-not-cube.bw)
@@ -1072,6 +1098,7 @@ Below is the list of all tasks from [rosetta code](https://rosettacode.org) (as 
 - [ ] [Strip block comments](./S/strip-block-comments.bw)
 - [ ] [Strip comments from a string](./S/strip-comments-from-a-string.bw)
 - [ ] [Strip control codes and extended characters from a string](./S/strip-control-codes-and-extended-characters-from-a-string.bw)
+- [ ] Strip whitespace from a string/Top and tail
 - [ ] [Strong and weak primes](./S/strong-and-weak-primes.bw)
 - [ ] [Subleq](./S/subleq.bw)
 - [ ] [Substitution cipher](./S/substitution-cipher.bw)

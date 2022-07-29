@@ -3,7 +3,8 @@
 
   https://rosettacode.org/wiki/Hello_world/Newbie
 
-  Task
+  Task :
+
   Guide a new user of a language through the steps necessary
 to install the programming language and selection of a text editor if needed,
 to run the languages' example in the Hello world/Text task.
