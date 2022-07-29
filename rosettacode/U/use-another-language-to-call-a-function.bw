@@ -1,0 +1,8 @@
+---
+  Use another language to call a function
+
+  https://rosettacode.org/wiki/Use_another_language_to_call_a_function
+
+  This task is inverse to the task Call foreign language function. Consider the following C program:
+  Implement the missing Query function in your language, and let this C program call it. The function should place the string Here am I into the buffer which is passed to it as the parameter Data. The buffer size in bytes is passed as the parameter Length. When there is no room in the buffer, Query shall return 0. Otherwise it overwrites the beginning of Buffer, sets the number of overwritten bytes into Length and returns 1.
+---

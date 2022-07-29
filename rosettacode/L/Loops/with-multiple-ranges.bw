@@ -1,0 +1,18 @@
+---
+  Loops/With multiple ranges
+
+  https://rosettacode.org/wiki/Loops/With_multiple_ranges
+
+  
+  Some languages allow multiple loop ranges, such as the PL/I example (snippet) below.
+  
+  Task
+  Simulate/translate the above PL/I program snippet as best as possible in your
+language,   with particular emphasis on the   do   loop construct.
+  The   do   index must be incremented/decremented in the same order shown.
+  If feasible, add commas to the two output numbers (being displayed).
+  Show all output here.
+  
+  Related tasks
+  
+---

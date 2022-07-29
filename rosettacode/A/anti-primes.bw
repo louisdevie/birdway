@@ -1,0 +1,18 @@
+---
+  Anti-primes
+
+  https://rosettacode.org/wiki/Anti-primes
+
+  The anti-primes
+(or highly composite numbers, sequence A002182 in the OEIS)
+are the natural numbers with more factors than any smaller than itself.
+  
+  Task
+  Generate and show here, the first twenty anti-primes.
+  
+  Related tasks
+
+   Factors of an integer
+   Sieve of Eratosthenes
+  
+---

@@ -1,0 +1,11 @@
+---
+  Find the intersection of two lines
+
+  https://rosettacode.org/wiki/Find_the_intersection_of_two_lines
+
+  
+  Task
+  Find the point of intersection of two lines in 2D.
+  The 1st line passes though    (4,0)    and    (6,10) .
+The 2nd line passes though    (0,3)    and    (10,7) .
+---

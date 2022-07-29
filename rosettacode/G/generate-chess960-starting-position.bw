@@ -1,0 +1,11 @@
+---
+  Generate Chess960 starting position
+
+  https://rosettacode.org/wiki/Generate_Chess960_starting_position
+
+  Chess960 is a variant of chess created by world champion Bobby Fischer. Unlike other variants of the game, Chess960 does not require a different material, but instead relies on a random initial position, with a few constraints:
+  With those constraints there are 960 possible starting positions, thus the name of the variant.
+  
+  Task
+  The purpose of this task is to write a program that can randomly generate any one of the 960 Chess960 initial positions. You will show the result as the first rank displayed with Chess symbols in Unicode: ♔♕♖♗♘ or with the letters King Queen Rook Bishop kNight.
+---

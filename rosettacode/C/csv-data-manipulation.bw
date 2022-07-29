@@ -1,0 +1,15 @@
+---
+  CSV data manipulation
+
+  https://rosettacode.org/wiki/CSV_data_manipulation
+
+  CSV spreadsheet files are suitable for storing tabular data in a relatively portable way.
+  The CSV format is flexible but somewhat ill-defined.
+  For present purposes, authors may assume that the data fields contain no commas, backslashes, or quotation marks.
+  
+  Task
+  Read a CSV file, change some values and save the changes back to a file.
+  For this task we will use the following CSV file:
+  Suggestions
+  
+---

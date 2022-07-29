@@ -1,0 +1,20 @@
+---
+  Fermat numbers
+
+  https://rosettacode.org/wiki/Fermat_numbers
+
+  In mathematics, a Fermat number, named after Pierre de Fermat who first studied them, is a positive integer of the form Fn = 22n + 1 where n is a non-negative integer.
+  Despite the simplicity of generating Fermat numbers, they have some powerful mathematical properties and are extensively used in cryptography & pseudo-random number generation, and are often linked to other number theoric fields.
+  As of this writing, (mid 2019), there are only five known prime Fermat numbers, the first five (F0 through F4). Only the first twelve Fermat numbers have been completely factored, though many have been partially factored.
+  
+  Task
+  Write a routine (function, procedure, whatever) to generate Fermat numbers.
+  Use the routine to find and display here, on this page, the first 10 Fermat numbers - F0 through F9.
+  Find and display here, on this page, the prime factors of as many Fermat numbers as you have patience for. (Or as many as can be found in five minutes or less of processing time). Note: if you make it past F11, there may be money, and certainly will be acclaim in it for you.
+  
+  See also
+  Wikipedia - Fermat numbers
+ OEIS:A000215 - Fermat numbers
+ OEIS:A019434 - Fermat primes
+  
+---

@@ -1,0 +1,10 @@
+---
+  Roots of a function
+
+  https://rosettacode.org/wiki/Roots_of_a_function
+
+  Task
+  Create a program that finds and outputs the roots of a given function, range and (if applicable) step width.
+  The program should identify whether the root is exact or approximate.
+  For this task, use:      ƒ(x)   =   x3 - 3x2 + 2x
+---

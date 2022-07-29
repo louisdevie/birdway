@@ -1,0 +1,22 @@
+---
+  Topological sort
+
+  https://rosettacode.org/wiki/Topological_sort
+
+  Given a mapping between items, and items they depend on, a topological sort orders items so that no item precedes an item it depends upon.
+  The compiling of a library in the VHDL language has the constraint that a library must be compiled after any library it depends on.
+  A tool exists that extracts library dependencies.
+  
+  Task
+  Write a function that will return a valid compile order of VHDL libraries from their dependencies.
+  Use the following data as an example:
+  Note: the above data would be un-orderable if, for example, dw04 is added to the list of dependencies of dw01.
+  
+  C.f.
+
+   Topological sort/Extracted top item.
+  There are two popular algorithms for topological sorting:
+  Kahn's 1962 topological sort [1] 
+   depth-first search [2] [3]
+  
+---

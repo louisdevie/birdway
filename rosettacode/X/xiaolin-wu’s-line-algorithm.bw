@@ -1,0 +1,12 @@
+---
+  Xiaolin Wu's line algorithm
+
+  https://rosettacode.org/wiki/Xiaolin_Wu%27s_line_algorithm
+
+  Task
+  Implement the   Xiaolin Wu's line algorithm   described in Wikipedia.
+  This algorithm draws anti-aliased lines.
+  
+  Related task
+  
+---

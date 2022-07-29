@@ -1,0 +1,9 @@
+---
+  Sort an integer array
+
+  https://rosettacode.org/wiki/Sort_an_integer_array
+
+  Task
+  Sort an array (or list) of integers in ascending numerical order.
+  Use a sorting facility provided by the language/library if possible.
+---

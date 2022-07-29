@@ -1,0 +1,21 @@
+---
+  The Name Game
+
+  https://rosettacode.org/wiki/The_Name_Game
+
+  Write a program that accepts a name as input and outputs the lyrics to the Shirley Ellis song "The Name Game".
+  The regular verse
+  Unless your name begins with a vowel (A, E, I, O, U), 'B', 'F' or 'M' you don't have to care about special rules.
+The verse for the name 'Gary' would be like this:
+  At the end of every line, the name gets repeated without the first letter: Gary becomes ary
+If we take (X) as the full name (Gary) and (Y) as the name without the first letter (ary) the verse would look like this:
+  Vowel as first letter of the name
+  If you have a vowel as the first letter of your name (e.g. Earl) you do not truncate the name.
+The verse looks like this:
+  'B', 'F' or 'M' as first letter of the name
+  In case of a 'B', an 'F' or an 'M' (e.g. Billy, Felix, Mary) there is a special rule.
+The line which would 'rebuild' the name (e.g. bo-billy) is sang without the first letter of the name.
+The verse for the name Billy looks like this:
+  For the name 'Felix', this would be right:
+  
+---

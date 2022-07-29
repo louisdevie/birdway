@@ -1,0 +1,23 @@
+---
+  Haversine formula
+
+  https://rosettacode.org/wiki/Haversine_formula
+
+  The haversine formula is an equation important in navigation, giving great-circle distances between two points on a sphere from their longitudes and latitudes.
+  It is a special case of a more general formula in spherical trigonometry, the law of haversines, relating the sides and angles of spherical "triangles".
+  
+  Task
+  Implement a great-circle distance function, or use a library function,
+to show the great-circle distance between:
+  
+  Most of the examples below adopted Kaimbridge's recommended value of
+6372.8 km for the earth radius. However, the derivation of this
+ellipsoidal quadratic mean radius
+is wrong (the averaging over azimuth is biased). When applying these
+examples in real applications, it is better to use the
+mean earth radius,
+6371 km. This value is recommended by the International Union of
+Geodesy and Geophysics and it minimizes the RMS relative error between the
+great circle and geodesic distance.
+  
+---

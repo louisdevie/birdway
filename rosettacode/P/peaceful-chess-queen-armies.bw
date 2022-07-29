@@ -1,0 +1,14 @@
+---
+  Peaceful chess queen armies
+
+  https://rosettacode.org/wiki/Peaceful_chess_queen_armies
+
+  In chess, a queen attacks positions from where it is, in straight lines up-down and left-right as well as on both its diagonals. It attacks only pieces not of its own colour.
+  
+  The goal of Peaceful chess queen armies is to arrange m black queens and m white queens on an n-by-n square grid, (the board), so that no queen attacks another of a different colour.
+  
+  Task
+  
+  References
+  
+---

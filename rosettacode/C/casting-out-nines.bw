@@ -1,0 +1,222 @@
+---
+  Casting out nines
+
+  https://rosettacode.org/wiki/Casting_out_nines
+
+  Task   (in three parts)
+  
+  Part 1
+  Write a procedure (say 
+
+
+
+
+
+c
+o
+9
+
+
+(
+x
+)
+
+
+{\displaystyle {\mathit {co9}}(x)}
+
+) which implements Casting Out Nines as described by returning the checksum for 
+
+
+
+x
+
+
+{\displaystyle x}
+
+. Demonstrate the procedure using the examples given there, or others you may consider lucky.
+  Part 2
+  Notwithstanding past Intel microcode errors, checking computer calculations like this would not be sensible. To find a computer use for your procedure:
+  Consider the statement "318682 is 101558 + 217124 and squared is 101558217124" (see: Kaprekar numbers#Casting Out Nines (fast)).
+ note that 
+
+
+
+318682
+
+
+{\displaystyle 318682}
+
+ has the same checksum as (
+
+
+
+101558
++
+217124
+
+
+{\displaystyle 101558+217124}
+
+);
+ note that 
+
+
+
+101558217124
+
+
+{\displaystyle 101558217124}
+
+ has the same checksum as (
+
+
+
+101558
++
+217124
+
+
+{\displaystyle 101558+217124}
+
+) because for a Kaprekar they are made up of the same digits (sometimes with extra zeroes);
+ note that this implies that for Kaprekar numbers the checksum of 
+
+
+
+k
+
+
+{\displaystyle k}
+
+ equals the checksum of 
+
+
+
+
+k
+
+2
+
+
+
+
+{\displaystyle k^{2}}
+
+.
+  Demonstrate that your procedure can be used to generate or filter a range of numbers with the property 
+
+
+
+
+
+c
+o
+9
+
+
+(
+k
+)
+=
+
+
+c
+o
+9
+
+
+(
+
+k
+
+2
+
+
+)
+
+
+{\displaystyle {\mathit {co9}}(k)={\mathit {co9}}(k^{2})}
+
+ and show that this subset is a small proportion of the range and contains all the Kaprekar in the range.
+  Part 3
+  Considering this MathWorld page, produce a efficient algorithm based on the more mathematical treatment of Casting Out Nines, and realizing:
+  c
+o
+9
+
+
+(
+x
+)
+
+
+{\displaystyle {\mathit {co9}}(x)}
+
+ is the residual of 
+
+
+
+x
+
+
+{\displaystyle x}
+
+ mod 
+
+
+
+9
+
+
+{\displaystyle 9}
+
+;
+ the procedure can be extended to bases other than 9.
+  Demonstrate your algorithm by generating or filtering a range of numbers with the property 
+
+
+
+k
+%
+(
+
+
+B
+a
+s
+e
+
+
+−
+1
+)
+==
+(
+
+k
+
+2
+
+
+)
+%
+(
+
+
+B
+a
+s
+e
+
+
+−
+1
+)
+
+
+{\displaystyle k\%({\mathit {Base}}-1)==(k^{2})\%({\mathit {Base}}-1)}
+
+ and show that this subset is a small proportion of the range and contains all the Kaprekar in the range.
+  related tasks
+  
+---

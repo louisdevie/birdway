@@ -1,0 +1,25 @@
+---
+  Digital root/Multiplicative digital root
+
+  https://rosettacode.org/wiki/Digital_root/Multiplicative_digital_root
+
+  The multiplicative digital root (MDR) and multiplicative persistence (MP) of a number, 
+
+
+
+n
+
+
+{\displaystyle n}
+
+, is calculated rather like the Digital root except digits are multiplied instead of being added:
+  
+  Task
+  Show all output on this page.
+  Similar
+  The Product of decimal digits of n page was redirected here, and had the following description
+  The three existing entries for Phix, REXX, and Ring have been moved here, under ===Similar=== headings, feel free to match or ignore them.
+  
+  References
+  
+---

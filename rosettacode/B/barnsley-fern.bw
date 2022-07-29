@@ -1,0 +1,11 @@
+---
+  Barnsley fern
+
+  https://rosettacode.org/wiki/Barnsley_fern
+
+  A Barnsley fern is a fractal named after British mathematician Michael Barnsley and can be created using an iterated function system (IFS).
+  
+  Task
+  Create this fractal fern, using the following transformations:
+  Starting position: x = 0, y = 0
+---

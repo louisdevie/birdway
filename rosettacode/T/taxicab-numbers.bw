@@ -1,0 +1,22 @@
+---
+  Taxicab numbers
+
+  https://rosettacode.org/wiki/Taxicab_numbers
+
+  A   taxicab number   (the definition that is being used here)   is a positive integer that can be expressed as the sum of two positive cubes in more than one way.
+  The first taxicab number is   1729,   which is:
+  13   +   123       and also
+ 93   +   103.
+  Taxicab numbers are also known as:
+  taxi numbers
+   taxi-cab numbers
+   taxi cab numbers
+   Hardy-Ramanujan numbers
+  
+  Task
+  
+  Extra credit
+  
+  See also
+  
+---

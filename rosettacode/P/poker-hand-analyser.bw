@@ -1,0 +1,33 @@
+---
+  Poker hand analyser
+
+  https://rosettacode.org/wiki/Poker_hand_analyser
+
+  Task
+  Create a program to parse a single five card poker hand and rank it according to this list of poker hands.
+  A poker hand is specified as a space separated list of five playing cards.
+  Each input card has two characters indicating face and suit.
+  
+  Example
+
+2d       (two of diamonds).
+  
+  Faces are:    a, 2, 3, 4, 5, 6, 7, 8, 9, 10, j, q, k
+  Suits are:    h (hearts),   d (diamonds),   c (clubs),   and   s (spades),   or
+alternatively,   the unicode card-suit characters:     ♥ ♦ ♣ ♠
+  Duplicate cards are illegal.
+  The program should analyze a single hand and produce one of the following outputs:
+  
+  Examples
+  The programs output for the above examples should be displayed here on this page.
+  
+  Extra credit
+  use the symbol   joker
+ duplicates would be allowed (for jokers only)
+ five-of-a-kind would then be the highest hand
+  
+  More extra credit examples
+  
+  Related tasks
+  
+---

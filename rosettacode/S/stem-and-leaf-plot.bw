@@ -1,0 +1,10 @@
+---
+  Stem-and-leaf plot
+
+  https://rosettacode.org/wiki/Stem-and-leaf_plot
+
+  Create a well-formatted stem-and-leaf plot from the following data set, where the leaves are the last digits:
+  The primary intent of this task is the presentation of information. It is acceptable to hardcode the data set or characteristics of it (such as what the stems are) in the example, insofar as it is impractical to make the example generic to any data set. For example, in a computation-less language like HTML the data set may be entirely prearranged within the example; the interesting characteristics are how the proper visual formatting is arranged.
+  If possible, the output should not be a bitmap image. Monospaced plain text is acceptable, but do better if you can. It may be a window, i.e. not a file.
+  Note: If you wish to try multiple data sets, you might try this generator.
+---

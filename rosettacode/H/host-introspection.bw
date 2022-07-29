@@ -1,0 +1,8 @@
+---
+  Host introspection
+
+  https://rosettacode.org/wiki/Host_introspection
+
+  Print the word size and endianness of the host machine.
+  See also: Variable size/Get
+---

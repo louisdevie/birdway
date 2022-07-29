@@ -1,0 +1,13 @@
+---
+  Hash join
+
+  https://rosettacode.org/wiki/Hash_join
+
+  An inner join is an operation that combines two data tables into one table, based on matching column values. The simplest way of implementing this operation is the nested loop join algorithm, but a more scalable alternative is the hash join algorithm.
+  Implement the "hash join" algorithm, and demonstrate that it passes the test-case listed below.
+  You should represent the tables as data structures that feel natural in your programming language.
+  The "hash join" algorithm consists of two steps:
+  In pseudo-code, the algorithm could be expressed as follows:
+  The order of the rows in the output table is not significant.
+If you're using numerically indexed arrays to represent table rows (rather than referring to columns by name), you could represent the output rows in the form [[27, "Jonah"], ["Jonah", "Whales"]].
+---

@@ -1,0 +1,8 @@
+---
+  XML/Input
+
+  https://rosettacode.org/wiki/XML/Input
+
+  Given the following XML fragment, extract the list of student names using whatever means desired. If the only viable method is to use XPath, refer the reader to the task XML and XPath.
+  Expected Output
+---

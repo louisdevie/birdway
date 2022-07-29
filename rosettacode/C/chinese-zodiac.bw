@@ -1,0 +1,16 @@
+---
+  Chinese zodiac
+
+  https://rosettacode.org/wiki/Chinese_zodiac
+
+  Traditionally, the Chinese have counted years using two simultaneous cycles, one of length 10 (the "celestial stems") and one of length 12 (the "terrestrial branches"); the combination results in a repeating 60-year pattern. Mapping the branches to twelve traditional animal deities results in the well-known "Chinese zodiac", assigning each year to a given animal. For example, Tuesday, February 1, 2022 CE (in the common Gregorian calendar) will begin the lunisolar Year of the Tiger.
+  The celestial stems have no one-to-one mapping like that of the branches to animals; however, the five pairs of consecutive stems each belong to one of the five traditional Chinese elements (Wood, Fire, Earth, Metal, and Water). Further, one of the two years within each element's governance is associated with yin, the other with yang.
+  Thus, 2022 is also the yang year of Water. Note that since 12 is an even number, the association between animals and yin/yang doesn't change. Consecutive Years of the Rooster will cycle through the five elements, but will always be yin, despite the apparent conceptual mismatch between the specifically-male English animal name and the female aspect denoted by yin.
+  Task
+ Create a subroutine or program that will return or output the animal, yin/yang association, and element for the lunisolar year that begins in a given CE year.
+  You may optionally provide more information in the form of the year's numerical position within the 60-year cycle and/or its actual Chinese stem-branch name (in Han characters or Pinyin transliteration).
+  Requisite information
+  Thus, 1984 was the year of the Wood Rat (yang), 1985 was the year of the Wood Ox (yin), and 1986 the year of the Fire Tiger (yang); 2022 - which, as already noted, is the year of the Water Tiger (yang) - is the 39th year of the current cycle.
+  Information for optional task
+  Therefore 1984 was 甲子 (jiă-zĭ, or jia3-zi3). 2022 is 壬寅 (rén-yín or ren2-yin2).
+---

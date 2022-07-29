@@ -1,0 +1,22 @@
+---
+  Semiprime
+
+  https://rosettacode.org/wiki/Semiprime
+
+  Semiprime numbers are natural numbers that are products of exactly two (possibly equal) prime numbers.
+  Semiprimes   are also known as:
+  semi-primes
+   biprimes
+   bi-primes
+    2-almost    primes
+   or simply:    P2
+  
+  Example
+  (This particular number was chosen as the length of the Arecibo message).
+  
+  Task
+  Write a function determining whether a given number is semiprime.
+  
+  See also
+  
+---

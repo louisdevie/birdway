@@ -1,0 +1,17 @@
+---
+  First perfect square in base n with n unique digits
+
+  https://rosettacode.org/wiki/First_perfect_square_in_base_n_with_n_unique_digits
+
+  Find the first perfect square in a given base N that has at least N digits and
+exactly N significant unique digits when expressed in base N.
+  E.G. In base 10, the first perfect square with at least 10 unique digits is 1026753849 (32043²).
+  You may use analytical methods to reduce the search space, but the code must do a search. Do not use magic numbers or just feed the code the answer to verify it is correct.
+  Task
+  
+  See also
+  OEIS A260182: smallest square that is pandigital in base n.
+  Related task
+  Casting out nines
+  
+---

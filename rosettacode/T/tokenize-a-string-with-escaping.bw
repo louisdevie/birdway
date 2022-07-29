@@ -1,0 +1,18 @@
+---
+  Tokenize a string with escaping
+
+  https://rosettacode.org/wiki/Tokenize_a_string_with_escaping
+
+  Write a function or program that can split a string at each non-escaped occurrence of a separator character.
+  It should accept three input parameters:
+  The string
+   The separator character
+   The escape character
+  It should output a list of strings.
+  Rules for splitting:
+  Rules for escaping:
+  
+  Demonstrate that your function satisfies the following test-case:
+  (Print the output list in any format you like, as long as it is it easy to see what the fields are.)
+  
+---

@@ -1,0 +1,49 @@
+---
+  Cumulative standard deviation
+
+  https://rosettacode.org/wiki/Cumulative_standard_deviation
+
+  Write a stateful function, class, generator or co-routine that takes a series of floating point numbers, one at a time, and returns the running standard deviation of the series.
+  The task implementation should use the most natural programming style of those listed for the function in the implementation language; the task must state which is being used.
+  Do not apply Bessel's correction; the returned standard deviation should always be computed as if the sample seen so far is the entire population.
+  
+  Test case
+  Use this to compute the standard deviation of this demonstration set, 
+
+
+
+{
+2
+,
+4
+,
+4
+,
+4
+,
+5
+,
+5
+,
+7
+,
+9
+}
+
+
+{\displaystyle \{2,4,4,4,5,5,7,9\}}
+
+, which is 
+
+
+
+2
+
+
+{\displaystyle 2}
+
+.
+  
+  Related tasks
+  
+---

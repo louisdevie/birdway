@@ -1,0 +1,12 @@
+---
+  Atomic updates
+
+  https://rosettacode.org/wiki/Atomic_updates
+
+  
+  Task
+  Define a data type consisting of a fixed number of 'buckets', each containing a nonnegative integer value, which supports operations to:
+  In order to exercise this data type, create one set of buckets, and start three concurrent tasks:
+  The display task need not be explicit; use of e.g. a debugger or trace tool is acceptable provided it is simple to set up to provide the display.
+  This task is intended as an exercise in atomic operations.   The sum of the bucket values must be preserved even if the two tasks attempt to perform transfers simultaneously, and a straightforward solution is to ensure that at any time, only one transfer is actually occurring — that the transfer operation is atomic.
+---

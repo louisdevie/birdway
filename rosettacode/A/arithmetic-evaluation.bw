@@ -1,0 +1,14 @@
+---
+  Arithmetic evaluation
+
+  https://rosettacode.org/wiki/Arithmetic_evaluation
+
+  Create a program which parses and evaluates arithmetic expressions.
+  Requirements
+  
+  Note
+  For those who don't remember, mathematical precedence is as follows:
+  
+  C.f
+  
+---

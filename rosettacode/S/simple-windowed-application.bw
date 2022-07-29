@@ -1,0 +1,11 @@
+---
+  Simple windowed application
+
+  https://rosettacode.org/wiki/Simple_windowed_application
+
+  Task
+  Create a window that has:
+  a label that says   "There have been no clicks yet" 
+   a button that says   "click me"
+  Upon clicking the button with the mouse, the label should change and show the number of times the button has been clicked.
+---

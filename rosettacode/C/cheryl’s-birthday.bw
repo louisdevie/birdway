@@ -1,0 +1,17 @@
+---
+  Cheryl's birthday
+
+  https://rosettacode.org/wiki/Cheryl%27s_birthday
+
+  Albert and Bernard just became friends with Cheryl, and they want to know when her birthday is.
+  Cheryl gave them a list of ten possible dates:
+  Cheryl then tells Albert the   month   of birth,   and Bernard the   day   (of the month)   of birth.
+  
+  Task
+  Write a computer program to deduce, by successive elimination, Cheryl's birthday.
+  
+  Related task
+  
+  References
+  
+---

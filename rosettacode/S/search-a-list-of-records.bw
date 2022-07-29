@@ -1,0 +1,17 @@
+---
+  Search a list of records
+
+  https://rosettacode.org/wiki/Search_a_list_of_records
+
+  Many programming languages provide convenient ways to look for a known value in a simple list of strings or numbers.
+But what if the elements of the list are themselves compound records/objects/data-structures, and the search condition is more complex than a simple equality test?
+  Write a function/method/etc. that can find the first element in a given list matching a given condition.
+It should be as generic and reusable as possible.
+(Of course if your programming language already provides such a feature, you can use that instead of recreating it.)
+  Then to demonstrate its functionality, create the data structure specified under #Data set, and perform on it the searches specified under #Test cases.
+  The data structure to be used contains the names and populations (in millions) of the 10 largest metropolitan areas in Africa, and looks as follows when represented in JSON:
+  However, you shouldn't parse it from JSON, but rather represent it natively in your programming language.
+  If any of that is impossible or unreasonable in your programming language, then feel free to deviate, as long as you explain your reasons in a comment above your solution.
+  If your programming language supports higher-order programming, then the most elegant way to implement the requested functionality in a generic and reusable way, might be to write a function (maybe called "find_index" or similar), that takes two arguments:
+  If this is not the approach which would be most natural or idiomatic in your language, explain why, and show what is.
+---

@@ -1,0 +1,28 @@
+---
+  First power of 2 that has leading decimal digits of 12
+
+  https://rosettacode.org/wiki/First_power_of_2_that_has_leading_decimal_digits_of_12
+
+  (This task is taken from a   Project Euler   problem.)
+  (All numbers herein are expressed in base ten.)
+  27   =   128   and   7   is
+the first power of   2   whose leading decimal digits are   12.
+  The next power of   2   whose leading decimal digits
+are   12   is   80,
+280   =   1208925819614629174706176.
+  Define        p(L,n)      to be the  nth-smallest
+value of    j    such that the base ten representation
+of    2j    begins with the digits of    L .
+  You are also given that:
+  
+  Task
+
+   find: 
+     p(12, 1)  
+     p(12, 2)  
+     p(123, 45)  
+     p(123, 12345)  
+     p(123, 678910)  
+   display the results here, on this page.
+  
+---

@@ -1,0 +1,19 @@
+---
+  Look-and-say sequence
+
+  https://rosettacode.org/wiki/Look-and-say_sequence
+
+  The   Look and say sequence   is a recursively defined sequence of numbers studied most notably by   John Conway.
+  The   look-and-say sequence   is also known as the   Morris Number Sequence,   after cryptographer Robert Morris,   and the puzzle   What is the next number in the sequence 1,   11,   21,   1211,   111221?   is sometimes referred to as the Cuckoo's Egg,   from a description of Morris in Clifford Stoll's book   The Cuckoo's Egg.
+  Sequence Definition
+  This becomes the next number of the sequence.
+  An example:
+  
+  Task
+  Write a program to generate successive members of the look-and-say sequence.
+  
+  Related tasks
+  
+  See also
+  
+---

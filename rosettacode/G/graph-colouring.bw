@@ -1,0 +1,36 @@
+---
+  Graph colouring
+
+  https://rosettacode.org/wiki/Graph_colouring
+
+  A Graph is a collection of nodes
+(or vertices), connected by edges (or not).
+Nodes directly connected by edges are called neighbours.
+  In our representation of graphs, nodes are numbered and edges are represented
+by the two node numbers connected by the edge separated by a dash.
+Edges define the nodes being connected. Only unconnected nodes need a separate
+description.
+  For example,
+  Describes the following graph. Note that node 3 has no neighbours
+  
+  Example graph
+  A useful internal datastructure for a graph and for later graph algorithms is
+as a mapping between each node and the set/list of its neighbours.
+  In the above example:
+  Graph colouring task
+  Colour the vertices of a given graph so that no edge is between verticies of
+the same colour.
+  Use the following graphs
+
+Ex1
+  Ex2
+  The wp articles left-side graph
+  Ex3
+  The wp articles right-side graph which is the same graph as Ex2, but with
+different node orderings and namings.
+  Ex4
+  This is the same graph, node naming, and edge order as Ex2 except some of the edges x-y are flipped to y-x.
+This might alter the node order used in the greedy algorithm leading to differing numbers of colours.
+  References
+  
+---

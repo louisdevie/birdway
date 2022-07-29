@@ -1,0 +1,12 @@
+---
+  Menu
+
+  https://rosettacode.org/wiki/Menu
+
+  Task
+  Given a prompt and a list containing a number of strings of which one is to be selected, create a function that:
+  The function should reject input that is not an integer or is out of range by redisplaying the whole menu before asking again for a number. The function should return an empty string if called with an empty list.
+  For test purposes use the following four phrases in a list:
+  Note
+  This task is fashioned after the action of the Bash select statement.
+---

@@ -1,0 +1,22 @@
+---
+  Kolakoski sequence
+
+  https://rosettacode.org/wiki/Kolakoski_sequence
+
+  The Kolakoski sequence is an infinite sequence of natural numbers, (excluding zero); with the property that:
+  if you form a new sequence from the counts of runs of the same number in the first sequence, this new sequence is the same as the first sequence.
+  Example
+  This is not a Kolakoski sequence:
+  Its sequence of run counts, (sometimes called a run length encoding, (RLE); but a true RLE also gives the character that each run encodes), is calculated like this:
+  Starting from the leftmost number of the sequence we have 2 ones, followed by 3 twos, then 1 ones, 2 twos, 1 one, ...
+  The above gives the RLE of:
+  The original sequence is different from its RLE in this case. It would be the same for a true Kolakoski sequence.
+  Creating a Kolakoski sequence
+  Lets start with the two numbers (1, 2) that we will cycle through; i.e. they will be used in this order: 1,2,1,2,1,2,....
+  We will arrange that the k'th item of s states how many times the last item of sshould appear at the end of s.
+  We started s with 1 and therefore s[k] states that it should appear only the 1 time.
+  ...
+  Note that the RLE of 1, 2, 2, 1, 1, ... begins 1, 2, 2 which is the beginning of the original sequence. The generation algorithm ensures that this will always be the case.
+  Task
+  (There are rules on generating Kolakoski sequences from this method that are broken by the last example)
+---

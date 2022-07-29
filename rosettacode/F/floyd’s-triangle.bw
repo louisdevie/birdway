@@ -1,0 +1,14 @@
+---
+  Floyd's triangle
+
+  https://rosettacode.org/wiki/Floyd%27s_triangle
+
+  Floyd's triangle   lists the natural numbers in a right triangle aligned to the left where
+  The first few lines of a Floyd triangle looks like this:
+  
+  Task
+
+ Write a program to generate and display here the first   n   lines of a Floyd triangle. (Use   n=5   and   n=14   rows).
+ Ensure that when displayed in a mono-space font, the numbers line up in vertical columns as shown and that only one space separates numbers of the last row.
+  
+---

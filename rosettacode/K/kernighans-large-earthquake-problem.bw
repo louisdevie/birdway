@@ -1,0 +1,14 @@
+---
+  Kernighans large earthquake problem
+
+  https://rosettacode.org/wiki/Kernighans_large_earthquake_problem
+
+  Brian Kernighan, in a lecture at the University of Nottingham, described a problem on which this task is based.
+  Problem
+  You are given a a data file of thousands of lines; each of three `whitespace` separated fields: a date, a one word name and the magnitude of the event.
+  Example lines from the file would be lines like:
+  Task
+  Either: Show how your program is invoked to process a data file of that name.
+ Or: Incorporate the file name into the program, (as it is assumed that the program is single use).
+  
+---

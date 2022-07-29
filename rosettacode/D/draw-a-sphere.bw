@@ -1,0 +1,13 @@
+---
+  Draw a sphere
+
+  https://rosettacode.org/wiki/Draw_a_sphere
+
+  Task
+  Draw a sphere.
+  The sphere can be represented graphically, or in ASCII art, depending on the language capabilities.
+  Either static or rotational projection is acceptable for this task.
+  
+  Related tasks
+  
+---

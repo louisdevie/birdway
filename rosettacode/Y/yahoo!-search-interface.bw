@@ -1,0 +1,8 @@
+---
+  Yahoo! search interface
+
+  https://rosettacode.org/wiki/Yahoo!_search_interface
+
+  Create a class for searching Yahoo! results.
+  It must implement a Next Page method, and read URL, Title and Content from results.
+---

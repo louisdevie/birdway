@@ -1,0 +1,54 @@
+---
+  Execute a Markov algorithm
+
+  https://rosettacode.org/wiki/Execute_a_Markov_algorithm
+
+  
+  Task
+  Create an interpreter for a Markov Algorithm.
+  Rules have the syntax:
+  There is one rule per line.
+  If there is a   .   (period)   present before the   <replacement>,   then this is a terminating rule in which case the interpreter must halt execution.
+  A ruleset consists of a sequence of rules, with optional comments.
+  Rulesets
+  Use the following tests on entries:
+  
+  Ruleset 1
+  Sample text of:
+  I bought a B of As from T S.
+  Should generate the output:
+  I bought a bag of apples from my brother.
+  
+  Ruleset 2
+  A test of the terminating rule
+  Sample text of:
+  I bought a B of As from T S.
+  Should generate:
+  I bought a bag of apples from T shop.
+  
+  Ruleset 3
+  This tests for correct substitution order and may trap simple regexp based replacement routines if special regexp characters are not escaped.
+  Sample text of:
+  I bought a B of As W my Bgage from T S.
+  Should generate:
+  I bought a bag of apples with my money from T shop.
+  
+  Ruleset 4
+  This tests for correct order of scanning of rules, and may trap replacement routines that scan in the wrong order.   It implements a general unary multiplication engine.   (Note that the input expression must be placed within underscores in this implementation.)
+  Sample text of:
+  _1111*11111_
+  should generate the output:
+  11111111111111111111
+  
+  Ruleset 5
+  A simple Turing machine,
+implementing a three-state busy beaver.
+  The tape consists of 0s and 1s,   the states are A, B, C and H (for Halt), and the head position is indicated by writing the state letter before the character where the head is.
+All parts of the initial tape the machine operates on have to be given in the input.
+  Besides demonstrating that the Markov algorithm is Turing-complete, it also made me catch a bug in the C++ implementation which wasn't caught by the first four rulesets.
+  This ruleset should turn
+  000000A000000
+  into
+  00011H1111000
+  
+---

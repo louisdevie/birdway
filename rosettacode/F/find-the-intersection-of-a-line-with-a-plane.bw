@@ -1,0 +1,10 @@
+---
+  Find the intersection of a line with a plane
+
+  https://rosettacode.org/wiki/Find_the_intersection_of_a_line_with_a_plane
+
+  Finding the intersection of an infinite ray with a plane in 3D is an important topic in collision detection.
+  
+  Task
+  Find the point of intersection for the infinite ray with direction   (0, -1, -1)   passing through position   (0, 0, 10)   with the infinite plane with a normal vector of   (0, 0, 1)   and which passes through [0, 0, 5].
+---

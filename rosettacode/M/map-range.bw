@@ -1,0 +1,183 @@
+---
+  Map range
+
+  https://rosettacode.org/wiki/Map_range
+
+  Given two ranges:
+  [
+
+a
+
+1
+
+
+,
+
+a
+
+2
+
+
+]
+
+
+{\displaystyle [a_{1},a_{2}]}
+
+   and 
+   
+
+
+
+[
+
+b
+
+1
+
+
+,
+
+b
+
+2
+
+
+]
+
+
+{\displaystyle [b_{1},b_{2}]}
+
+; 
+   then a value   
+
+
+
+s
+
+
+{\displaystyle s}
+
+   in range   
+
+
+
+[
+
+a
+
+1
+
+
+,
+
+a
+
+2
+
+
+]
+
+
+{\displaystyle [a_{1},a_{2}]}
+
+
+   is linearly mapped to a value   
+
+
+
+t
+
+
+{\displaystyle t}
+
+   in range   
+
+
+
+[
+
+b
+
+1
+
+
+,
+
+b
+
+2
+
+
+]
+
+
+{\displaystyle [b_{1},b_{2}]}
+  where:
+  t
+=
+
+b
+
+1
+
+
++
+
+
+
+(
+s
+−
+
+a
+
+1
+
+
+)
+(
+
+b
+
+2
+
+
+−
+
+b
+
+1
+
+
+)
+
+
+(
+
+a
+
+2
+
+
+−
+
+a
+
+1
+
+
+)
+
+
+
+
+
+{\displaystyle t=b_{1}+{(s-a_{1})(b_{2}-b_{1}) \over (a_{2}-a_{1})}}
+  
+  Task
+  Write a function/subroutine/... that takes two ranges and a real number, and returns the mapping of the real number from the first to the second range.
+  Use this function to map values from the range    [0, 10]    to the range    [-1, 0].
+  
+  Extra credit
+  Show additional idiomatic ways of performing the mapping, using tools available to the language.
+---

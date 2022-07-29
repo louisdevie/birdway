@@ -1,0 +1,26 @@
+---
+  Jacobsthal numbers
+
+  https://rosettacode.org/wiki/Jacobsthal_numbers
+
+  Jacobsthal numbers are an integer sequence related to Fibonacci numbers. Similar to Fibonacci, where each term is the sum of the previous two terms, each term is the sum of the previous, plus twice the one before that. Traditionally the sequence starts with the given terms 0, 1.
+  Terms may be calculated directly using one of several possible formulas:
+  Jacobsthal-Lucas numbers are very similar. They have the same recurrence relationship, the only difference is an initial starting value J0 = 2 rather than J0 = 0.
+  Terms may be calculated directly using one of several possible formulas:
+  Jacobsthal oblong numbers is the sequence obtained from multiplying each Jacobsthal number Jn by its direct successor Jn+1.
+  Jacobsthal primes are Jacobsthal numbers that are prime.
+  
+  Task
+  
+  See also
+  Wikipedia: Jacobsthal number
+ Numbers Aplenty - Jacobsthal number
+ OEIS:A001045 - Jacobsthal sequence (or Jacobsthal numbers)
+ OEIS:A014551 - Jacobsthal-Lucas numbers.
+ OEIS:A084175 - Jacobsthal oblong numbers
+ OEIS:A049883 - Primes in the Jacobsthal sequence
+ Related task: Fibonacci sequence
+ Related task: Leonardo numbers
+  
+  
+---

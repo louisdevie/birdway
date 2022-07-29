@@ -1,0 +1,11 @@
+---
+  Canny edge detector
+
+  https://rosettacode.org/wiki/Canny_edge_detector
+
+  Task
+  Write a program that performs so-called canny edge detection on an image.
+  
+  A possible algorithm consists of the following steps:
+  
+---

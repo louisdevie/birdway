@@ -1,0 +1,12 @@
+---
+  Polynomial regression
+
+  https://rosettacode.org/wiki/Polynomial_regression
+
+  Find an approximating polynomial of known degree for a given data.
+  Example:
+For input data:
+  The approximating polynomial is:
+  Here, the polynomial's coefficients are (3, 2, 1).
+  This task is intended as a subtask for Measure relative performance of sorting algorithms implementations.
+---

@@ -1,0 +1,16 @@
+---
+  Rosetta Code/Find bare lang tags
+
+  https://rosettacode.org/wiki/Rosetta_Code/Find_bare_lang_tags
+
+  Task
+  Find all    <lang>    tags without a language specified in the text of a page.
+  Display counts by language section:
+  should display something like
+  
+  Extra credit
+  Allow multiple files to be read.   Summarize all results by language:
+  
+  Extra extra credit
+  Use the   Media Wiki API   to test actual RC tasks.
+---

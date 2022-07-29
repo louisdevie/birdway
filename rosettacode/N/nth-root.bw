@@ -1,0 +1,25 @@
+---
+  Nth root
+
+  https://rosettacode.org/wiki/Nth_root
+
+  Task
+  Implement the algorithm to compute the principal   nth   root   
+
+
+
+
+
+A
+
+n
+
+
+
+
+
+{\displaystyle {\sqrt[{n}]{A}}}
+
+   of a positive real number   A,   as explained at the   Wikipedia page.
+  
+---

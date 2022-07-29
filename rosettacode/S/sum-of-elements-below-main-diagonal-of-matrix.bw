@@ -1,0 +1,13 @@
+---
+  Sum of elements below main diagonal of matrix
+
+  https://rosettacode.org/wiki/Sum_of_elements_below_main_diagonal_of_matrix
+
+  Task
+  Find and display the sum of elements that are below the main diagonal of a matrix.
+  The matrix should be a square matrix.
+  
+  ───   Matrix to be used:   ───
+  
+  
+---

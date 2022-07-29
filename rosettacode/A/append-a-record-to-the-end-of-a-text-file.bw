@@ -1,0 +1,15 @@
+---
+  Append a record to the end of a text file
+
+  https://rosettacode.org/wiki/Append_a_record_to_the_end_of_a_text_file
+
+  Many systems offer the ability to open a file for writing, such that any data written will be appended to the end of the file. Further, the file operations will always adjust the position pointer to guarantee the end of the file, even in a multitasking environment.
+  This feature is most useful in the case of log files, where many jobs may be appending to the log file at the same time, or where care must be taken to avoid concurrently overwriting the same record from another job.
+  
+  Task
+  Given a two record sample for a mythical "passwd" file:
+  Resulting file format: should mimic Linux's /etc/passwd file format with particular attention to the "," separator used in the GECOS field. But if the specific language has a particular or unique format of storing records in text file, then this format should be named and demonstrated with an additional example.
+  Expected output:
+  Finally: Provide a summary of the language's "append record" capabilities in a table. eg.
+  Alternatively: If the language's appends can not guarantee its writes will always append, then note this restriction in the table. If possible, provide an actual code example (possibly using file/record locking) to guarantee correct concurrent appends.
+---

@@ -1,0 +1,16 @@
+---
+  Sorting Algorithms/Circle Sort
+
+  https://rosettacode.org/wiki/Sorting_Algorithms/Circle_Sort
+
+  Sort an array of integers (of any convenient size) into ascending order using Circlesort.
+  In short, compare the first element to the last element, then the second element to the second last element, etc.
+  Then split the array in two and recurse until there is only one single element in the array, like this:
+  Repeat this procedure until quiescence (i.e. until there are no swaps).
+  Show both the initial, unsorted list and the final sorted list. (Intermediate steps during sorting are optional.)
+  Optimizations (like doing 0.5 log2(n) iterations and then continue with an Insertion sort) are optional.
+  Pseudo code:
+  
+  See also
+  
+---

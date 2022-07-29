@@ -1,0 +1,14 @@
+---
+  Polyspiral
+
+  https://rosettacode.org/wiki/Polyspiral
+
+  A Polyspiral is a spiral made of multiple line segments, whereby each segment is larger (or smaller) than the previous one by a given amount. Each segment also changes direction at a given angle.
+  
+  Task
+  Animate a series of polyspirals, by drawing a complete spiral then incrementing the angle, and (after clearing the background) drawing the next, and so on. Every spiral will be a frame of the animation. The animation may stop as it goes full circle or continue indefinitely. The given input values may be varied.
+  If animation is not practical in your programming environment, you may show a single frame instead.
+  
+  Pseudo code
+  
+---

@@ -1,0 +1,17 @@
+---
+  Equal prime and composite sums
+
+  https://rosettacode.org/wiki/Equal_prime_and_composite_sums
+
+  Suppose we have a sequence of prime sums, where each term Pn is the sum of the first n primes.
+  Further; suppose we have a sequence of composite sums, where each term Cm is the sum of the first m composites.
+  Notice that the third term of P; P3 (10) is equal to the second term of C; C2 (10);
+  
+  Task
+  
+  See also
+  OEIS:A007504 - Sum of the first n primes
+ OEIS:A053767 - Sum of first n composite numbers
+ OEIS:A294174 - Numbers that can be expressed both as the sum of first primes and as the sum of first composites
+  
+---

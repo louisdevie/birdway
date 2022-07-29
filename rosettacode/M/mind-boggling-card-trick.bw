@@ -1,0 +1,15 @@
+---
+  Mind boggling card trick
+
+  https://rosettacode.org/wiki/Mind_boggling_card_trick
+
+  
+  Matt Parker of the "Stand Up Maths channel" has a   YouTube video   of a card trick that creates a semblance of order from chaos.
+  The task is to simulate the trick in a way that mimics the steps shown in the video.
+  1. Cards.
+  2. Deal from the shuffled deck, you'll be creating three piles.
+  3. Choose a random number   (call it X)   that will be used to swap cards from the "red" and "black" piles.
+  4. Order from randomness?
+  (Optionally, run this simulation a number of times, gathering more evidence of the truthfulness of the assertion.)
+  Show output on this page.
+---

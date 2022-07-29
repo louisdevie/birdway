@@ -1,0 +1,28 @@
+---
+  Verify distribution uniformity/Chi-squared test
+
+  https://rosettacode.org/wiki/Verify_distribution_uniformity/Chi-squared_test
+
+  Task
+  Write a function to verify that a given distribution of values is uniform by using the 
+
+
+
+
+χ
+
+2
+
+
+
+
+{\displaystyle \chi ^{2}}
+
+ test to see if the distribution has a likelihood of happening of at least the significance level (conventionally 5%).
+  The function should return a boolean that is true if the distribution is one that a uniform distribution (with appropriate number of degrees of freedom) may be expected to produce.
+  
+  Reference
+
+   an entry at the MathWorld website:   chi-squared distribution.
+  
+---

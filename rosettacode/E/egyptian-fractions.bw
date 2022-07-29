@@ -1,0 +1,218 @@
+---
+  Egyptian fractions
+
+  https://rosettacode.org/wiki/Egyptian_fractions
+
+  An   Egyptian fraction   is the sum of distinct unit fractions such as:
+  1
+2
+
+
+
++
+
+
+
+1
+3
+
+
+
++
+
+
+
+1
+16
+
+
+
+
+(
+=
+
+
+
+43
+48
+
+
+
+)
+
+
+{\displaystyle {\tfrac {1}{2}}+{\tfrac {1}{3}}+{\tfrac {1}{16}}\,(={\tfrac {43}{48}})}
+  Each fraction in the expression has a numerator equal to   1   (unity)   and a denominator that is a positive integer,   and all the denominators are distinct   (i.e., no repetitions).
+  Fibonacci's   Greedy algorithm for Egyptian fractions   expands the fraction    
+
+
+
+
+
+
+x
+y
+
+
+
+
+
+{\displaystyle {\tfrac {x}{y}}}
+
+    to be represented by repeatedly performing the replacement
+  x
+y
+
+
+=
+
+
+1
+
+⌈
+y
+
+/
+
+x
+⌉
+
+
+
++
+
+
+
+(
+−
+y
+)
+
+
+
+
+
+mod
+
+
+x
+
+
+y
+⌈
+y
+
+/
+
+x
+⌉
+
+
+
+
+
+{\displaystyle {\frac {x}{y}}={\frac {1}{\lceil y/x\rceil }}+{\frac {(-y)\!\!\!\!\mod x}{y\lceil y/x\rceil }}}
+  (simplifying the 2nd term in this replacement as necessary, and where    
+
+
+
+⌈
+x
+⌉
+
+
+{\displaystyle \lceil x\rceil }
+
+    is the   ceiling   function).
+  For this task,   Proper and improper fractions   must be able to be expressed.
+  Proper  fractions   are of the form    
+
+
+
+
+
+
+a
+b
+
+
+
+
+
+{\displaystyle {\tfrac {a}{b}}}
+
+    where    
+
+
+
+a
+
+
+{\displaystyle a}
+
+    and    
+
+
+
+b
+
+
+{\displaystyle b}
+
+    are positive integers, such that    
+
+
+
+a
+<
+b
+
+
+{\displaystyle a<b}
+
+,     and
+  improper fractions are of the form    
+
+
+
+
+
+
+a
+b
+
+
+
+
+
+{\displaystyle {\tfrac {a}{b}}}
+
+    where    
+
+
+
+a
+
+
+{\displaystyle a}
+
+    and    
+
+
+
+b
+
+
+{\displaystyle b}
+
+    are positive integers, such that    a ≥ b.
+  (See the REXX programming example to view one method of expressing the whole number part of an improper fraction.)
+  For improper fractions, the integer part of any improper fraction should be first isolated and shown preceding the Egyptian unit fractions, and be surrounded by square brackets [n].
+  
+  Task requirements
+  the largest number of terms,
+   the largest denominator.
+  
+  Also see
+  
+---

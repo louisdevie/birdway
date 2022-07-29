@@ -1,0 +1,11 @@
+---
+  Check input device is a terminal
+
+  https://rosettacode.org/wiki/Check_input_device_is_a_terminal
+
+  Task
+  Demonstrate how to check whether the input device is a terminal or not.
+  
+  Related task
+  
+---

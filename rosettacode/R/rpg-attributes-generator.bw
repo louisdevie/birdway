@@ -1,0 +1,20 @@
+---
+  RPG attributes generator
+
+  https://rosettacode.org/wiki/RPG_attributes_generator
+
+  RPG   =   Role Playing Game.
+  
+  You're running a tabletop RPG, and your players are creating characters.
+  Each character has six core attributes: strength, dexterity, constitution, intelligence, wisdom, and charisma.
+  One way of generating values for these attributes is to roll four, 6-sided dice (d6) and sum the three highest rolls, discarding the lowest roll.
+  Some players like to assign values to their attributes in the order they're rolled.
+  To ensure generated characters don't put players at a disadvantage, the following requirements must be satisfied:
+  
+  However, this can require a lot of manual dice rolling. A programatic solution would be much faster.
+  
+  Task
+  Write a program that:
+  
+  
+---

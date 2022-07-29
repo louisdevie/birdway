@@ -1,0 +1,10 @@
+---
+  Two's complement
+
+  https://rosettacode.org/wiki/Two%27s_complement
+
+  
+  Task
+  Show how to calculate the two's complement of an integer. (It doesn't necessarily need to be a 32 bit integer.)
+  
+---

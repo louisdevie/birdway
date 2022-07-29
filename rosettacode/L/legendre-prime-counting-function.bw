@@ -1,0 +1,14 @@
+---
+  Legendre prime counting function
+
+  https://rosettacode.org/wiki/Legendre_prime_counting_function
+
+  The prime-counting function π(n) computes the number of primes not greater than n. Legendre was the first mathematician to create a formula to compute π(n) based on the inclusion/exclusion principle.
+  To calculate:
+  Define
+  then
+  The Legendre formula still requires the use of a sieve to enumerate primes; however it's only required to sieve up to the √n, and for counting primes, the Legendre method is generally much faster than sieving up to n.
+  Task
+  Calculate π(n) for values up to 1 billion. Show π(n) for n = 1, 10, 100, ... 109.
+  For this task, you may refer to a prime number sieve (such as the Sieve of Eratosthenes or the extensible sieve) in an external library to enumerate the primes required by the formula. Also note that it will be necessary to memoize the results of φ(x, a) in order to have reasonable performance, since the recurrence relation would otherwise take exponential time.
+---

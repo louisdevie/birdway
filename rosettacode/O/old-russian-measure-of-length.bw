@@ -1,0 +1,16 @@
+---
+  Old Russian measure of length
+
+  https://rosettacode.org/wiki/Old_Russian_measure_of_length
+
+  Task
+  Write a program to perform a conversion of the old Russian measures of length to the metric system   (and vice versa).
+  It is an example of a linear transformation of several variables.
+  The program should accept a single value in a selected unit of measurement, and convert and return it to the other units:
+vershoks, arshins, sazhens, versts, meters, centimeters and kilometers.
+  
+  Also see
+
+   Old Russian measure of length
+  
+---

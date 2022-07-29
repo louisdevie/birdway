@@ -1,0 +1,10 @@
+---
+  Execute a system command
+
+  https://rosettacode.org/wiki/Execute_a_system_command
+
+  Task
+  Run either the   ls   system command   (dir   on Windows),   or the   pause   system command.
+  Related task
+  
+---

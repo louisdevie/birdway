@@ -1,0 +1,77 @@
+---
+  Averages/Root mean square
+
+  https://rosettacode.org/wiki/Averages/Root_mean_square
+
+  Compute the   Root mean square   of the numbers 1..10.
+  The   root mean square   is also known by its initials RMS (or rms), and as the quadratic mean.
+  The RMS is calculated as the mean of the squares of the numbers, square-rooted:
+  
+  x
+
+
+r
+m
+s
+
+
+
+=
+
+
+
+
+
+
+
+x
+
+1
+
+
+
+
+2
+
+
++
+
+
+
+x
+
+2
+
+
+
+
+2
+
+
++
+⋯
++
+
+
+
+x
+
+n
+
+
+
+
+2
+
+
+
+n
+
+
+
+.
+
+
+{\displaystyle x_{\mathrm {rms} }={\sqrt {{{x_{1}}^{2}+{x_{2}}^{2}+\cdots +{x_{n}}^{2}} \over n}}.}
+  
+---

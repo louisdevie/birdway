@@ -1,0 +1,19 @@
+---
+  EKG sequence convergence
+
+  https://rosettacode.org/wiki/EKG_sequence_convergence
+
+  The sequence is from the natural numbers and is defined by:
+  The sequence is called the EKG sequence (after its visual similarity to an electrocardiogram when graphed).
+  Variants of the sequence can be generated starting 1, N where N is any natural number larger than one. For the purposes of this task let us call:
+  
+  Convergence
+  If an algorithm that keeps track of the minimum amount of numbers and their corresponding prime factors used to generate the next term is used, then this may be known as the generators essential state. Two EKG generators with differing starts can converge to produce the same sequence after initial differences.
+EKG(N1) and EKG(N2) are said to to have converged at and after generation a(c) if state_of(EKG(N1).a(c)) == state_of(EKG(N2).a(c)).
+  
+  Task
+  Related Tasks
+  
+  Reference
+  
+---

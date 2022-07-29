@@ -1,0 +1,9 @@
+---
+  Bioinformatics/Sequence mutation
+
+  https://rosettacode.org/wiki/Bioinformatics/Sequence_mutation
+
+  Task
+  Given a string of characters A, C, G, and T representing a DNA sequence write a routine to mutate the sequence, (string) by:
+  Extra credit
+---

@@ -1,0 +1,981 @@
+---
+  QR decomposition
+
+  https://rosettacode.org/wiki/QR_decomposition
+
+  Any rectangular 
+
+
+
+m
+×
+n
+
+
+{\displaystyle m\times n}
+
+ matrix 
+
+
+
+
+
+A
+
+
+
+
+{\displaystyle {\mathit {A}}}
+
+ can be decomposed to a product of an orthogonal matrix 
+
+
+
+
+
+Q
+
+
+
+
+{\displaystyle {\mathit {Q}}}
+
+ and an upper (right) triangular matrix 
+
+
+
+
+
+R
+
+
+
+
+{\displaystyle {\mathit {R}}}
+
+, as described in QR decomposition.
+  Task
+  Demonstrate the QR decomposition on the example matrix from the Wikipedia article:
+  A
+=
+
+
+(
+
+
+
+12
+
+
+−
+51
+
+
+4
+
+
+
+
+6
+
+
+167
+
+
+−
+68
+
+
+
+
+−
+4
+
+
+24
+
+
+−
+41
+
+
+
+)
+
+
+
+
+{\displaystyle A={\begin{pmatrix}12&-51&4\\6&167&-68\\-4&24&-41\end{pmatrix}}}
+  and the usage for linear least squares problems on the example from Polynomial regression. The method of Householder reflections should be used:
+  Method
+  Multiplying a given vector 
+
+
+
+
+
+a
+
+
+
+
+{\displaystyle {\mathit {a}}}
+
+, for example the first column of matrix 
+
+
+
+
+
+A
+
+
+
+
+{\displaystyle {\mathit {A}}}
+
+, with the Householder matrix 
+
+
+
+
+
+H
+
+
+
+
+{\displaystyle {\mathit {H}}}
+
+, which is given as
+  H
+=
+I
+−
+
+
+2
+
+
+u
+
+T
+
+
+u
+
+
+
+u
+
+u
+
+T
+
+
+
+
+{\displaystyle H=I-{\frac {2}{u^{T}u}}uu^{T}}
+  reflects 
+
+
+
+
+
+a
+
+
+
+
+{\displaystyle {\mathit {a}}}
+
+ about a plane given by its normal vector 
+
+
+
+
+
+u
+
+
+
+
+{\displaystyle {\mathit {u}}}
+
+. When the normal vector of the plane 
+
+
+
+
+
+u
+
+
+
+
+{\displaystyle {\mathit {u}}}
+
+ is given as
+  u
+=
+a
+−
+∥
+a
+
+∥
+
+2
+
+
+
+
+e
+
+1
+
+
+
+
+{\displaystyle u=a-\|a\|_{2}\;e_{1}}
+  then the transformation reflects 
+
+
+
+
+
+a
+
+
+
+
+{\displaystyle {\mathit {a}}}
+
+ onto the first standard basis vector
+  e
+
+1
+
+
+=
+[
+1
+
+0
+
+0
+
+.
+.
+.
+
+]
+
+T
+
+
+
+
+{\displaystyle e_{1}=[1\;0\;0\;...]^{T}}
+  which means that all entries but the first become zero. To avoid numerical cancellation errors, we should take the opposite sign of 
+
+
+
+
+a
+
+1
+
+
+
+
+{\displaystyle a_{1}}
+
+:
+  u
+=
+a
++
+
+
+sign
+
+
+(
+
+a
+
+1
+
+
+)
+∥
+a
+
+∥
+
+2
+
+
+
+
+e
+
+1
+
+
+
+
+{\displaystyle u=a+{\textrm {sign}}(a_{1})\|a\|_{2}\;e_{1}}
+  and normalize with respect to the first element:
+  v
+=
+
+
+u
+
+u
+
+1
+
+
+
+
+
+
+{\displaystyle v={\frac {u}{u_{1}}}}
+  The equation for 
+
+
+
+H
+
+
+{\displaystyle H}
+
+ thus becomes:
+  H
+=
+I
+−
+
+
+2
+
+
+v
+
+T
+
+
+v
+
+
+
+v
+
+v
+
+T
+
+
+
+
+{\displaystyle H=I-{\frac {2}{v^{T}v}}vv^{T}}
+  or, in another form
+  H
+=
+I
+−
+β
+v
+
+v
+
+T
+
+
+
+
+{\displaystyle H=I-\beta vv^{T}}
+  with
+  β
+=
+
+
+2
+
+
+v
+
+T
+
+
+v
+
+
+
+
+
+{\displaystyle \beta ={\frac {2}{v^{T}v}}}
+  Applying 
+
+
+
+
+
+H
+
+
+
+
+{\displaystyle {\mathit {H}}}
+
+ on 
+
+
+
+
+
+a
+
+
+
+
+{\displaystyle {\mathit {a}}}
+
+ then gives
+  H
+
+a
+=
+−
+
+
+sign
+
+
+(
+
+a
+
+1
+
+
+)
+
+∥
+a
+
+∥
+
+2
+
+
+
+
+e
+
+1
+
+
+
+
+{\displaystyle H\;a=-{\textrm {sign}}(a_{1})\;\|a\|_{2}\;e_{1}}
+  and applying 
+
+
+
+
+
+H
+
+
+
+
+{\displaystyle {\mathit {H}}}
+
+ on the matrix 
+
+
+
+
+
+A
+
+
+
+
+{\displaystyle {\mathit {A}}}
+
+ zeroes all subdiagonal elements of the first column:
+  H
+
+1
+
+
+
+A
+=
+
+
+(
+
+
+
+
+r
+
+11
+
+
+
+
+
+r
+
+12
+
+
+
+
+
+r
+
+13
+
+
+
+
+
+
+0
+
+
+∗
+
+
+∗
+
+
+
+
+0
+
+
+∗
+
+
+∗
+
+
+
+)
+
+
+
+
+{\displaystyle H_{1}\;A={\begin{pmatrix}r_{11}&r_{12}&r_{13}\\0&*&*\\0&*&*\end{pmatrix}}}
+  In the second step, the second column of 
+
+
+
+
+
+A
+
+
+
+
+{\displaystyle {\mathit {A}}}
+
+, we want to zero all elements but the first two, which means that we have to calculate 
+
+
+
+
+
+H
+
+
+
+
+{\displaystyle {\mathit {H}}}
+
+ with the first column of the submatrix (denoted *), not on the whole second column of 
+
+
+
+
+
+A
+
+
+
+
+{\displaystyle {\mathit {A}}}
+
+.
+  To get 
+
+
+
+
+H
+
+2
+
+
+
+
+{\displaystyle H_{2}}
+
+, we then embed the new 
+
+
+
+
+
+H
+
+
+
+
+{\displaystyle {\mathit {H}}}
+
+ into an 
+
+
+
+m
+×
+n
+
+
+{\displaystyle m\times n}
+
+ identity:
+  H
+
+2
+
+
+=
+
+
+(
+
+
+
+1
+
+
+0
+
+
+0
+
+
+
+
+0
+
+
+H
+
+
+
+
+
+0
+
+
+
+
+
+)
+
+
+
+
+{\displaystyle H_{2}={\begin{pmatrix}1&0&0\\0&H&\\0&&\end{pmatrix}}}
+  This is how we can, column by column, remove all subdiagonal elements of 
+
+
+
+
+
+A
+
+
+
+
+{\displaystyle {\mathit {A}}}
+
+ and thus transform it into 
+
+
+
+
+
+R
+
+
+
+
+{\displaystyle {\mathit {R}}}
+
+.
+  H
+
+n
+
+
+
+.
+.
+.
+
+
+H
+
+3
+
+
+
+H
+
+2
+
+
+
+H
+
+1
+
+
+A
+=
+R
+
+
+{\displaystyle H_{n}\;...\;H_{3}H_{2}H_{1}A=R}
+  The product of all the Householder matrices 
+
+
+
+
+
+H
+
+
+
+
+{\displaystyle {\mathit {H}}}
+
+, for every column, in reverse order, will then yield the orthogonal matrix 
+
+
+
+
+
+Q
+
+
+
+
+{\displaystyle {\mathit {Q}}}
+
+.
+  H
+
+1
+
+
+
+H
+
+2
+
+
+
+H
+
+3
+
+
+
+.
+.
+.
+
+
+H
+
+n
+
+
+=
+Q
+
+
+{\displaystyle H_{1}H_{2}H_{3}\;...\;H_{n}=Q}
+  The QR decomposition should then be used to solve linear least squares (Multiple regression) problems 
+
+
+
+
+
+A
+
+
+x
+=
+b
+
+
+{\displaystyle {\mathit {A}}x=b}
+
+ by solving
+  R
+
+x
+=
+
+Q
+
+T
+
+
+
+b
+
+
+{\displaystyle R\;x=Q^{T}\;b}
+  When 
+
+
+
+
+
+R
+
+
+
+
+{\displaystyle {\mathit {R}}}
+
+ is not square, i.e. 
+
+
+
+m
+>
+n
+
+
+{\displaystyle m>n}
+
+ we have to cut off the 
+
+
+
+
+
+m
+
+
+−
+n
+
+
+{\displaystyle {\mathit {m}}-n}
+
+ zero padded bottom rows.
+  R
+=
+
+
+(
+
+
+
+
+R
+
+1
+
+
+
+
+
+
+0
+
+
+
+)
+
+
+
+
+{\displaystyle R={\begin{pmatrix}R_{1}\\0\end{pmatrix}}}
+  and the same for the RHS:
+  Q
+
+T
+
+
+
+b
+=
+
+
+(
+
+
+
+
+q
+
+1
+
+
+
+
+
+
+
+q
+
+2
+
+
+
+
+
+)
+
+
+
+
+{\displaystyle Q^{T}\;b={\begin{pmatrix}q_{1}\\q_{2}\end{pmatrix}}}
+  Finally, solve the square upper triangular system by back substitution:
+  R
+
+1
+
+
+
+x
+=
+
+q
+
+1
+
+
+
+
+{\displaystyle R_{1}\;x=q_{1}}
+---

@@ -1,0 +1,16 @@
+---
+  Sylvester's sequence
+
+  https://rosettacode.org/wiki/Sylvester%27s_sequence
+
+  In number theory, Sylvester's sequence is an integer sequence in which each term of the sequence is the product of the previous terms, plus one.
+  Its values grow doubly exponentially, and the sum of its reciprocals forms a series of unit fractions that converges to 1 more rapidly than any other series of unit fractions with the same number of terms.
+  Further, the sum of the first k terms of the infinite series of reciprocals provides the closest possible underestimate of 1 by any k-term Egyptian fraction.
+  
+  Task
+  
+  Related tasks
+  
+  See also
+  
+---

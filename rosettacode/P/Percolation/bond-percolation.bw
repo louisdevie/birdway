@@ -1,0 +1,321 @@
+---
+  Percolation/Bond percolation
+
+  https://rosettacode.org/wiki/Percolation/Bond_percolation
+
+  Given an 
+
+
+
+M
+×
+N
+
+
+{\displaystyle M\times N}
+
+ rectangular array of cells numbered 
+
+
+
+
+c
+e
+l
+l
+
+[
+0..
+M
+−
+1
+,
+0..
+N
+−
+1
+]
+
+
+{\displaystyle \mathrm {cell} [0..M-1,0..N-1]}
+
+, assume 
+
+
+
+M
+
+
+{\displaystyle M}
+
+ is horizontal and 
+
+
+
+N
+
+
+{\displaystyle N}
+
+ is downwards. Each 
+
+
+
+
+c
+e
+l
+l
+
+[
+m
+,
+n
+]
+
+
+{\displaystyle \mathrm {cell} [m,n]}
+
+ is bounded by (horizontal) walls 
+
+
+
+
+h
+w
+a
+l
+l
+
+[
+m
+,
+n
+]
+
+
+{\displaystyle \mathrm {hwall} [m,n]}
+
+ and 
+
+
+
+
+h
+w
+a
+l
+l
+
+[
+m
++
+1
+,
+n
+]
+
+
+{\displaystyle \mathrm {hwall} [m+1,n]}
+
+; (vertical) walls 
+
+
+
+
+v
+w
+a
+l
+l
+
+[
+m
+,
+n
+]
+
+
+{\displaystyle \mathrm {vwall} [m,n]}
+
+ and 
+
+
+
+
+v
+w
+a
+l
+l
+
+[
+m
+,
+n
++
+1
+]
+
+
+{\displaystyle \mathrm {vwall} [m,n+1]}
+  Assume that the probability of any wall being present is a constant 
+
+
+
+p
+
+
+{\displaystyle p}
+
+ where
+  0.0
+≤
+p
+≤
+1.0
+
+
+{\displaystyle 0.0\leq p\leq 1.0}
+  Except for the outer horizontal walls at 
+
+
+
+m
+=
+0
+
+
+{\displaystyle m=0}
+
+ and 
+
+
+
+m
+=
+M
+
+
+{\displaystyle m=M}
+
+ which are always present.
+  The task
+  Simulate pouring a fluid onto the top surface (
+
+
+
+n
+=
+0
+
+
+{\displaystyle n=0}
+
+) where the fluid will enter any empty cell it is adjacent to if there is no wall between where it currently is and the cell on the other side of the (missing) wall.
+  The fluid does not move beyond the horizontal constraints of the grid.
+  The fluid may move “up” within the confines of the grid of cells. If the fluid reaches a bottom cell that has a missing bottom wall then the fluid can be said to 'drip' out the bottom at that point.
+  Given 
+
+
+
+p
+
+
+{\displaystyle p}
+
+ repeat the percolation 
+
+
+
+t
+
+
+{\displaystyle t}
+
+ times to estimate the proportion of times that the fluid can percolate to the bottom for any given 
+
+
+
+p
+
+
+{\displaystyle p}
+
+.
+  Show how the probability of percolating through the random grid changes with 
+
+
+
+p
+
+
+{\displaystyle p}
+
+ going from 
+
+
+
+0.0
+
+
+{\displaystyle 0.0}
+
+ to 
+
+
+
+1.0
+
+
+{\displaystyle 1.0}
+
+ in 
+
+
+
+0.1
+
+
+{\displaystyle 0.1}
+
+ increments and with the number of repetitions to estimate the fraction at any given 
+
+
+
+p
+
+
+{\displaystyle p}
+
+ as 
+
+
+
+t
+=
+100
+
+
+{\displaystyle t=100}
+
+.
+  Use an 
+
+
+
+M
+=
+10
+,
+N
+=
+10
+
+
+{\displaystyle M=10,N=10}
+
+ grid of cells for all cases.
+  Optionally depict fluid successfully percolating through a grid graphically.
+  Show all output on this page.
+---

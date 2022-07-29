@@ -1,0 +1,37 @@
+---
+  Carmichael 3 strong pseudoprimes
+
+  https://rosettacode.org/wiki/Carmichael_3_strong_pseudoprimes
+
+  A lot of composite numbers can be separated from primes by Fermat's Little Theorem, but there are some that completely confound it.
+  The   Miller Rabin Test   uses a combination of Fermat's Little Theorem and Chinese Division Theorem to overcome this.
+  The purpose of this task is to investigate such numbers using a method based on   Carmichael numbers,   as suggested in   Notes by G.J.O Jameson March 2010.
+  
+  Task
+  Find Carmichael numbers of the form:
+  Prime1 × Prime2 × Prime3
+  where    (Prime1 < Prime2 < Prime3)    for all    Prime1    up to   61.
+(See page 7 of   Notes by G.J.O Jameson March 2010   for solutions.)
+  
+  Pseudocode
+  For a given   
+
+
+
+P
+r
+i
+m
+
+e
+
+1
+
+
+
+
+{\displaystyle Prime_{1}}
+  
+  related task
+  Chernick's Carmichael numbers
+---

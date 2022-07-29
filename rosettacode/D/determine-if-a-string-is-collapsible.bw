@@ -1,0 +1,41 @@
+---
+  Determine if a string is collapsible
+
+  https://rosettacode.org/wiki/Determine_if_a_string_is_collapsible
+
+  Determine if a character string is   collapsible.
+  And if so,   collapse the string   (by removing   immediately repeated   characters).
+  
+  If a character string has   immediately repeated   character(s),   the repeated characters are to be
+deleted (removed),   but not the primary (1st) character(s).
+  An   immediately repeated   character is any character that is   immediately   followed by an
+identical character (or characters).   Another word choice could've been   duplicated character,   but that
+might have ruled out   (to some readers)   triplicated characters   ···   or more.
+  {This Rosetta Code task was inspired by a newly introduced   (as of around November 2019)   PL/I   BIF:   collapse.}
+  
+  Examples
+  In the following character string:
+  
+  Only the 2nd   t,   e, and   l   are repeated characters,   indicated
+by underscores (above),   even though they (those characters) appear elsewhere in the character string.
+  
+  So, after collapsing the string, the result would be:
+  
+  Another example:
+In the following character string:
+  The "collapsed" string would be:
+  
+  Task
+  Write a subroutine/function/procedure/routine···   to
+locate   repeated   characters and   collapse   (delete)   them from the character
+string.   The character string can be processed from either direction.
+  Show all output here, on this page:
+  the   original string and its length
+   the resultant string and its length
+   the above strings should be "bracketed" with   <<<   and   >>>   (to delineate blanks)
+   «««Guillemets may be used instead for "bracketing" for the more artistic programmers,   shown used here»»»
+  
+  Use (at least) the following five strings,   all strings are length seventy-two (characters, including blanks),   except
+the 1st string:
+  
+---

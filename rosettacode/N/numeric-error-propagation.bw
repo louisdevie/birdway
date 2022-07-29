@@ -1,0 +1,26 @@
+---
+  Numeric error propagation
+
+  https://rosettacode.org/wiki/Numeric_error_propagation
+
+  If   f,   a,   and   b   are values with uncertainties   σf,   σa,   and   σb,   and   c   is a constant;
+then if   f   is derived from   a,   b,   and   c   in the following ways,
+then   σf   can be calculated as follows:
+  Addition/Subtraction
+ If   f = a ± c,   or   f = c ± a   then   σf = σa
+ If   f = a ± b   then   σf2 = σa2 + σb2
+  Multiplication/Division
+ If   f = ca   or   f = ac       then   σf = |cσa|
+ If   f = ab   or   f = a / b   then   σf2 = f2( (σa / a)2 + (σb / b)2)
+  Exponentiation
+ If   f = ac   then   σf = |fc(σa / a)|
+  Caution:
+  This implementation of error propagation does not address issues of dependent and independent values.   It is assumed that   a   and   b   are independent and so the formula for multiplication should not be applied to   a*a   for example.   See   the talk page   for some of the implications of this issue.
+  
+  Task details
+  
+  References
+  
+  Related task
+  
+---

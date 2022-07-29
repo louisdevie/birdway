@@ -1,0 +1,17 @@
+---
+  Zig-zag matrix
+
+  https://rosettacode.org/wiki/Zig-zag_matrix
+
+  Task
+  Produce a zig-zag array.
+  A   zig-zag   array is a square arrangement of the first   N2   natural numbers,   where the
+numbers increase sequentially as you zig-zag along the array's   anti-diagonals.
+  For a graphical representation, see   JPG zigzag   (JPG uses such arrays to encode images).
+  For example, given   5,   produce this array:
+  
+  Related tasks
+  
+  See also
+  
+---

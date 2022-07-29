@@ -1,0 +1,12 @@
+---
+  Compile-time calculation
+
+  https://rosettacode.org/wiki/Compile-time_calculation
+
+  Some programming languages allow calculation of values at compile time.
+  
+  Task
+  Calculate    10!    (ten factorial)   at compile time.
+  Print the result when the program is run.
+  Discuss what limitations apply to compile-time calculations in your language.
+---

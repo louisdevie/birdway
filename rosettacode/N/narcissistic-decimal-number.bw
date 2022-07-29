@@ -1,0 +1,103 @@
+---
+  Narcissistic decimal number
+
+  https://rosettacode.org/wiki/Narcissistic_decimal_number
+
+  A   Narcissistic decimal number   is a non-negative integer,   
+
+
+
+n
+
+
+{\displaystyle n}
+
+,   that is equal to the sum of the   
+
+
+
+m
+
+
+{\displaystyle m}
+
+-th   powers of each of the digits in the decimal representation of   
+
+
+
+n
+
+
+{\displaystyle n}
+
+,   where   
+
+
+
+m
+
+
+{\displaystyle m}
+
+   is the number of digits in the decimal representation of   
+
+
+
+n
+
+
+{\displaystyle n}
+
+.
+  Narcissistic (decimal) numbers are sometimes called   Armstrong   numbers, named after Michael F. Armstrong.
+They are also known as   Plus Perfect   numbers.
+  
+  An example
+
+   if   
+
+
+
+n
+
+
+{\displaystyle n}
+
+   is   153 
+   then   
+
+
+
+m
+
+
+{\displaystyle m}
+
+,   (the number of decimal digits)   is   3 
+   we have    13 + 53 + 33   =   1 + 125 + 27   =   153  
+   and so   153   is a narcissistic decimal number
+  
+  Task
+  Generate and show here the first   25   narcissistic decimal numbers.
+  
+  Note:   
+
+
+
+
+0
+
+1
+
+
+=
+0
+
+
+{\displaystyle 0^{1}=0}
+
+,   the first in the series.
+  
+  See also
+  
+---

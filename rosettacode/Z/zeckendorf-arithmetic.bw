@@ -1,0 +1,19 @@
+---
+  Zeckendorf arithmetic
+
+  https://rosettacode.org/wiki/Zeckendorf_arithmetic
+
+  This task is a total immersion zeckendorf task; using decimal numbers will attract serious disapprobation.
+  The task is to implement addition, subtraction, multiplication, and division using Zeckendorf number representation. Optionally provide decrement, increment and comparitive operation functions.
+  Addition
+  Like binary 1 + 1 = 10, note carry 1 left. There the similarity ends. 10 + 10 = 101, note carry 1 left and 1 right. 100 + 100 = 1001, note carry 1 left and 2 right, this is the general case.
+  Occurrences of 11 must be changed to 100. Occurrences of 111 may be changed from the right by replacing 11 with 100, or from the left converting 111 to 100 + 100;
+  Subtraction
+  10 - 1 = 1. The general rule is borrow 1 right carry 1 left. eg:
+  A larger example:
+  Multiplication
+  Here you teach your computer its zeckendorf tables. eg. 101 * 1001:
+  Division
+  Lets try 1000101 divided by 101, so we can use the same table used for multiplication.
+  Efficient algorithms for Zeckendorf arithmetic is interesting. The sections on addition and subtraction are particularly relevant for this task.
+---

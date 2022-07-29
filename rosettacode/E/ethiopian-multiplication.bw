@@ -1,0 +1,21 @@
+---
+  Ethiopian multiplication
+
+  https://rosettacode.org/wiki/Ethiopian_multiplication
+
+  Ethiopian multiplication is a method of multiplying integers using only addition, doubling, and halving.
+  Method:
+  For example:   17 × 34
+  Halving the first column:
+  Doubling the second column:
+  Strike-out rows whose first cell is even:
+  Sum the remaining numbers in the right-hand column:
+  So 17 multiplied by 34, by the Ethiopian method is 578.
+  
+  Task
+  The task is to define three named functions/methods/procedures/subroutines:
+  Use these functions to create a function that does Ethiopian multiplication.
+  
+  References
+  
+---

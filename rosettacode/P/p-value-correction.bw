@@ -1,0 +1,14 @@
+---
+  P-value correction
+
+  https://rosettacode.org/wiki/P-value_correction
+
+  Given a list of p-values, adjust the p-values for multiple comparisons. This is done in order to control the false positive, or Type 1 error rate.
+  This is also known as the "false discovery rate" (FDR). After adjustment, the p-values will be higher but still inside [0,1].
+  The adjusted p-values are sometimes called "q-values".
+  
+  Task
+  Given one list of p-values, return the p-values correcting for multiple comparisons
+  There are several methods to do this, see:
+  Each method has its own advantages and disadvantages.
+---

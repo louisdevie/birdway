@@ -1,0 +1,11 @@
+---
+  Middle three digits
+
+  https://rosettacode.org/wiki/Middle_three_digits
+
+  Task
+  Write a function/procedure/subroutine that is called with an integer value and returns the middle three digits of the integer if possible or a clear indication of an error if this is not possible.
+  Note: The order of the middle digits should be preserved.
+  Your function should be tested with the following values; the first line should return valid answers, those of the second line should return clear indications of an error:
+  Show your output on this page.
+---

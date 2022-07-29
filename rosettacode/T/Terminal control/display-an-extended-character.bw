@@ -1,0 +1,9 @@
+---
+  Terminal control/Display an extended character
+
+  https://rosettacode.org/wiki/Terminal_control/Display_an_extended_character
+
+  Task
+  Display an extended (non ASCII) character onto the terminal.
+  Specifically, display a    £    (GBP currency sign).
+---

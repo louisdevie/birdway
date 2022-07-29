@@ -1,0 +1,16 @@
+---
+  Literals/String
+
+  https://rosettacode.org/wiki/Literals/String
+
+  Task
+  Show literal specification of characters and strings.
+  If supported, show how the following work:
+  verbatim strings   (quotes where escape sequences are quoted literally)
+   here-strings
+  Also, discuss which quotes expand variables.
+  
+  Related tasks
+  
+  
+---

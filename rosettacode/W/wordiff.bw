@@ -1,0 +1,22 @@
+---
+  Wordiff
+
+  https://rosettacode.org/wiki/Wordiff
+
+  Wordiff is an original game in which contestants take turns spelling new dictionary words of three or more characters that only differ from
+the last by a change in one letter.
+  The change can be either:
+  Note:
+  
+  Task
+  Create a program to aid in the playing of the game by:
+  in the dictionary, 
+ not a repetition of past words, 
+ and differs from the last appropriately.
+  
+  Optional stretch goals
+  That last player must have entered a wordiff or loses.
+ If the game is timed-out, the loser is the person who took the longest `average` time to answer in their rounds.
+  
+  
+---

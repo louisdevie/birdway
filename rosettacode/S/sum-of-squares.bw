@@ -1,0 +1,12 @@
+---
+  Sum of squares
+
+  https://rosettacode.org/wiki/Sum_of_squares
+
+  Task
+  Write a program to find the sum of squares of a numeric vector.
+  The program should work on a zero-length vector (with an answer of   0).
+  
+  Related task
+  
+---

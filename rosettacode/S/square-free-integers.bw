@@ -1,0 +1,27 @@
+---
+  Square-free integers
+
+  https://rosettacode.org/wiki/Square-free_integers
+
+  Task
+  Write a function to test if a number is   square-free.
+  A   square-free   is an integer which is divisible by no perfect square other
+than   1   (unity).
+  For this task, only positive square-free numbers will be used.
+  
+  Show here (on this page) all square-free integers (in a horizontal format) that are between:
+  1   ───►   145     (inclusive)
+   1 trillion   ───►   1 trillion + 145     (inclusive)
+  (One trillion = 1,000,000,000,000)
+  Show here (on this page) the count of square-free integers from:
+  1   ───►   one hundred     (inclusive)
+   1   ───►   one thousand     (inclusive)
+   1   ───►   ten thousand     (inclusive)
+   1   ───►   one hundred thousand     (inclusive)
+   1   ───►   one million     (inclusive)
+  
+  See also
+
+   the Wikipedia entry:   square-free integer
+  
+---

@@ -1,0 +1,136 @@
+---
+  Conjugate transpose
+
+  https://rosettacode.org/wiki/Conjugate_transpose
+
+  Suppose that a matrix 
+
+
+
+M
+
+
+{\displaystyle M}
+
+ contains complex numbers. Then the conjugate transpose of 
+
+
+
+M
+
+
+{\displaystyle M}
+
+ is a matrix 
+
+
+
+
+M
+
+H
+
+
+
+
+{\displaystyle M^{H}}
+
+ containing the complex conjugates of the matrix transposition of 
+
+
+
+M
+
+
+{\displaystyle M}
+
+.
+  (
+
+M
+
+H
+
+
+
+)
+
+j
+i
+
+
+=
+
+
+
+M
+
+i
+j
+
+
+¯
+
+
+
+
+{\displaystyle (M^{H})_{ji}={\overline {M_{ij}}}}
+  This means that row 
+
+
+
+j
+
+
+{\displaystyle j}
+
+, column 
+
+
+
+i
+
+
+{\displaystyle i}
+
+ of the conjugate transpose equals the
+complex conjugate of row 
+
+
+
+i
+
+
+{\displaystyle i}
+
+, column 
+
+
+
+j
+
+
+{\displaystyle j}
+
+ of the original matrix.
+  In the next list, 
+
+
+
+M
+
+
+{\displaystyle M}
+
+ must also be a square matrix.
+  
+  Task
+  Given some matrix of complex numbers, find its conjugate transpose.
+  Also determine if the matrix is a:
+  Hermitian matrix,
+ normal matrix, or 
+ unitary matrix.
+  
+  See also
+  
+---

@@ -1,0 +1,15 @@
+---
+  Random Latin squares
+
+  https://rosettacode.org/wiki/Random_Latin_squares
+
+  A Latin square of size n is an arrangement of n symbols in an n-by-n square in such a way that each row and column has each symbol appearing exactly once.
+A randomised Latin square generates random configurations of the symbols for any given n.
+  Example n=4 randomised Latin square
+  Task
+  Note
+  Strict Uniformity in the random generation is a hard problem and not a requirement of the task.
+  Related tasks
+  Reference
+  
+---

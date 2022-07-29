@@ -1,0 +1,121 @@
+---
+  Move-to-front algorithm
+
+  https://rosettacode.org/wiki/Move-to-front_algorithm
+
+  Given a symbol table of a zero-indexed array of all possible input symbols
+this algorithm reversibly transforms a sequence
+of input symbols into an array of output numbers (indices).
+  The transform in many cases acts to give frequently repeated input symbols
+lower indices which is  useful in some compression algorithms.
+  
+  Encoding algorithm
+  
+  Decoding algorithm
+  
+  Example
+  Encoding the string of character symbols 'broood' using a symbol table of the lowercase characters   a-to-z
+  Input
+
+ Output
+
+ SymbolTable
+
+
+ broood
+
+ 1
+
+ 'abcdefghijklmnopqrstuvwxyz'
+
+
+ broood
+
+ 1 17
+
+ 'bacdefghijklmnopqrstuvwxyz'
+
+
+ broood
+
+ 1 17 15
+
+ 'rbacdefghijklmnopqstuvwxyz'
+
+
+ broood
+
+ 1 17 15 0
+
+ 'orbacdefghijklmnpqstuvwxyz'
+
+
+ broood
+
+ 1 17 15 0 0
+
+ 'orbacdefghijklmnpqstuvwxyz'
+
+
+ broood
+
+ 1 17 15 0 0 5
+
+ 'orbacdefghijklmnpqstuvwxyz'
+  Decoding the indices back to the original symbol order:
+  Input
+
+ Output
+
+ SymbolTable
+
+
+ 1 17 15 0 0 5
+
+ b
+
+ 'abcdefghijklmnopqrstuvwxyz'
+
+
+ 1 17 15 0 0 5
+
+ br
+
+ 'bacdefghijklmnopqrstuvwxyz'
+
+
+ 1 17 15 0 0 5
+
+ bro
+
+ 'rbacdefghijklmnopqstuvwxyz'
+
+
+ 1 17 15 0 0 5
+
+ broo
+
+ 'orbacdefghijklmnpqstuvwxyz'
+
+
+ 1 17 15 0 0 5
+
+ brooo
+
+ 'orbacdefghijklmnpqstuvwxyz'
+
+
+ 1 17 15 0 0 5
+
+ broood
+
+ 'orbacdefghijklmnpqstuvwxyz'
+  
+  Task
+
+   Encode and decode the following three strings of characters using the symbol table of the lowercase characters   a-to-z   as above. 
+   Show the strings and their encoding here.
+   Add a check to ensure that the decoded string is the same as the original.
+  The strings are:
+  (Note the misspellings in the above strings.)
+---

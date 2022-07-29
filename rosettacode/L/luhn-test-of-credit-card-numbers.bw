@@ -1,0 +1,18 @@
+---
+  Luhn test of credit card numbers
+
+  https://rosettacode.org/wiki/Luhn_test_of_credit_card_numbers
+
+  The Luhn test is used by some credit card companies to distinguish valid credit card numbers from what could be a random selection of digits.
+  Those companies using credit card numbers that can be validated by the Luhn test have numbers that pass the following test:
+  Multiply each digit by two and sum the digits if the answer is greater than nine to form partial sums for the even digits
+ Sum the partial sums of the even digits to form s2
+  For example, if the trial number is 49927398716:
+  
+  Task
+  Write a function/method/procedure/subroutine that will validate a number with the Luhn test, and
+use it to validate the following numbers:
+  
+  Related tasks
+  
+---

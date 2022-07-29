@@ -1,0 +1,15 @@
+---
+  Display an outline as a nested table
+
+  https://rosettacode.org/wiki/Display_an_outline_as_a_nested_table
+
+  The graphic representation of outlines is a staple of mind-mapping and the planning of papers, reports, and speeches.
+  Task
+  Given a outline with at least 3 levels of indentation, for example:
+  write a program in your language which translates your outline into a nested table, with WikiTable or HTML colspan values attached (where needed) to parent nodes in the nested table.
+  The WikiTable at the top of this page was generated from the indented outline shown above, producing the following markup string:
+  Extra credit
+  Use background color to distinguish the main stages of your outline, so that the subtree of each node at level two is consistently colored, and the edges between adjacent subtrees are immediately revealed.
+  Output
+  Display your nested table on this page.
+---

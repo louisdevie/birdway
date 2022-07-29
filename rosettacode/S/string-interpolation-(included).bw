@@ -1,0 +1,14 @@
+---
+  String interpolation (included)
+
+  https://rosettacode.org/wiki/String_interpolation_(included)
+
+  Given a string and defined variables or values, string interpolation is the replacement of defined character sequences in the string by values or variable values.
+  For example, given an original string of "Mary had a X lamb.", a value of "big", and if the language replaces X in its interpolation routine, then the result of its interpolation would be the string "Mary had a big lamb".
+  (Languages usually include an infrequently used character or sequence of characters to indicate what is to be replaced such as "%", or "#" rather than "X").
+  
+  Task
+  Note: The task is not to create a string interpolation routine, but to show a language's built-in capability.
+  
+  
+---

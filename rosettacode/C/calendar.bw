@@ -1,0 +1,19 @@
+---
+  Calendar
+
+  https://rosettacode.org/wiki/Calendar
+
+  Create a routine that will generate a text calendar for any year.
+Test the calendar by generating a calendar for the year 1969, on a device of the time.
+Choose one of the following devices:
+  (Ideally, the program will generate well-formatted calendars for any page width from 20 characters up.)
+  Kudos (κῦδος) for routines that also transition from Julian to Gregorian calendar.
+  This task is inspired by Real Programmers Don't Use PASCAL by Ed Post, Datamation, volume 29 number 7, July 1983.
+  For further Kudos see task CALENDAR, where all code is to be in UPPERCASE.
+  For economy of size, do not actually include Snoopy generation in either the code or the output, instead just output a place-holder.
+  
+  Related task
+
+   Five weekends
+  
+---

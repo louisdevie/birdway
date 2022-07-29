@@ -1,0 +1,15 @@
+---
+  Primality by trial division
+
+  https://rosettacode.org/wiki/Primality_by_trial_division
+
+  Task
+  Write a boolean function that tells whether a given integer is prime.
+  Remember that   1   and all non-positive numbers are not prime.
+  Use trial division.
+  Even numbers greater than   2   may be eliminated right away.
+  A loop from   3   to   √ n    will suffice,   but other loops are allowed.
+  
+  Related tasks
+  
+---

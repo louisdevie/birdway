@@ -1,0 +1,163 @@
+---
+  Arithmetic-geometric mean
+
+  https://rosettacode.org/wiki/Arithmetic-geometric_mean
+
+  
+  Task
+  Write a function to compute the arithmetic-geometric mean of two numbers.
+  The arithmetic-geometric mean of two numbers can be (usefully) denoted as 
+
+
+
+
+a
+g
+m
+
+(
+a
+,
+g
+)
+
+
+{\displaystyle \mathrm {agm} (a,g)}
+
+, and is equal to the limit of the sequence:
+  a
+
+0
+
+
+=
+a
+;
+
+
+g
+
+0
+
+
+=
+g
+
+
+{\displaystyle a_{0}=a;\qquad g_{0}=g}
+
+
+ 
+
+
+
+
+a
+
+n
++
+1
+
+
+=
+
+
+
+1
+2
+
+
+
+(
+
+a
+
+n
+
+
++
+
+g
+
+n
+
+
+)
+;
+
+
+g
+
+n
++
+1
+
+
+=
+
+
+
+a
+
+n
+
+
+
+g
+
+n
+
+
+
+
+.
+
+
+{\displaystyle a_{n+1}={\tfrac {1}{2}}(a_{n}+g_{n});\quad g_{n+1}={\sqrt {a_{n}g_{n}}}.}
+  Since the limit of 
+
+
+
+
+a
+
+n
+
+
+−
+
+g
+
+n
+
+
+
+
+{\displaystyle a_{n}-g_{n}}
+
+ tends (rapidly) to zero with iterations, this is an efficient method.
+  Demonstrate the function by calculating:
+  a
+g
+m
+
+(
+1
+,
+1
+
+/
+
+
+
+2
+
+
+)
+
+
+{\displaystyle \mathrm {agm} (1,1/{\sqrt {2}})}
+  
+  Also see
+  
+---

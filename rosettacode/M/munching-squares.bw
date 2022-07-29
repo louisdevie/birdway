@@ -1,0 +1,7 @@
+---
+  Munching squares
+
+  https://rosettacode.org/wiki/Munching_squares
+
+  Render a graphical pattern where each pixel is colored by the value of 'x xor y' from an arbitrary color table.
+---

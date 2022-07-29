@@ -1,0 +1,11 @@
+---
+  Price fraction
+
+  https://rosettacode.org/wiki/Price_fraction
+
+  A friend of mine runs a pharmacy.   He has a specialized function in his Dispensary application which receives a decimal value of currency and replaces it to a standard value.   This value is regulated by a government department.
+  
+  Task
+  Given a floating point value between   0.00   and   1.00,   rescale according to the following table:
+  
+---

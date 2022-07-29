@@ -1,0 +1,23 @@
+---
+  Compiler/AST interpreter
+
+  https://rosettacode.org/wiki/Compiler/AST_interpreter
+
+  An AST interpreter interprets an Abstract Syntax Tree (AST)
+produced by a Syntax Analyzer.
+  Take the AST output from the Syntax analyzer task, and interpret it as appropriate.
+Refer to the Syntax analyzer task for details of the AST.
+  Loading the AST from the syntax analyzer is as simple as (pseudo code)
+  The interpreter algorithm is relatively simple
+  Notes:
+  Because of the simple nature of our tiny language, Semantic analysis is not needed.
+  Your interpreter should use C like division semantics, for both division and modulus. For division of positive operands, only the non-fractional portion of the result should be returned. In other words, the result should be truncated towards 0.
+  This means, for instance, that 3 / 2 should result in 1.
+  For division when one of the operands is negative, the result should be truncated towards 0.
+  This means, for instance, that 3 / -2 should result in -1.
+  Test program
+  Additional examples
+  Your solution should pass all the test cases above and the additional tests found Here.
+  The C and Python versions can be considered reference implementations.
+  Related Tasks
+---

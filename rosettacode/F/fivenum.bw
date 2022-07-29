@@ -1,0 +1,15 @@
+---
+  Fivenum
+
+  https://rosettacode.org/wiki/Fivenum
+
+  Many big data or scientific programs use boxplots to show distributions of data.   In addition, sometimes saving large arrays for boxplots can be impractical and use extreme amounts of RAM.   It can be useful to save large arrays as arrays with five numbers to save memory.
+  For example, the   R   programming language implements Tukey's five-number summary as the fivenum function.
+  
+  Task
+  Given an array of numbers, compute the five-number summary.
+  
+  Note
+  While these five numbers can be used to draw a boxplot,   statistical packages will typically need extra data.
+  Moreover, while there is a consensus about the "box" of the boxplot,   there are variations among statistical packages for the whiskers.
+---

@@ -1,0 +1,47 @@
+---
+  Isqrt (integer square root) of X
+
+  https://rosettacode.org/wiki/Isqrt_(integer_square_root)_of_X
+
+  Sometimes a function is needed to find the integer square root of   X,   where   X   can be a
+real non─negative number.
+  Often   X   is actually a non─negative integer.
+  For the purposes of this task,   X   can be an integer or a real number,   but if it
+simplifies things in your computer programming language,   assume it's an integer.
+  One of the most common uses of   Isqrt   is in the division of an integer by all factors   (or
+primes)   up to the   
+√ X     of that
+integer,   either to find the factors of that integer,   or to determine primality.
+  An alternative method for finding the   Isqrt   of a number is to
+calculate:        floor( sqrt(X) )
+  where   sqrt    is the   square root   function for non─negative real numbers,   and
+   where   floor   is the   floor   function for real numbers.
+  If the hardware supports the computation of (real) square roots,   the above method might be a faster method for
+small numbers that don't have very many significant (decimal) digits.
+  However, floating point arithmetic is limited in the number of   (binary or decimal)   digits that it can support.
+  
+  Pseudo─code using quadratic residue
+  For this task, the integer square root of a non─negative number will be computed using a version
+of   quadratic residue,   which has the advantage that no   floating point   calculations are
+used,   only integer arithmetic.
+  Furthermore, the two divisions can be performed by bit shifting,   and the one multiplication can also be be performed by bit shifting or additions.
+  The disadvantage is the limitation of the size of the largest integer that a particular computer programming language can support.
+  Pseudo─code of a procedure for finding the integer square root of   X       (all variables are integers):
+  Another version for the (above)   1st   perform   is:
+  Integer square roots of some values:
+  
+  Task
+  Compute and show all output here   (on this page)   for:
+  the Isqrt of the     integers     from     0 ───► 65    (inclusive), shown in a horizontal format.
+   the Isqrt of the   odd powers  from   71 ───► 773   (inclusive), shown in a   vertical   format.
+   use commas in the displaying of larger numbers.
+  You can show more numbers for the 2nd requirement if the displays fits on one screen on Rosetta Code.
+If your computer programming language only supports smaller integers,   show what you can.
+  
+  Related tasks
+
+   sequence of non-squares
+   integer roots
+   square root by hand
+  
+---

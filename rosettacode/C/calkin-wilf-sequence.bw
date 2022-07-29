@@ -1,0 +1,22 @@
+---
+  Calkin-Wilf sequence
+
+  https://rosettacode.org/wiki/Calkin-Wilf_sequence
+
+  The Calkin-Wilf sequence contains every nonnegative rational number exactly once.
+  It can be calculated recursively as follows:
+  
+  Task part 1
+  To avoid floating point error, you may want to use a rational number data type.
+  It is also possible, given a non-negative rational number, to determine where it appears in the sequence without calculating the sequence. The procedure is to get the continued fraction representation of the rational and use it as the run-length encoding of the binary representation of the term number, beginning from the end of the continued fraction.
+It only works if the number of terms in the continued fraction is odd- use either of the two equivalent representations to achieve this:
+  
+  Example
+  The fraction   9/4   has odd continued fraction representation      2; 3, 1,     giving a binary representation of   100011,
+which means   9/4   appears as the   35th   term of the sequence.
+  
+  Task part 2
+  
+  See also
+  
+---

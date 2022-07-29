@@ -1,0 +1,11 @@
+---
+  Descending primes
+
+  https://rosettacode.org/wiki/Descending_primes
+
+  Generate and show all primes with strictly descending decimal digits.
+  See also
+  OEIS:A052014 - Primes with distinct digits in descending order
+  Related
+  
+---

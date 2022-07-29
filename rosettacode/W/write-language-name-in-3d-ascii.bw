@@ -1,0 +1,14 @@
+---
+  Write language name in 3D ASCII
+
+  https://rosettacode.org/wiki/Write_language_name_in_3D_ASCII
+
+  Task
+  Write/display a language's name in 3D ASCII.
+  (We can leave the definition of "3D ASCII" fuzzy,
+so long as the result is interesting or amusing,
+not a cheap hack to satisfy the task.)
+  
+  Related tasks
+  
+---

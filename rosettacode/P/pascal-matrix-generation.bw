@@ -1,0 +1,19 @@
+---
+  Pascal matrix generation
+
+  https://rosettacode.org/wiki/Pascal_matrix_generation
+
+  A pascal matrix is a two-dimensional square matrix holding numbers from   Pascal's triangle,   also known as   binomial coefficients   and which can be shown as   nCr.
+  Shown below are truncated   5-by-5   matrices   M[i, j]   for   i,j   in range   0..4.
+  A Pascal upper-triangular matrix that is populated with   jCi:
+  A Pascal lower-triangular matrix that is populated with   iCj   (the transpose of the upper-triangular matrix):
+  A Pascal symmetric matrix that is populated with   i+jCi:
+  
+  Task
+  Write functions capable of generating each of the three forms of   n-by-n   matrices.
+  Use those functions to display upper, lower, and symmetric Pascal   5-by-5   matrices on this page.
+  The output should distinguish between different matrices and the rows of each matrix   (no showing a list of 25 numbers assuming the reader should split it into rows).
+  
+  Note
+  The   Cholesky decomposition   of a Pascal symmetric matrix is the Pascal lower-triangle matrix of the same size.
+---

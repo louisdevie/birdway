@@ -1,0 +1,29 @@
+---
+  Real constants and functions
+
+  https://rosettacode.org/wiki/Real_constants_and_functions
+
+  Task
+  Show how to use the following math constants and functions in your language   (if not available, note it):
+  e   (base of the natural logarithm)
+   
+
+
+
+π
+
+
+{\displaystyle \pi }
+
+
+   square root
+   logarithm   (any base allowed)
+   exponential   (ex )
+   absolute value   (a.k.a. "magnitude")
+   floor   (largest integer less than or equal to this number--not the same as truncate or int)
+   ceiling   (smallest integer not less than this number--not the same as round up)
+   power   (xy )
+  
+  Related task
+  
+---

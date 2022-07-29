@@ -1,0 +1,9 @@
+---
+  Search in paragraph's text
+
+  https://rosettacode.org/wiki/Search_in_paragraph%27s_text
+
+  The goal is to verify the presence of a word or regular expression within several paragraphs of text (structured or not) and to format the output of the relevant paragraphs before putting them on the standard output.
+  So here, let’s imagine that we are trying to verify the presence of a keyword "SystemError" within what I want to call "the paragraphs" "Traceback (most recent call last):" in the file Traceback.txt
+  The expected result must be formated with ---------------- for paragraph's separator AND "Traceback (most recent call last):" as the beginning of each relevant's paragraph :
+---

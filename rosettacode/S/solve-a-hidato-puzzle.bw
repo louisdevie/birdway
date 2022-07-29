@@ -1,0 +1,13 @@
+---
+  Solve a Hidato puzzle
+
+  https://rosettacode.org/wiki/Solve_a_Hidato_puzzle
+
+  The task is to write a program which solves Hidato (aka Hidoku) puzzles.
+  The rules are:
+  For example the following problem
+  has the following solution, with path marked on it:
+  
+  Related tasks
+  
+---

@@ -1,0 +1,9 @@
+---
+  Monads/Maybe monad
+
+  https://rosettacode.org/wiki/Monads/Maybe_monad
+
+  Demonstrate in your programming language the following:
+  A Monad is a single type which encapsulates several other types, eliminating boilerplate code. In practice it acts like a dynamically typed computational sequence, though in many cases the type issues can be resolved at compile time.
+  A Maybe Monad is a monad which specifically encapsulates the type of an undefined value.
+---

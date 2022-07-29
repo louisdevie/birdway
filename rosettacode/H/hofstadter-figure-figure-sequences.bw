@@ -1,0 +1,112 @@
+---
+  Hofstadter Figure-Figure sequences
+
+  https://rosettacode.org/wiki/Hofstadter_Figure-Figure_sequences
+
+  These two sequences of positive integers are defined as:
+  R
+(
+1
+)
+
+
+
+=
+1
+ 
+;
+ 
+S
+(
+1
+)
+=
+2
+
+
+
+
+R
+(
+n
+)
+
+
+
+=
+R
+(
+n
+−
+1
+)
++
+S
+(
+n
+−
+1
+)
+,
+
+n
+>
+1.
+
+
+
+
+
+
+{\displaystyle {\begin{aligned}R(1)&=1\ ;\ S(1)=2\\R(n)&=R(n-1)+S(n-1),\quad n>1.\end{aligned}}}
+  The sequence 
+
+
+
+S
+(
+n
+)
+
+
+{\displaystyle S(n)}
+
+ is further defined as the sequence of positive integers not present in 
+
+
+
+R
+(
+n
+)
+
+
+{\displaystyle R(n)}
+
+.
+  Sequence 
+
+
+
+R
+
+
+{\displaystyle R}
+
+ starts:
+  Sequence 
+
+
+
+S
+
+
+{\displaystyle S}
+
+ starts:
+  
+  Task
+  
+  References
+  
+---

@@ -1,0 +1,10 @@
+---
+  Narcissist
+
+  https://rosettacode.org/wiki/Narcissist
+
+  Quoting from the Esolangs wiki page:
+  For concreteness, in this task we shall assume that symbol = character.
+  The narcissist should be able to cope with any finite input, whatever its length.
+  Any form of output is allowed, as long as the program always halts, and "accept", "reject" and "not yet finished" are distinguishable.
+---

@@ -1,0 +1,14 @@
+---
+  Read a configuration file
+
+  https://rosettacode.org/wiki/Read_a_configuration_file
+
+  The task is to read a configuration file in standard configuration file format,
+and set variables accordingly.
+  For this task, we have a configuration file as follows:
+  For the task we need to set four variables according to the configuration entries as follows:
+  We also have an option that contains multiple parameters. These may be stored in an array.
+  
+  Related tasks
+  
+---

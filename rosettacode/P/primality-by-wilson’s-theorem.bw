@@ -1,0 +1,13 @@
+---
+  Primality by Wilson's theorem
+
+  https://rosettacode.org/wiki/Primality_by_Wilson%27s_theorem
+
+  Task
+  Write a boolean function that tells whether a given integer is prime using Wilson's theorem.
+  By Wilson's theorem, a number p is prime if and only if p divides (p - 1)! + 1.
+  Remember that 1 and all non-positive integers are not prime.
+  
+  See also
+  
+---

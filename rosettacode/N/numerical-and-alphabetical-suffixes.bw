@@ -1,0 +1,58 @@
+---
+  Numerical and alphabetical suffixes
+
+  https://rosettacode.org/wiki/Numerical_and_alphabetical_suffixes
+
+  This task is about expressing numbers with an attached (abutted) suffix multiplier(s),   the suffix(es) could be:
+  an alphabetic (named) multiplier which could be abbreviated
+    metric  multiplier(s) which can be specified multiple times
+   "binary" multiplier(s) which can be specified multiple times
+   explanation marks (!) which indicate a factorial or multifactorial
+  The (decimal) numbers can be expressed generally as:
+  where:
+  numbers won't have embedded blanks   (contrary to the expaciated examples above where whitespace was used for readability)
+   this task will only be dealing with decimal numbers,   both in the   mantissa   and   exponent
+   ±   indicates an optional plus or minus sign   (+   or   -)
+   digits are the decimal digits   (0 ──► 9)
+   the digits can have comma(s) interjected to separate the   periods   (thousands)   such as:   12,467,000
+   .   is the decimal point, sometimes also called a   dot
+   e   or   E   denotes the use of decimal exponentiation   (a number multiplied by raising ten to some power)
+  This isn't a pure or perfect definition of the way we express decimal numbers,   but it should convey the intent for this task.
+  The use of the word   periods   (thousands) is not meant to confuse, that word (as used above) is what the comma separates;
+the groups of decimal digits are called periods,   and in almost all cases, are groups of three decimal digits.
+  If an   e   or   E   is specified, there must be a legal number expressed before it,   and there must be a legal (exponent) expressed after it.
+  Also, there must be some digits expressed in all cases,   not just a sign and/or decimal point.
+  Superfluous signs, decimal points, exponent numbers, and zeros   need not be preserved.
+  I.E.:      
++7   007   7.00   7E-0   7E000   70e-1     could all be expressed as 7
+  All numbers to be "expanded" can be assumed to be valid and there won't be a requirement to verify their validity.
+  
+  Abbreviated alphabetic suffixes to be supported   (where the capital letters signify the minimum abbreation that can be used)
+  Note that the plurals are supported, even though they're usually used when expressing exact numbers   (She has 2 dozen eggs, and dozens of quavas)
+  
+  Metric suffixes to be supported   (whether or not they're officially sanctioned)
+  
+  Binary suffixes to be supported   (whether or not they're officially sanctioned)
+  All of the metric and binary suffixes can be expressed in   lowercase,   uppercase,   or   mixed case.
+  All of the metric and binary suffixes can be   stacked   (expressed multiple times),   and also be intermixed:
+I.E.:       123k   123K   123GKi   12.3GiGG   12.3e-7T   .78E100e
+  
+  Factorial suffixes to be supported
+  Factorial suffixes aren't, of course, the usual type of multipliers, but are used here in a similar vein.
+  Multifactorials aren't to be confused with   super─factorials     where   (4!)!   would be   (24)!.
+  
+  Task
+
+   Using the test cases (below),   show the "expanded" numbers here, on this page.
+   For each list, show the input on one line,   and also show the output on one line.
+   When showing the input line, keep the spaces (whitespace) and case (capitalizations) as is.
+   For each result (list) displayed on one line, separate each number with two blanks.
+   Add commas to the output numbers were appropriate.
+  
+  Test cases
+  where the last number for the factorials has nine factorial symbols   (!)   after the   9
+  
+  Related tasks
+  
+  
+---

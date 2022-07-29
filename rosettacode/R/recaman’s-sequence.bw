@@ -1,0 +1,14 @@
+---
+  Recaman's sequence
+
+  https://rosettacode.org/wiki/Recaman%27s_sequence
+
+  The Recamán's sequence generates Natural numbers.
+  Starting from a(0)=0, the n'th term a(n), where n>0, is the previous term minus n i.e a(n) = a(n-1) - n but only if this is both positive and has not been previousely generated.
+  If the conditions don't hold then a(n) = a(n-1) + n.
+  
+  Task
+  
+  References
+  
+---

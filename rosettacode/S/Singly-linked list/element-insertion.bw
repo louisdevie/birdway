@@ -1,0 +1,9 @@
+---
+  Singly-linked list/Element insertion
+
+  https://rosettacode.org/wiki/Singly-linked_list/Element_insertion
+
+  Using this method, insert an element C into a list comprised of elements A->B, following element A.
+  See also
+  
+---

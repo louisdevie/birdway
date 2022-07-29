@@ -1,0 +1,50 @@
+---
+  Polynomial long division
+
+  https://rosettacode.org/wiki/Polynomial_long_division
+
+  In algebra, polynomial long division is an algorithm for dividing a polynomial by another polynomial of the same or lower degree.
+  Let us suppose a polynomial is represented by a vector, 
+
+
+
+x
+
+
+{\displaystyle x}
+
+ (i.e., an ordered collection of coefficients) so that the 
+
+
+
+i
+
+
+{\displaystyle i}
+
+th element keeps the coefficient of 
+
+
+
+
+x
+
+i
+
+
+
+
+{\displaystyle x^{i}}
+
+, and the multiplication by a monomial is a shift of the vector's elements "towards right" (injecting ones from left) followed by a multiplication of each element by the coefficient of the monomial.
+  Then a pseudocode for the polynomial long division using the conventions described above could be:
+  Note: vector * scalar multiplies each element of the vector by the scalar; vectorA - vectorB subtracts each element of the vectorB from the element of the vectorA with "the same index". The vectors in the pseudocode are zero-based.
+  Example for clarification
+
+This example is from Wikipedia, but changed to show how the given pseudocode works.
+  
+  Related task
+
+   Polynomial derivative
+  
+---

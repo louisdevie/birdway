@@ -1,0 +1,10 @@
+---
+  Miller–Rabin primality test
+
+  https://rosettacode.org/wiki/Miller%E2%80%93Rabin_primality_test
+
+  The Miller–Rabin primality test or Rabin–Miller primality test is a primality test: an algorithm which determines whether a given number is prime or not.
+  The algorithm, as modified by Michael O. Rabin to avoid the generalized Riemann hypothesis, is a probabilistic algorithm.
+  The pseudocode, from Wikipedia is:
+  
+---

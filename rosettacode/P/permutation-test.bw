@@ -1,0 +1,96 @@
+---
+  Permutation test
+
+  https://rosettacode.org/wiki/Permutation_test
+
+  A new medical treatment was tested on a population of 
+
+
+
+n
++
+m
+
+
+{\displaystyle n+m}
+
+
+volunteers, with each volunteer randomly assigned either to a group of
+
+
+
+
+n
+
+
+{\displaystyle n}
+
+ treatment subjects, or to a group of 
+
+
+
+m
+
+
+{\displaystyle m}
+
+ control subjects.
+  Members of the treatment group were given the treatment,
+and members of the control group were given a placebo.
+The effect of the treatment or placebo on each volunteer
+was measured and reported in this table.
+  Table of experimental results
+
+
+ Treatment group 
+ Control group
+
+
+ 85 
+ 68
+
+
+ 88 
+ 41
+
+
+ 75 
+ 10
+
+
+ 66 
+ 49
+
+
+ 25 
+ 16
+
+
+ 29 
+ 65
+
+
+ 83 
+ 32
+
+
+ 39 
+ 92
+
+
+ 97 
+ 28
+
+
+ 
+ 98
+  Write a program that performs a
+permutation test to judge
+whether the treatment had a significantly stronger effect than the
+placebo.
+  Extremely dissimilar values are evidence of an effect not entirely due
+to chance, but your program need not draw any conclusions.
+  You may assume the experimental data are known at compile time if
+that's easier than loading them at run time. Test your solution on the
+data given above.
+---

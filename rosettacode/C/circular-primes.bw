@@ -1,0 +1,21 @@
+---
+  Circular primes
+
+  https://rosettacode.org/wiki/Circular_primes
+
+  Definitions
+  A circular prime is a prime number with the property that the number generated at each intermediate step when cyclically permuting its (base 10) digits will also be prime.
+  For example:
+1193 is a circular prime, since 1931, 9311 and 3119 are all also prime.
+  Note that a number which is a cyclic permutation of a smaller circular prime is not considered to be itself a circular prime. So 13 is a circular prime, but 31 is not.
+  A repunit (denoted by R) is a number whose base 10 representation contains only the digit 1.
+  For example:
+R(2) = 11 and R(5) = 11111 are repunits.
+  
+  Task
+  
+  
+  
+  See also
+  
+---

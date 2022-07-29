@@ -1,0 +1,26 @@
+---
+  Pythagorean quadruples
+
+  https://rosettacode.org/wiki/Pythagorean_quadruples
+
+  One form of   Pythagorean quadruples   is   (for positive integers   a,   b,   c,   and   d):
+  
+  a2   +   b2   +   c2     =     d2
+  An example:
+  22   +   32   +   62     =     72
+  which is:
+  4    +   9    +   36     =     49
+  
+  Task
+  For positive integers up   2,200   (inclusive),   for all values of   a,  
+b,   c,   and   d,
+find   (and show here)   those values of   d   that   can't   be represented.
+  Show the values of   d   on one line of output   (optionally with a title).
+  
+  Related tasks
+  
+  Reference
+
+   the Wikipedia article:   Pythagorean quadruple.
+  
+---

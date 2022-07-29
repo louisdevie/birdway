@@ -1,0 +1,30 @@
+---
+  Lychrel numbers
+
+  https://rosettacode.org/wiki/Lychrel_numbers
+
+  Take an integer n, greater than zero.
+   Form the next n of its series by reversing the digits of the current n and adding the result to the current n.
+   Stop when n becomes palindromic - i.e. the digits of n in reverse order == n.
+  The above recurrence relation when applied to most starting numbers n = 1, 2, ... terminates in a palindrome quite quickly.
+  
+  Example
+  If n0 = 12 we get
+  And if n0 = 55 we get
+  Notice that the check for a palindrome happens   after   an addition.
+  Some starting numbers seem to go on forever; the recurrence relation for 196 has been calculated for millions of repetitions forming numbers with millions of digits, without forming a palindrome.
+  These numbers that do not end in a palindrome are called Lychrel numbers.
+  For the purposes of this task a Lychrel number is any starting number that does not form a palindrome within 500 (or more) iterations.
+  
+  Seed and related Lychrel numbers
+  Any integer produced in the sequence of a Lychrel number is also a Lychrel number.
+  In general, any sequence from one Lychrel number might converge to join the sequence from a prior Lychrel number candidate; for example the sequences for the numbers 196 and then 689 begin:
+  So we see that the sequence starting with 689 converges to, and continues with the same numbers as that for 196.
+  Because of this we can further split the Lychrel numbers into true Seed Lychrel number candidates, and Related numbers that produce no palindromes but have integers in their sequence seen as part of the sequence generated from a lower Lychrel number.
+  
+  Task
+  Show all output here.
+  
+  References
+  
+---

@@ -1,0 +1,20 @@
+---
+  Bin given limits
+
+  https://rosettacode.org/wiki/Bin_given_limits
+
+  You are given a list of n ascending, unique numbers which are to form limits
+for n+1 bins which count how many of a large set of input numbers fall in the
+range of each bin.
+  (Assuming zero-based indexing)
+  Task
+  The task is to create a function that given the ascending limits and a stream/
+list of numbers, will return the bins; together with another function that
+given the same list of limits and the binning will print the limit of each bin
+together with the count of items that fell in the range.
+  Assume the numbers to bin are too large to practically sort.
+  Task examples
+  Part 1: Bin using the following limits the given input data
+  Part 2: Bin using the following limits the given input data
+  Show output here, on this page.
+---

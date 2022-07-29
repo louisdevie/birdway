@@ -1,0 +1,11 @@
+---
+  URL decoding
+
+  https://rosettacode.org/wiki/URL_decoding
+
+  This task   (the reverse of   URL encoding   and distinct from   URL parser)   is to provide a function
+or mechanism to convert an URL-encoded string into its original unencoded form.
+  
+  Test cases
+  
+---

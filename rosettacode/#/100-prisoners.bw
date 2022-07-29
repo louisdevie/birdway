@@ -1,0 +1,21 @@
+---
+  100 prisoners
+
+  https://rosettacode.org/wiki/100_prisoners
+
+  
+  The Problem
+  They can decide some strategy before any enter the room.
+ Prisoners enter the room one by one, can open a drawer, inspect the card number in the drawer, then close the drawer.
+ A prisoner can open no more than 50 drawers.
+ A prisoner tries to find his own number.
+ A prisoner finding his own number is then held apart from the others.
+  
+  The task
+  First opening the drawer whose outside number is his prisoner number.
+ If the card within has his number then he succeeds otherwise he opens the drawer with the same number as that of the revealed card. (until he opens his maximum).
+  Show and compare the computed probabilities of success for the two strategies, here, on this page.
+  
+  References
+  
+---

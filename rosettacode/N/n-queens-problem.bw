@@ -1,0 +1,12 @@
+---
+  N-queens problem
+
+  https://rosettacode.org/wiki/N-queens_problem
+
+  Solve the eight queens puzzle.
+  You can extend the problem to solve the puzzle with a board of size   NxN.
+  For the number of solutions for small values of   N,   see   OEIS: A000170.
+  
+  Related tasks
+  
+---

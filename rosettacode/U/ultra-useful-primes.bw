@@ -1,0 +1,15 @@
+---
+  Ultra useful primes
+
+  https://rosettacode.org/wiki/Ultra_useful_primes
+
+  An ultra-useful prime is a member of the sequence where each a(n) is the smallest positive integer k such that 2(2n) - k is prime.
+  k must always be an odd number since 2 to any power is always even.
+  
+  Task
+  
+  Stretch
+  
+  See also
+  
+---

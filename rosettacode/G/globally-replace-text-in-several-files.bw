@@ -1,0 +1,9 @@
+---
+  Globally replace text in several files
+
+  https://rosettacode.org/wiki/Globally_replace_text_in_several_files
+
+  Task
+  Replace every occurring instance of a piece of text in a group of text files with another one.
+  For this task we want to replace the text   "Goodbye London!"   with   "Hello New York!"   for a list of files.
+---

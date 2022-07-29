@@ -1,0 +1,25 @@
+---
+  Deceptive numbers
+
+  https://rosettacode.org/wiki/Deceptive_numbers
+
+  Repunits are numbers that consist entirely of repetitions of the digit one (unity). The notation Rn symbolizes the repunit made up of n ones.
+  Every prime p larger than 5, evenly divides the repunit Rp-1.
+  
+  E.G.
+  The repunit R6 is evenly divisible by 7.
+  111111 / 7 = 15873
+  The repunit R42 is evenly divisible by 43.
+  111111111111111111111111111111111111111111 / 43 = 2583979328165374677002583979328165374677
+  And so on.
+  There are composite numbers that also have this same property. They are often referred to as deceptive non-primes or deceptive numbers.
+  The repunit R90 is evenly divisible by the composite number 91 (=7*13).
+  
+  Task
+  
+  See also
+  Numbers Aplenty - Deceptive numbers
+ OEIS:A000864 - Deceptive nonprimes: composite numbers k that divide the repunit R_{k-1}
+  
+  
+---

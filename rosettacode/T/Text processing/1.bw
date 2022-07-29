@@ -1,0 +1,12 @@
+---
+  Text processing/1
+
+  https://rosettacode.org/wiki/Text_processing/1
+
+  Often data is produced by one program, in the wrong format for later use by another program or person. In these situations another program can be written to parse and transform the original data into a format useful to the other. The term "Data Munging" is often used in programming circles for this task.
+  A request on the comp.lang.awk newsgroup led to a typical data munging task:
+  The data is free to download and use and is of this format:
+  Data is no longer available at that link. Zipped mirror available here (offsite mirror).
+  Only a sample of the data showing its format is given above. The full example file may be downloaded here.
+  Structure your program to show statistics for each line of the file, (similar to the original Python, Perl, and AWK examples below), followed by summary statistics for the file. When showing example output just show a few line statistics and the full end summary.
+---

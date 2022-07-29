@@ -1,0 +1,9 @@
+---
+  K-means++ clustering
+
+  https://rosettacode.org/wiki/K-means%2B%2B_clustering
+
+  The task is to implement the K-means++ algorithm. Produce a function which takes two arguments: the number of clusters K, and the dataset to classify. K is a positive integer and the dataset is a list of points in the Cartesian plane. The output is a list of clusters (related sets of points, according to the algorithm).
+  For extra credit (in order):
+  Extra credit is only awarded if the examples given demonstrate the feature in question. To earn credit for 1. and 2., visualize 6 clusters of 30,000 points in ℝ2. It is not necessary to provide visualization for spaces higher than ℝ2 but the examples should demonstrate features 3. and 4. if the solution has them.
+---

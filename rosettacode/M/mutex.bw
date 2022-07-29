@@ -1,0 +1,12 @@
+---
+  Mutex
+
+  https://rosettacode.org/wiki/Mutex
+
+  A mutex (abbreviated Mutually Exclusive access) is a synchronization object, a variant of semaphore with k=1.
+A mutex is said to be seized by a task decreasing k.
+It is released when the task restores k. Mutexes are typically used to protect a shared resource from concurrent access.
+A task seizes (or acquires) the mutex, then accesses the resource, and after that releases the mutex.
+  A mutex is a low-level synchronization primitive exposed to deadlocking. A deadlock can occur with just two tasks and two mutexes (if each task attempts to acquire both mutexes, but in the opposite order).
+Entering the deadlock is usually aggravated by a race condition state, which leads to sporadic hangups, which are very difficult to track down.
+---

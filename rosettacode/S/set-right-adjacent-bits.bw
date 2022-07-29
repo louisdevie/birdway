@@ -1,0 +1,11 @@
+---
+  Set right-adjacent bits
+
+  https://rosettacode.org/wiki/Set_right-adjacent_bits
+
+  Given a left-to-right ordered collection of e bits, b, where 1 <= e <= 10000,
+and a zero or more integer n :
+  (if those bits are present in b and therefore also preserving the width, e).
+  Some examples:
+  Task:
+---

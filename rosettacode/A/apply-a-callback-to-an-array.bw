@@ -1,0 +1,8 @@
+---
+  Apply a callback to an array
+
+  https://rosettacode.org/wiki/Apply_a_callback_to_an_array
+
+  Task
+  Take a combined set of elements and apply a function to each element.
+---

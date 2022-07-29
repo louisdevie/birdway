@@ -1,0 +1,19 @@
+---
+  Angle difference between two bearings
+
+  https://rosettacode.org/wiki/Angle_difference_between_two_bearings
+
+  Finding the angle between two bearings is often confusing.[1]
+  
+  Task
+  Find the angle which is the result of the subtraction b2 - b1, where b1 and b2 are the bearings.
+  Input bearings are expressed in the range   -180   to   +180   degrees.
+The  result  is also expressed in the range   -180   to   +180   degrees.
+  Compute the angle for the following pairs:
+  
+  Optional extra
+  Allow the input bearings to be any (finite) value.
+  
+  Test cases
+  
+---

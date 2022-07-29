@@ -1,0 +1,105 @@
+---
+  Determinant and permanent
+
+  https://rosettacode.org/wiki/Determinant_and_permanent
+
+  For a given matrix, return the determinant and the permanent of the matrix.
+  The determinant is given by
+  det
+(
+A
+)
+=
+
+∑
+
+σ
+
+
+sgn
+⁡
+(
+σ
+)
+
+∏
+
+i
+=
+1
+
+
+n
+
+
+
+M
+
+i
+,
+
+σ
+
+i
+
+
+
+
+
+
+{\displaystyle \det(A)=\sum _{\sigma }\operatorname {sgn}(\sigma )\prod _{i=1}^{n}M_{i,\sigma _{i}}}
+  while the permanent is given by
+  perm
+⁡
+(
+A
+)
+=
+
+∑
+
+σ
+
+
+
+∏
+
+i
+=
+1
+
+
+n
+
+
+
+M
+
+i
+,
+
+σ
+
+i
+
+
+
+
+
+
+{\displaystyle \operatorname {perm} (A)=\sum _{\sigma }\prod _{i=1}^{n}M_{i,\sigma _{i}}}
+  In both cases the sum is over the permutations 
+
+
+
+σ
+
+
+{\displaystyle \sigma }
+
+ of the permutations of 1, 2, ..., n. (A permutation's sign is 1 if there are an even number of inversions and -1 otherwise; see parity of a permutation.)
+  More efficient algorithms for the determinant are known: LU decomposition, see for example wp:LU decomposition#Computing the determinant. Efficient methods for calculating the permanent are not known.
+  
+  Related task
+  
+---

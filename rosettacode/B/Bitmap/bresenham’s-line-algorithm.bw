@@ -1,0 +1,9 @@
+---
+  Bitmap/Bresenham's line algorithm
+
+  https://rosettacode.org/wiki/Bitmap/Bresenham%27s_line_algorithm
+
+  Task
+  Using the data storage type defined on the Bitmap page for raster graphics images,
+draw a line given two points with Bresenham's line algorithm.
+---

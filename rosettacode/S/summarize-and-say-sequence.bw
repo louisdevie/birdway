@@ -1,0 +1,20 @@
+---
+  Summarize and say sequence
+
+  https://rosettacode.org/wiki/Summarize_and_say_sequence
+
+  There are several ways to generate a self-referential sequence. One very common one (the Look-and-say sequence) is to start with a positive integer, then generate the next term by concatenating enumerated groups of adjacent alike digits:
+  The terms generated grow in length geometrically and never converge.
+  Another way to generate a self-referential sequence is to summarize the previous term.
+  Count how many of each alike digit there is, then concatenate the sum and digit for each of the sorted enumerated digits. Note that the first five terms are the same as for the previous sequence.
+  Sort the digits largest to smallest. Do not include counts of digits that do not appear in the previous term.
+  Depending on the seed value, series generated this way always either converge to a stable value or to a short cyclical pattern. (For our purposes, I'll use converge to mean an element matches a previously seen element.) The sequence shown, with a seed value of 0, converges to a stable value of 1433223110 after 11 iterations. The seed value that converges most quickly is 22. It goes stable after the first element. (The next element is 22, which has been seen before.)
+  
+  Task
+  Find all the positive integer seed values under 1000000, for the above convergent self-referential sequence, that takes the largest number of iterations before converging. Then print out the number of iterations and the sequence they return. Note that different permutations of the digits of the seed will yield the same sequence. For this task, assume leading zeros are not permitted.
+  Related tasks
+  
+  
+  Also see
+  
+---

@@ -1,0 +1,38 @@
+---
+  Next highest int from digits
+
+  https://rosettacode.org/wiki/Next_highest_int_from_digits
+
+  Given a zero or positive integer, the task is to generate the next largest
+integer using only the given digits*1.
+  
+  *1   Alternatively phrased as:   "Find the smallest integer larger than the (positive or zero) integer   N
+ which can be obtained by reordering the (base ten) digits of   N".
+  
+  Algorithm 1
+  The above could prove slow and memory hungry for numbers with large numbers of
+digits, but should be easy to reason about its correctness.
+  
+  Algorithm 2
+  E.g.:
+  This second algorithm is faster and more memory efficient, but implementations
+may be harder to test.
+  One method of testing, (as used in developing the task),   is to compare results from both
+algorithms for random numbers generated from a range that the first algorithm can handle.
+  
+  Task requirements
+  Calculate the next highest int from the digits of the following numbers:
+  0
+   9
+   12
+   21
+   12453
+   738440
+   45072010
+   95322020
+  
+  Optional stretch goal
+
+   9589776899767587796600
+  
+---

@@ -1,0 +1,21 @@
+---
+  Partial function application
+
+  https://rosettacode.org/wiki/Partial_function_application
+
+  Partial function application   is the ability to take a function of many
+parameters and apply arguments to some of the parameters to create a new
+function that needs only the application of the remaining arguments to
+produce the equivalent of applying all arguments to the original function.
+  E.g:
+  Given values v1, v2
+ Given f(param1, param2)
+ Then partial(f, param1=v1) returns f'(param2)
+ And f(param1=v1, param2=v2) == f'(param2=v2) (for any value v2)
+  Note that in the partial application of a parameter, (in the above case param1), other parameters are not explicitly mentioned. This is a recurring feature of partial function application.
+  
+  Task
+  
+  Notes
+  
+---

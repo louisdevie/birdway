@@ -1,0 +1,14 @@
+---
+  Write float arrays to a text file
+
+  https://rosettacode.org/wiki/Write_float_arrays_to_a_text_file
+
+  Task
+  Write two equal-sized numerical arrays 'x' and 'y' to
+a two-column text file named 'filename'.
+  The first column of the file contains values from an 'x'-array with a
+given 'xprecision', the second -- values from 'y'-array with 'yprecision'.
+  For example, considering:
+  The file should look like:
+  This task is intended as a subtask for Measure relative performance of sorting algorithms implementations.
+---

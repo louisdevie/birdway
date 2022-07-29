@@ -1,0 +1,22 @@
+---
+  Curzon numbers
+
+  https://rosettacode.org/wiki/Curzon_numbers
+
+  A Curzon number is defined to be a positive integer n for which 2n + 1 is evenly divisible by 2 × n + 1.
+  Generalized Curzon numbers are those where the positive integer n, using a base integer k, satisfy the condition that kn + 1 is evenly divisible by k × n + 1.
+  Base here does not imply the radix of the counting system; rather the integer the equation is based on. All calculations should be done in base 10.
+  Generalized Curzon numbers only exist for even base integers.
+  
+  Task
+  
+  Stretch
+  
+  See also
+  Numbers Aplenty - Curzon numbers
+ OEIS:A224486 - Numbers k such that 2*k+1 divides 2^k+1 (Curzon numbers)
+  and even though it is not specifically mentioned that they are Curzon numbers:
+  OEIS:A230076 - (A007521(n)-1)/4 (Generalized Curzon numbers with a base 4)
+  
+  
+---

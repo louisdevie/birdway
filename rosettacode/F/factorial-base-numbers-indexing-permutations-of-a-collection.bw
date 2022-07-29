@@ -1,0 +1,20 @@
+---
+  Factorial base numbers indexing permutations of a collection
+
+  https://rosettacode.org/wiki/Factorial_base_numbers_indexing_permutations_of_a_collection
+
+  You need a random arrangement of a deck of cards, you are sick of lame ways of doing this. This task is a super-cool way of doing this using factorial base numbers.
+The first 25 factorial base numbers in increasing order are: 0.0.0, 0.0.1, 0.1.0, 0.1.1, 0.2.0, 0.2.1, 1.0.0, 1.0.1, 1.1.0, 1.1.1,1.2.0, 1.2.1, 2.0.0, 2.0.1, 2.1.0, 2.1.1, 2.2.0, 2.2.1, 3.0.0, 3.0.1, 3.1.0, 3.1.1, 3.2.0, 3.2.1, 1.0.0.0
+Observe that the least significant digit is base 2 the next base 3, in general an n-digit factorial base number has digits n..1 in base n+1..2.
+  I want to produce a 1 to 1 mapping between these numbers and permutations:-
+  The following psudo-code will do this:
+Starting with m=0 and Ω, an array of elements to be permutated, for each digit g starting with the most significant digit in the factorial base number.
+  If g is greater than zero, rotate the elements from m to m+g in Ω (see example)
+Increment m and repeat the first step using the next most significant digit until the factorial base number is exhausted.
+For example: using the factorial base number 2.0.1 and Ω = 0 1 2 3 where place 0 in both is the most significant (left-most) digit/element.
+  Step 1: m=0 g=2; Rotate places 0 through 2. 0 1 2 3 becomes 2 0 1 3
+Step 2: m=1 g=0; No action.
+Step 3: m=2 g=1; Rotate places 2 through 3. 2 0 1 3 becomes 2 0 3 1
+  Let me work 2.0.1 and 0123
+  The task:
+---

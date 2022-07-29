@@ -1,0 +1,21 @@
+---
+  Chernick's Carmichael numbers
+
+  https://rosettacode.org/wiki/Chernick%27s_Carmichael_numbers
+
+  In 1939, Jack Chernick proved that, for n ≥ 3 and m ≥ 1:
+  is a Carmichael number if all the factors are primes and, for n > 4, m is a multiple of 2^(n-4).
+  
+  Example
+  For n = 5, the smallest number m that satisfy Chernick's conditions, is m = 380, therefore U(5, 380) is the smallest Chernick's Carmichael number with 5 prime factors.
+  U(5, 380) is a Chernick's Carmichael number because m = 380 is a multiple of 2^(n-4), where n = 5, and the factors { (6*380 + 1), (12*380 + 1), (18*380 + 1), (36*380 + 1), (72*380 + 1) } are all prime numbers.
+  
+  Task
+  For n ≥ 3, let a(n) be the smallest Chernick's Carmichael number with n prime factors.
+  Note: it's perfectly acceptable to show the terms in factorized form:
+  
+  See also
+  
+  Related tasks
+  
+---

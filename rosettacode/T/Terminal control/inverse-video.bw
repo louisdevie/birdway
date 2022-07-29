@@ -1,0 +1,8 @@
+---
+  Terminal control/Inverse video
+
+  https://rosettacode.org/wiki/Terminal_control/Inverse_video
+
+  Task
+  Display a word in inverse video   (or reverse video)   followed by a word in normal video.
+---

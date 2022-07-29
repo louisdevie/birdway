@@ -1,0 +1,8 @@
+---
+  Detect division by zero
+
+  https://rosettacode.org/wiki/Detect_division_by_zero
+
+  Task
+  Write a function to detect a   divide by zero error   without checking if the denominator is zero.
+---

@@ -1,0 +1,10 @@
+---
+  Send email
+
+  https://rosettacode.org/wiki/Send_email
+
+  Task
+  Write a function to send an email.
+  The function should have parameters for setting From, To and Cc addresses; the Subject, and the message text, and optionally fields for the server name and login details.
+  (Remember to obfuscate any sensitive data used in examples)
+---

@@ -1,0 +1,20 @@
+---
+  Word frequency
+
+  https://rosettacode.org/wiki/Word_frequency
+
+  Task
+  Given a text file and an integer   n,   print/display the   n   most
+common words in the file   (and the number of their occurrences)   in decreasing frequency.
+  For the purposes of this task:
+  Show example output using Les Misérables from Project Gutenberg as the text file input and display the top   10   most used words.
+  
+  History
+  This task was originally taken from programming pearls from Communications of the ACM June 1986 Volume 29 Number 6
+where this problem is solved by Donald Knuth using literate programming and then critiqued by Doug McIlroy,
+demonstrating solving the problem in a 6 line Unix shell script (provided as an example below).
+  
+  References
+  
+  
+---

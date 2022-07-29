@@ -1,0 +1,38 @@
+---
+  Pseudo-random numbers/PCG32
+
+  https://rosettacode.org/wiki/Pseudo-random_numbers/PCG32
+
+  Some definitions to help in the explanation
+  Floor operation
+https://en.wikipedia.org/wiki/Floor_and_ceiling_functions
+Greatest integer less than or equal to a real number.
+  Bitwise Logical shift operators (c-inspired)
+https://en.wikipedia.org/wiki/Bitwise_operation#Bit_shifts
+Binary bits of value shifted left or right, with zero bits shifted in where appropriate. 
+Examples are shown for 8 bit binary numbers; most significant bit to the left.
+  << Logical shift left by given number of bits.
+E.g Binary 00110101 << 2 == Binary 11010100
+  >> Logical shift right by given number of bits.
+E.g Binary 00110101 >> 2 == Binary 00001101
+  ^ Bitwise exclusive-or operator
+https://en.wikipedia.org/wiki/Exclusive_or
+Bitwise comparison for if bits differ
+E.g Binary 00110101 ^ Binary 00110011 == Binary 00000110
+  | Bitwise or operator
+https://en.wikipedia.org/wiki/Bitwise_operation#OR
+Bitwise comparison gives 1 if any of corresponding bits are 1
+E.g Binary 00110101 | Binary 00110011 == Binary 00110111
+  
+  PCG32 Generator (pseudo-code)
+  PCG32 has two unsigned 64-bit integers of internal state:
+  Values of sequence allow 2**63 different sequences of random numbers from the same state.
+  The algorithm is given 2 U64 inputs called seed_state, and seed_sequence. The algorithm proceeds in accordance with the following pseudocode:-
+  Note that this an anamorphism – dual to catamorphism, and encoded in some languages as a general higher-order `unfold` function, dual to `fold` or `reduce`.
+  Task
+  numbers using the above.
+  are: 2707161783 2068313097 3122475824 2211639955 3215226955
+  
+  Is as follows:
+  
+---

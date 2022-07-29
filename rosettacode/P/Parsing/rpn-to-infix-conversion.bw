@@ -1,0 +1,55 @@
+---
+  Parsing/RPN to infix conversion
+
+  https://rosettacode.org/wiki/Parsing/RPN_to_infix_conversion
+
+  Task
+  Create a program that takes an RPN representation of an expression formatted as a space separated sequence of tokens and generates the equivalent expression in infix notation.
+  RPN input 
+ sample output
+
+
+ 3 4 2 * 1 5 - 2 3 ^ ^ / +
+ 3 + 4 * 2 / ( 1 - 5 ) ^ 2 ^ 3
+
+
+ 1 2 + 3 4 + ^ 5 6 + ^
+ ( ( 1 + 2 ) ^ ( 3 + 4 ) ) ^ ( 5 + 6 )
+  operator 
+ precedence 
+ associativity 
+ operation
+
+
+  ^  
+ 4 
+ right 
+ exponentiation
+
+
+  *  
+ 3 
+ left 
+ multiplication
+
+
+  /  
+ 3 
+ left 
+ division
+
+
+  +  
+ 2 
+ left 
+ addition
+
+
+  -  
+ 2 
+ left 
+ subtraction
+  
+  See also
+  
+---

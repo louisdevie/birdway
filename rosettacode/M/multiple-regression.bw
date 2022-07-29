@@ -1,0 +1,46 @@
+---
+  Multiple regression
+
+  https://rosettacode.org/wiki/Multiple_regression
+
+  Task
+  Given a set of data vectors in the following format:
+  Compute the vector 
+
+
+
+β
+=
+{
+
+β
+
+1
+
+
+,
+
+β
+
+2
+
+
+,
+.
+.
+.
+,
+
+β
+
+k
+
+
+}
+
+
+{\displaystyle \beta =\{\beta _{1},\beta _{2},...,\beta _{k}\}}
+
+ using ordinary least squares regression using the following equation:
+  You can assume  y  is given to you as a vector (a one-dimensional array), and  X  is given to you as a two-dimensional array (i.e. matrix).
+---

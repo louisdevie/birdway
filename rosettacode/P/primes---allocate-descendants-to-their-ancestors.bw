@@ -1,0 +1,20 @@
+---
+  Primes - allocate descendants to their ancestors
+
+  https://rosettacode.org/wiki/Primes_-_allocate_descendants_to_their_ancestors
+
+  The concept, is to add the decomposition into prime factors of a number to get its 'ancestors'.
+  The objective is to demonstrate that the choice of the algorithm can be crucial in term of performance.
+This solution could be compared to the solution that would use the decomposition into primes for all the numbers between 1 and 333.
+  The problem is to list, for a delimited set of ancestors (from 1 to 99) :
+  - the total of their own ancestors (LEVEL),
+  - their own ancestors (ANCESTORS),
+  - the total of the direct descendants (DESCENDANTS),
+  - all the direct descendants.
+  You only have to consider the prime factors < 100.
+  A grand total of the descendants has to be printed at the end of the list.
+  The task should be accomplished in a reasonable time-frame.
+  Example :
+  The list layout and the output for Parent [46] :
+  Some figures :
+---

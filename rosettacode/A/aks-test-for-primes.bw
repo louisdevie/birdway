@@ -1,0 +1,64 @@
+---
+  AKS test for primes
+
+  https://rosettacode.org/wiki/AKS_test_for_primes
+
+  The AKS algorithm for testing whether a number is prime is a polynomial-time algorithm based on an elementary theorem about Pascal triangles.
+  The theorem on which the test is based can be stated as follows:
+  (
+x
+−
+1
+
+)
+
+p
+
+
+−
+(
+
+x
+
+p
+
+
+−
+1
+)
+
+
+{\displaystyle (x-1)^{p}-(x^{p}-1)}
+  are divisible by   
+
+
+
+p
+
+
+{\displaystyle p}
+
+.
+  
+  Example
+  Using   
+
+
+
+p
+=
+3
+
+
+{\displaystyle p=3}
+
+:
+  And all the coefficients are divisible by 3,   so 3 is prime.
+  
+  
+  Task
+  
+  
+  References
+  
+---

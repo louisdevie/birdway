@@ -1,0 +1,266 @@
+---
+  Statistics/Basic
+
+  https://rosettacode.org/wiki/Statistics/Basic
+
+  Statistics is all about large groups of numbers.
+When talking about a set of sampled data, most frequently used is their mean value and standard deviation (stddev).
+If you have set of data 
+
+
+
+
+x
+
+i
+
+
+
+
+{\displaystyle x_{i}}
+
+ where 
+
+
+
+i
+=
+1
+,
+2
+,
+…
+,
+n
+
+
+
+
+{\displaystyle i=1,2,\ldots ,n\,\!}
+
+, the mean is 
+
+
+
+
+
+
+x
+¯
+
+
+
+≡
+
+
+1
+n
+
+
+
+∑
+
+i
+
+
+
+x
+
+i
+
+
+
+
+{\displaystyle {\bar {x}}\equiv {1 \over n}\sum _{i}x_{i}}
+
+, while the stddev is 
+
+
+
+σ
+≡
+
+
+
+
+1
+n
+
+
+
+∑
+
+i
+
+
+
+
+(
+
+x
+
+i
+
+
+−
+
+
+
+x
+¯
+
+
+
+)
+
+
+2
+
+
+
+
+
+
+{\displaystyle \sigma \equiv {\sqrt {{1 \over n}\sum _{i}\left(x_{i}-{\bar {x}}\right)^{2}}}}
+
+.
+  When examining a large quantity of data, one often uses a histogram, which shows the counts of data samples falling into a prechosen set of intervals (or bins).
+When plotted, often as bar graphs, it visually indicates how often each data value occurs.
+  Task Using your language's random number routine, generate real numbers in the range of [0, 1]. It doesn't matter if you chose to use open or closed range.
+Create 100 of such numbers (i.e. sample size 100) and calculate their mean and stddev. 
+Do so for sample size of 1,000 and 10,000, maybe even higher if you feel like.
+Show a histogram of any of these sets.
+Do you notice some patterns about the standard deviation?
+  Extra Sometimes so much data need to be processed that it's impossible to keep all of them at once. Can you calculate the mean, stddev and histogram of a trillion numbers? (You don't really need to do a trillion numbers, just show how it can be done.)
+  Hint
+  For a finite population with equal probabilities at all points, one can derive:
+  (
+x
+−
+
+
+x
+¯
+
+
+
+)
+
+2
+
+
+
+¯
+
+
+=
+
+
+
+x
+
+2
+
+
+¯
+
+
+−
+
+
+
+x
+¯
+
+
+
+2
+
+
+
+
+{\displaystyle {\overline {(x-{\overline {x}})^{2}}}={\overline {x^{2}}}-{\overline {x}}^{2}}
+  Or, more verbosely:
+  1
+N
+
+
+
+∑
+
+i
+=
+1
+
+
+N
+
+
+(
+
+x
+
+i
+
+
+−
+
+
+x
+¯
+
+
+
+)
+
+2
+
+
+=
+
+
+1
+N
+
+
+
+(
+
+∑
+
+i
+=
+1
+
+
+N
+
+
+
+x
+
+i
+
+
+2
+
+
+)
+
+−
+
+
+
+x
+¯
+
+
+
+2
+
+
+.
+
+
+{\displaystyle {\frac {1}{N}}\sum _{i=1}^{N}(x_{i}-{\overline {x}})^{2}={\frac {1}{N}}\left(\sum _{i=1}^{N}x_{i}^{2}\right)-{\overline {x}}^{2}.}
+---

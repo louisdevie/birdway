@@ -1,0 +1,14 @@
+---
+  Call a foreign-language function
+
+  https://rosettacode.org/wiki/Call_a_foreign-language_function
+
+  Task
+  Show how a foreign language function can be called from the language.
+  As an example, consider calling functions defined in the C language. Create a string containing "Hello World!" of the string type typical to the language. Pass the string content to C's strdup. The content can be copied if necessary. Get the result from strdup and print it using language means. Do not forget to free the result of strdup (allocated in the heap).
+  
+  Notes
+  
+  See also
+  
+---

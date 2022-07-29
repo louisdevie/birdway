@@ -1,0 +1,19 @@
+---
+  Euler's sum of powers conjecture
+
+  https://rosettacode.org/wiki/Euler%27s_sum_of_powers_conjecture
+
+  There is a conjecture in mathematics that held for over two hundred years before it was disproved by the finding of a counterexample in 1966 by Lander and Parkin.
+  
+  Euler's (disproved) sum of powers   conjecture
+  In 1966,   Leon J. Lander   and   Thomas R. Parkin   used a brute-force search on a   CDC 6600   computer restricting numbers to those less than 250.
+  
+  Task
+  Write a program to search for an integer solution for:
+  x05 + x15 + x25 + x35 == y5
+  Where all     xi's   and    y    are distinct integers between   0   and   250   (exclusive).
+  Show an answer here.
+  
+  Related tasks
+  
+---

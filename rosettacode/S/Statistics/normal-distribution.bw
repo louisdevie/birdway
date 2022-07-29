@@ -1,0 +1,12 @@
+---
+  Statistics/Normal distribution
+
+  https://rosettacode.org/wiki/Statistics/Normal_distribution
+
+  The Normal (or Gaussian) distribution is a frequently used distribution in statistics. While most programming languages provide a uniformly distributed random number generator, one can derive normally distributed random numbers from a uniform generator.
+  
+  The task
+  
+  Reference
+  
+---

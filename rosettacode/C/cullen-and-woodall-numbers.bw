@@ -1,0 +1,19 @@
+---
+  Cullen and Woodall numbers
+
+  https://rosettacode.org/wiki/Cullen_and_Woodall_numbers
+
+  A Cullen number is a number of the form n × 2n + 1 where n is a natural number.
+  A Woodall number is very similar. It is a number of the form n × 2n - 1 where n is a natural number.
+  So for each n the associated Cullen number and Woodall number differ by 2.
+  Woodall numbers are sometimes referred to as Riesel numbers or Cullen numbers of the second kind.
+  Cullen primes are Cullen numbers that are prime. Similarly, Woodall primes are Woodall numbers that are prime.
+  It is common to list the Cullen and Woodall primes by the value of n rather than the full evaluated expression. They tend to get very large very quickly. For example, the third Cullen prime, n == 4713, has 1423 digits when evaluated.
+  
+  Task
+  
+  Stretch
+  
+  See also
+  
+---

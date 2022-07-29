@@ -1,0 +1,122 @@
+---
+  Amicable pairs
+
+  https://rosettacode.org/wiki/Amicable_pairs
+
+  Two integers 
+
+
+
+N
+
+
+{\displaystyle N}
+
+ and 
+
+
+
+M
+
+
+{\displaystyle M}
+
+ are said to be amicable pairs if 
+
+
+
+N
+≠
+M
+
+
+{\displaystyle N\neq M}
+
+ and the sum of the proper divisors of 
+
+
+
+N
+
+
+{\displaystyle N}
+
+ (
+
+
+
+
+s
+u
+m
+
+(
+
+p
+r
+o
+p
+D
+i
+v
+s
+
+(
+N
+)
+)
+
+
+{\displaystyle \mathrm {sum} (\mathrm {propDivs} (N))}
+
+) 
+
+
+
+=
+M
+
+
+{\displaystyle =M}
+
+ as well as 
+
+
+
+
+s
+u
+m
+
+(
+
+p
+r
+o
+p
+D
+i
+v
+s
+
+(
+M
+)
+)
+=
+N
+
+
+{\displaystyle \mathrm {sum} (\mathrm {propDivs} (M))=N}
+
+.
+  
+  Example
+  1184 and 1210 are an amicable pair, with proper divisors:
+  
+  Task
+  Calculate and show here the Amicable pairs below 20,000; (there are eight).
+  
+  Related tasks
+  
+---

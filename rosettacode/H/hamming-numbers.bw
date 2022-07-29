@@ -1,0 +1,16 @@
+---
+  Hamming numbers
+
+  https://rosettacode.org/wiki/Hamming_numbers
+
+  Hamming numbers are numbers of the form
+  Hamming numbers   are also known as   ugly numbers   and also   5-smooth numbers   (numbers whose prime divisors are less or equal to 5).
+  
+  Task
+  Generate the sequence of Hamming numbers, in increasing order.   In particular:
+  
+  Related tasks
+  
+  References
+  
+---

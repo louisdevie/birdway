@@ -1,0 +1,22 @@
+---
+  Vector products
+
+  https://rosettacode.org/wiki/Vector_products
+
+  A vector is defined as having three dimensions as being represented by an ordered collection of three numbers:   (X, Y, Z).
+  If you imagine a graph with the   x   and   y   axis being at right angles to each other and having a third,   z   axis coming out of the page, then a triplet of numbers,   (X, Y, Z)   would represent a point in the region,   and a vector from the origin to the point.
+  Given the vectors:
+  then the following common vector products are defined:
+  A • B = a1b1   +   a2b2   +   a3b3
+  A x B = (a2b3  -   a3b2,     a3b1   -   a1b3,     a1b2   -   a2b1)
+  A • (B x C)
+  A x (B x C)
+  
+  Task
+  Given the three vectors:
+  
+  References
+  
+  Related tasks
+  
+---

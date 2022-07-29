@@ -1,0 +1,13 @@
+---
+  Pascal's triangle/Puzzle
+
+  https://rosettacode.org/wiki/Pascal%27s_triangle/Puzzle
+
+  This puzzle involves a Pascals Triangle, also known as a Pyramid of Numbers.
+  Each brick of the pyramid is the sum of the two bricks situated below it.
+Of the three missing numbers at the base of the pyramid,
+the middle one is the sum of the other two (that is, Y = X + Z).
+  
+  Task
+  Write a program to find a solution to this puzzle.
+---

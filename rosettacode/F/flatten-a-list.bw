@@ -1,0 +1,12 @@
+---
+  Flatten a list
+
+  https://rosettacode.org/wiki/Flatten_a_list
+
+  Task
+  Write a function to flatten the nesting in an arbitrary list of values.
+  Your program should work on the equivalent of this list:
+  Where the correct result would be the list:
+  Related task
+  
+---

@@ -1,0 +1,17 @@
+---
+  Perfect totient numbers
+
+  https://rosettacode.org/wiki/Perfect_totient_numbers
+
+  Generate and show here, the first twenty Perfect totient numbers.
+  
+  Related task
+
+   Totient function
+  
+  Also see
+
+   the OEIS entry for   perfect totient numbers.
+   mrob   list of the first 54
+  
+---

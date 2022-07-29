@@ -1,0 +1,17 @@
+---
+  Zero to the zero power
+
+  https://rosettacode.org/wiki/Zero_to_the_zero_power
+
+  Some computer programming languages are not exactly consistent   (with other computer programming languages)  
+when   raising zero to the zeroth power:     00
+  
+  Task
+  Show the results of raising   zero   to the   zeroth   power.
+  If your computer language objects to      0**0      or      0^0      at compile time,   you may also try something like:
+  Show the result here.
+And of course use any symbols or notation that is supported in your computer programming language for exponentiation.
+  
+  See also
+  
+---

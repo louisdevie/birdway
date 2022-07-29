@@ -1,0 +1,8 @@
+---
+  Write to Windows event log
+
+  https://rosettacode.org/wiki/Write_to_Windows_event_log
+
+  Task
+  Write script status to the Windows Event Log
+---

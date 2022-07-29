@@ -1,0 +1,17 @@
+---
+  Harmonic series
+
+  https://rosettacode.org/wiki/Harmonic_series
+
+  In mathematics, the n-th harmonic number is the sum of the reciprocals of the first n natural numbers:
+  The series of harmonic numbers thus obtained is often loosely referred to as the harmonic series.
+  Harmonic numbers are closely related to the Riemann zeta function, and roughly approximate the natural logarithm function; differing by γ (lowercase Gamma), the Euler–Mascheroni constant.
+  The harmonic series is divergent, albeit quite slowly, and grows toward infinity.
+  
+  Task
+  
+  Stretch
+  
+  Related
+  
+---

@@ -1,0 +1,9 @@
+---
+  Multiplication tables
+
+  https://rosettacode.org/wiki/Multiplication_tables
+
+  Task
+  Produce a formatted   12×12   multiplication table of the kind memorized by rote when in primary (or elementary) school.
+  Only print the top half triangle of products.
+---

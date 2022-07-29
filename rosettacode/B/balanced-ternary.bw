@@ -1,0 +1,16 @@
+---
+  Balanced ternary
+
+  https://rosettacode.org/wiki/Balanced_ternary
+
+  Balanced ternary is a way of representing numbers. Unlike the prevailing binary representation, a balanced ternary integer is in base 3, and each digit can have the values 1, 0, or −1.
+  
+  Examples
+  Decimal 11 = 32 + 31 − 30, thus it can be written as "++−"
+  Decimal 6 = 32 − 31 + 0 × 30, thus it can be written as "+−0"
+  
+  Task
+  Implement balanced ternary representation of integers with the following:
+  Test case With balanced ternaries a from string "+-0++0+", b from native integer -436, c "+-++-":
+  Note: The pages generalised floating point addition and generalised floating point multiplication have code implementing arbitrary precision floating point balanced ternary.
+---

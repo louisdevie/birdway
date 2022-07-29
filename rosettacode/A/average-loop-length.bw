@@ -1,0 +1,14 @@
+---
+  Average loop length
+
+  https://rosettacode.org/wiki/Average_loop_length
+
+  Let f be a uniformly-randomly chosen mapping from the numbers 1..N to the numbers 1..N (note: not necessarily a permutation of 1..N; the mapping could produce a number in more than one way or not at all). At some point, the sequence 1, f(1), f(f(1))... will contain a repetition, a number that occurring for the second time in the sequence.
+  
+  Task
+  Write a program or a script that estimates, for each N, the average length until the first such repetition.
+  Also calculate this expected length using an analytical formula, and optionally compare the simulated result with the theoretical one.
+  This problem comes from the end of Donald Knuth's Christmas tree lecture 2011.
+  Example of expected output:
+  
+---

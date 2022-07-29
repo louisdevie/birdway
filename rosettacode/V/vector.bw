@@ -1,0 +1,11 @@
+---
+  Vector
+
+  https://rosettacode.org/wiki/Vector
+
+  Task
+  Implement a Vector class (or a set of functions) that models a Physical Vector. The four basic operations and a pretty print function should be implemented.
+  The Vector may be initialized in any reasonable way.
+  The four operations to be implemented are:
+  
+---

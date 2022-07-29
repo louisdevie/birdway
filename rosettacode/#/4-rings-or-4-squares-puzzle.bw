@@ -1,0 +1,21 @@
+---
+  4-rings or 4-squares puzzle
+
+  https://rosettacode.org/wiki/4-rings_or_4-squares_puzzle
+
+  
+  Task
+  Replace       a, b, c, d, e, f,   and
+  g        with the decimal
+digits   LOW   ───►   HIGH
+such that the sum of the letters inside of each of the four large squares add up to
+the same sum.
+  Show all output here.
+  
+  Show all solutions for each letter being unique with
+  Show all solutions for each letter being unique with
+  Show only the   number   of solutions when each letter can be non-unique
+  
+  Related task
+  
+---

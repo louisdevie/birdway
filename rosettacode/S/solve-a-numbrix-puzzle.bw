@@ -1,0 +1,23 @@
+---
+  Solve a Numbrix puzzle
+
+  https://rosettacode.org/wiki/Solve_a_Numbrix_puzzle
+
+  Numbrix puzzles are similar to Hidato.
+The most important difference is that it is only possible to move 1 node left, right, up, or down (sometimes referred to as the Von Neumann neighborhood).
+Published puzzles also tend not to have holes in the grid and may not always indicate the end node.
+Two examples follow:
+  Example 1
+  Problem.
+  Solution.
+  Example 2
+  Problem.
+  Solution.
+  Task
+  Write a program to solve puzzles of this ilk,
+demonstrating your program by solving the above examples.
+Extra credit for other interesting examples.
+  
+  Related tasks
+  
+---

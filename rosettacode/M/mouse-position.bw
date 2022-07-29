@@ -1,0 +1,9 @@
+---
+  Mouse position
+
+  https://rosettacode.org/wiki/Mouse_position
+
+  Task
+  Get the current location of the mouse cursor relative to the active window.
+  Please specify if the window may be externally created.
+---

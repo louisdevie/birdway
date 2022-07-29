@@ -1,0 +1,29 @@
+---
+  Humble numbers
+
+  https://rosettacode.org/wiki/Humble_numbers
+
+  Humble numbers are positive integers which have   no   prime factors    >    7.
+  Humble numbers are also called   7-smooth numbers,   and sometimes called   highly composite,
+although this conflicts with another meaning of   highly composite numbers.
+  
+  Another way to express the above is:
+  
+  Task
+
+   show the first   50   humble numbers   (in a horizontal list)
+   show the number of humble numbers that have   x   decimal digits for all   x's   up to   n   (inclusive).
+   show   (as many as feasible or reasonable for above)   on separate lines
+   show all output here on this page
+  
+  Related tasks
+
+   Hamming numbers
+  
+  References
+
+   Wikipedia: Smooth numbers, see the 2nd paragraph.
+   OEIS A002473: humble numbers
+   University of Ulm, The first 5842 terms of humble numbers
+  
+---

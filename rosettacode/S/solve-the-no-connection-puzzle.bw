@@ -1,0 +1,33 @@
+---
+  Solve the no connection puzzle
+
+  https://rosettacode.org/wiki/Solve_the_no_connection_puzzle
+
+  You are given a box with eight holes labelled   A-to-H,   connected by fifteen straight lines in the pattern as shown below:
+  You are also given eight pegs numbered   1-to-8.
+  
+  Objective
+  Place the eight pegs in the holes so that the (absolute) difference between any two numbers connected by any line is greater than one.
+  
+  Example
+  In this attempt:
+  Note that   7   and   6   are connected and have a difference of   1,   so it is   not   a solution.
+  
+  Task
+  Produce and show here   one   solution to the puzzle.
+  
+  Related tasks
+
+   A* search algorithm
+   Solve a Holy Knight's tour
+   Knight's tour
+   N-queens problem
+   Solve a Hidato puzzle
+   Solve a Holy Knight's tour
+   Solve a Hopido puzzle
+   Solve a Numbrix puzzle
+   4-rings or 4-squares puzzle
+  
+  See also
+  No Connection Puzzle (youtube).
+---

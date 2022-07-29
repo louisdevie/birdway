@@ -1,0 +1,286 @@
+---
+  Percolation/Mean cluster density
+
+  https://rosettacode.org/wiki/Percolation/Mean_cluster_density
+
+  Let 
+
+
+
+c
+
+
+{\displaystyle c}
+
+ be a 2D boolean square matrix of 
+
+
+
+n
+×
+n
+
+
+{\displaystyle n\times n}
+
+ values of either 1 or 0 where the
+probability of any value being 1 is 
+
+
+
+p
+
+
+{\displaystyle p}
+
+, (and of 0 is therefore 
+
+
+
+1
+−
+p
+
+
+{\displaystyle 1-p}
+
+).
+We define a cluster of 1's as being a group of 1's connected vertically or
+horizontally (i.e., using the Von Neumann neighborhood rule) and bounded by either 
+
+
+
+0
+
+
+{\displaystyle 0}
+
+ or by the limits of the matrix.
+Let the number of such clusters in such a randomly constructed matrix be 
+
+
+
+
+C
+
+n
+
+
+
+
+{\displaystyle C_{n}}
+
+.
+  Percolation theory states that 
+
+
+
+K
+(
+p
+)
+
+
+{\displaystyle K(p)}
+
+ (the mean cluster density) will satisfy 
+
+
+
+K
+(
+p
+)
+=
+
+C
+
+n
+
+
+
+/
+
+
+n
+
+2
+
+
+
+
+{\displaystyle K(p)=C_{n}/n^{2}}
+
+ as 
+
+
+
+n
+
+
+{\displaystyle n}
+
+ tends to infinity. For 
+
+
+
+p
+=
+0.5
+
+
+{\displaystyle p=0.5}
+
+, 
+
+
+
+K
+(
+p
+)
+
+
+{\displaystyle K(p)}
+
+ is found numerically to approximate 
+
+
+
+0.065770
+
+
+{\displaystyle 0.065770}
+
+...
+  Task
+  Show the effect of varying 
+
+
+
+n
+
+
+{\displaystyle n}
+
+ on the accuracy of simulated 
+
+
+
+K
+(
+p
+)
+
+
+{\displaystyle K(p)}
+
+ for 
+
+
+
+p
+=
+0.5
+
+
+{\displaystyle p=0.5}
+
+ and
+for values of 
+
+
+
+n
+
+
+{\displaystyle n}
+
+ up to at least 
+
+
+
+1000
+
+
+{\displaystyle 1000}
+
+.
+Any calculation of 
+
+
+
+
+C
+
+n
+
+
+
+
+{\displaystyle C_{n}}
+
+ for finite 
+
+
+
+n
+
+
+{\displaystyle n}
+
+ is subject to randomness, so an approximation should be
+computed as the average of 
+
+
+
+t
+
+
+{\displaystyle t}
+
+ runs, where 
+
+
+
+t
+
+
+{\displaystyle t}
+
+ ≥ 
+
+
+
+5
+
+
+{\displaystyle 5}
+
+.
+  For extra credit, graphically show clusters in a 
+
+
+
+15
+×
+15
+
+
+{\displaystyle 15\times 15}
+
+, 
+
+
+
+p
+=
+0.5
+
+
+{\displaystyle p=0.5}
+
+ grid.
+  Show your output here.
+  See also
+---

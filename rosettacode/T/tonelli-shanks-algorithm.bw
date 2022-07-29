@@ -1,0 +1,24 @@
+---
+  Tonelli-Shanks algorithm
+
+  https://rosettacode.org/wiki/Tonelli-Shanks_algorithm
+
+  In computational number theory, the Tonelli–Shanks algorithm is a technique for solving for x in a congruence of the form:
+  x2 ≡ n (mod p)
+  where n is an integer which is a quadratic residue (mod p), p is an odd prime, and x,n ∈ Fp where Fp = {0, 1, ..., p - 1}.
+  It is used in cryptography techniques.
+  To apply the algorithm, we need the Legendre symbol:
+  The Legendre symbol (a | p) denotes the value of a(p-1)/2 (mod p).
+  
+  Algorithm pseudo-code
+  All ≡ are taken to mean (mod p) unless stated otherwise.
+  
+  
+  Task
+  Implement the above algorithm.
+  Find solutions (if any) for
+  Extra credit
+  
+  See also
+  
+---

@@ -1,0 +1,609 @@
+---
+  Chinese remainder theorem
+
+  https://rosettacode.org/wiki/Chinese_remainder_theorem
+
+  Suppose   
+
+
+
+
+n
+
+1
+
+
+
+
+{\displaystyle n_{1}}
+
+,   
+
+
+
+
+n
+
+2
+
+
+
+
+{\displaystyle n_{2}}
+
+,   
+
+
+
+…
+
+
+{\displaystyle \ldots }
+
+,   
+
+
+
+
+n
+
+k
+
+
+
+
+{\displaystyle n_{k}}
+
+   are positive integers that are pairwise co-prime.
+  Then, for any given sequence of integers   
+
+
+
+
+a
+
+1
+
+
+
+
+{\displaystyle a_{1}}
+
+,   
+
+
+
+
+a
+
+2
+
+
+
+
+{\displaystyle a_{2}}
+
+,   
+
+
+
+…
+
+
+{\displaystyle \dots }
+
+,   
+
+
+
+
+a
+
+k
+
+
+
+
+{\displaystyle a_{k}}
+
+,   there exists an integer   
+
+
+
+x
+
+
+{\displaystyle x}
+
+   solving the following system of simultaneous congruences:
+  x
+
+
+
+≡
+
+a
+
+1
+
+
+
+
+(
+mod
+
+
+n
+
+1
+
+
+)
+
+
+
+
+
+x
+
+
+
+≡
+
+a
+
+2
+
+
+
+
+(
+mod
+
+
+n
+
+2
+
+
+)
+
+
+
+
+
+
+
+
+ 
+ 
+⋮
+
+
+
+
+x
+
+
+
+≡
+
+a
+
+k
+
+
+
+
+(
+mod
+
+
+n
+
+k
+
+
+)
+
+
+
+
+
+
+
+{\displaystyle {\begin{aligned}x&\equiv a_{1}{\pmod {n_{1}}}\\x&\equiv a_{2}{\pmod {n_{2}}}\\&{}\ \ \vdots \\x&\equiv a_{k}{\pmod {n_{k}}}\end{aligned}}}
+  Furthermore, all solutions   
+
+
+
+x
+
+
+{\displaystyle x}
+
+   of this system are congruent modulo the product,   
+
+
+
+N
+=
+
+n
+
+1
+
+
+
+n
+
+2
+
+
+…
+
+n
+
+k
+
+
+
+
+{\displaystyle N=n_{1}n_{2}\ldots n_{k}}
+
+.
+  
+  Task
+  Write a program to solve a system of linear congruences by applying the   Chinese Remainder Theorem.
+  If the system of equations cannot be solved, your program must somehow indicate this.
+  (It may throw an exception or return a special false value.)
+  Since there are infinitely many solutions, the program should return the unique solution   
+
+
+
+s
+
+
+{\displaystyle s}
+
+   where   
+
+
+
+0
+≤
+s
+≤
+
+n
+
+1
+
+
+
+n
+
+2
+
+
+…
+
+n
+
+k
+
+
+
+
+{\displaystyle 0\leq s\leq n_{1}n_{2}\ldots n_{k}}
+
+.
+  Show the functionality of this program by printing the result such that the   
+
+
+
+n
+
+
+{\displaystyle n}
+
+'s   are   
+
+
+
+[
+3
+,
+5
+,
+7
+]
+
+
+{\displaystyle [3,5,7]}
+
+   and the   
+
+
+
+a
+
+
+{\displaystyle a}
+
+'s   are   
+
+
+
+[
+2
+,
+3
+,
+2
+]
+
+
+{\displaystyle [2,3,2]}
+
+.
+  Algorithm:   The following algorithm only applies if the   
+
+
+
+
+n
+
+i
+
+
+
+
+{\displaystyle n_{i}}
+
+'s   are pairwise co-prime.
+  Suppose, as above, that a solution is required for the system of congruences:
+  x
+≡
+
+a
+
+i
+
+
+
+
+(
+mod
+
+
+n
+
+i
+
+
+)
+
+
+
+f
+o
+r
+
+
+i
+=
+1
+,
+…
+,
+k
+
+
+{\displaystyle x\equiv a_{i}{\pmod {n_{i}}}\quad \mathrm {for} \;i=1,\ldots ,k}
+  Again, to begin, the product   
+
+
+
+N
+=
+
+n
+
+1
+
+
+
+n
+
+2
+
+
+…
+
+n
+
+k
+
+
+
+
+{\displaystyle N=n_{1}n_{2}\ldots n_{k}}
+
+   is defined.
+  Then a solution   
+
+
+
+x
+
+
+{\displaystyle x}
+
+   can be found as follows:
+  For each   
+
+
+
+i
+
+
+{\displaystyle i}
+
+,   the integers   
+
+
+
+
+n
+
+i
+
+
+
+
+{\displaystyle n_{i}}
+
+   and   
+
+
+
+N
+
+/
+
+
+n
+
+i
+
+
+
+
+{\displaystyle N/n_{i}}
+
+   are co-prime.
+  Using the   Extended Euclidean algorithm,   we can find integers   
+
+
+
+
+r
+
+i
+
+
+
+
+{\displaystyle r_{i}}
+
+   and   
+
+
+
+
+s
+
+i
+
+
+
+
+{\displaystyle s_{i}}
+
+   such that   
+
+
+
+
+r
+
+i
+
+
+
+n
+
+i
+
+
++
+
+s
+
+i
+
+
+N
+
+/
+
+
+n
+
+i
+
+
+=
+1
+
+
+{\displaystyle r_{i}n_{i}+s_{i}N/n_{i}=1}
+
+.
+  Then, one solution to the system of simultaneous congruences is:
+  x
+=
+
+∑
+
+i
+=
+1
+
+
+k
+
+
+
+a
+
+i
+
+
+
+s
+
+i
+
+
+N
+
+/
+
+
+n
+
+i
+
+
+
+
+{\displaystyle x=\sum _{i=1}^{k}a_{i}s_{i}N/n_{i}}
+  and the minimal solution,
+  x
+
+
+(
+mod
+
+N
+)
+
+
+
+{\displaystyle x{\pmod {N}}}
+
+.
+  
+---

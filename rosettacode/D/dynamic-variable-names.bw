@@ -1,0 +1,12 @@
+---
+  Dynamic variable names
+
+  https://rosettacode.org/wiki/Dynamic_variable_names
+
+  Task
+  Create a variable with a user-defined name.
+  The variable name should not be written in the program text, but should be taken from the user dynamically.
+  
+  See also
+  
+---

@@ -1,0 +1,280 @@
+---
+  Roots of a quadratic function
+
+  https://rosettacode.org/wiki/Roots_of_a_quadratic_function
+
+  Write a program to find the roots of a quadratic equation, i.e., solve the equation 
+
+
+
+a
+
+x
+
+2
+
+
++
+b
+x
++
+c
+=
+0
+
+
+{\displaystyle ax^{2}+bx+c=0}
+
+.
+Your program must correctly handle non-real roots, but it need not check that 
+
+
+
+a
+≠
+0
+
+
+{\displaystyle a\neq 0}
+
+.
+  The problem of solving a quadratic equation is a good example of how dangerous it can be to ignore the peculiarities of floating-point arithmetic.
+The obvious way to implement the quadratic formula suffers catastrophic loss of accuracy when one of the roots to be found is much closer to 0 than the other.
+In their classic textbook on numeric methods Computer Methods for Mathematical Computations, George Forsythe, Michael Malcolm, and Cleve Moler suggest trying the naive algorithm with 
+
+
+
+a
+=
+1
+
+
+{\displaystyle a=1}
+
+, 
+
+
+
+b
+=
+−
+
+10
+
+5
+
+
+
+
+{\displaystyle b=-10^{5}}
+
+, and 
+
+
+
+c
+=
+1
+
+
+{\displaystyle c=1}
+
+.
+(For double-precision floats, set 
+
+
+
+b
+=
+−
+
+10
+
+9
+
+
+
+
+{\displaystyle b=-10^{9}}
+
+.)
+Consider the following implementation in Ada:
+  As we can see, the second root has lost all significant figures. The right answer is that X2 is about 
+
+
+
+
+10
+
+−
+6
+
+
+
+
+{\displaystyle 10^{-6}}
+
+. The naive method is numerically unstable.
+  Suggested by Middlebrook (D-OA), a better numerical method: to define two parameters 
+
+
+
+q
+=
+
+
+a
+c
+
+
+
+/
+
+b
+
+
+{\displaystyle q={\sqrt {ac}}/b}
+
+ and 
+
+
+
+f
+=
+1
+
+/
+
+2
++
+
+
+1
+−
+4
+
+q
+
+2
+
+
+
+
+
+/
+
+2
+
+
+{\displaystyle f=1/2+{\sqrt {1-4q^{2}}}/2}
+  and the two roots of the quardratic are: 
+
+
+
+
+
+
+−
+b
+
+a
+
+
+f
+
+
+{\displaystyle {\frac {-b}{a}}f}
+
+ and 
+
+
+
+
+
+
+−
+c
+
+
+b
+f
+
+
+
+
+
+{\displaystyle {\frac {-c}{bf}}}
+  Task: do it better. This means that given 
+
+
+
+a
+=
+1
+
+
+{\displaystyle a=1}
+
+, 
+
+
+
+b
+=
+−
+
+10
+
+9
+
+
+
+
+{\displaystyle b=-10^{9}}
+
+, and 
+
+
+
+c
+=
+1
+
+
+{\displaystyle c=1}
+
+, both of the roots your program returns should be greater than 
+
+
+
+
+10
+
+−
+11
+
+
+
+
+{\displaystyle 10^{-11}}
+
+. Or, if your language can't do floating-point arithmetic any more precisely than single precision, your program should be able to handle 
+
+
+
+b
+=
+−
+
+10
+
+6
+
+
+
+
+{\displaystyle b=-10^{6}}
+
+. Either way, show what your program gives as the roots of the quadratic in question. See page 9 of
+"What Every Scientist Should Know About Floating-Point Arithmetic" for a possible algorithm.
+---

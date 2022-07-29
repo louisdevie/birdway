@@ -1,0 +1,328 @@
+---
+  Continued fraction/Arithmetic/Construct from rational number
+
+  https://rosettacode.org/wiki/Continued_fraction/Arithmetic/Construct_from_rational_number
+
+  The purpose of this task is to write a function 
+
+
+
+
+
+r
+2
+c
+f
+
+
+(
+
+i
+n
+t
+
+
+
+{\displaystyle {\mathit {r2cf}}(\mathrm {int} }
+
+ 
+
+
+
+
+N
+
+1
+
+
+,
+
+i
+n
+t
+
+
+
+{\displaystyle N_{1},\mathrm {int} }
+
+ 
+
+
+
+
+N
+
+2
+
+
+)
+
+
+{\displaystyle N_{2})}
+
+, or 
+
+
+
+
+
+r
+2
+c
+f
+
+
+(
+
+F
+r
+a
+c
+t
+i
+o
+n
+
+
+
+{\displaystyle {\mathit {r2cf}}(\mathrm {Fraction} }
+
+ 
+
+
+
+N
+)
+
+
+{\displaystyle N)}
+
+, which will output a continued fraction assuming:
+  N
+
+1
+
+
+
+
+{\displaystyle N_{1}}
+
+ is the numerator
+
+
+
+
+
+N
+
+2
+
+
+
+
+{\displaystyle N_{2}}
+
+ is the denominator
+  The function should output its results one digit at a time each time it is called, in a manner sometimes described as lazy evaluation.
+  To achieve this it must determine: the integer part; and remainder part, of 
+
+
+
+
+N
+
+1
+
+
+
+
+{\displaystyle N_{1}}
+
+ divided by 
+
+
+
+
+N
+
+2
+
+
+
+
+{\displaystyle N_{2}}
+
+. It then sets 
+
+
+
+
+N
+
+1
+
+
+
+
+{\displaystyle N_{1}}
+
+ to 
+
+
+
+
+N
+
+2
+
+
+
+
+{\displaystyle N_{2}}
+
+ and 
+
+
+
+
+N
+
+2
+
+
+
+
+{\displaystyle N_{2}}
+
+ to the determined remainder part. It then outputs the determined integer part. It does this until 
+
+
+
+
+a
+b
+s
+
+(
+
+N
+
+2
+
+
+)
+
+
+{\displaystyle \mathrm {abs} (N_{2})}
+
+ is zero.
+  Demonstrate the function by outputing the continued fraction for:
+  1/2
+ 3
+ 23/8
+ 13/11
+ 22/7
+ -151/77
+  2
+
+
+
+
+{\displaystyle {\sqrt {2}}}
+
+ should approach 
+
+
+
+[
+1
+;
+2
+,
+2
+,
+2
+,
+2
+,
+…
+]
+
+
+{\displaystyle [1;2,2,2,2,\ldots ]}
+
+ try ever closer rational approximations until boredom gets the better of you:
+  14142,10000
+ 141421,100000
+ 1414214,1000000
+ 14142136,10000000
+  Try :
+  31,10
+ 314,100
+ 3142,1000
+ 31428,10000
+ 314285,100000
+ 3142857,1000000
+ 31428571,10000000
+ 314285714,100000000
+  Observe how this rational number behaves differently to 
+
+
+
+
+
+2
+
+
+
+
+{\displaystyle {\sqrt {2}}}
+
+ and convince yourself that, in the same way as 
+
+
+
+3.7
+
+
+{\displaystyle 3.7}
+
+ may be represented as 
+
+
+
+3.70
+
+
+{\displaystyle 3.70}
+
+ when an extra decimal place is required, 
+
+
+
+[
+3
+;
+7
+]
+
+
+{\displaystyle [3;7]}
+
+ may be represented as 
+
+
+
+[
+3
+;
+7
+,
+∞
+]
+
+
+{\displaystyle [3;7,\infty ]}
+
+ when an extra term is required.
+---

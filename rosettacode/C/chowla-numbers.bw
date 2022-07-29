@@ -1,0 +1,54 @@
+---
+  Chowla numbers
+
+  https://rosettacode.org/wiki/Chowla_numbers
+
+  Chowla numbers are also known as:
+  Chowla's function
+   chowla numbers 
+   the chowla function
+   the chowla number
+   the chowla sequence
+  
+  The chowla number of   n   is   (as defined by Chowla's function):
+  the sum of the divisors of   n     excluding unity and   n
+   where   n   is a positive integer
+  
+  The sequence is named after   Sarvadaman D. S. Chowla,   (22 October 1907 ──► 10 December 1995),
+a London born Indian American mathematician specializing in number theory.
+  
+  German mathematician Carl Friedrich Gauss (1777─1855) said:
+  
+  Definitions
+  Chowla numbers can also be expressed as:
+  Task
+
+   create a   chowla   function that returns the   chowla number   for a positive integer   n
+   Find and display   (1 per line)   for the 1st   37   integers:
+   the integer   (the index)
+   the chowla number for that integer
+   For finding primes, use the   chowla   function to find values of zero
+   Find and display the   count   of the primes up to              100
+   Find and display the   count   of the primes up to           1,000
+   Find and display the   count   of the primes up to         10,000
+   Find and display the   count   of the primes up to       100,000
+   Find and display the   count   of the primes up to    1,000,000
+   Find and display the   count   of the primes up to  10,000,000
+   For finding perfect numbers, use the   chowla   function to find values of   n - 1
+   Find and display all   perfect numbers   up to   35,000,000
+   use commas within appropriate numbers
+   show all output here
+  
+  
+  Related tasks
+
+    totient function
+    perfect numbers
+   Proper divisors
+   Sieve of Eratosthenes
+  
+  See also
+
+   the OEIS entry for   A48050 Chowla's function.
+  
+---

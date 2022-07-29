@@ -1,0 +1,16 @@
+---
+  Queue/Usage
+
+  https://rosettacode.org/wiki/Queue/Usage
+
+  Task
+  Create a queue data structure and demonstrate its operations.
+  (For implementations of queues, see the FIFO task.)
+  Operations:
+  push       (aka enqueue) - add element
+   pop         (aka dequeue) - pop first element
+   empty     - return truth value when empty
+  
+  See also
+  
+---

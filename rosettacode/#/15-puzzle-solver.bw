@@ -1,0 +1,20 @@
+---
+  15 puzzle solver
+
+  https://rosettacode.org/wiki/15_puzzle_solver
+
+  Your task is to write a program that finds a solution in the fewest moves possible single moves to a random Fifteen Puzzle Game.
+For this task you will be using the following puzzle:
+  
+  The output must show the moves' directions, like so: left, left, left, down, right... and so on.
+There are two solutions, of fifty-two moves:
+rrrulddluuuldrurdddrullulurrrddldluurddlulurruldrdrd
+rrruldluuldrurdddluulurrrdlddruldluurddlulurruldrrdd
+see: Pretty Print of Optimal Solution
+  Finding either one, or both is an acceptable result.
+  Extra credit.
+  Solve the following problem:
+  
+  Related Task
+  
+---

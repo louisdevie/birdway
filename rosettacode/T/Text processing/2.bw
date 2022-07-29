@@ -1,0 +1,13 @@
+---
+  Text processing/2
+
+  https://rosettacode.org/wiki/Text_processing/2
+
+  The following task concerns data that came from a pollution monitoring station with twenty-four instruments monitoring twenty-four aspects of pollution in the air. Periodically a record is added to the file, each record being a line of 49 fields separated by white-space, which can be one or more space or tab characters.
+  The fields (from the left) are:
+  i.e. a datestamp followed by twenty-four repetitions of a floating-point instrument value and that instrument's associated integer flag. Flag values are >= 1 if the instrument is working and < 1 if there is some problem with it, in which case that instrument's value should be ignored.
+  A sample from the full data file readings.txt, which is also used in the Text processing/1 task, follows:
+  Data is no longer available at that link. Zipped mirror available here
+  Task
+  
+---

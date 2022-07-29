@@ -1,0 +1,16 @@
+---
+  Rosetta Code/Rank languages by number of users
+
+  https://rosettacode.org/wiki/Rosetta_Code/Rank_languages_by_number_of_users
+
+  Task
+  Sort most popular programming languages based on the number of users on Rosetta Code.
+  Show the languages with at least 100 users.
+  
+  A method to solve the task
+  Users of a computer programming language   X   are those referenced in the page:
+  In order to find the list of such categories,   it's possible to first parse the entries of:
+  Then download and parse each computer language   users   category to find the number of users of that computer language.
+  Sample output on 18 February 2019:
+  A Rosetta Code user usually declares using a language with the mylang template. This template is expected to appear on the User page. However, in some cases it appears in a user Talk page. It's not necessary to take this into account. For instance, among the 373 C users in the table above, 3 are actually declared in a Talk page.
+---

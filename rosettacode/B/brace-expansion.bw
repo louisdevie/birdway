@@ -1,0 +1,70 @@
+---
+  Brace expansion
+
+  https://rosettacode.org/wiki/Brace_expansion
+
+  Brace expansion is a type of parameter expansion made popular by Unix shells, where it allows users to specify multiple similar string parameters without having to type them all out. E.g. the parameter enable_{audio,video} would be interpreted as if both enable_audio and enable_video had been specified.
+  
+  Write a function that can perform brace expansion on any input string, according to the following specification.
+Demonstrate how it would be used, and that it passes the four test cases given below.
+  In the input string, balanced pairs of braces containing comma-separated substrings (details below) represent alternations that specify multiple alternatives which are to appear at that position in the output. In general, one can imagine the information conveyed by the input string as a tree of nested alternations interspersed with literal substrings, as shown in the middle part of the following diagram:
+  This tree can in turn be transformed into the intended list of output strings by, colloquially speaking, determining all the possible ways to walk through it from left to right while only descending into one branch of each alternation one comes across (see the right part of the diagram). When implementing it, one can of course combine the parsing and expansion into a single algorithm, but this specification discusses them separately for the sake of clarity.
+  Expansion of alternations can be more rigorously described by these rules:
+  Parsing the input string involves some additional complexity to deal with escaped characters and "incomplete" brace pairs:
+  For every possible input string, your implementation should produce exactly the output which this specification mandates. Please comply with this even when it's inconvenient, to ensure that all implementations are comparable. However, none of the above should be interpreted as instructions (or even recommendations) for how to implement it. Try to come up with a solution that is idiomatic in your programming language. (See #Perl for a reference implementation.)
+  Input(single string)
+
+ Ouput(list/array of strings)
+
+
+
+~/{Downloads,Pictures}/*.{jpg,gif,png}
+
+
+
+~/Downloads/*.jpg
+~/Downloads/*.gif
+~/Downloads/*.png
+~/Pictures/*.jpg
+~/Pictures/*.gif
+~/Pictures/*.png
+
+
+
+
+It{{em,alic}iz,erat}e{d,}, please.
+
+
+
+Itemized, please.
+Itemize, please.
+Italicized, please.
+Italicize, please.
+Iterated, please.
+Iterate, please.
+
+
+
+
+{,{,gotta have{ ,\, again\, }}more }cowbell!
+
+
+
+cowbell!
+more cowbell!
+gotta have more cowbell!
+gotta have\, again\, more cowbell!
+
+
+
+
+{}} some }{,{\\{ edge, edge} \,}{ cases, {here} \\\\\}
+
+
+
+{}} some }{,{\\ edge \,}{ cases, {here} \\\\\}
+{}} some }{,{\\ edge \,}{ cases, {here} \\\\\}
+  
+  Brace_expansion_using_ranges
+  
+---

@@ -1,0 +1,15 @@
+---
+  Water collected between towers
+
+  https://rosettacode.org/wiki/Water_collected_between_towers
+
+  Task
+  In a two-dimensional world, we begin with any bar-chart (or row of close-packed 'towers', each of unit width), and then it rains,
+completely filling all convex enclosures in the chart with water.
+  
+  In the example above, a bar chart representing the values [5, 3, 7, 2, 6, 4, 5, 9, 1, 2] has filled, collecting 14 units of water.
+  Write a function, in your language, from a given array of heights, to the number of water units that can be held in this way, by a corresponding bar chart.
+  Calculate the number of water units that could be collected by bar charts representing each of the following seven series:
+  See, also:
+  
+---

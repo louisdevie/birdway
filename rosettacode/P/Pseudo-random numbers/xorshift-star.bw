@@ -1,0 +1,30 @@
+---
+  Pseudo-random numbers/Xorshift star
+
+  https://rosettacode.org/wiki/Pseudo-random_numbers/Xorshift_star
+
+  Some definitions to help in the explanation
+  Floor operation
+https://en.wikipedia.org/wiki/Floor_and_ceiling_functions
+Greatest integer less than or equal to a real number.
+  Bitwise Logical shift operators (c-inspired)
+https://en.wikipedia.org/wiki/Bitwise_operation#Bit_shifts
+Binary bits of value shifted left or right, with zero bits shifted in where appropriate. 
+Examples are shown for 8 bit binary numbers; most significant bit to the left.
+  << Logical shift left by given number of bits.
+E.g Binary 00110101 << 2 == Binary 11010100
+  >> Logical shift right by given number of bits.
+E.g Binary 00110101 >> 2 == Binary 00001101
+  ^ Bitwise exclusive-or operator
+https://en.wikipedia.org/wiki/Exclusive_or
+Bitwise comparison for if bits differ
+E.g Binary 00110101 ^ Binary 00110011 == Binary 00000110
+  Xorshift_star Generator (pseudo-code)
+  
+  Xorshift use
+  Task
+  numbers as shown above.
+  are as shown above
+  Is as follows:
+  
+---

@@ -1,0 +1,355 @@
+---
+  Combinations with repetitions
+
+  https://rosettacode.org/wiki/Combinations_with_repetitions
+
+  The set of combinations with repetitions is computed from a set, 
+
+
+
+S
+
+
+{\displaystyle S}
+
+ (of cardinality 
+
+
+
+n
+
+
+{\displaystyle n}
+
+), and a size of resulting selection, 
+
+
+
+k
+
+
+{\displaystyle k}
+
+, by reporting the sets of cardinality 
+
+
+
+k
+
+
+{\displaystyle k}
+
+ where each member of those sets is chosen from 
+
+
+
+S
+
+
+{\displaystyle S}
+
+.
+In the real world, it is about choosing sets where there is a “large” supply of each type of element and where the order of choice does not matter.
+For example:
+  Q: How many ways can a person choose two doughnuts from a store selling three types of doughnut: iced, jam, and plain? (i.e., 
+
+
+
+S
+
+
+{\displaystyle S}
+
+ is 
+
+
+
+{
+
+i
+c
+e
+d
+
+,
+
+j
+a
+m
+
+,
+
+p
+l
+a
+i
+n
+
+}
+
+
+{\displaystyle \{\mathrm {iced} ,\mathrm {jam} ,\mathrm {plain} \}}
+
+, 
+
+
+
+
+|
+
+S
+
+|
+
+=
+3
+
+
+{\displaystyle |S|=3}
+
+, and 
+
+
+
+k
+=
+2
+
+
+{\displaystyle k=2}
+
+.)
+  A: 6: {iced, iced}; {iced, jam}; {iced, plain}; {jam, jam}; {jam, plain}; {plain, plain}.
+  Note that both the order of items within a pair, and the order of the pairs given in the answer is not significant; the pairs represent multisets.
+Also note that doughnut can also be spelled donut.
+  
+  Task
+  
+  References
+  
+  See also
+  The number of samples of size k from n objects.
+With   combinations and permutations   generation tasks. 
+
+
+
+
+ Order Unimportant
+
+ Order Important
+
+
+ Without replacement
+
+
+
+
+
+
+
+
+(
+
+
+n
+k
+
+
+)
+
+
+
+
+=
+
+n
+
+
+
+C
+
+k
+
+
+=
+
+
+
+n
+(
+n
+−
+1
+)
+…
+(
+n
+−
+k
++
+1
+)
+
+
+k
+(
+k
+−
+1
+)
+…
+1
+
+
+
+
+
+{\displaystyle {\binom {n}{k}}=^{n}\operatorname {C} _{k}={\frac {n(n-1)\ldots (n-k+1)}{k(k-1)\dots 1}}}
+
+
+
+
+
+
+
+
+
+
+n
+
+
+
+P
+
+k
+
+
+=
+n
+⋅
+(
+n
+−
+1
+)
+⋅
+(
+n
+−
+2
+)
+⋯
+(
+n
+−
+k
++
+1
+)
+
+
+{\displaystyle ^{n}\operatorname {P} _{k}=n\cdot (n-1)\cdot (n-2)\cdots (n-k+1)}
+
+
+
+
+Task: Combinations
+
+Task: Permutations
+
+
+ With replacement
+
+
+
+
+
+
+
+
+(
+
+
+
+n
++
+k
+−
+1
+
+k
+
+
+)
+
+
+
+
+=
+
+n
++
+k
+−
+1
+
+
+
+C
+
+k
+
+
+=
+
+
+
+(
+n
++
+k
+−
+1
+)
+!
+
+
+(
+n
+−
+1
+)
+!
+k
+!
+
+
+
+
+
+{\displaystyle {\binom {n+k-1}{k}}=^{n+k-1}\operatorname {C} _{k}={(n+k-1)! \over (n-1)!k!}}
+
+
+
+
+
+
+
+
+n
+
+k
+
+
+
+
+{\displaystyle n^{k}}
+
+
+
+
+Task: Combinations with repetitions
+
+Task: Permutations with repetitions
+  
+---

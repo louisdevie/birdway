@@ -1,0 +1,18 @@
+---
+  Kronecker product
+
+  https://rosettacode.org/wiki/Kronecker_product
+
+  
+  Task
+  Implement the   Kronecker product   of two matrices (arbitrary sized) resulting in a block matrix.
+  
+  Test cases
+  Show results for each of the following two samples:
+  Sample 1 (from Wikipedia):
+  Sample 2:
+  See implementations and results below in JavaScript and PARI/GP languages.
+  
+  Related task
+  
+---

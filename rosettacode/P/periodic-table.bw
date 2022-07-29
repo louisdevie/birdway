@@ -1,0 +1,18 @@
+---
+  Periodic table
+
+  https://rosettacode.org/wiki/Periodic_table
+
+  Task
+  Display the row and column in the periodic table of the given atomic number.
+  The periodic table
+  Let us consider the following periodic table representation.
+  Example test cases;
+  Details;
+  The representation of the periodic table may be represented in various way. The one presented in this challenge does have the following property : Lantanides and Aktinoides are all in a dedicated row, hence there is no element that is placed at 6, 3 nor 7, 3.
+  You may take a look at the atomic number repartitions here.
+  The atomic number is at least 1, at most 118.
+  
+  See also
+  
+---

@@ -1,0 +1,18 @@
+---
+  Fibonacci word
+
+  https://rosettacode.org/wiki/Fibonacci_word
+
+  The   Fibonacci Word   may be created in a manner analogous to the   Fibonacci Sequence   as described here:
+  
+  Task
+  Perform the above steps for     n = 37.
+  You may display the first few but not the larger values of   n.
+{Doing so will get the task's author into trouble with them what be (again!).}
+  Instead, create a table for   F_Words   1   to   37   which shows:
+  The number of characters in the word
+   The word's Entropy
+  
+  Related tasks
+  
+---

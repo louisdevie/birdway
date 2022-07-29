@@ -1,0 +1,16 @@
+---
+  Reduced row echelon form
+
+  https://rosettacode.org/wiki/Reduced_row_echelon_form
+
+  
+  Task
+  Show how to compute the reduced row echelon form
+(a.k.a. row canonical form) of a matrix.
+  The matrix can be stored in any datatype that is convenient
+(for most languages, this will probably be a two-dimensional array).
+  Built-in functions or this pseudocode (from Wikipedia) may be used:
+  For testing purposes, the RREF of this matrix:
+  is:
+  
+---

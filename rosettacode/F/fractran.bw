@@ -1,0 +1,547 @@
+---
+  Fractran
+
+  https://rosettacode.org/wiki/Fractran
+
+  FRACTRAN is a Turing-complete esoteric programming language invented by the mathematician John Horton Conway.
+  A FRACTRAN program is an ordered list of positive fractions 
+
+
+
+P
+=
+(
+
+f
+
+1
+
+
+,
+
+f
+
+2
+
+
+,
+…
+,
+
+f
+
+m
+
+
+)
+
+
+{\displaystyle P=(f_{1},f_{2},\ldots ,f_{m})}
+
+, together with an initial positive integer input 
+
+
+
+n
+
+
+{\displaystyle n}
+
+.
+  The program is run by updating the integer 
+
+
+
+n
+
+
+{\displaystyle n}
+
+ as follows:
+  Conway gave a program for primes in FRACTRAN:
+  17
+
+/
+
+91
+
+
+{\displaystyle 17/91}
+
+, 
+
+
+
+78
+
+/
+
+85
+
+
+{\displaystyle 78/85}
+
+, 
+
+
+
+19
+
+/
+
+51
+
+
+{\displaystyle 19/51}
+
+, 
+
+
+
+23
+
+/
+
+38
+
+
+{\displaystyle 23/38}
+
+, 
+
+
+
+29
+
+/
+
+33
+
+
+{\displaystyle 29/33}
+
+, 
+
+
+
+77
+
+/
+
+29
+
+
+{\displaystyle 77/29}
+
+, 
+
+
+
+95
+
+/
+
+23
+
+
+{\displaystyle 95/23}
+
+, 
+
+
+
+77
+
+/
+
+19
+
+
+{\displaystyle 77/19}
+
+, 
+
+
+
+1
+
+/
+
+17
+
+
+{\displaystyle 1/17}
+
+, 
+
+
+
+11
+
+/
+
+13
+
+
+{\displaystyle 11/13}
+
+, 
+
+
+
+13
+
+/
+
+11
+
+
+{\displaystyle 13/11}
+
+, 
+
+
+
+15
+
+/
+
+14
+
+
+{\displaystyle 15/14}
+
+, 
+
+
+
+15
+
+/
+
+2
+
+
+{\displaystyle 15/2}
+
+, 
+
+
+
+55
+
+/
+
+1
+
+
+{\displaystyle 55/1}
+  Starting with 
+
+
+
+n
+=
+2
+
+
+{\displaystyle n=2}
+
+, this FRACTRAN program will change 
+
+
+
+n
+
+
+{\displaystyle n}
+
+ to 
+
+
+
+15
+=
+2
+×
+(
+15
+
+/
+
+2
+)
+
+
+{\displaystyle 15=2\times (15/2)}
+
+, then 
+
+
+
+825
+=
+15
+×
+(
+55
+
+/
+
+1
+)
+
+
+{\displaystyle 825=15\times (55/1)}
+
+, generating the following sequence of integers:
+  2
+
+
+{\displaystyle 2}
+
+, 
+
+
+
+15
+
+
+{\displaystyle 15}
+
+, 
+
+
+
+825
+
+
+{\displaystyle 825}
+
+, 
+
+
+
+725
+
+
+{\displaystyle 725}
+
+, 
+
+
+
+1925
+
+
+{\displaystyle 1925}
+
+, 
+
+
+
+2275
+
+
+{\displaystyle 2275}
+
+, 
+
+
+
+425
+
+
+{\displaystyle 425}
+
+, 
+
+
+
+390
+
+
+{\displaystyle 390}
+
+, 
+
+
+
+330
+
+
+{\displaystyle 330}
+
+, 
+
+
+
+290
+
+
+{\displaystyle 290}
+
+, 
+
+
+
+770
+
+
+{\displaystyle 770}
+
+, 
+
+
+
+…
+
+
+{\displaystyle \ldots }
+  After 2, this sequence contains the following powers of 2:
+  2
+
+2
+
+
+=
+4
+
+
+{\displaystyle 2^{2}=4}
+
+, 
+
+
+
+
+2
+
+3
+
+
+=
+8
+
+
+{\displaystyle 2^{3}=8}
+
+, 
+
+
+
+
+2
+
+5
+
+
+=
+32
+
+
+{\displaystyle 2^{5}=32}
+
+, 
+
+
+
+
+2
+
+7
+
+
+=
+128
+
+
+{\displaystyle 2^{7}=128}
+
+, 
+
+
+
+
+2
+
+11
+
+
+=
+2048
+
+
+{\displaystyle 2^{11}=2048}
+
+, 
+
+
+
+
+2
+
+13
+
+
+=
+8192
+
+
+{\displaystyle 2^{13}=8192}
+
+, 
+
+
+
+
+2
+
+17
+
+
+=
+131072
+
+
+{\displaystyle 2^{17}=131072}
+
+, 
+
+
+
+
+2
+
+19
+
+
+=
+524288
+
+
+{\displaystyle 2^{19}=524288}
+
+, 
+
+
+
+…
+
+
+{\displaystyle \ldots }
+  which are the prime powers of 2.
+  
+  Task
+  Write a program that reads a list of fractions in a natural format from the keyboard or from a string,
+to parse it into a sequence of fractions (i.e. two integers),
+and runs the FRACTRAN starting from a provided integer, writing the result at each step.
+It is also required that the number of steps is limited (by a parameter easy to find).
+  
+  Extra credit
+  Use this program to derive the first 20 or so prime numbers.
+  
+  See also
+  For more on how to program FRACTRAN as a universal programming language, see:
+  
+---

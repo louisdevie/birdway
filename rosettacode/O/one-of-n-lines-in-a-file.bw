@@ -1,0 +1,21 @@
+---
+  One of n lines in a file
+
+  https://rosettacode.org/wiki/One_of_n_lines_in_a_file
+
+  A method of choosing a line randomly from a file:
+  Without reading the file more than once
+ When substantial parts of the file cannot be held in memory
+ Without knowing how many lines are in the file
+  Is to:
+  keep the first line of the file as a possible choice, then
+ Read the second line of the file if possible and make it the possible choice if a uniform random value between zero and one is less than 1/2.
+ Read the third line of the file if possible and make it the possible choice if a uniform random value between zero and one is less than 1/3.
+ ...
+ Read the Nth line of the file if possible and make it the possible choice if a uniform random value between zero and one is less than 1/N
+  Return the computed possible choice when no further lines exist in the file.
+  
+  Task
+  Note: You may choose a smaller number of repetitions if necessary, but mention this up-front.
+  Note: This is a specific version of a Reservoir Sampling algorithm: https://en.wikipedia.org/wiki/Reservoir_sampling
+---

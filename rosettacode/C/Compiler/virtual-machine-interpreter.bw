@@ -1,0 +1,55 @@
+---
+  Compiler/virtual machine interpreter
+
+  https://rosettacode.org/wiki/Compiler/virtual_machine_interpreter
+
+  A virtual machine implements a computer in software.
+  Write a virtual machine interpreter. This interpreter should be able to run virtual
+assembly language programs created via the task. This is a
+byte-coded, 32-bit word stack based virtual machine.
+  The program should read input from a file and/or stdin, and write output to a file and/or
+stdout.
+  Input format:
+  Given the following program:
+  The output from the Code generator is a virtual assembly code program:
+  The first line of the input specifies the datasize required and the number of constant
+strings, in the order that they are reference via the code.
+  The data can be stored in a separate array, or the data can be stored at the beginning of
+the stack. Data is addressed starting at 0. If there are 3 variables, the 3rd one if
+referenced at address 2.
+  If there are one or more constant strings, they come next. The code refers to these
+strings by their index. The index starts at 0. So if there are 3 strings, and the code
+wants to reference the 3rd string, 2 will be used.
+  Next comes the actual virtual assembly code. The first number is the code address of that
+instruction. After that is the instruction mnemonic, followed by optional operands,
+depending on the instruction.
+  Registers:
+  sp:
+  pc:
+  Data:
+  Instructions:
+  Each instruction is one byte. The following instructions also have a 32-bit integer
+operand:
+  where index is an index into the data array.
+  where index is an index into the data array.
+  where value is a 32-bit integer that will be pushed onto the stack.
+  where (n) is a 32-bit integer specifying the distance between the current location and the
+desired location. addr is an unsigned value of the actual code address.
+  where (n) is a 32-bit integer specifying the distance between the current location and the
+desired location. addr is an unsigned value of the actual code address.
+  The following instructions do not have an operand. They perform their operation directly
+against the stack:
+  For the following instructions, the operation is performed against the top two entries in
+the stack:
+  For the following instructions, the operation is performed against the top entry in the
+stack:
+  Print the word at stack top as a character.
+  Print the word at stack top as an integer.
+  Stack top points to an index into the string pool. Print that entry.
+  Unconditional stop.
+  A simple example virtual machine
+  Additional examples
+  Your solution should pass all the test cases above and the additional tests found Here.
+  The C and Python versions can be considered reference implementations.
+  Related Tasks
+---

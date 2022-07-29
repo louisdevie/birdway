@@ -1,0 +1,10 @@
+---
+  Roots of unity
+
+  https://rosettacode.org/wiki/Roots_of_unity
+
+  The purpose of this task is to explore working with   complex numbers.
+  
+  Task
+  Given   n,   find the   nth   roots of unity.
+---

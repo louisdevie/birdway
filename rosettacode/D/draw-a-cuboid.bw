@@ -1,0 +1,14 @@
+---
+  Draw a cuboid
+
+  https://rosettacode.org/wiki/Draw_a_cuboid
+
+  Task
+  Draw a   cuboid   with relative dimensions of    2 × 3 × 4.
+  The cuboid can be represented graphically, or in   ASCII art,   depending on the language capabilities.
+  To fulfill the criteria of being a cuboid, three faces must be visible.
+  Either static or rotational projection is acceptable for this task.
+  
+  Related tasks
+  
+---

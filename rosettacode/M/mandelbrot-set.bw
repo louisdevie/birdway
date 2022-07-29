@@ -1,0 +1,10 @@
+---
+  Mandelbrot set
+
+  https://rosettacode.org/wiki/Mandelbrot_set
+
+  
+  Task
+  Generate and draw the Mandelbrot set.
+  Note that there are many algorithms to draw Mandelbrot set and there are many functions which generate it .
+---

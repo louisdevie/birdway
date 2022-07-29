@@ -1,0 +1,426 @@
+---
+  Subtractive generator
+
+  https://rosettacode.org/wiki/Subtractive_generator
+
+  A subtractive generator calculates a sequence of random numbers, where each number is congruent to the subtraction of two previous numbers from the sequence. 
+The formula is
+  for some fixed values of 
+
+
+
+i
+
+
+{\displaystyle i}
+
+, 
+
+
+
+j
+
+
+{\displaystyle j}
+
+ and 
+
+
+
+m
+
+
+{\displaystyle m}
+
+, all positive integers. Supposing that 
+
+
+
+i
+>
+j
+
+
+{\displaystyle i>j}
+
+, then the state of this generator is the list of the previous numbers from 
+
+
+
+
+r
+
+n
+−
+i
+
+
+
+
+{\displaystyle r_{n-i}}
+
+ to 
+
+
+
+
+r
+
+n
+−
+1
+
+
+
+
+{\displaystyle r_{n-1}}
+
+. Many states generate uniform random integers from 
+
+
+
+0
+
+
+{\displaystyle 0}
+
+ to 
+
+
+
+m
+−
+1
+
+
+{\displaystyle m-1}
+
+, but some states are bad. A state, filled with zeros, generates only zeros. If 
+
+
+
+m
+
+
+{\displaystyle m}
+
+ is even, then a state, filled with even numbers, generates only even numbers. More generally, if 
+
+
+
+f
+
+
+{\displaystyle f}
+
+ is a factor of 
+
+
+
+m
+
+
+{\displaystyle m}
+
+, then a state, filled with multiples of 
+
+
+
+f
+
+
+{\displaystyle f}
+
+, generates only multiples of 
+
+
+
+f
+
+
+{\displaystyle f}
+
+.
+  All subtractive generators have some weaknesses. The formula correlates 
+
+
+
+
+r
+
+n
+
+
+
+
+{\displaystyle r_{n}}
+
+, 
+
+
+
+
+r
+
+(
+n
+−
+i
+)
+
+
+
+
+{\displaystyle r_{(n-i)}}
+
+ and 
+
+
+
+
+r
+
+(
+n
+−
+j
+)
+
+
+
+
+{\displaystyle r_{(n-j)}}
+
+; these three numbers are not independent, as true random numbers would be. Anyone who observes 
+
+
+
+i
+
+
+{\displaystyle i}
+
+ consecutive numbers can predict the next numbers, so the generator is not cryptographically secure. The authors of Freeciv (utility/rand.c) and xpat2 (src/testit2.c) knew another problem: the low bits are less random than the high bits.
+  The subtractive generator has a better reputation than the linear congruential generator, perhaps because it holds more state. A subtractive generator might never multiply numbers: this helps where multiplication is slow. A subtractive generator might also avoid division: the value of 
+
+
+
+
+r
+
+(
+n
+−
+i
+)
+
+
+−
+
+r
+
+(
+n
+−
+j
+)
+
+
+
+
+{\displaystyle r_{(n-i)}-r_{(n-j)}}
+
+ is always between 
+
+
+
+−
+m
+
+
+{\displaystyle -m}
+
+ and 
+
+
+
+m
+
+
+{\displaystyle m}
+
+, so a program only needs to add 
+
+
+
+m
+
+
+{\displaystyle m}
+
+ to negative numbers.
+  The choice of 
+
+
+
+i
+
+
+{\displaystyle i}
+
+ and 
+
+
+
+j
+
+
+{\displaystyle j}
+
+ affects the period of the generator. A popular choice is 
+
+
+
+i
+=
+55
+
+
+{\displaystyle i=55}
+
+ and 
+
+
+
+j
+=
+24
+
+
+{\displaystyle j=24}
+
+, so the formula is
+  The subtractive generator from xpat2 uses
+  The implementation is by J. Bentley and comes from program_tools/universal.c of the DIMACS (netflow) archive at Rutgers University. It credits Knuth, TAOCP, Volume 2, Section 3.2.2 (Algorithm A).
+  Bentley uses this clever algorithm to seed the generator.
+  This generator yields the sequence 
+
+
+
+
+r
+
+220
+
+
+
+
+{\displaystyle r_{220}}
+
+, 
+
+
+
+
+r
+
+221
+
+
+
+
+{\displaystyle r_{221}}
+
+, 
+
+
+
+
+r
+
+222
+
+
+
+
+{\displaystyle r_{222}}
+
+ and so on. For example, if the seed is 292929, then the sequence begins with 
+
+
+
+
+r
+
+220
+
+
+=
+467478574
+
+
+{\displaystyle r_{220}=467478574}
+
+, 
+
+
+
+
+r
+
+221
+
+
+=
+512932792
+
+
+{\displaystyle r_{221}=512932792}
+
+, 
+
+
+
+
+r
+
+222
+
+
+=
+539453717
+
+
+{\displaystyle r_{222}=539453717}
+
+. By starting at 
+
+
+
+
+r
+
+220
+
+
+
+
+{\displaystyle r_{220}}
+
+, this generator avoids a bias from the first numbers of the sequence. This generator must store the last 55 numbers of the sequence, so to compute the next 
+
+
+
+
+r
+
+n
+
+
+
+
+{\displaystyle r_{n}}
+
+. Any array or list would work; a ring buffer is ideal but not necessary.
+  Implement a subtractive generator that replicates the sequences from xpat2.
+---

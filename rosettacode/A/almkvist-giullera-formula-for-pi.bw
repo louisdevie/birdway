@@ -1,0 +1,27 @@
+---
+  Almkvist-Giullera formula for pi
+
+  https://rosettacode.org/wiki/Almkvist-Giullera_formula_for_pi
+
+  The Almkvist-Giullera formula for calculating   1/π2   is based on the Calabi-Yau
+differential equations of order 4 and 5,   which were originally used to describe certain manifolds
+in string theory.
+  The formula is:
+  1/π2 = (25/3) ∑0∞ ((6n)! / (n!6))(532n2 + 126n + 9) / 10002n+1
+  This formula can be used to calculate the constant   π-2,   and thus to calculate   π.
+  Note that, because the product of all terms but the power of 1000 can be calculated as an integer,
+the terms in the series can be separated into a large integer term:
+  (25) (6n)! (532n2 + 126n + 9) / (3(n!)6)      (***)
+  multiplied by a negative integer power of 10:
+  10-(6n + 3)
+  
+  Task
+
+ Print the integer portions (the starred formula, which is without the power of 1000 divisor) of the first 10 terms of the series.
+ Use the complete formula to calculate and print π to 70 decimal digits of precision.
+  
+  Reference
+
+  Gert Almkvist and Jesús Guillera, Ramanujan-like series for 1/π2 and string theory, Experimental Mathematics, 21 (2012), page 2, formula 1.
+  
+---

@@ -1,0 +1,59 @@
+---
+  Dijkstra's algorithm
+
+  https://rosettacode.org/wiki/Dijkstra%27s_algorithm
+
+  Dijkstra's algorithm, conceived by Dutch computer scientist Edsger Dijkstra in 1956 and published in 1959, is a graph search algorithm that solves the single-source shortest path problem for a graph with non-negative edge path costs, producing a shortest path tree.
+  This algorithm is often used in routing and as a subroutine in other graph algorithms.
+  For a given source vertex (node) in the graph, the algorithm finds the path with lowest cost (i.e. the shortest path) between that vertex and every other vertex.
+  
+  For instance
+  If the vertices of the graph represent cities and edge path costs represent driving distances between pairs of cities connected by a direct road,   Dijkstra's algorithm can be used to find the shortest route between one city and all other cities.
+  As a result, the shortest path first is widely used in network routing protocols, most notably:
+  IS-IS   (Intermediate System to Intermediate System)   and 
+   OSPF   (Open Shortest Path First).
+  
+  Important note
+  The inputs to Dijkstra's algorithm are a directed and weighted graph consisting of 2 or more nodes, generally represented by:
+  an adjacency matrix or list,   and
+   a start node.
+  A destination node is not specified.
+  The output is a set of edges depicting the shortest path to each destination node.
+  
+  An example, starting with
+  
+  Task
+  Vertices
+
+
+ Number 
+ Name
+
+
+ 1 
+ a
+
+
+ 2 
+ b
+
+
+ 3 
+ c
+
+
+ 4 
+ d
+
+
+ 5 
+ e
+
+
+ 6 
+ f
+  You can use numbers or names to identify vertices in your program.
+  
+  See also
+  
+---

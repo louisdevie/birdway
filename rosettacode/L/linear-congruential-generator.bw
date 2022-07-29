@@ -1,0 +1,192 @@
+---
+  Linear congruential generator
+
+  https://rosettacode.org/wiki/Linear_congruential_generator
+
+  The linear congruential generator is a very simple example of a random number generator.
+  All linear congruential generators use this formula:
+  Where:
+  If one chooses the values of 
+
+
+
+a
+
+
+{\displaystyle a}
+
+, 
+
+
+
+c
+
+
+{\displaystyle c}
+
+ and 
+
+
+
+m
+
+
+{\displaystyle m}
+
+ with care, then the generator produces a uniform distribution of integers from 
+
+
+
+0
+
+
+{\displaystyle 0}
+
+ to 
+
+
+
+m
+−
+1
+
+
+{\displaystyle m-1}
+
+.
+  LCG numbers have poor quality. 
+
+
+
+
+r
+
+n
+
+
+
+
+{\displaystyle r_{n}}
+
+ and 
+
+
+
+
+r
+
+n
++
+1
+
+
+
+
+{\displaystyle r_{n+1}}
+
+ are not independent, as true random numbers would be. Anyone who knows 
+
+
+
+
+r
+
+n
+
+
+
+
+{\displaystyle r_{n}}
+
+ can predict 
+
+
+
+
+r
+
+n
++
+1
+
+
+
+
+{\displaystyle r_{n+1}}
+
+, therefore LCG is not cryptographically secure. The LCG is still good enough for simple tasks like Miller-Rabin primality test, or FreeCell deals. Among the benefits of the LCG, one can easily reproduce a sequence of numbers, from the same 
+
+
+
+
+r
+
+0
+
+
+
+
+{\displaystyle r_{0}}
+
+. One can also reproduce such sequence with a different programming language, because the formula is so simple.
+  The task is to replicate two historic random number generators. One is the rand() function from BSD libc, and the other is the rand() function from the Microsoft C Runtime (MSCVRT.DLL). Each replica must yield the same sequence of integers as the original generator, when starting from the same seed.
+  In these formulas, the seed becomes 
+
+
+
+s
+t
+a
+t
+
+e
+
+0
+
+
+
+
+{\displaystyle state_{0}}
+
+. The random sequence is 
+
+
+
+r
+a
+n
+
+d
+
+1
+
+
+
+
+{\displaystyle rand_{1}}
+
+, 
+
+
+
+r
+a
+n
+
+d
+
+2
+
+
+
+
+{\displaystyle rand_{2}}
+
+ and so on.
+  
+  BSD formula
+  
+  Microsoft formula
+  The BSD formula was so awful that FreeBSD switched to a different formula.
+  More info is at Random number generator (included)#C.
+---

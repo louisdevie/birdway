@@ -1,0 +1,12 @@
+---
+  Palindrome detection
+
+  https://rosettacode.org/wiki/Palindrome_detection
+
+  A palindrome is a phrase which reads the same backward and forward.
+  Write a function or program that checks whether a given sequence of characters (or, if you prefer, bytes)
+is a palindrome.
+  For extra credit:
+  
+  
+---

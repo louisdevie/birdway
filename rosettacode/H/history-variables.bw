@@ -1,0 +1,17 @@
+---
+  History variables
+
+  https://rosettacode.org/wiki/History_variables
+
+  Storing the history of objects in a program is a common task. 
+Maintaining the history of an object in a program has traditionally required programmers either to write specific code for handling the historical data, or to use a library which supports history logging.
+  History variables are variables in a programming language which store not only their current value, but also the values they have contained in the past. Some existing languages do provide support for history variables. However these languages typically have many limits and restrictions on use of history variables.
+  [http://www.bod.com/index.php?id=3435&objk_id=148050 "History Variables:
+The Semantics, Formal Correctness, and Implementation of History Variables
+in an Imperative Programming Language" by Mallon and Takaoka]
+  Concept also discussed on LtU and Patents.com.
+  Task
+  Demonstrate History variable support:
+  For extra points, if the language of choice does not support history variables,
+demonstrate how this might be implemented.
+---

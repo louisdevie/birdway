@@ -1,0 +1,14 @@
+---
+  Closest-pair problem
+
+  https://rosettacode.org/wiki/Closest-pair_problem
+
+  
+  Task
+  Provide a function to find the closest two points among a set of given points in two dimensions,   i.e. to solve the   Closest pair of points problem   in the   planar   case.
+  The straightforward solution is a   O(n2)   algorithm   (which we can call brute-force algorithm);   the pseudo-code (using indexes) could be simply:
+  A better algorithm is based on the recursive divide&conquer approach,   as explained also at   Wikipedia's Closest pair of points problem,   which is   O(n log n);   a pseudo-code could be:
+  
+  References and further readings
+  
+---

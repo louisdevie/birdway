@@ -1,0 +1,212 @@
+---
+  Percolation/Site percolation
+
+  https://rosettacode.org/wiki/Percolation/Site_percolation
+
+  Given an 
+
+
+
+M
+×
+N
+
+
+{\displaystyle M\times N}
+
+ rectangular array of cells numbered 
+
+
+
+
+c
+e
+l
+l
+
+[
+0..
+M
+−
+1
+,
+0..
+N
+−
+1
+]
+
+
+{\displaystyle \mathrm {cell} [0..M-1,0..N-1]}
+
+assume 
+
+
+
+M
+
+
+{\displaystyle M}
+
+ is horizontal and 
+
+
+
+N
+
+
+{\displaystyle N}
+
+ is downwards.
+  Assume that the probability of any cell being filled is a constant 
+
+
+
+p
+
+
+{\displaystyle p}
+
+ where
+  0.0
+≤
+p
+≤
+1.0
+
+
+{\displaystyle 0.0\leq p\leq 1.0}
+  The task
+  Simulate creating the array of cells with probability 
+
+
+
+p
+
+
+{\displaystyle p}
+
+ and then
+testing if there is a route through adjacent filled cells from any on row 
+
+
+
+0
+
+
+{\displaystyle 0}
+
+ to any on row 
+
+
+
+N
+
+
+{\displaystyle N}
+
+, i.e. testing for site percolation.
+  Given 
+
+
+
+p
+
+
+{\displaystyle p}
+
+ repeat the percolation 
+
+
+
+t
+
+
+{\displaystyle t}
+
+ times to estimate the proportion of times that the fluid can percolate to the bottom for any given 
+
+
+
+p
+
+
+{\displaystyle p}
+
+.
+  Show how the probability of percolating through the random grid changes with 
+
+
+
+p
+
+
+{\displaystyle p}
+
+ going from 
+
+
+
+0.0
+
+
+{\displaystyle 0.0}
+
+ to 
+
+
+
+1.0
+
+
+{\displaystyle 1.0}
+
+ in 
+
+
+
+0.1
+
+
+{\displaystyle 0.1}
+
+ increments and with the number of repetitions to estimate the fraction at any given 
+
+
+
+p
+
+
+{\displaystyle p}
+
+ as 
+
+
+
+t
+>=
+100
+
+
+{\displaystyle t>=100}
+
+.
+  Use an 
+
+
+
+M
+=
+15
+,
+N
+=
+15
+
+
+{\displaystyle M=15,N=15}
+
+ grid of cells for all cases.
+  Optionally depict a percolation through a cell grid graphically.
+  Show all output on this page.
+---

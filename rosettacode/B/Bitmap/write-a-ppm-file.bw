@@ -1,0 +1,8 @@
+---
+  Bitmap/Write a PPM file
+
+  https://rosettacode.org/wiki/Bitmap/Write_a_PPM_file
+
+  Using the data storage type defined on this page for raster images, write the image to a PPM file (binary P6 prefered).
+  (Read the definition of PPM file on Wikipedia.)
+---

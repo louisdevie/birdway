@@ -1,0 +1,28 @@
+---
+  Nonogram solver
+
+  https://rosettacode.org/wiki/Nonogram_solver
+
+  A nonogram is a puzzle that provides
+numeric clues used to fill in a grid of cells,
+establishing for each cell whether it is filled or not.
+The puzzle solution is typically a picture of some kind.
+  Each row and column of a rectangular grid is annotated with the lengths
+of its distinct runs of occupied cells.
+Using only these lengths you should find one valid configuration
+of empty and occupied cells, or show a failure message.
+  Example
+  The problem above could be represented by two lists of lists:
+  A more compact representation of the same problem uses strings,
+where the letters represent the numbers, A=1, B=2, etc:
+  Task
+  For this task, try to solve the 4 problems below, read from a “nonogram_problems.txt” file that has this content
+(the blank lines are separators):
+  Extra credit: generate nonograms with unique solutions, of desired height and width.
+
+This task is the problem n.98 of the "99 Prolog Problems" by Werner Hett (also thanks to Paul Singleton for the idea and the examples).
+  Related tasks
+  
+  See also
+  
+---

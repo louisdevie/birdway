@@ -1,0 +1,55 @@
+---
+  Left factorials
+
+  https://rosettacode.org/wiki/Left_factorials
+
+  Left factorials,   !n,   may refer to either   subfactorials   or to   factorial sums;
+the same notation can be confusingly seen being used for the two different definitions.
+  Sometimes,   subfactorials   (also known as derangements)   may use any of the notations:
+  !n`   
+     !n  
+     n¡
+  (It may not be visually obvious, but the last example uses an upside-down exclamation mark.)
+  This Rosetta Code task will be using this formula   (factorial sums)   for   left factorial:
+  !
+n
+=
+
+∑
+
+k
+=
+0
+
+
+n
+−
+1
+
+
+k
+!
+
+
+{\displaystyle !n=\sum _{k=0}^{n-1}k!}
+  
+  where
+  
+  !
+0
+=
+0
+
+
+{\displaystyle !0=0}
+  
+  
+  Task
+  Display the left factorials for:
+  Display the length (in decimal digits) of the left factorials for:
+  
+  Also see
+  
+  Related task
+  
+---

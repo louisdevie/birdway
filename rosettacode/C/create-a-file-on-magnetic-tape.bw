@@ -1,0 +1,7 @@
+---
+  Create a file on magnetic tape
+
+  https://rosettacode.org/wiki/Create_a_file_on_magnetic_tape
+
+  The task is to create a new file called "TAPE.FILE" of any size on Magnetic Tape.
+---

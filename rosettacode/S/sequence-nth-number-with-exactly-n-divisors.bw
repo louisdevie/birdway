@@ -1,0 +1,14 @@
+---
+  Sequence: nth number with exactly n divisors
+
+  https://rosettacode.org/wiki/Sequence:_nth_number_with_exactly_n_divisors
+
+  Calculate the sequence where each term an is the nth that has n divisors.
+  Task
+  Show here, on this page, at least the first 15 terms of the sequence.
+  See also
+  OEIS:A073916
+  Related tasks
+  Sequence: smallest number greater than previous term with exactly n divisors
+Sequence: smallest number with exactly n divisors
+---

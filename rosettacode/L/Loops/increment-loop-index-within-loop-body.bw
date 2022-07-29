@@ -1,0 +1,34 @@
+---
+  Loops/Increment loop index within loop body
+
+  https://rosettacode.org/wiki/Loops/Increment_loop_index_within_loop_body
+
+  Sometimes, one may need   (or want)   a loop which
+its   iterator   (the index
+variable)   is modified within the
+loop body    in addition to the normal incrementation by the   (do)   loop structure index.
+  
+  Goal
+  Demonstrate the best way to accomplish this.
+  
+  Task
+  Write a loop which:
+  starts the index (variable) at   42
+   (at iteration time)   increments the index by unity
+   if the index is prime:
+   displays the count of primes found (so far) and the prime   (to the terminal)
+   increments the index such that the new index is now the (old) index plus that prime
+   terminates the loop when   42   primes are shown
+  Extra credit:   because of the primes get rather large, use commas
+within the displayed primes to ease comprehension.
+  Show all output here.
+  
+  Note
+  Not all programming languages allow the modification of a
+loop's index.   If that is the case, then use whatever method that
+is appropriate or idiomatic for that language.   Please add a note
+if the loop's index isn't modifiable.
+  
+  Related tasks
+  
+---

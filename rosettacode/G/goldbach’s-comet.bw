@@ -1,0 +1,19 @@
+---
+  Goldbach's comet
+
+  https://rosettacode.org/wiki/Goldbach%27s_comet
+
+  Goldbach's comet is the name given to a plot of the function g(E), the so-called Goldbach function.
+  The Goldbach function is studied in relation to Goldbach's conjecture. The function g(E) is defined for all even integers E>2 to be the number of different ways in which E can be expressed as the sum of two primes.
+  Examples
+  
+  Task
+  
+  Stretch
+  
+  See also
+  Wikipedia: Goldbach's conjecture
+ OEIS: A045917 - From Goldbach problem: number of decompositions of 2n into unordered sums of two primes
+  
+  
+---

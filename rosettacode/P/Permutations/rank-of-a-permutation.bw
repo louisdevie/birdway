@@ -1,0 +1,98 @@
+---
+  Permutations/Rank of a permutation
+
+  https://rosettacode.org/wiki/Permutations/Rank_of_a_permutation
+
+  A particular ranking of a permutation associates an integer with a particular ordering of all the permutations of a set of distinct items.
+For our purposes the ranking will assign integers 
+
+
+
+0..
+(
+n
+!
+−
+1
+)
+
+
+{\displaystyle 0..(n!-1)}
+
+ to an ordering of all the permutations of the integers 
+
+
+
+0..
+(
+n
+−
+1
+)
+
+
+{\displaystyle 0..(n-1)}
+
+.
+  For example, the permutations of the digits zero to 3 arranged lexicographically have the following rank:
+  Algorithms exist that can generate a rank from a permutation for some particular ordering of permutations, and that can generate the same rank from the given individual permutation (i.e. given a rank of 17 produce (2, 3, 1, 0) in the example above).
+  One use of such algorithms could be in generating a small, random, sample of permutations of 
+
+
+
+n
+
+
+{\displaystyle n}
+
+ items without duplicates when the total number of permutations is large. Remember that the total number of permutations of 
+
+
+
+n
+
+
+{\displaystyle n}
+
+ items is given by 
+
+
+
+n
+!
+
+
+{\displaystyle n!}
+
+ which grows large very quickly: A 32 bit integer can only hold 
+
+
+
+12
+!
+
+
+{\displaystyle 12!}
+
+, a 64 bit integer only 
+
+
+
+20
+!
+
+
+{\displaystyle 20!}
+
+. It becomes difficult to take the straight-forward approach of generating all permutations then taking a random sample of them.
+  A question on the Stack Overflow site asked how to generate one million random and indivudual permutations of 144 items.
+  
+  Task
+  
+  Stretch goal
+  
+  References
+  
+  Related tasks
+  
+---

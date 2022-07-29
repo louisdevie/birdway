@@ -1,0 +1,14 @@
+---
+  Sierpinski triangle
+
+  https://rosettacode.org/wiki/Sierpinski_triangle
+
+  Task
+  Produce an ASCII representation of a Sierpinski triangle of order   N.
+  
+  Example
+  The Sierpinski triangle of order   4   should look like this:
+  
+  Related tasks
+  
+---

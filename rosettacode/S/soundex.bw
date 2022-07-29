@@ -1,0 +1,13 @@
+---
+  Soundex
+
+  https://rosettacode.org/wiki/Soundex
+
+  Soundex is an algorithm for creating indices for words based on their pronunciation.
+  
+  Task
+  The goal is for homophones to be encoded to the same representation so that they can be matched despite minor differences in spelling   (from the   soundex   Wikipedia article).
+  Caution
+  There is a major issue in many of the implementations concerning the separation of two consonants that have the same soundex code! According to the official Rules [[1]]. So check for instance if Ashcraft is coded to A-261.
+  
+---

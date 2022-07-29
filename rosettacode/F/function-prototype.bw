@@ -1,0 +1,11 @@
+---
+  Function prototype
+
+  https://rosettacode.org/wiki/Function_prototype
+
+  Some languages provide the facility to declare functions and subroutines through the use of function prototyping.
+  
+  Task
+  Demonstrate the methods available for declaring prototypes within the language. The provided solutions should include:
+  Languages that do not provide function prototyping facilities should be omitted from this task.
+---

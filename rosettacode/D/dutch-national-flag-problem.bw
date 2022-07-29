@@ -1,0 +1,18 @@
+---
+  Dutch national flag problem
+
+  https://rosettacode.org/wiki/Dutch_national_flag_problem
+
+  The Dutch national flag is composed of three coloured bands in the order:
+  red     (top)
+   then white,   and
+   lastly blue   (at the bottom).
+  The problem posed by Edsger Dijkstra is:
+  Given a number of red, blue and white balls in random order, arrange them in the order of the colours in the Dutch national flag.
+  When the problem was first posed, Dijkstra then went on to successively refine a solution, minimising the number of swaps and the number of times the colour of a ball needed to determined and restricting the balls to end in an array, ...
+  
+  Task
+  
+  C.f.
+  
+---

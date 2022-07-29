@@ -1,0 +1,13 @@
+---
+  Sum and product puzzle
+
+  https://rosettacode.org/wiki/Sum_and_product_puzzle
+
+  Solve the "Impossible Puzzle":
+  It can be hard to wrap one's head around what the three lines of dialog between S (the "sum guy") and P (the "product guy") convey about the values of X and Y.
+So for your convenience, here's a break-down:
+  Terminology:
+  
+  Your program can solve the puzzle by considering all possible pairs (X, Y) in the range 2 ≤ X < Y ≤ 98, and then successively eliminating candidates based on the three facts. It turns out only one solution remains!
+See the Python example for an implementation that uses this approach with a few optimizations.
+---

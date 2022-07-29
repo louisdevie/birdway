@@ -1,0 +1,16 @@
+---
+  Minimum multiple of m where digital sum equals m
+
+  https://rosettacode.org/wiki/Minimum_multiple_of_m_where_digital_sum_equals_m
+
+  Generate the sequence a(n) when each element is the minimum integer multiple m such that the digit sum of n times m is equal to n.
+  
+  Task
+  
+  Stretch
+  
+  See also
+  OEIS:A131382 - Minimal number m such that Sum_digits(n*m)=n
+  
+  
+---

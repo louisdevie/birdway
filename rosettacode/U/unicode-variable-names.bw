@@ -1,0 +1,13 @@
+---
+  Unicode variable names
+
+  https://rosettacode.org/wiki/Unicode_variable_names
+
+  Task
+  Set a variable with a name including the 'Δ', (delta character), to 1 
+ Increment it
+ Print its value.
+  
+  Related task
+  
+---

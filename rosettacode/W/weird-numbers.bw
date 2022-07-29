@@ -1,0 +1,24 @@
+---
+  Weird numbers
+
+  https://rosettacode.org/wiki/Weird_numbers
+
+  In number theory, a weird number is a natural number that is abundant but not semiperfect (and therefore not perfect either).
+  In other words, the sum of the proper divisors of the number (divisors including 1 but not itself) is greater than the number itself (the number is abundant), but no subset of those divisors sums to the number itself (the number is not semiperfect).
+  For example:
+  
+  Task
+  Find and display, here on this page, the first 25 weird numbers.
+  
+  Related tasks
+
+ Abundant, deficient and perfect number classifications
+ Proper divisors
+  
+  See also
+
+ OEIS: A006037 weird numbers
+ Wikipedia: weird number
+ MathWorld: weird number
+  
+---

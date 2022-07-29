@@ -1,0 +1,29 @@
+---
+  Partition an integer x into n primes
+
+  https://rosettacode.org/wiki/Partition_an_integer_x_into_n_primes
+
+  Task
+  Partition a positive integer   X   into   N   distinct primes.
+  Or, to put it in another way:
+  Find   N   unique primes such that they add up to   X.
+  Show in the output section the sum   X   and the   N   primes in ascending order separated by plus (+) signs:
+  The output could/should be shown in a format such as:
+  Use any spacing that may be appropriate for the display.
+   You need not validate the input(s).
+   Use the lowest primes possible;   use  18 = 5+13,   not   18 = 7+11.
+   You only need to show one solution.
+  This task is similar to factoring an integer.
+  
+  Related tasks
+
+   Count in factors
+   Prime decomposition
+   Factors of an integer
+   Sieve of Eratosthenes
+   Primality by trial division
+   Factors of a Mersenne number
+   Factors of a Mersenne number
+   Sequence of primes by trial division
+  
+---

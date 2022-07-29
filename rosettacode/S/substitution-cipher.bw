@@ -1,0 +1,16 @@
+---
+  Substitution cipher
+
+  https://rosettacode.org/wiki/Substitution_cipher
+
+  Substitution Cipher Implementation - File Encryption/Decryption
+  
+  Task
+  Encrypt an input/source file by replacing every upper/lower case alphabets of the source file with another predetermined upper/lower case alphabets or symbols and save it into another output/encrypted file and then again convert that output/encrypted file into original/decrypted file.
+  This type of Encryption/Decryption scheme is often called a Substitution Cipher.
+  
+  Related tasks
+  
+  See also
+  
+---

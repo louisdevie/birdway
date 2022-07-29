@@ -1,0 +1,25 @@
+---
+  Sparkline in unicode
+
+  https://rosettacode.org/wiki/Sparkline_in_unicode
+
+  A sparkline is a graph of successive values laid out horizontally
+where the height of the line is proportional to the values in succession.
+  
+  Task
+  Use the following series of Unicode characters to create a program
+that takes a series of numbers separated by one or more whitespace or comma characters
+and generates a sparkline-type bar graph of the values on a single line of output.
+  The eight characters: '▁▂▃▄▅▆▇█'
+(Unicode values U+2581 through U+2588).
+  Use your program to show sparklines for the following input,
+here on this page:
+  (note the mix of separators in this second case)!
+  Notes
+  "0, 1, 19, 20" -> ▁▁██
+ (Aiming to use just two spark levels)
+  "0, 999, 4000, 4999, 7000, 7999" -> ▁▁▅▅██
+ (Aiming to use just three spark levels)
+  It may be helpful to include these cases in output tests.
+  
+---

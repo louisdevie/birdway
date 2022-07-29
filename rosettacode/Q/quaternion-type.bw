@@ -1,0 +1,30 @@
+---
+  Quaternion type
+
+  https://rosettacode.org/wiki/Quaternion_type
+
+  Quaternions   are an extension of the idea of   complex numbers.
+  A complex number has a real and complex part,   sometimes written as     a + bi,  
+where     a     and     b     stand for real numbers, and     i     stands for the square root of minus 1.
+  An example of a complex number might be     -3 + 2i,    
+where the real part,     a     is     -3.0     and the complex part,     b     is     +2.0.
+  A quaternion has one real part and three imaginary parts,     i,       j,     and     k.
+  A quaternion might be written as     a + bi + cj + dk.
+  In the quaternion numbering system:
+  i∙i = j∙j = k∙k = i∙j∙k = -1,         or more simply,
+     ii  = jj  = kk  = ijk   = -1.
+  The order of multiplication is important, as, in general, for two quaternions:
+  q1     and     q2:         q1q2 ≠ q2q1.
+  An example of a quaternion might be     1 +2i +3j +4k
+  There is a list form of notation where just the numbers are shown and the imaginary multipliers    i,       j,     and     k     are assumed by position.
+  So the example above would be written as     (1, 2, 3, 4)
+  
+  Task
+  Given the three quaternions and their components:
+  And a wholly real number     r = 7.
+  Create functions   (or classes)   to perform simple maths with quaternions including computing:
+  If a language has built-in support for quaternions, then use it.
+  
+  C.f.
+  
+---

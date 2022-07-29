@@ -1,0 +1,21 @@
+---
+  Bernoulli numbers
+
+  https://rosettacode.org/wiki/Bernoulli_numbers
+
+  Bernoulli numbers are used in some series expansions of several functions   (trigonometric, hyperbolic, gamma, etc.),   and are extremely important in number theory and analysis.
+  Note that there are two definitions of Bernoulli numbers;   this task will be using the modern usage   (as per   The National Institute of Standards and Technology convention).
+  The   nth   Bernoulli number is expressed as   Bn.
+  Task
+  show the Bernoulli numbers   B0   through   B60.
+   suppress the output of values which are equal to zero.   (Other than   B1 , all   odd   Bernoulli numbers have a value of zero.)
+   express the Bernoulli numbers as fractions  (most are improper fractions).
+   the fractions should be reduced.
+   index each number in some way so that it can be discerned which Bernoulli number is being displayed.
+   align the solidi   (/)   if used  (extra credit).
+  
+  An algorithm
+  The Akiyama–Tanigawa algorithm for the "second Bernoulli numbers" as taken from wikipedia is as follows:
+  See also
+  
+---

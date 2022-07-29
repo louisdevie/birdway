@@ -1,0 +1,23 @@
+---
+  Sort three variables
+
+  https://rosettacode.org/wiki/Sort_three_variables
+
+  Task
+  Sort   (the values of)   three variables   (X,   Y,   and   Z)   that contain any value   (numbers and/or literals).
+  If that isn't possible in your language, then just sort numbers   (and note if they can be floating point, integer, or other).
+  I.E.:   (for the three variables   x,   y,   and   z),   where:
+  After sorting, the three variables would hold:
+  For numeric value sorting, use:
+I.E.:   (for the three variables   x,   y,   and   z),   where:
+  After sorting, the three variables would hold:
+  The variables should contain some form of a number, but specify if the algorithm
+used can be for floating point or integers.   Note any limitations.
+  The values may or may not be unique.
+  The method used for sorting can be any algorithm;   the goal is to use the most idiomatic in the computer programming language used.
+  More than one algorithm could be shown if one isn't clearly the better choice.
+  One algorithm could be:
+  
+  Another algorithm   (only for numeric values):
+  Show the results of the sort here on this page using at least the values of those shown above.
+---

@@ -1,0 +1,53 @@
+---
+  Parsing/Shunting-yard algorithm
+
+  https://rosettacode.org/wiki/Parsing/Shunting-yard_algorithm
+
+  Task
+  Given the operator characteristics and input from the Shunting-yard algorithm page and tables, use the algorithm to show the changes in the operator stack and RPN output
+as each individual token is processed.
+  3 + 4 * 2 / ( 1 - 5 ) ^ 2 ^ 3
+  operator 
+ precedence 
+ associativity 
+ operation
+
+
+  ^  
+ 4 
+ right 
+ exponentiation
+
+
+  *  
+ 3 
+ left 
+ multiplication
+
+
+  /  
+ 3 
+ left 
+ division
+
+
+  +  
+ 2 
+ left 
+ addition
+
+
+  -  
+ 2 
+ left 
+ subtraction
+  
+  Extra credit
+  Add extra text explaining the actions and an optional comment for the action on receipt of each token.
+  
+  Note
+  The handling of functions and arguments is not required.
+  
+  See also
+  
+---

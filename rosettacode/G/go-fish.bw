@@ -1,0 +1,11 @@
+---
+  Go Fish
+
+  https://rosettacode.org/wiki/Go_Fish
+
+  Write a program to let the user play Go Fish against a computer opponent. Use the following rules:
+  The game's AI need not be terribly smart, but it should use at least some strategy. That is, it shouldn't choose legal moves entirely at random.
+  You may want to use code from Playing Cards.
+  Related tasks:
+  
+---

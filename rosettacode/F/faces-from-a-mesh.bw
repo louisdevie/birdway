@@ -1,0 +1,30 @@
+---
+  Faces from a mesh
+
+  https://rosettacode.org/wiki/Faces_from_a_mesh
+
+  A mesh defining a surface has uniquely numbered vertices, and named,
+simple-polygonal faces described usually by an ordered list of edge numbers
+going around the face,
+  For example:
+External image of two faces
+Rough textual version without edges:
+  any of all the rotations of those ordered vertices.
+  of their rotations.
+  Let's call the above the perimeter format as it traces around the perimeter.
+  A second format
+  A separate algorithm returns polygonal faces consisting of a face name and an unordered
+set of edge definitions for each face.
+  ascending order.
+  For example face A could be described by the edges (1, 11), (7, 11), and (1, 7)
+(The order of each vertex number in an edge is ascending, but the order in
+which the edges are stated is arbitrary).
+  Similarly face B could be described by the edges (11, 23), (1, 17), (17, 23),
+and (1, 11) in arbitrary order of the edges.
+  Let's call this second format the edge format.
+  
+  Task
+  1. Write a routine to check if two perimeter formatted faces have the same perimeter. Use it to check if the following pairs of perimeters are the same:
+  2. Write a routine and use it to transform the following faces from edge to perimeter format.
+  Show your output here.
+---

@@ -1,0 +1,11 @@
+---
+  Terminal control/Coloured text
+
+  https://rosettacode.org/wiki/Terminal_control/Coloured_text
+
+  Task
+  Display a word in various colours on the terminal.
+  The system palette, or colours such as Red, Green, Blue, Magenta, Cyan, and Yellow can be used.
+  Optionally demonstrate:
+  
+---

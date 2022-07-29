@@ -1,0 +1,133 @@
+---
+  Modular arithmetic
+
+  https://rosettacode.org/wiki/Modular_arithmetic
+
+  Modular arithmetic is a form of arithmetic (a calculation technique involving the concepts of addition and multiplication) which is done on numbers with a defined equivalence relation called congruence.
+  For any positive integer 
+
+
+
+p
+
+
+{\displaystyle p}
+
+ called the congruence modulus,
+two numbers 
+
+
+
+a
+
+
+{\displaystyle a}
+
+ and 
+
+
+
+b
+
+
+{\displaystyle b}
+
+ are said to be congruent modulo p whenever there exists an integer 
+
+
+
+k
+
+
+{\displaystyle k}
+
+ such that:
+  a
+=
+b
++
+k
+
+p
+
+
+{\displaystyle a=b+k\,p}
+  The corresponding set of equivalence classes forms a ring denoted 
+
+
+
+
+
+
+Z
+
+
+p
+
+Z
+
+
+
+
+
+
+{\displaystyle {\frac {\mathbb {Z} }{p\mathbb {Z} }}}
+
+.
+  Addition and multiplication on this ring have the same algebraic structure as in usual arithmetics, so that a function such as a polynomial expression could receive a ring element as argument and give a consistent result.
+  The purpose of this task is to show, if your programming language allows it,
+how to redefine operators so that they can be used transparently on modular integers.
+You can do it either by using a dedicated library, or by implementing your own class.
+  You will use the following function for demonstration:
+  f
+(
+x
+)
+=
+
+x
+
+100
+
+
++
+x
++
+1
+
+
+{\displaystyle f(x)=x^{100}+x+1}
+  You will use 
+
+
+
+13
+
+
+{\displaystyle 13}
+
+ as the congruence modulus and you will compute 
+
+
+
+f
+(
+10
+)
+
+
+{\displaystyle f(10)}
+
+.
+  It is important that the function 
+
+
+
+f
+
+
+{\displaystyle f}
+
+ is agnostic about whether or not its argument is modular; it should behave the same way with normal and modular integers.
+In other words, the function is an algebraic expression that could be used with any ring, not just integers.
+---

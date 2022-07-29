@@ -1,0 +1,12 @@
+---
+  Multi-dimensional array
+
+  https://rosettacode.org/wiki/Multi-dimensional_array
+
+  For the purposes of this task, the actual memory layout or access method of this data structure is not mandated.
+  It is enough to:
+  
+  Task
+  The array should allow a range of five, four, three and two (or two three four five if convenient), in each of the indices, in order. (For example, if indexing starts at zero for the first index then a range of 0..4 inclusive would suffice).
+  Show all output here, (but you may judiciously use ellipses to shorten repetitive output text).
+---

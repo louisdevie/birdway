@@ -1,0 +1,10 @@
+---
+  Top rank per group
+
+  https://rosettacode.org/wiki/Top_rank_per_group
+
+  Task
+  Find the top   N   salaries in each department,   where   N   is provided as a parameter.
+  Use this data as a formatted internal data structure (adapt it to your language-native idioms, rather than parse at runtime), or identify your external data source:
+  
+---

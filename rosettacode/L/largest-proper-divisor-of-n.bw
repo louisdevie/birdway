@@ -1,0 +1,9 @@
+---
+  Largest proper divisor of n
+
+  https://rosettacode.org/wiki/Largest_proper_divisor_of_n
+
+  Task
+a(1) = 1; for n > 1, a(n) = largest proper divisor of n, where n < 101 .
+  
+---

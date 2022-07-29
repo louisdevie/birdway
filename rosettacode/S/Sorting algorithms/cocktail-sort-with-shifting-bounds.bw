@@ -1,0 +1,36 @@
+---
+  Sorting algorithms/Cocktail sort with shifting bounds
+
+  https://rosettacode.org/wiki/Sorting_algorithms/Cocktail_sort_with_shifting_bounds
+
+  The   cocktail sort   is an improvement on the   Bubble Sort.
+  A cocktail sort is also known as:
+  cocktail shaker sort
+   happy hour sort
+   bidirectional bubble sort
+   a bubble sort variation
+   a selection sort variation
+   ripple sort
+   shuffle sort
+   shuttle sort
+  The improvement is basically that values "bubble"   (migrate)   both directions through the
+array,   because on each iteration the cocktail sort   bubble sorts   once
+forwards and once backwards.
+  After   ii   passes,   the first   ii   and the
+last   ii   elements in the array are in their correct
+positions,   and don't have to be checked (again).
+  By shortening the part of the array that is sorted each time,   the number of
+comparisons can be halved.
+  Pseudocode for the    2nd    algorithm   (from
+Wikipedia)   with an added comment and changed indentations:
+  %   indicates a comment,   and   deal   indicates a   swap.
+  
+  Task
+  Implement a   cocktail sort   and optionally show the sorted output here on this page.
+  See the   discussion   page for some timing comparisons.
+  
+  Related task
+
+   cocktail sort
+  
+---

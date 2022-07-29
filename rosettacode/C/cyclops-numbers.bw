@@ -1,0 +1,18 @@
+---
+  Cyclops numbers
+
+  https://rosettacode.org/wiki/Cyclops_numbers
+
+  A cyclops number is a number with an odd number of digits that has a zero in the center, but nowhere else. They are named so in tribute to the one eyed giants Cyclops from Greek mythology.
+  Cyclops numbers can be found in any base. This task strictly is looking for cyclops numbers in base 10.
+  There are many different classifications of cyclops numbers with minor differences in characteristics. In an effort to head off a whole series of tasks with tiny variations, we will cover several variants here.
+  
+  Task
+  
+  Stretch
+  (Note: there are no cyclops numbers between ten million and one hundred million, they need to have an odd number of digits)
+  
+  See also
+  
+  
+---

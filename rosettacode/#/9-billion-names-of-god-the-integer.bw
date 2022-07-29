@@ -1,0 +1,256 @@
+---
+  9 billion names of God the integer
+
+  https://rosettacode.org/wiki/9_billion_names_of_God_the_integer
+
+  This task is a variation of the short story by Arthur C. Clarke.
+  (Solvers should be aware of the consequences of completing this task.)
+  In detail, to specify what is meant by a   “name”:
+  The integer 1 has 1 name     “1”.
+The integer 2 has 2 names   “1+1”,   and   “2”.
+The integer 3 has 3 names   “1+1+1”,   “2+1”,   and   “3”.
+The integer 4 has 5 names   “1+1+1+1”,   “2+1+1”,   “2+2”,   “3+1”,   “4”.
+The integer 5 has 7 names   “1+1+1+1+1”,   “2+1+1+1”,   “2+2+1”,   “3+1+1”,   “3+2”,   “4+1”,   “5”.
+  
+  Task
+  Display the first 25 rows of a number triangle which begins:
+  Where row   
+
+
+
+n
+
+
+{\displaystyle n}
+
+   corresponds to integer   
+
+
+
+n
+
+
+{\displaystyle n}
+
+,   and each column   
+
+
+
+C
+
+
+{\displaystyle C}
+
+   in row   
+
+
+
+m
+
+
+{\displaystyle m}
+
+   from left to right corresponds to the number of names beginning with   
+
+
+
+C
+
+
+{\displaystyle C}
+
+.
+  A function   
+
+
+
+G
+(
+n
+)
+
+
+{\displaystyle G(n)}
+
+   should return the sum of the   
+
+
+
+n
+
+
+{\displaystyle n}
+
+-th   row.
+  Demonstrate this function by displaying:   
+
+
+
+G
+(
+23
+)
+
+
+{\displaystyle G(23)}
+
+,   
+
+
+
+G
+(
+123
+)
+
+
+{\displaystyle G(123)}
+
+,   
+
+
+
+G
+(
+1234
+)
+
+
+{\displaystyle G(1234)}
+
+,   and   
+
+
+
+G
+(
+12345
+)
+
+
+{\displaystyle G(12345)}
+
+.
+  Optionally note that the sum of the   
+
+
+
+n
+
+
+{\displaystyle n}
+
+-th   row   
+
+
+
+P
+(
+n
+)
+
+
+{\displaystyle P(n)}
+
+   is the     integer partition function.
+  Demonstrate this is equivalent to   
+
+
+
+G
+(
+n
+)
+
+
+{\displaystyle G(n)}
+
+   by displaying:   
+
+
+
+P
+(
+23
+)
+
+
+{\displaystyle P(23)}
+
+,   
+
+
+
+P
+(
+123
+)
+
+
+{\displaystyle P(123)}
+
+,   
+
+
+
+P
+(
+1234
+)
+
+
+{\displaystyle P(1234)}
+
+,   and   
+
+
+
+P
+(
+12345
+)
+
+
+{\displaystyle P(12345)}
+
+.
+  
+  Extra credit
+  If your environment is able, plot   
+
+
+
+P
+(
+n
+)
+
+
+{\displaystyle P(n)}
+
+   against   
+
+
+
+n
+
+
+{\displaystyle n}
+
+   for   
+
+
+
+n
+=
+1
+…
+999
+
+
+{\displaystyle n=1\ldots 999}
+
+.
+  Related tasks
+  
+---

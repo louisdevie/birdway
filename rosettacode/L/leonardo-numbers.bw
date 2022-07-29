@@ -1,0 +1,28 @@
+---
+  Leonardo numbers
+
+  https://rosettacode.org/wiki/Leonardo_numbers
+
+  Leonardo numbers   are also known as the   Leonardo series.
+  The   Leonardo numbers   are a sequence of numbers defined by:
+  where the   + 1   will herein be known as the   add   number.
+   where the   FIB   is the   Fibonacci numbers.
+  This task will be using the 3rd equation (above) to calculate the Leonardo numbers.
+  Edsger W. Dijkstra   used   Leonardo numbers   as an integral part of
+his   smoothsort   algorithm.
+  The first few Leonardo numbers are:
+  
+  Task
+
+   show the 1st   25   Leonardo numbers, starting at L(0).
+   allow the first two Leonardo numbers to be specified   [for L(0) and L(1)].
+   allow the   add   number to be specified   (1 is the default).
+   show the 1st   25   Leonardo numbers, specifying 0 and 1 for L(0) and L(1), and 0 for the add number.
+  (The last task requirement will produce the Fibonacci numbers.)
+  Show all output here on this page.
+  
+  Related tasks
+  
+  See also
+  
+---

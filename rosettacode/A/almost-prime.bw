@@ -1,0 +1,70 @@
+---
+  Almost prime
+
+  https://rosettacode.org/wiki/Almost_prime
+
+  A   k-Almost-prime   is a natural number   
+
+
+
+n
+
+
+{\displaystyle n}
+
+   that is the product of   
+
+
+
+k
+
+
+{\displaystyle k}
+
+   (possibly identical) primes.
+  
+  Example
+  1-almost-primes,   where   
+
+
+
+k
+=
+1
+
+
+{\displaystyle k=1}
+
+,   are the prime numbers themselves.
+2-almost-primes,   where   
+
+
+
+k
+=
+2
+
+
+{\displaystyle k=2}
+
+,   are the   semiprimes.
+  
+  Task
+  Write a function/method/subroutine/... that generates k-almost primes and use it to create a table here of the first ten members of k-Almost primes for   
+
+
+
+1
+<=
+K
+<=
+5
+
+
+{\displaystyle 1<=K<=5}
+
+.
+  
+  Related tasks
+  
+---

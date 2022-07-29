@@ -1,0 +1,9 @@
+---
+  Write entire file
+
+  https://rosettacode.org/wiki/Write_entire_file
+
+  Task
+  (Over)write a file so that it contains a string.
+  The reverse of Read entire file—for when you want to update or create a file which you would read in its entirety all at once.
+---

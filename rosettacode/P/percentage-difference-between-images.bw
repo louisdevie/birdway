@@ -1,0 +1,9 @@
+---
+  Percentage difference between images
+
+  https://rosettacode.org/wiki/Percentage_difference_between_images
+
+  Useful for comparing two JPEG images saved with a different compression ratios.
+  You can use these pictures for testing (use the full-size version of each):
+  The expected difference for these two images is 1.62125%
+---

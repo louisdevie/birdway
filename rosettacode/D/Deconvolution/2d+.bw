@@ -1,0 +1,373 @@
+---
+  Deconvolution/2D+
+
+  https://rosettacode.org/wiki/Deconvolution/2D%2B
+
+  This task is a straightforward generalization of Deconvolution/1D to higher dimensions. For example, the one dimensional case would be applicable to audio signals, whereas two dimensions would pertain to images. Define the discrete convolution in 
+
+
+
+
+
+d
+
+
+
+
+{\displaystyle {\mathit {d}}}
+
+ dimensions of two functions
+  H
+,
+F
+:
+
+
+Z
+
+
+d
+
+
+→
+
+R
+
+
+
+{\displaystyle H,F:\mathbb {Z} ^{d}\rightarrow \mathbb {R} }
+  taking 
+
+
+
+
+
+d
+
+
+
+
+{\displaystyle {\mathit {d}}}
+
+-tuples of integers to real numbers as the function
+  G
+:
+
+
+Z
+
+
+d
+
+
+→
+
+R
+
+
+
+{\displaystyle G:\mathbb {Z} ^{d}\rightarrow \mathbb {R} }
+  also taking 
+
+
+
+
+
+d
+
+
+
+
+{\displaystyle {\mathit {d}}}
+
+-tuples of integers to reals and satisfying
+  G
+(
+
+n
+
+0
+
+
+,
+…
+,
+
+n
+
+d
+−
+1
+
+
+)
+=
+
+∑
+
+
+m
+
+0
+
+
+=
+−
+∞
+
+
+∞
+
+
+…
+
+∑
+
+
+m
+
+d
+−
+1
+
+
+=
+−
+∞
+
+
+∞
+
+
+F
+(
+
+m
+
+0
+
+
+,
+…
+,
+
+m
+
+d
+−
+1
+
+
+)
+H
+(
+
+n
+
+0
+
+
+−
+
+m
+
+0
+
+
+,
+…
+,
+
+n
+
+d
+−
+1
+
+
+−
+
+m
+
+d
+−
+1
+
+
+)
+
+
+{\displaystyle G(n_{0},\dots ,n_{d-1})=\sum _{m_{0}=-\infty }^{\infty }\dots \sum _{m_{d-1}=-\infty }^{\infty }F(m_{0},\dots ,m_{d-1})H(n_{0}-m_{0},\dots ,n_{d-1}-m_{d-1})}
+  for all 
+
+
+
+
+
+d
+
+
+
+
+{\displaystyle {\mathit {d}}}
+
+-tuples of integers 
+
+
+
+(
+
+n
+
+0
+
+
+,
+…
+,
+
+n
+
+d
+−
+1
+
+
+)
+∈
+
+
+Z
+
+
+d
+
+
+
+
+{\displaystyle (n_{0},\dots ,n_{d-1})\in \mathbb {Z} ^{d}}
+
+. Assume
+
+
+
+
+
+
+F
+
+
+
+
+{\displaystyle {\mathit {F}}}
+
+ and 
+
+
+
+
+
+H
+
+
+
+
+{\displaystyle {\mathit {H}}}
+
+ (and therefore 
+
+
+
+
+
+G
+
+
+
+
+{\displaystyle {\mathit {G}}}
+
+) are non-zero over only a finite domain bounded by the origin, hence possible to represent as finite multi-dimensional arrays or nested lists 
+
+
+
+
+
+f
+
+
+
+
+{\displaystyle {\mathit {f}}}
+
+, 
+
+
+
+
+
+h
+
+
+
+
+{\displaystyle {\mathit {h}}}
+
+, and 
+
+
+
+
+
+g
+
+
+
+
+{\displaystyle {\mathit {g}}}
+
+.
+  For this task, implement a function (or method, procedure, subroutine, etc.) deconv to perform deconvolution (i.e., the inverse of convolution) by solving for 
+
+
+
+
+
+h
+
+
+
+
+{\displaystyle {\mathit {h}}}
+
+ given 
+
+
+
+
+
+f
+
+
+
+
+{\displaystyle {\mathit {f}}}
+
+ and 
+
+
+
+
+
+g
+
+
+
+
+{\displaystyle {\mathit {g}}}
+
+. (See Deconvolution/1D for details.)
+  dimension 1:
+  dimension 2:
+  dimension 3:
+---

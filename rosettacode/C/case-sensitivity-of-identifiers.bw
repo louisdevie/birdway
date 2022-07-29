@@ -1,0 +1,11 @@
+---
+  Case-sensitivity of identifiers
+
+  https://rosettacode.org/wiki/Case-sensitivity_of_identifiers
+
+  Three dogs (Are there three dogs or one dog?) is a code snippet used to illustrate the lettercase sensitivity of the programming language. For a case-sensitive language, the identifiers dog, Dog and DOG are all different and we should get the output:
+  For a language that is lettercase insensitive, we get the following output:
+  
+  Related task
+  
+---

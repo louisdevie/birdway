@@ -1,0 +1,16 @@
+---
+  Largest int from concatenated ints
+
+  https://rosettacode.org/wiki/Largest_int_from_concatenated_ints
+
+  Task
+  Given a set of positive integers, write a function to order the integers in such a way that the concatenation of the numbers forms the largest possible integer and return this integer.
+  Use the following two sets of integers as tests   and   show your program output here.
+  {1, 34, 3, 98, 9, 76, 45, 4}
+   {54, 546, 548, 60}
+  
+  Possible algorithms
+  
+  See also
+  
+---

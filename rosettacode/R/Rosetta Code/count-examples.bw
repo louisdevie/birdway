@@ -1,0 +1,10 @@
+---
+  Rosetta Code/Count examples
+
+  https://rosettacode.org/wiki/Rosetta_Code/Count_examples
+
+  Essentially, count the number of occurrences of =={{header| on each task page.
+  Output:
+  For a full output, updated periodically, see Rosetta Code/Count examples/Full list.
+  You'll need to use the Media Wiki API, which you can find out about locally, here, or in Media Wiki's API documentation at, API:Query
+---

@@ -1,0 +1,13 @@
+---
+  Tree datastructures
+
+  https://rosettacode.org/wiki/Tree_datastructures
+
+  The following shows a tree of data with nesting denoted by visual levels of indentation:
+  A common datastructure for trees is to define node structures having a name and a, (possibly empty), list of child nodes. The nesting of nodes captures the indentation of the tree. Lets call this the nest form.
+  Another datastructure for trees is to construct from the root an ordered list of the nodes level of indentation and the name of that node. The indentation for the root node is zero; node 'rocks is indented by one level from the left, and so on. Lets call this the indent form.
+  Task
+  Note
+  
+  Show all output on this page.
+---

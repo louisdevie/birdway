@@ -1,0 +1,7 @@
+---
+  Copy stdin to stdout
+
+  https://rosettacode.org/wiki/Copy_stdin_to_stdout
+
+  Create an executable file that copies stdin to stdout, or else a script that does so through the invocation of an interpreter at the command line.
+---

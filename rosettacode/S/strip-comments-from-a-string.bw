@@ -1,0 +1,14 @@
+---
+  Strip comments from a string
+
+  https://rosettacode.org/wiki/Strip_comments_from_a_string
+
+  The task is to remove text that follow any of a set of comment markers, (in these examples either a hash or a semicolon) from a string or input line.
+  Whitespace debacle:   There is some confusion about whether to remove any whitespace from the input line.
+  As of 2 September 2011, at least 8 languages (C, C++, Java, Perl, Python, Ruby, sed, UNIX Shell) were incorrect, out of 36 total languages, because they did not trim whitespace by 29 March 2011 rules. Some other languages might be incorrect for the same reason.
+  Please discuss this issue at Talk:Strip comments from a string.
+  The following examples will be truncated to either "apples, pears " or "apples, pears".
+  (This example has flipped between "apples, pears " and "apples, pears" in the past.)
+  
+  
+---

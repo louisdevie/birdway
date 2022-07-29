@@ -1,0 +1,21 @@
+---
+  Sequence of primorial primes
+
+  https://rosettacode.org/wiki/Sequence_of_primorial_primes
+
+  The sequence of primorial primes is given as the increasing values of n where primorial(n) ± 1 is prime.
+  Noting that the n'th primorial is defined as the multiplication of the smallest n primes, the sequence is of the number of primes, in order that when multiplied together is one-off being a prime number itself.
+  
+  Task
+  Generate and show here the first ten values of the sequence.
+  
+  Optional extended task
+  Show the first twenty members of the series.
+  
+  Notes
+  
+  Related tasks
+  
+  See also
+  
+---

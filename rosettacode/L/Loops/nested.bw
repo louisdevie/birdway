@@ -1,0 +1,36 @@
+---
+  Loops/Nested
+
+  https://rosettacode.org/wiki/Loops/Nested
+
+  Show a nested loop which searches a two-dimensional array filled with random numbers uniformly distributed over 
+
+
+
+[
+1
+,
+…
+,
+20
+]
+
+
+{\displaystyle [1,\ldots ,20]}
+
+.
+  The loops iterate rows and columns of the array printing the elements until the value 
+
+
+
+20
+
+
+{\displaystyle 20}
+
+ is met.
+  Specifically, this task also shows how to break out of nested loops.
+  
+  Related tasks
+  
+---

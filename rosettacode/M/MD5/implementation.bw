@@ -1,0 +1,10 @@
+---
+  MD5/Implementation
+
+  https://rosettacode.org/wiki/MD5/Implementation
+
+  The purpose of this task to code and validate an implementation of the MD5 Message Digest Algorithm by coding the algorithm directly (not using a call to a built-in or external hashing library). For details of the algorithm refer to MD5 on Wikipedia or the MD5 definition in IETF RFC (1321).
+  The solutions shown here will provide practical illustrations of bit manipulation, unsigned integers, working with little-endian data. Additionally, the task requires an attention to details such as boundary conditions since being out by even 1 bit will produce dramatically different results. Subtle implementation bugs can result in some hashes being correct while others are wrong. Not only is it critical to get the individual sub functions working correctly, even small errors in padding, endianness, or data layout will result in failure.
+  In addition, intermediate outputs to aid in developing an implementation can be found here.
+  The MD5 Message-Digest Algorithm was developed by RSA Data Security, Inc. in 1991.
+---

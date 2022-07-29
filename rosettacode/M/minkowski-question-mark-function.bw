@@ -1,0 +1,16 @@
+---
+  Minkowski question-mark function
+
+  https://rosettacode.org/wiki/Minkowski_question-mark_function
+
+  The Minkowski question-mark function converts the continued fraction representation [a0; a1, a2, a3, ...] of a number into a binary decimal representation in which the integer part a0 is unchanged and the a1, a2, ... become alternating runs of binary zeroes and ones of those lengths. The decimal point takes the place of the first zero.
+  Thus, ?(31/7) = 71/16 because 31/7 has the continued fraction representation [4;2,3] giving the binary expansion 4 + 0.01112.
+  Among its interesting properties is that it maps roots of quadratic equations, which have repeating continued fractions, to rational numbers, which have repeating binary digits.
+  The question-mark function is continuous and monotonically increasing, so it has an inverse.
+  [a0;a1,... an−1,an]     and 
+   [a0;a1,... an−1,an−1,1]
+  Don't worry about precision error in the last few digits.
+  
+  See also
+  
+---

@@ -1,0 +1,67 @@
+---
+  Gamma function
+
+  https://rosettacode.org/wiki/Gamma_function
+
+  Task
+  Implement one algorithm (or more) to compute the Gamma (
+
+
+
+Γ
+
+
+{\displaystyle \Gamma }
+
+) function (in the real field only).
+  If your language has the function as built-in or you know a library which has it, compare your implementation's results with the results of the built-in/library function.
+  The Gamma function can be defined as:
+  Γ
+(
+x
+)
+=
+
+
+∫
+
+0
+
+
+∞
+
+
+
+t
+
+x
+−
+1
+
+
+
+e
+
+−
+t
+
+
+d
+t
+
+
+
+{\displaystyle \Gamma (x)=\displaystyle \int _{0}^{\infty }t^{x-1}e^{-t}dt}
+  This suggests a straightforward (but inefficient) way of computing the 
+
+
+
+Γ
+
+
+{\displaystyle \Gamma }
+
+ through numerical integration.
+  Better suggested methods:
+  
+---

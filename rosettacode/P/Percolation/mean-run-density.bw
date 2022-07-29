@@ -1,0 +1,205 @@
+---
+  Percolation/Mean run density
+
+  https://rosettacode.org/wiki/Percolation/Mean_run_density
+
+  Let 
+
+
+
+v
+
+
+{\displaystyle v}
+
+ be a vector of 
+
+
+
+n
+
+
+{\displaystyle n}
+
+ values of either 1 or 0 where the probability of any
+value being 1 is 
+
+
+
+p
+
+
+{\displaystyle p}
+
+; the probability of a value being 0 is therefore 
+
+
+
+1
+−
+p
+
+
+{\displaystyle 1-p}
+
+.
+Define a run of 1s as being a group of consecutive 1s in the vector bounded
+either by the limits of the vector or by a 0. Let the number of such runs in a given
+vector of length 
+
+
+
+n
+
+
+{\displaystyle n}
+
+ be 
+
+
+
+
+R
+
+n
+
+
+
+
+{\displaystyle R_{n}}
+
+.
+  For example, the following vector has 
+
+
+
+
+R
+
+10
+
+
+=
+3
+
+
+{\displaystyle R_{10}=3}
+  Percolation theory states that
+  K
+(
+p
+)
+=
+
+lim
+
+n
+→
+∞
+
+
+
+R
+
+n
+
+
+
+/
+
+n
+=
+p
+(
+1
+−
+p
+)
+
+
+{\displaystyle K(p)=\lim _{n\to \infty }R_{n}/n=p(1-p)}
+  Task
+  Any calculation of 
+
+
+
+
+R
+
+n
+
+
+
+/
+
+n
+
+
+{\displaystyle R_{n}/n}
+
+ for finite 
+
+
+
+n
+
+
+{\displaystyle n}
+
+ is subject to randomness so should be
+computed as the average of 
+
+
+
+t
+
+
+{\displaystyle t}
+
+ runs, where 
+
+
+
+t
+≥
+100
+
+
+{\displaystyle t\geq 100}
+
+.
+  For values of 
+
+
+
+p
+
+
+{\displaystyle p}
+
+ of 0.1, 0.3, 0.5, 0.7, and 0.9, show the effect of varying 
+
+
+
+n
+
+
+{\displaystyle n}
+
+
+on the accuracy of simulated 
+
+
+
+K
+(
+p
+)
+
+
+{\displaystyle K(p)}
+
+.
+  Show your output here.
+  See also
+---

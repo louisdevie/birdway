@@ -1,0 +1,13 @@
+---
+  Composite numbers k with no single digit factors whose factors are all substrings of k
+
+  https://rosettacode.org/wiki/Composite_numbers_k_with_no_single_digit_factors_whose_factors_are_all_substrings_of_k
+
+  Find the composite numbers k in base 10, that have no single digit prime factors and whose prime factors are all a substring of k.
+  
+  Task
+  
+  Stretch
+  
+  
+---

@@ -1,0 +1,20 @@
+---
+  Canonicalize CIDR
+
+  https://rosettacode.org/wiki/Canonicalize_CIDR
+
+  Task
+  Implement a function or program that, given a range of IPv4 addresses in CIDR notation (dotted-decimal/network-bits), will return/output the same range in canonical form.
+  That is, the IP address portion of the output CIDR block must not contain any set (1) bits in the host part of the address.
+  
+  Example
+  Given   87.70.141.1/22,   your code should output   87.70.140.0/22
+  
+  Explanation
+  An Internet Protocol version 4 address is a 32-bit value, conventionally represented as a number in base 256 using dotted-decimal notation, where each base-256 "digit" is represented by the digit value in decimal and the digits are separated by periods. Logically, this 32-bit value represents two components: the leftmost (most-significant) bits determine the "network" portion of the address, while the rightmost (least-significant) bits determine the "host" portion. Classless Internet Domain Routing block notation indicates where the boundary between these two components is for a given address by adding a slash followed by the number of bits in the network portion.
+  In general, CIDR blocks stand in for the entire set of IP addresses sharing the same "network" component; it's common to see access control lists specify a single IP address using CIDR with /32 to indicate that only the one address is included. Often, the tools using this notation expect the address to be entered in canonical form, in which the "host" bits are all zeroes in the binary representation. But careless network admins may provide CIDR blocks without canonicalizing them first. This task handles the canonicalization.
+  The example address, 87.70.141.1, translates into 01010111010001101000110100000001 in binary notation zero-padded to 32 bits. The /22 means that the first 22 of those bits determine the match; the final 10 bits should be 0. But they instead include two 1 bits: 0100000001. So to canonicalize the address, change those 1's to 0's to yield 01010111010001101000110000000000, which in dotted-decimal is 87.70.140.0.
+  
+  More examples for testing
+  
+---

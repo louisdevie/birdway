@@ -1,0 +1,14 @@
+---
+  Wieferich primes
+
+  https://rosettacode.org/wiki/Wieferich_primes
+
+  In number theory, a Wieferich prime is a prime number  p  such that  p2  evenly divides  2(p − 1) − 1 .
+  It is conjectured that there are infinitely many Wieferich primes, but as of March 2021,only two have been identified.
+  
+  Task
+  
+  See also
+  OEIS A001220 - Wieferich primes
+  
+---

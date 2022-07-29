@@ -1,0 +1,28 @@
+---
+  Nonoblock
+
+  https://rosettacode.org/wiki/Nonoblock
+
+  Nonoblock is a chip off the old Nonogram puzzle.
+  
+  Given
+  
+  Task
+  
+  Enumerate the following configurations
+  
+  Example
+  Given a row of five cells and a block of two cells followed by a block of one cell - in that order, the example could be shown as:
+  And would expand to the following 3 possible rows of block positions:
+  Note how the sets of blocks are always separated by a space.
+  Note also that it is not necessary for each block to have a separate letter.
+Output approximating
+  This:
+  This would also work:
+  
+  An algorithm
+  (This is the algorithm used in the Nonoblock#Python solution).
+  
+  Reference
+  
+---

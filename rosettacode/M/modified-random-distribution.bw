@@ -1,0 +1,10 @@
+---
+  Modified random distribution
+
+  https://rosettacode.org/wiki/Modified_random_distribution
+
+  Given a random number generator, (rng), generating numbers in the range 0.0 .. 1.0 called rgen, for example; and a function modifier(x)
+taking an number in the same range and generating the probability that the input should be generated, in the same range 0..1; then implement the following algorithm for generating random numbers to the probability given by function modifier:
+  Task
+  Show your output here, on this page.
+---

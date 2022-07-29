@@ -1,0 +1,46 @@
+---
+  Knuth's power tree
+
+  https://rosettacode.org/wiki/Knuth%27s_power_tree
+
+  (Knuth's power tree is used for computing   xn   efficiently.)
+  
+  Task
+  Compute and show the list of Knuth's power tree integers necessary for the computation of:
+  xn   for any real   x   and any non-negative integer   n.
+  
+  Then, using those integers, calculate and show the exact values of (at least) the integer powers below:
+  2n     where   n   ranges from   0 ──► 17   (inclusive) 
+   3191
+   1.181
+  A  zero  power is often handled separately as a special case.
+  Optionally, support negative integer powers.
+  
+  Example
+  An example of a small power tree for some low integers:
+  Where, for the power   43,   following the tree "downwards" from   1:
+  (for   2)   compute square of   X,   store X2
+   (for   3)   compute   X * X2,   store X3
+   (for   5)   compute   X3 * X2,   store X5
+   (for 10)   compute square of   X5,   store X10
+   (for 20)   compute square of   X10,   store X20
+   (for 40)   compute square of   X20,   store X40
+   (for 43)   compute   X40 * X3   (result).
+  Note that for every even integer (in the power tree),   one just squares the previous value.
+  For an odd integer, multiply the previous value with an appropriate odd power of   X   (which was previously calculated).
+  For the last multiplication in the above example, it would be   (43-40),   or   3.
+  According to Dr. Knuth (see below),   computer tests have shown that this power tree gives optimum results for all of the   n
+  listed above in the graph.
+  For   n   ≤ 100,000,   the power tree method:
+  bests the factor method   88,803   times,
+   ties   11,191   times,
+   loses   6   times.
+  
+  References
+
+   Donald E. Knuth's book:   The Art of Computer Programming, Vol. 2, Second Edition, Seminumerical Algorithms, section 4.6.3: Evaluation of Powers.
+   link   codegolf.stackexchange.com/questions/3177/knuths-power-tree     It shows a   Haskell,   Python,   and a   Ruby   computer program example   (but they are mostly   code golf).
+   link   comeoncodeon.wordpress.com/tag/knuth/     (See the section on Knuth's Power Tree.)     It shows a   C++   computer program example.
+   link to Rosetta Code   addition-chain exponentiation.
+  
+---

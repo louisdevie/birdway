@@ -1,0 +1,30 @@
+---
+  P-Adic square roots
+
+  https://rosettacode.org/wiki/P-Adic_square_roots
+
+  
+  Task.
+  Convert rational a/b to its approximate p-adic square root. To check the result,
+square the root and construct rational m/n to compare with radicand a/b.
+  For rational reconstruction Lagrange's lattice basis reduction algorithm is used.
+  Recipe: find root x1 modulo p and build a sequence of solutions
+f(xk) ≡ 0 (mod pk),
+using the lifting equation
+xk+1 = xk + dk * pk 
+with dk = –(f(xk) / pk) /
+f ′(x1) (mod p).
+The multipliers dk are the successive p-adic digits to find.
+  If evaluation of f(x) = bx2 – a overflows,
+the expansion is cut off and might be too short to retrieve the radicand.
+Setting a higher precision won't help, using a programming language with built-in
+large integer support will.
+  
+  Related task.
+  p-Adic numbers, basic
+  
+  Reference.
+  [1]
+Solving x2 ≡ a (mod n)
+  
+---

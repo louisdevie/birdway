@@ -1,0 +1,18 @@
+---
+  Split a character string based on change of character
+
+  https://rosettacode.org/wiki/Split_a_character_string_based_on_change_of_character
+
+  
+  Task
+  Split a (character) string into comma (plus a blank) delimited
+strings based on a change of character   (left to right).
+  Show the output here   (use the 1st example below).
+  Blanks should be treated as any other character   (except
+they are problematic to display clearly).   The same applies
+to commas.
+  For instance, the string:
+  should be split and show:
+  
+  
+---

@@ -1,0 +1,17 @@
+---
+  Word search
+
+  https://rosettacode.org/wiki/Word_search
+
+  A word search puzzle typically consists of a grid of letters in which words are hidden.
+  There are many varieties of word search puzzles. For the task at hand we will use a rectangular grid in which the words may be placed horizontally, vertically, or diagonally. The words may also be spelled backwards.
+  The words may overlap but are not allowed to zigzag, or wrap around.
+  Task
+  Create a 10 by 10 word search and fill it using words from the unixdict. Use only words that are longer than 2, and contain no non-alphabetic characters.
+  The cells not used by the hidden words should contain the message: Rosetta Code, read from left to right, top to bottom. These letters should be somewhat evenly distributed over the grid, not clumped together. The message should be in upper case, the hidden words in lower case. All cells should either contain letters from the hidden words or from the message.
+  Pack a minimum of 25 words into the grid.
+  Print the resulting grid and the solutions.
+  Example
+  
+  
+---

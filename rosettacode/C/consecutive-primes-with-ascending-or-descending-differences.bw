@@ -1,0 +1,14 @@
+---
+  Consecutive primes with ascending or descending differences
+
+  https://rosettacode.org/wiki/Consecutive_primes_with_ascending_or_descending_differences
+
+  Task
+  Find and display here on this page, the longest sequence of consecutive prime numbers where the differences between the primes are strictly ascending.
+Do the same for sequences of primes where the differences are strictly descending.
+
+In both cases, show the sequence for primes   <   1,000,000.
+
+If there are multiple sequences of the same length, only the first need be shown.
+  
+---

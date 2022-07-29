@@ -1,0 +1,15 @@
+---
+  Lucky and even lucky numbers
+
+  https://rosettacode.org/wiki/Lucky_and_even_lucky_numbers
+
+  Note that in the following explanation list indices are assumed to start at one.
+  Definition of lucky numbers
+  Lucky numbers are positive integers that are formed by:
+  Definition of even lucky numbers
+  This follows the same rules as the definition of lucky numbers above except for the very first step:
+  Task requirements
+  The program should support the arguments:
+  Demonstrate the program by:
+  See also
+---

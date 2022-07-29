@@ -1,0 +1,14 @@
+---
+  Strip a set of characters from a string
+
+  https://rosettacode.org/wiki/Strip_a_set_of_characters_from_a_string
+
+  Task
+  Create a function that strips a set of characters from a string.
+  The function should take two arguments:
+  a string to be stripped 
+   a string containing the set of characters to be stripped
+  The returned string should contain the first string, stripped of any characters in the second argument:
+  
+  
+---

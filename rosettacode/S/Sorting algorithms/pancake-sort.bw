@@ -1,0 +1,18 @@
+---
+  Sorting algorithms/Pancake sort
+
+  https://rosettacode.org/wiki/Sorting_algorithms/Pancake_sort
+
+  Task
+  Sort an array of integers (of any convenient size) into ascending order using Pancake sorting.
+  In short, instead of individual elements being sorted, the only operation allowed is to "flip" one end of the list, like so:
+  Only one end of the list can be flipped; this should be the low end, but the high end is okay if it's easier to code or works better, but it must be the same end for the entire solution. (The end flipped can't be arbitrarily changed.)
+  Show both the initial, unsorted list and the final sorted list.
+  (Intermediate steps during sorting are optional.)
+  Optimizations are optional (but recommended).
+  
+  Related tasks
+  
+  Also see
+  
+---

@@ -1,0 +1,12 @@
+---
+  Count in octal
+
+  https://rosettacode.org/wiki/Count_in_octal
+
+  Task
+  Produce a sequential count in octal,   starting at zero,   and using an increment of a one for each consecutive number.
+  Each number should appear on a single line,   and the program should count until terminated,   or until the maximum value of the numeric type in use is reached.
+  
+  Related task
+  
+---

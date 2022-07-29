@@ -1,0 +1,11 @@
+---
+  Sorting algorithms/Gnome sort
+
+  https://rosettacode.org/wiki/Sorting_algorithms/Gnome_sort
+
+  Gnome sort is a sorting algorithm which is similar to Insertion sort, except that moving an element to its proper place is accomplished by a series of swaps, as in Bubble Sort.
+  The pseudocode for the algorithm is:
+  
+  Task
+  Implement the Gnome sort in your language to sort an array (or list) of numbers.
+---

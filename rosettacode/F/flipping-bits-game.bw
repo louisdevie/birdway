@@ -1,0 +1,15 @@
+---
+  Flipping bits game
+
+  https://rosettacode.org/wiki/Flipping_bits_game
+
+  The game
+  Given an   N×N   square array of zeroes or ones in an initial configuration,   and a target configuration of zeroes and ones.
+  The game is to transform one to the other in as few moves as possible by inverting whole numbered rows or whole lettered
+columns at once   (as one move).
+  In an inversion.   any  1  becomes  0,   and any  0  becomes  1  for that whole row or column.
+  
+  Task
+  Create a program to score for the Flipping bits game.
+  Show an example of a short game here, on this page, for a   3×3   array of bits.
+---

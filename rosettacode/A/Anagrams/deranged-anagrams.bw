@@ -1,0 +1,12 @@
+---
+  Anagrams/Deranged anagrams
+
+  https://rosettacode.org/wiki/Anagrams/Deranged_anagrams
+
+  Two or more words are said to be anagrams if they have the same characters, but in a different order.
+  By analogy with derangements we define a deranged anagram as two words with the same characters, but in which the same character does not appear in the same position in both words.
+  Use the word list at unixdict to find and display the longest deranged anagram.
+  
+  
+  
+---

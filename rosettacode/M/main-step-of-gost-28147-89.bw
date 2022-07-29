@@ -1,0 +1,11 @@
+---
+  Main step of GOST 28147-89
+
+  https://rosettacode.org/wiki/Main_step_of_GOST_28147-89
+
+  GOST 28147-89 is a standard symmetric encryption based on a Feistel network.
+  The structure of the algorithm consists of three levels:
+  
+  Task
+  Implement the main step of this encryption algorithm.
+---

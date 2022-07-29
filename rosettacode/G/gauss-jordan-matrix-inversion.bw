@@ -1,0 +1,9 @@
+---
+  Gauss-Jordan matrix inversion
+
+  https://rosettacode.org/wiki/Gauss-Jordan_matrix_inversion
+
+  Task
+  Invert matrix   A   using Gauss-Jordan method.
+  A   being an   n × n   matrix.
+---

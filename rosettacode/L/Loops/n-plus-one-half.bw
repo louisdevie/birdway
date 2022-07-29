@@ -1,0 +1,18 @@
+---
+  Loops/N plus one half
+
+  https://rosettacode.org/wiki/Loops/N_plus_one_half
+
+  Quite often one needs loops which, in the last iteration, execute only part of the loop body.
+  
+  Goal
+  Demonstrate the best way to do this.
+  
+  Task
+  Write a loop which writes the comma-separated list
+  using separate output statements for the number
+and the comma from within the body of the loop.
+  
+  Related tasks
+  
+---

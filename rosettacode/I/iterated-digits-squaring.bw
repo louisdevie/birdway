@@ -1,0 +1,19 @@
+---
+  Iterated digits squaring
+
+  https://rosettacode.org/wiki/Iterated_digits_squaring
+
+  If you add the square of the digits of a Natural number (an integer bigger than zero), you always end with either 1 or 89:
+  An example in Python:
+  
+  Task
+
+ Count how many number chains for integers 1 <= n < 100_000_000 end with a value 89.
+  Or, for much less credit - (showing that your algorithm and/or language is slow):
+  Count how many number chains for integers 1 <= n < 1_000_000 end with a value 89.
+  This problem derives from the Project Euler problem 92.
+  For a quick algorithm for this task see the talk page
+  
+  Related tasks
+  
+---

@@ -1,0 +1,64 @@
+---
+  Compiler/syntax analyzer
+
+  https://rosettacode.org/wiki/Compiler/syntax_analyzer
+
+  A Syntax analyzer transforms a token stream (from the Lexical analyzer)
+into a Syntax tree, based on a grammar.
+  Take the output from the Lexical analyzer task,
+and convert it to an Abstract Syntax Tree (AST),
+based on the grammar below. The output should be in a flattened format.
+  The program should read input from a file and/or stdin, and write output to a file and/or
+stdout. If the language being used has a parser module/library/class, it would be great
+if two versions of the solution are provided: One without the parser module, and one
+with.
+  The simple programming language to be analyzed is more or less a (very tiny) subset of
+C. The formal grammar in
+Extended Backus-Naur Form (EBNF):
+  The resulting AST should be formulated as a Binary Tree.
+  Example - given the simple program (below), stored in a file called while.t, create the list of tokens, using one of the Lexical analyzer solutions
+  Run one of the Syntax analyzer solutions
+  The following table shows the input to lex, lex output, and the AST produced by the parser
+  Specifications
+  List of node type names
+  In the text below, Null/Empty nodes are represented by ";".
+  Non-terminal (internal) nodes
+  For Operators, the following nodes should be created:
+  For each of the above nodes, the left and right sub-nodes are the operands of the
+respective operation.
+  In pseudo S-Expression format:
+  Negate, Not
+  For these node types, the left node is the operand, and the right node is null.
+  Sequence - sub-nodes are either statements or Sequences.
+  If - left node is the expression, the right node is If node, with it's left node being the
+if-true statement part, and the right node being the if-false (else) statement part.
+  If there is not an else, the tree becomes:
+  Prtc
+  Prts
+  Prti
+  While - left node is the expression, the right node is the statement.
+  Assign - left node is the left-hand side of the assignment, the right node is the
+right-hand side of the assignment.
+  Terminal (leaf) nodes:
+  Some simple examples
+  Sequences denote a list node; they are used to represent a list. semicolon's represent a null node, e.g., the end of this path.
+  This simple program:
+  Produces the following AST, encoded as a binary tree:
+  Under each non-leaf node are two '|' lines. The first represents the left sub-node, the second represents the right sub-node:
+  In flattened form:
+  This program:
+  Produces the following AST:
+  In flattened form:
+  Pseudo-code for the parser.
+  Uses Precedence Climbing for expression parsing, and
+Recursive Descent for statement parsing. The AST is also built:
+  Once the AST is built, it should be output in a flattened format. This can be as simple as the following
+  If the AST is correctly built, loading it into a subsequent program should be as simple as
+  Finally, the AST can also be tested by running it against one of the AST Interpreter solutions.
+  Test program, assuming this is in a file called prime.t
+ lex <prime.t | parse
+  Additional examples
+  Your solution should pass all the test cases above and the additional tests found Here.
+  The C and Python versions can be considered reference implementations.
+  Related Tasks
+---

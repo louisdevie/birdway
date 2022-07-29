@@ -1,0 +1,19 @@
+---
+  Abundant, deficient and perfect number classifications
+
+  https://rosettacode.org/wiki/Abundant,_deficient_and_perfect_number_classifications
+
+  These define three classifications of positive integers based on their   proper divisors.
+  Let   P(n)   be the sum of the proper divisors of   n   where the proper divisors are all positive divisors of   n   other than   n   itself.
+  
+  Example
+  6   has proper divisors of   1,   2,   and   3.
+  1 + 2 + 3 = 6,   so   6   is classed as a perfect number.
+  
+  Task
+  Calculate how many of the integers   1   to   20,000   (inclusive) are in each of the three classes.
+  Show the results here.
+  
+  Related tasks
+  
+---

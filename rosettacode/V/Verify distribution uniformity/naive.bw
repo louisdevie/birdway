@@ -1,0 +1,15 @@
+---
+  Verify distribution uniformity/Naive
+
+  https://rosettacode.org/wiki/Verify_distribution_uniformity/Naive
+
+  This task is an adjunct to Seven-sided dice from five-sided dice.
+  
+  Task
+  Create a function to check that the random integers returned from a small-integer generator function have uniform distribution.
+  The function should take as arguments:
+  The function should produce:
+  Show the distribution checker working when the produced distribution is flat enough and when it is not. (Use a generator from Seven-sided dice from five-sided dice).
+  See also:
+  
+---

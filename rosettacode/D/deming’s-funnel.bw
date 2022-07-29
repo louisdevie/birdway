@@ -1,0 +1,13 @@
+---
+  Deming's funnel
+
+  https://rosettacode.org/wiki/Deming%27s_funnel
+
+  W Edwards Deming was an American statistician and management guru who used physical demonstrations to illuminate his teachings. In one demonstration Deming repeatedly dropped marbles through a funnel at a target, marking where they landed, and observing the resulting pattern. He applied a sequence of "rules" to try to improve performance. In each case the experiment begins with the funnel positioned directly over the target.
+  Apply the four rules to the set of 50 pseudorandom displacements provided (e.g in the Racket solution) for the dxs and dys. Output: calculate the mean and standard-deviations of the resulting x and y values for each rule.
+  Note that rules 2, 3, and 4 give successively worse results. Trying to deterministically compensate for a random process is counter-productive, but -- according to Deming -- quite a popular pastime: see the Further Information, below for examples.
+  Stretch goal 1: Generate fresh pseudorandom data. The radial displacement of the drop from the funnel position is given by a Gaussian distribution (standard deviation is 1.0) and the angle of displacement is uniformly distributed.
+  Stretch goal 2: Show scatter plots of all four results.
+  
+  Further information
+---

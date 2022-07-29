@@ -1,0 +1,22 @@
+---
+  Sort an outline at every level
+
+  https://rosettacode.org/wiki/Sort_an_outline_at_every_level
+
+  Task
+  Write and test a function over an indented plain text outline which either:
+  
+  Your code should detect and warn of at least two types of inconsistent indentation:
+  Your code should be able to detect and handle both tab-indented, and space-indented (e.g. 4 space, 2 space etc) outlines, without being given any advance warning of the indent characters used, or the size of the indent units.
+  You should also be able to specify different types of sort, for example, as a minimum, both ascending and descending lexical sorts.
+  Your sort should not alter the type or size of the indentation units used in the input outline.
+  (For an application of Indent Respectful Sort, see the Sublime Text package of that name. The Python source text [1] is available for inspection on Github).
+  Tests
+  The output sequence of an ascending lexical sort of each level should be:
+  The output sequence of a descending lexical sort of each level should be:
+  
+  Related tasks
+  Functional_coverage_tree
+   Display_an_outline_as_a_nested_table
+  
+---

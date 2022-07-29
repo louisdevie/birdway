@@ -1,0 +1,21 @@
+---
+  Numerical integration
+
+  https://rosettacode.org/wiki/Numerical_integration
+
+  Write functions to calculate the definite integral of a function  ƒ(x)  using all five of the following methods:
+  rectangular
+ left
+ right
+ midpoint
+ trapezium
+ Simpson's
+ composite
+  Your functions should take in the upper and lower bounds (a and b), and the number of approximations to make in that range (n).
+  Assume that your example already has a function that gives values for  ƒ(x) .
+  Simpson's method is defined by the following pseudo-code:
+  Demonstrate your function by showing the results for:
+  
+  See also
+  
+---

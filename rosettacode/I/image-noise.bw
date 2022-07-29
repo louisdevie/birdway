@@ -1,0 +1,11 @@
+---
+  Image noise
+
+  https://rosettacode.org/wiki/Image_noise
+
+  Generate a random black and white   320x240   image continuously,
+showing FPS (frames per second).
+  
+  A sample image
+  
+---

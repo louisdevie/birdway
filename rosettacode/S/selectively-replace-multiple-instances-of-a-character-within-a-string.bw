@@ -1,0 +1,12 @@
+---
+  Selectively replace multiple instances of a character within a string
+
+  https://rosettacode.org/wiki/Selectively_replace_multiple_instances_of_a_character_within_a_string
+
+  Task
+  This is admittedly a trivial task but I thought it would be interesting to see how succinctly (or otherwise) different languages can handle it.
+  Given the string: "abracadabra", replace programatically:
+  Note that there is no replacement for the third 'a', second 'b' or first 'r'.
+  The answer should, of course, be : "AErBcadCbFD".
+  
+---

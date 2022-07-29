@@ -1,0 +1,14 @@
+---
+  Executable library
+
+  https://rosettacode.org/wiki/Executable_library
+
+  The general idea behind an executable library is to create a library
+that when used as a library does one thing;
+but has the ability to be run directly via command line.
+Thus the API comes with a CLI in the very same source code file.
+  Task detail
+  2. Use the routine to show that the hailstone sequence for the number 27 has 112 elements starting with 27, 82, 41, 124 and ending with 8, 4, 2, 1
+ 3. Show the number less than 100,000 which has the longest hailstone sequence together with that sequence's length.
+  Notes:
+---

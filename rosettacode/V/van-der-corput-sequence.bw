@@ -1,0 +1,260 @@
+---
+  Van der Corput sequence
+
+  https://rosettacode.org/wiki/Van_der_Corput_sequence
+
+  When counting integers in binary, if you put a (binary) point to the righEasyLangt of the count then the column immediately to the left denotes a digit with a multiplier of 
+
+
+
+
+2
+
+0
+
+
+
+
+{\displaystyle 2^{0}}
+
+; the digit in the next column to the left has a multiplier of 
+
+
+
+
+2
+
+1
+
+
+
+
+{\displaystyle 2^{1}}
+
+; and so on.
+  So in the following table:
+  the binary number "10" is 
+
+
+
+1
+×
+
+2
+
+1
+
+
++
+0
+×
+
+2
+
+0
+
+
+
+
+{\displaystyle 1\times 2^{1}+0\times 2^{0}}
+
+.
+  You can also have binary digits to the right of the “point”, just as in the decimal number system. In that case, the digit in the place immediately to the right of the point has a weight of 
+
+
+
+
+2
+
+−
+1
+
+
+
+
+{\displaystyle 2^{-1}}
+
+, or 
+
+
+
+1
+
+/
+
+2
+
+
+{\displaystyle 1/2}
+
+.
+The weight for the second column to the right of the point is 
+
+
+
+
+2
+
+−
+2
+
+
+
+
+{\displaystyle 2^{-2}}
+
+ or 
+
+
+
+1
+
+/
+
+4
+
+
+{\displaystyle 1/4}
+
+. And so on.
+  If you take the integer binary count of the first table, and reflect the digits about the binary point, you end up with the van der Corput sequence of numbers in base 2.
+  The third member of the sequence, binary 0.01, is therefore 
+
+
+
+0
+×
+
+2
+
+−
+1
+
+
++
+1
+×
+
+2
+
+−
+2
+
+
+
+
+{\displaystyle 0\times 2^{-1}+1\times 2^{-2}}
+
+ or 
+
+
+
+1
+
+/
+
+4
+
+
+{\displaystyle 1/4}
+
+.
+  This sequence is also a superset of the numbers representable by the "fraction" field of an old IEEE floating point standard. In that standard, the "fraction" field represented the fractional part of a binary number beginning with "1." e.g. 1.101001101.
+  Hint
+  A hint at a way to generate members of the sequence is to modify a routine used to change the base of an integer:
+  the above showing that 11 in decimal is 
+
+
+
+1
+×
+
+2
+
+3
+
+
++
+0
+×
+
+2
+
+2
+
+
++
+1
+×
+
+2
+
+1
+
+
++
+1
+×
+
+2
+
+0
+
+
+
+
+{\displaystyle 1\times 2^{3}+0\times 2^{2}+1\times 2^{1}+1\times 2^{0}}
+
+.
+Reflected this would become .1101 or 
+
+
+
+1
+×
+
+2
+
+−
+1
+
+
++
+1
+×
+
+2
+
+−
+2
+
+
++
+0
+×
+
+2
+
+−
+3
+
+
++
+1
+×
+
+2
+
+−
+4
+
+
+
+
+{\displaystyle 1\times 2^{-1}+1\times 2^{-2}+0\times 2^{-3}+1\times 2^{-4}}
+  
+  Task description
+  
+  See also
+  
+---

@@ -1,0 +1,13 @@
+---
+  Ternary logic
+
+  https://rosettacode.org/wiki/Ternary_logic
+
+  In logic, a three-valued logic (also trivalent, ternary, or trinary logic, sometimes abbreviated 3VL) is any of several many-valued logic systems in which there are three truth values indicating true, false and some indeterminate third value.
+  This is contrasted with the more commonly known bivalent logics (such as classical sentential or boolean logic) which provide only for true and false.
+  Conceptual form and basic ideas were initially created by Łukasiewicz, Lewis and Sulski.
+  These were then re-formulated by Grigore Moisil in an axiomatic algebraic form, and also extended to n-valued logics in 1945.
+  
+  Task
+  Note:   Setun   (Сетунь) was a   balanced ternary   computer developed in 1958 at   Moscow State University.   The device was built under the lead of   Sergei Sobolev   and   Nikolay Brusentsov.   It was the only modern   ternary computer,   using three-valued ternary logic
+---

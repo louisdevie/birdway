@@ -1,0 +1,10 @@
+---
+  Plot coordinate pairs
+
+  https://rosettacode.org/wiki/Plot_coordinate_pairs
+
+  Task
+  Plot a function represented as     x,  y     numerical arrays.
+  Post the resulting image for the following input arrays (taken from Python's Example section on Time a function):
+  This task is intended as a subtask for Measure relative performance of sorting algorithms implementations.
+---

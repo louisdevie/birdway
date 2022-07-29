@@ -1,0 +1,17 @@
+---
+  Wilson primes of order n
+
+  https://rosettacode.org/wiki/Wilson_primes_of_order_n
+
+  Definition
+  A Wilson prime of order n is a prime number   p   such that   p2   exactly divides:
+  If   n   is   1,   the latter formula reduces to the more familiar:   (p - n)! + 1   where the only known examples for   p   are   5,   13,   and   563.
+  
+  Task
+  Calculate and show on this page the Wilson primes, if any, for orders n = 1 to 11 inclusive and for primes p < 18   or,
+if your language supports big integers, for p < 11,000.
+  
+  Related task
+ Primality by Wilson's theorem
+  
+---

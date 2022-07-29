@@ -1,0 +1,9 @@
+---
+  SQL-based authentication
+
+  https://rosettacode.org/wiki/SQL-based_authentication
+
+  This task has three parts:
+  This is the table definition:
+  (pass_salt and pass_md5 would be binary(16) values, but MySQL versions before 5.0.15 strip trailing spaces when selecting them.)
+---

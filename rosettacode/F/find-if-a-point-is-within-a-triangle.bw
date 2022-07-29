@@ -1,0 +1,23 @@
+---
+  Find if a point is within a triangle
+
+  https://rosettacode.org/wiki/Find_if_a_point_is_within_a_triangle
+
+  Find if a point is within a triangle.
+  
+  Task
+  Assume points are on a plane defined by (x, y) real number coordinates.
+  Given a point P(x, y) and a triangle formed by points A, B, and C, determine if P is within triangle ABC.
+  You may use any algorithm.
+  Bonus: explain why the algorithm you chose works.
+  
+  Related tasks
+  
+  Also see
+
+ Discussion of several methods. [[1]]
+ Determine if a point is in a polygon [[2]]
+ Triangle based coordinate systems [[3]]
+ Wolfram entry [[4]]
+  
+---

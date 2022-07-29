@@ -1,0 +1,9 @@
+---
+  Greatest element of a list
+
+  https://rosettacode.org/wiki/Greatest_element_of_a_list
+
+  Task
+  Create a function that returns the maximum value in a provided set of values,
+where the number of values may not be known until run-time.
+---

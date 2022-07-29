@@ -1,0 +1,13 @@
+---
+  Tau function
+
+  https://rosettacode.org/wiki/Tau_function
+
+  Given a positive integer, count the number of its positive divisors.
+  
+  Task
+  Show the result for the first   100   positive integers.
+  
+  Related task
+  
+---

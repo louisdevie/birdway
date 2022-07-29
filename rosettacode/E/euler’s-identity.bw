@@ -1,0 +1,35 @@
+---
+  Euler's identity
+
+  https://rosettacode.org/wiki/Euler%27s_identity
+
+  In mathematics, Euler's identity is the equality:
+  where
+  Euler's identity is often cited as an example of deep mathematical beauty. Three of the basic arithmetic operations occur exactly once each: addition, multiplication, and exponentiation. The identity also links five fundamental mathematical constants:
+  Task
+  Show in your language that Euler's identity is true. As much as possible and practical, mimic the Euler's identity equation.
+  Most languages are limited to IEEE 754 floating point calculations so will have some error in the calculation.
+  If that is the case, or there is some other limitation, show
+that ei
+
+
+
+π
+
+
+{\displaystyle \pi }
+
+ + 1 is approximately equal to zero and
+show the amount of error in the calculation.
+  If your language is capable of symbolic calculations, show
+that ei
+
+
+
+π
+
+
+{\displaystyle \pi }
+
+ + 1 is exactly equal to zero for bonus kudos points.
+---

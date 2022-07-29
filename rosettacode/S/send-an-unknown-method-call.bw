@@ -1,0 +1,11 @@
+---
+  Send an unknown method call
+
+  https://rosettacode.org/wiki/Send_an_unknown_method_call
+
+  Task
+  Invoke an object method where the name of the method to be invoked can be generated at run time.
+  
+  Related tasks
+  
+---

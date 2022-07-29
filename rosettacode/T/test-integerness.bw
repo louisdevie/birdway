@@ -1,0 +1,16 @@
+---
+  Test integerness
+
+  https://rosettacode.org/wiki/Test_integerness
+
+  Mathematically,
+  This means that each of those larger sets, and the data types used to represent them, include some integers.
+  Given a rational, real, or complex number of any type, test whether it is mathematically an integer.
+  Your code should handle all numeric data types commonly used in your programming language.
+  Discuss any limitations of your code.
+  For the purposes of this task, integerness means that a number could theoretically be represented as an integer at no loss of precision (given an infinitely wide integer type).
+In other words:
+  Optionally, make your code accept a tolerance parameter for fuzzy testing. The tolerance is the maximum amount by which the number may differ from the nearest integer, to still be considered an integer.
+  This is useful in practice, because when dealing with approximate numeric types (such as floating point), there may already be round-off errors from previous calculations. For example, a float value of 0.9999999998 might actually be intended to represent the integer 1.
+  (The types and notations shown in these tables are merely examples – you should use the native data types and number literals of your programming language and standard library. Use a different set of test-cases, if this one doesn't demonstrate all relevant behavior.)
+---

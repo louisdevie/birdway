@@ -1,0 +1,22 @@
+---
+  Textonyms
+
+  https://rosettacode.org/wiki/Textonyms
+
+  When entering text on a phone's digital pad it is possible that a particular combination of digits corresponds to more than one word. Such are called textonyms.
+  Assuming the digit keys are mapped to letters as follows:
+  
+  Task
+  Write a program that finds textonyms in a list of words such as  
+Textonyms/wordlist   or  
+unixdict.txt.
+  The task should produce a report:
+  Where:
+  At your discretion show a couple of examples of your solution displaying Textonyms.
+  E.G.:
+  
+  Extra credit
+  Use a word list and keypad mapping other than English.
+  
+  
+---

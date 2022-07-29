@@ -1,0 +1,9 @@
+---
+  Remove duplicate elements
+
+  https://rosettacode.org/wiki/Remove_duplicate_elements
+
+  Given an Array, derive a sequence of elements in which all duplicates are removed.
+  There are basically three approaches seen here:
+  
+---

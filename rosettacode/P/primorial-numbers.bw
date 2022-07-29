@@ -1,0 +1,89 @@
+---
+  Primorial numbers
+
+  https://rosettacode.org/wiki/Primorial_numbers
+
+  Primorial numbers are those formed by multiplying successive prime numbers.
+  The primorial number series is:
+  primorial(0) =         1       (by definition)
+   primorial(1) =         2       (2)
+   primorial(2) =         6       (2×3)
+   primorial(3) =       30       (2×3×5)
+   primorial(4) =     210       (2×3×5×7)
+   primorial(5) =   2310       (2×3×5×7×11)
+   primorial(6) = 30030       (2×3×5×7×11×13)
+         ∙ ∙ ∙
+  To express this mathematically,   primorialn   is  
+the product of the first   n   (successive) primes:
+  
+  p
+r
+i
+m
+o
+r
+i
+a
+
+l
+
+n
+
+
+=
+
+∏
+
+k
+=
+1
+
+
+n
+
+
+p
+r
+i
+m
+
+e
+
+k
+
+
+
+
+{\displaystyle primorial_{n}=\prod _{k=1}^{n}prime_{k}}
+  
+  ─── where   
+
+
+
+p
+r
+i
+m
+
+e
+
+k
+
+
+
+
+{\displaystyle prime_{k}}
+
+   is the   kth   prime number.
+  
+  In some sense, generating primorial numbers is similar to factorials.
+  As with factorials, primorial numbers get large quickly.
+  
+  Task
+  By   length   (above), it is meant the number of decimal digits in the numbers.
+  
+  Related tasks
+  
+  See also
+  
+---

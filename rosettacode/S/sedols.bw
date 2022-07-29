@@ -1,0 +1,15 @@
+---
+  SEDOLs
+
+  https://rosettacode.org/wiki/SEDOLs
+
+  Task
+  For each number list of 6-digit SEDOLs, calculate and append the checksum digit.
+  That is, given this input:
+  Produce this output:
+  Extra credit
+  Check each input is correctly formed, especially with respect to valid characters allowed in a SEDOL string.
+  
+  Related tasks
+  
+---

@@ -1,0 +1,23 @@
+---
+  Twin primes
+
+  https://rosettacode.org/wiki/Twin_primes
+
+  Twin primes are pairs of natural numbers   (P1  and  P2)   that satisfy the following:
+  P1   and   P2   are primes
+     P1  +  2   =   P2
+  
+  Task
+  Write a program that displays the number of pairs of twin primes that can be found under a user-specified number
+(P1 < user-specified number & P2 < user-specified number).
+  
+  Extension
+
+ Find all twin prime pairs under 100000, 10000000 and 1000000000.
+ What is the time complexity of the program? Are there ways to reduce computation time?
+  
+  Examples
+  
+  Also see
+  
+---

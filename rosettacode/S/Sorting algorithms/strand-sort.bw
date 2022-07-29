@@ -1,0 +1,10 @@
+---
+  Sorting algorithms/Strand sort
+
+  https://rosettacode.org/wiki/Sorting_algorithms/Strand_sort
+
+  
+  Task
+  Implement the Strand sort.
+  This is a way of sorting numbers by extracting shorter sequences of already sorted numbers from an unsorted list.
+---

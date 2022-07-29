@@ -1,0 +1,24 @@
+---
+  Spelling of ordinal numbers
+
+  https://rosettacode.org/wiki/Spelling_of_ordinal_numbers
+
+  Ordinal numbers   (as used in this Rosetta Code task),   are numbers that describe the   position   of something in a list.
+  It is this context that ordinal numbers will be used, using an English-spelled name of an ordinal number.
+  The ordinal numbers are   (at least, one form of them):
+  sometimes expressed as:
+  For this task, the following (English-spelled form) will be used:
+  Furthermore, the American version of numbers will be used here   (as opposed to the British).
+  2,000,000,000   is two billion,   not   two milliard.
+  
+  Task
+  Write a driver and a function (subroutine/routine ···) that returns the English-spelled ordinal version of a specified number   (a positive integer).
+  Optionally, try to support as many forms of an integer that can be expressed:   123   00123.0   1.23e2   all are forms of the same integer.
+  Show all output here.
+  
+  Test cases
+  Use (at least) the test cases of:
+  
+  Related tasks
+  
+---

@@ -1,0 +1,26 @@
+---
+  Pisano period
+
+  https://rosettacode.org/wiki/Pisano_period
+
+  The Fibonacci sequence taken modulo 2 is a periodic sequence of period 3 : 0, 1, 1, 0, 1, 1, ...
+  For any integer n, the Fibonacci sequence taken modulo n is periodic and the length of the periodic cycle is referred to as the Pisano period.
+  Prime numbers are straightforward; the Pisano period of a prime number p is simply: pisano(p). The Pisano period of a composite number c may be found in different ways. It may be calculated directly: pisano(c), which works, but may be time consuming to find, especially for larger integers, or, it may be calculated by finding the least common multiple of the Pisano periods of each composite component.
+  
+  E.G.
+  Given a Pisano period function: pisano(x), and a least common multiple function lcm(x, y):
+  A formulae to calculate the pisano period for integer powers   k   of prime numbers   p   is:
+  The equation is conjectured, no exceptions have been seen.
+  If a positive integer   i   is split into its prime factors,   then the second and first equations above can be applied to generate the pisano period.
+  
+  Task
+  Write 2 functions: pisanoPrime(p,k) and pisano(m).
+  pisanoPrime(p,k) should return the Pisano period of pk where p is prime and k is a positive integer.
+  pisano(m) should use pisanoPrime to return the Pisano period of m where m is a positive integer.
+  Print pisanoPrime(p,2) for every prime lower than 15.
+  Print pisanoPrime(p,1) for every prime lower than 180.
+  Print pisano(m) for every integer from 1 to 180.
+  
+  Related tasks
+  
+---

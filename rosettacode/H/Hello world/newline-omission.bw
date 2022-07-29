@@ -1,0 +1,13 @@
+---
+  Hello world/Newline omission
+
+  https://rosettacode.org/wiki/Hello_world/Newline_omission
+
+  Some languages automatically insert a newline after outputting a string, unless measures are taken to prevent its output.
+  
+  Task
+  Display the string   Goodbye, World!   without a trailing newline.
+  
+  Related tasks
+  
+---

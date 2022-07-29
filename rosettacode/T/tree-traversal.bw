@@ -1,0 +1,17 @@
+---
+  Tree traversal
+
+  https://rosettacode.org/wiki/Tree_traversal
+
+  Task
+  Implement a binary tree where each node carries an integer,   and implement:
+  pre-order,
+   in-order, 
+   post-order,     and 
+   level-order   traversal.
+  Use those traversals to output the following tree:
+  The correct output should look like this:
+  
+  See also
+  
+---
