@@ -3,20 +3,81 @@
 
   https://rosettacode.org/wiki/Call_a_function
 
-  Task
+  === Task ===
   Demonstrate the different syntax and semantics provided for calling a function.
+
   This may include:
-  Calling a function that requires no arguments
-   Calling a function with a fixed number of arguments
-   Calling a function with optional arguments
-   Calling a function with a variable number of arguments
-   Calling a function with named arguments
-   Using a function in statement context
-   Using a function in first-class context within an expression
-   Obtaining the return value of a function
-   Distinguishing built-in functions and user-defined functions
-   Distinguishing subroutines and functions
-   Stating whether arguments are passed by value or by reference
-   Is partial application possible and how
+  - Calling a function that requires no arguments
+  - Calling a function with a fixed number of arguments
+  - Calling a function with optional arguments
+  - Calling a function with a variable number of arguments
+  - Calling a function with named arguments
+  - Using a function in statement context
+  - Using a function in first-class context within an expression
+  - Obtaining the return value of a function
+  - Distinguishing built-in functions and user-defined functions
+  - Distinguishing subroutines and functions
+  - Stating whether arguments are passed by value or by reference
+  - Is partial application possible and how
+
   This task is not about defining functions.
 ---
+
+func main() -> {
+    -- calling a function that requires no arguments
+    noargs();
+
+    -- calling a function with a fixed number of arguments
+    fixargs(2, "3", 4.0);
+
+    -- calling a function with optional / variable number of arguments
+    varargs(2);
+    varargs(2, "3");
+    varargs(2, "3", 4.0);
+
+    -- there is no such thing as named arguments in birdway
+
+    -- using a function in statement context
+    noargs();
+
+    -- using a function in first-class context within an expression
+    println plustwo(7);
+
+    -- obtaining the return value of a function
+    let seven = plustwo(5);
+
+    -- you can't distinguish built-in functions and user-defined functions
+
+    -- subroutines/procedures are functions with return type Void
+
+    -- passing arguments by immutable reference or by value is the same :
+    byref(4);
+    byvalue(4);
+
+    -- you can only pass a variables by mutable reference, not expressions
+    let $var = 4;
+    byrefmut(var);
+
+    -- partial application
+    let partialfunc = partial(varargs, "1", 2.0);
+    partialfunc(3); -- call varargs("1", 2.0, 3)
+
+    -- method-like call
+    "A"::varargs("B") -- equivalent to varargs("A", "B")
+};
+
+func noargs() -> NULL;
+
+func fixargs(a, b, c) -> NULL;
+
+func varargs(a) -> NULL;
+func varargs(a, b) -> NULL;
+func varargs(a, b, c) -> NULL;
+
+func plustwo(n) -> n+2;
+
+func byref(a) -> NULL;
+
+func byvalue(@a) -> NULL;
+
+func byrefmut($a) -> NULL;

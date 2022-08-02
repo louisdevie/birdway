@@ -1,0 +1,30 @@
+---
+  Compare length of two strings
+
+  https://rosettacode.org/wiki/Compare_length_of_two_strings
+
+  === Task ===
+  Given two strings of different length, determine which string is longer or
+  shorter. Print both strings and their length, one on each line. Print the
+  longer one first. Measure the length of your string in terms of bytes or
+  characters, as appropriate for your language. If your language doesn't have an
+  operator for measuring the length of a string, note it.
+  
+  === Extra credit ===
+  Given more than two strings:
+    list = ["abcd","123456789","abcdef","1234567"]
+  Show the strings in descending length order.
+---
+
+param* strings: Str;
+
+func main() -> {
+    println strings
+        -- couple each string with its length
+        ::map(string -> (string, #string))
+        -- sort by length, reversed
+        ::sort((a, b) -> cmp(b.1, a.1))
+        -- format output
+        ::map(a -> "$(a.0) ($(a.1))")
+        ::join();
+};

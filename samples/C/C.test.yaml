@@ -1,0 +1,51 @@
+char_codes:
+  - get: C/character-codes.bw
+  - compile: character-codes.bw
+  - run: character-codes
+    stdout: |
+      960
+      π
+
+function_call:
+  - get: C/call-a-function.bw
+  - compile: call-a-function.bw
+  - run: call-a-function
+
+check_file_exists:
+  - get: C/check-that-file-exists.bw
+  - compile: check-that-file-exists
+
+  - run: check-that-file-exists file.txt
+    stdout: |
+      The file file.txt does not exist
+
+  - run: check-that-file-exists --dir dir
+    stdout: |
+      The directory dir does not exist
+
+  - run: touch file.txt
+  - run: check-that-file-exists file.txt
+    stdout: |
+      The file file.txt exists
+
+  - run: mkdir dir
+  - run: check-that-file-exists --dir dir
+    stdout: |
+      The directory dir exists
+
+  - run: check-that-file-exists --dir file.txt
+    stdout: |
+      The directory file.txt does not exist
+
+  - run: check-that-file-exists dir
+    stdout: |
+      The file dir does not exist
+
+compare_length_strings:
+  - get: C/compare-length-of-strings.bw
+  - compile: compare-length-of-strings.bw
+  - run: compare-length-of-strings dark may project
+    stdout: |
+      project 7
+      dark 4
+      may 3

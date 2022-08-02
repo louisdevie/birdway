@@ -23,7 +23,7 @@ contexts:
     - match: \b(ERROR|ERR_IO|FAIL)\b
       scope: support.constant.birdway
 
-    - match: '\b(if|else|then)\b'
+    - match: '\b(if|else|then|switch|case|default)\b'
       scope: keyword.control.conditional.birdway
 
     - match: '\b(for|while|in|do)\b'
