@@ -3,8 +3,19 @@
 
   https://rosettacode.org/wiki/Determine_if_a_string_is_numeric
 
-  Task
-  Create a boolean function which takes in a string and tells whether it is a numeric string (floating point and negative numbers included) in the syntax the language uses for numeric literals or numbers converted from strings.
-  
-  
+  === Task ===
+  Create a boolean function which takes in a string and tells whether it is a
+  numeric string (floating point and negative numbers included) in the syntax
+  the language uses for numeric literals or numbers converted from strings.
 ---
+
+func isnumeric(string) -> ?to_float(string);
+
+
+param input: Str;
+
+func main() -> {
+    println if isnumeric(input) 
+        then "$input is a number"
+        else "$input is not a number";
+};

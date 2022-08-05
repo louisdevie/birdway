@@ -5,5 +5,15 @@
 
   Task
   Express a number in decimal as a fixed-length string with leading zeros.
-  For example, the number   7.125   could be expressed as   00007.125.
+  For example, the number 7.125 could be expressed as 00007.125.
 ---
+
+func main() -> {
+    let num = 7.125;
+
+    -- interpolation
+    println "$num:05";
+
+    -- using to_string
+    println to_string(num, "0", 5);
+}

@@ -3,6 +3,14 @@
 
   https://rosettacode.org/wiki/Increment_a_numerical_string
 
-  Task
+  === Task ===
   Increment a numerical string.
 ---
+
+func main() -> {
+    let $numstr = "6";
+
+    numstr = to_string(numstr::force_to_int() + 1);
+
+    println numstr; --> 7
+}

@@ -4,13 +4,15 @@ from dataclasses import dataclass
 from error import BirdwayLexicalError
 
 RE_KEYWORD = re.compile(
-    r"\b(const|do|else|enum|flag|for|from|func|if|in|let|limit|meta|option|param|print|println|read|readln|return|struct|then|to|until|while)\b"
+    r"\b(const|do|else|enum|flag|for|from|func|if|in|let|limit|meta|option|param|print|println|read|readln|return|struct|then|to|try|until|use|while)\b"
 )
 RE_SPACE = re.compile(r"\s+")
 RE_IDENTIFIER = re.compile(r"\b\w+\b")
 RE_STRINGDELIMITER = re.compile(r'"')
-RE_SYMBOL = re.compile(r"{|;|}|\(|,|\)|\[|\.|]|::|:|->")
-RE_OPERATOR = re.compile(r"=")
+RE_PUNCTUATION = re.compile(r"{|;|}|\(|,|\)|\[|\.|]|::|:|->|\$")
+RE_OPERATOR = re.compile(
+    r"&&|&|~|#|-|\||\^|\+|==|=|%|\*\*|\*|<=|<<|<|>=|>>|>|\?|//|/|!=|!|\band\b|\bnot\b|\bor\b|\bxor\b"
+)
 RE_PRIMITIVE = re.compile(r"\b(Bool|Byte|File|Float|Int|RegEx|Str|Void)\b")
 
 
@@ -37,7 +39,7 @@ class Identifier:
 
 
 @dataclass
-class Symbol:
+class Punctuation:
     symbol: str
 
     def __str__(self):
@@ -78,7 +80,7 @@ __all__ = [
     "EndOfFile",
     "Keyword",
     "Identifier",
-    "Symbol",
+    "Punctuation",
     "Operator",
     "StringDelitmiter",
     "Text",
@@ -98,8 +100,8 @@ def tokenise(source):
                     cursor = m.end()
                     continue
 
-                if m := RE_SYMBOL.match(source, cursor):
-                    yield Symbol(m.group())
+                if m := RE_PUNCTUATION.match(source, cursor):
+                    yield Punctuation(m.group())
                     cursor = m.end()
                     continue
 

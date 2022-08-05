@@ -1,0 +1,10 @@
+---
+  Hello world/Text
+
+  http://www.rosettacode.org/wiki/Hello_world/Text
+
+  === Task ===
+  Display the string "Hello world!" on a text console. 
+---
+
+func main() -> println "Hello world!";

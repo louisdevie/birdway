@@ -3,7 +3,30 @@
 
   https://rosettacode.org/wiki/Greatest_element_of_a_list
 
-  Task
+  === Task ===
   Create a function that returns the maximum value in a provided set of values,
-where the number of values may not be known until run-time.
+  where the number of values may not be known until run-time.
 ---
+
+func maxi(values) -> {
+    if is_empty(values) then {
+        println "no values";
+        throw ERR_FAIL;
+    };
+
+    let $maxi = values[0];
+
+    for value in values do
+        if value > maxi then {
+            maxi = value;
+            break;
+        };
+
+    return maxi;
+};
+
+param* numbers: Int;
+
+func main() -> {
+    println "the greatest value is $(maxi(numbers))"
+};

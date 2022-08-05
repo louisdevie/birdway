@@ -3,6 +3,21 @@
 
   https://rosettacode.org/wiki/Find_limit_of_recursion
 
-  Task
+  === Task ===
   Find the limit of recursion.
 ---
+
+func recur(depth) -> {
+    try {
+        -- force to call and prevent TRO / TCO
+        let $val = recur(depth + 1);
+    }
+    on ERR_STACKOF do {
+        println "limit of recursion : $depth";
+    };
+    0
+}
+
+func main() -> {
+    recur(0); -- the result will depend on the machine and the compiler
+}

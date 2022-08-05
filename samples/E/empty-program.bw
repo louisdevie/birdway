@@ -3,6 +3,8 @@
 
   https://rosettacode.org/wiki/Empty_program
 
-  Task
+  === Task ===
   Create the simplest possible program that is still considered "correct."
 ---
+
+func main() -> NULL;

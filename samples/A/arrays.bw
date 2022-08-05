@@ -32,7 +32,7 @@ func main() -> {
     println list2; --> ["before", "after"]
 
     -- removing the last element
-    list2::pop()
+    list2::pop();
     println list2; --> ["before"]
 
     -- removing an element at a specific index

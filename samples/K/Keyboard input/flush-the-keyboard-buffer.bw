@@ -3,9 +3,9 @@
 
   https://rosettacode.org/wiki/Keyboard_input/Flush_the_keyboard_buffer
 
-  Flush the   keyboard   buffer.
+  Flush the keyboard buffer.
   This reads characters from the keyboard input and
-discards them until there are no more currently buffered,  
-and then allows the program to continue.
+  discards them until there are no more currently buffered,
+  and then allows the program to continue.
   The program must not wait for users to type anything.
 ---

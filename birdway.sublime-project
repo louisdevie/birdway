@@ -2,7 +2,18 @@
 	"folders": [
 		{
 			"path": ".",
-			"name": "Root",
+			"name": "Project",
+			"folder_exclude_patterns": ["*"],
+		},
+		{
+			"path": "bootstrap",
+			"name": "Bootstrap compiler",
+			"folder_exclude_patterns": ["_*"],			
+		},
+		{
+			"path": "samples",
+			"name": "Code samples",
+			"folder_exclude_patterns": ["_*"],			
 		},
 	]
 }

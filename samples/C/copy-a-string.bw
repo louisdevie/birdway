@@ -5,9 +5,17 @@
 
   This task is about copying a string.
   
-  Task
+  === Task ===
   Where it is relevant, distinguish between copying the contents of a string
-versus making an additional reference to an existing string.
-  
-  
+  versus making an additional reference to an existing string.
 ---
+
+func main() -> {
+    let string1 = "Five Over";
+
+    -- Birdway is lazy, so this won't actually copy the string :
+    let string2 = string1; --> reference to string1
+
+    -- To force the copy of the string, we need to declare the variable as mutable :
+    let $string3 = string1; --> copy of string1
+}

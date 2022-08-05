@@ -4,13 +4,23 @@
   https://rosettacode.org/wiki/Empty_string
 
   Languages may have features for dealing specifically with empty strings
-(those containing no characters).
+  (those containing no characters).
   
-  Task
-
-   Demonstrate how to assign an empty string to a variable.
-   Demonstrate how to check that a string is empty.
-   Demonstrate how to check that a string is not empty.
-  
-  
+  === Task ===
+  Demonstrate how to assign an empty string to a variable.
+  Demonstrate how to check that a string is empty.
+  Demonstrate how to check that a string is not empty.
 ---
+
+func main() -> {
+    -- empty string
+    let nothing = "";
+
+    -- test if it is empty
+    if is_empty(nothing) or (#nothing == 0) 
+    then println "string is empty";
+    
+    -- test if it is not empty
+    if (not is_empty(nothing)) or (#nothing != 0)
+    then println "string is not empty";
+};

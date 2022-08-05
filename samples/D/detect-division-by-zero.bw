@@ -3,6 +3,25 @@
 
   https://rosettacode.org/wiki/Detect_division_by_zero
 
-  Task
-  Write a function to detect a   divide by zero error   without checking if the denominator is zero.
+  === Task ===
+  Write a function to detect a divide by zero error without checking if the denominator is zero.
 ---
+
+param a: Int;
+param b: Int;
+
+func main() -> {
+    -- Method 1
+    try {
+        -- use user input so the compiler can't detect it
+        -- and assign it to a mutable variable to force the evaluation
+        let $c = a / b;
+    }
+    on ERR_DIV0 do {
+        println "Division by zero !";
+    };
+
+    -- Method 2
+    -- kinda cheating, because the implementation of idiv will surely check if b is equal to zero
+    -- if !idiv(a, b) then println "Division by zero !";
+};

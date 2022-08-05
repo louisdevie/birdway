@@ -1,5 +1,7 @@
 meta name = "Birdway";
 
+use lexer;
+
 option OUTPUT_DIR: Str = ".";
 param INPUT: Str;
 

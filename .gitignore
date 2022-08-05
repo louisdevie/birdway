@@ -10,3 +10,5 @@ spelling
 build
 
 __pycache__
+
+_testenv

@@ -3,16 +3,41 @@
 
   https://rosettacode.org/wiki/Factorial
 
-  Definitions
+  === Definitions ===
 
-   The factorial of   0   (zero)   is defined as being   1   (unity).
-   The   Factorial Function   of a positive integer,    n,    is defined as the product of the sequence:
+  The factorial of 0 (zero) is defined as being 1 (unity).
+  The Factorial Function of a positive integer,  n,  is defined as the product of the sequence:
+    n, n-1, n-2, ... 1
   
-  Task
+  === Task ===
   Write a function to return the factorial of a number.
   Solutions can be iterative or recursive.
-  Support for trapping negative    n    errors is optional.
-  
-  Related task
-  
+  Support for trapping negative n errors is optional.
 ---
+
+func factorial_rec(n) -> {
+    if n == 0
+    then 1
+    else n * factorial_rec(n - 1);
+}
+
+func factorial_iter(n) -> {
+    let $fact = 1;
+    for m in 1..n do fact = $ * m;
+    fact
+};
+
+func factorial_func(n) -> {
+    if n == 0
+    then 1
+    else reduce([1..n], (a, b) -> a * b);
+};
+
+
+param a: Int;
+
+func main() -> {
+    println factorial_rec(a);
+    println factorial_iter(a);
+    println factorial_func(a);
+};

@@ -4,13 +4,25 @@
   https://rosettacode.org/wiki/Integer_comparison
 
   Get two integers from the user.
-  Then,   display a message if the first integer is:
-  less than, 
-   equal to,   or 
-   greater than
+  Then, display a message if the first integer is:
+  * less than, 
+  * equal to,
+  * or greater than
   the second integer.
-  Test the condition   for each case separately,   so that   all three comparison operators are used   in the code.
-  
-  Related task
-  
+  Test the condition for each case separately, so that all three comparison operators are used in the code.
 ---
+
+param a: Int;
+param b: Int;
+
+func main() -> {
+    if a < b then {
+        println "the first integer is less than the second one";
+    }
+    else if a == b then {
+        println "the first integer is equal to the second one";
+    }
+    else if a > b then {
+        println "the first integer is greater than the second one";
+    };
+};
