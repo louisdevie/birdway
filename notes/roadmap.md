@@ -1,0 +1,75 @@
+# Roadmap
+
+## Features to be added in 0.1
+
+- [ ] Types
+  - [ ] Void
+  - [ ] Bool
+  - [ ] Int
+  - [ ] Float
+  - [ ] Str
+  - [ ] File
+  - [ ] Signal
+  - [ ] Lists
+  - [ ] Dictionaries
+  - [ ] Tuples
+  - [ ] Functions
+  - [ ] Nullables
+  - [ ] Structures
+  - [ ] Enumerations
+- [ ] Functions
+  - [ ] Declaration
+  - [ ] Call
+  - [ ] Anonymous functions
+- [ ] If statements
+- [ ] For loops
+- [ ] While loops
+- [ ] Try statements
+- [ ] Blocks
+- [ ] Operators
+  - [ ] Arithmetic
+    - [ ] Addition
+    - [ ] Substraction
+    - [ ] Multiplication
+    - [ ] Division
+    - [ ] Integer division
+    - [ ] Modulo
+  - [ ] Comparison
+    - [ ] Equal
+    - [ ] Not equal
+    - [ ] Less than
+    - [ ] Greater than
+    - [ ] Less or equal
+    - [ ] Greater or equal
+  - [ ] Logic
+    - [ ] NOT
+    - [ ] OR
+    - [ ] AND
+  - [ ] Concatenation
+  - [ ] Size
+  - [ ] Is null
+  - [ ] Isn't null
+  - [ ] Union
+
+## Features for future versions
+
+- [ ] Types
+  - [ ] RegEx
+  - [ ] Byte
+  - [ ] Type definitions
+  - [ ] Unions
+- [ ] Switch statements
+- [ ] Until loops
+- [ ] Infinite loops
+- [ ] `pure` modifier
+- [ ] `safe` modifier
+- [ ] Operator overload 
+- [ ] Operators
+  - [ ] Between
+  - [ ] Bitwise
+    - [ ] NOT
+    - [ ] OR
+    - [ ] AND
+    - [ ] XOR
+    - [ ] Left shift
+    - [ ] Right shift
