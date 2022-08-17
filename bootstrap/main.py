@@ -4,6 +4,7 @@ from parser import Parser
 from lexer import tokenise
 from error import BirdwayError
 from interpreter import Interpreter
+from signals import ErrorSignal, global_error_message
 
 
 def main():
@@ -14,10 +15,22 @@ def main():
     try:
         ast = Parser(tokens).parse()
 
+        # pprint.pprint(ast)
+
         interpreter = Interpreter(ast)
         interpreter.run()
     except BirdwayError as err:
         print("\x1b[31mERROR:", err, "\x1b[0m")
+        exit(1)
+    except ErrorSignal as sig:
+        print(
+            "\x1b[31mERROR: uncaught signal",
+            type(sig),
+            ":",
+            global_error_message,
+            "\x1b[0m",
+        )
+        exit(1)
 
 
 if __name__ == "__main__":

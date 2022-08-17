@@ -4,9 +4,10 @@ from dataclasses import dataclass
 from error import BirdwayLexicalError
 
 RE_KEYWORD = re.compile(
-    r"\b(const|do|else|enum|flag|for|from|func|if|in|let|limit|meta|option|param|print|println|read|readln|return|struct|then|to|try|until|use|while)\b"
+    r"\b(const|do|else|enum|flag|for|from|func|if|in|let|limit|meta|option|on|param|print|println|read|readln|return|struct|then|throw|to|try|until|use|while)\b"
 )
 RE_SPACE = re.compile(r"\s+")
+RE_LINE_COMMENT = re.compile(r"--.*\n")
 RE_IDENTIFIER = re.compile(r"\b\w+\b")
 RE_STRINGDELIMITER = re.compile(r'"')
 RE_PUNCTUATION = re.compile(r"{|;|}|\(|,|\)|\[|\.|]|::|:|->|\$")
@@ -97,6 +98,10 @@ def tokenise(source):
         match context:
             case "main":
                 if m := RE_SPACE.match(source, cursor):
+                    cursor = m.end()
+                    continue
+
+                if m := RE_LINE_COMMENT.match(source, cursor):
                     cursor = m.end()
                     continue
 

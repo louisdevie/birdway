@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 
-__all__ = ["Void", "Bool", "Byte", "Int", "Float", "Str", "File", "RegEx"]
+__all__ = ["Void", "Bool", "Int", "Float", "Str", "File"]
 
 
 class Type(ABC):
@@ -27,6 +27,9 @@ class Type(ABC):
 
 
 class Primitive(Type):
+    def __eq__(lhs, rhs):
+        return type(lhs) == type(rhs)
+
     def is_primitive(self):
         return True
 
@@ -44,26 +47,29 @@ class Primitive(Type):
 
 
 class Void(Primitive):
-    pass
+    def __repr__(self):
+        return "Void"
 
 
 class Bool(Primitive):
-    pass
-
-
-class Byte(Primitive):
-    pass
+    def __repr__(self):
+        return "Bool"
 
 
 class Int(Primitive):
-    pass
+    def __repr__(self):
+        return "Int"
 
 
 class Float(Primitive):
-    pass
+    def __repr__(self):
+        return "Float"
 
 
 class Str(Primitive):
+    def __repr__(self):
+        return "Str"
+
     def is_iterable(self):
         return True
 
@@ -78,11 +84,8 @@ class Str(Primitive):
 
 
 class File(Primitive):
-    pass
-
-
-class RegEx(Primitive):
-    pass
+    def __repr__(self):
+        return "File"
 
 
 class Composite(Type):
@@ -93,6 +96,9 @@ class Composite(Type):
 class Nullable(Composite):
     def __init__(self, data):
         self.__data = data
+
+    def __repr__(self):
+        return f"{str(self.__data)}?"
 
     def __eq__(lhs, rhs):
         if isinstance(rhs, Nullable):
@@ -105,43 +111,16 @@ class Nullable(Composite):
         return self.__data
 
     def is_iterable(self):
-        return False
+        return self.__data.is_iterable()
 
     def is_sliceable(self):
-        return False
+        return self.__data.is_sliceable()
 
     def item(self):
-        return None
+        return self.__data.item()
 
     def sliced(self):
-        return None
-
-
-class Union(Composite):
-    def __init__(self, *types):
-        self.__types = types
-
-    def __eq__(lhs, rhs):
-        if isinstance(rhs, Union):
-            return lhs.__types == rhs.__types
-        else:
-            return False
-
-    @property
-    def types(self):
-        return self.__types
-
-    def is_iterable(self):
-        return all(t.is_iterable() for t in self.__types)
-
-    def is_sliceable(self):
-        return all(t.is_iterable() for t in self.__types)
-
-    def item(self):
-        return Union(*(t.item() for t in self.__types))
-
-    def sliced(self):
-        return Union(*(t.sliced() for t in self.__types))
+        return self.__data.sliced()
 
 
 class Tuple(Composite):

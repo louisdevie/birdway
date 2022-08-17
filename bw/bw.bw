@@ -6,23 +6,22 @@ option OUTPUT_DIR: Str = ".";
 param INPUT: Str;
 
 func main() -> {
-    println "WARNING: the Birdway compiler (version A-220710) "
+    println "WARNING: the Birdway compiler (version A-220808) "
          && "doesn't support all the features of the language";
 
-    println "Compiling $INPUT ...";
-    indent("  ");
+    print "Compiling "; print INPUT; println " ...";
 
     let $source_code = "";
     try {
         let source_file = open(INPUT, READ);
         read source_code from source_file;
-        source_file::close();
-    } on ERR_IO do {
-        println "Unable to read file $INPUT : $(err())";
-        throw;
+        close(source_file);
+    } on ERR_ANY do {
+        print "Unable to read file "; print INPUT; print " : "; println err();
+        throw FAIL;
     };
 
     print source_code;
 
-    -- const tokens = tokenise(source_code);
+    -- let tokens = tokenise(source_code);
 };

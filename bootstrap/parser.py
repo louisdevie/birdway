@@ -14,6 +14,9 @@ class Node(enum.Enum):
     STRING = enum.auto()
     NAME = enum.auto()
     LETVAR = enum.auto()
+    TRY = enum.auto()
+    READ = enum.auto()
+    THROW = enum.auto()
 
 
 class Parser:
@@ -190,13 +193,25 @@ class Parser:
 
     def __parse_expression(self):
         match self.peek():
+            case Keyword(keyword="print"):
+                self.pop()
+                lhs = self.__parse_print(ln=False)
+
             case Keyword(keyword="println"):
                 self.pop()
                 lhs = self.__parse_print(ln=True)
 
+            case Keyword(keyword="read"):
+                self.pop()
+                lhs = self.__parse_read(ln=False)
+
             case Keyword(keyword="try"):
                 self.pop()
                 lhs = self.__parse_try()
+
+            case Keyword(keyword="throw"):
+                self.pop()
+                lhs = self.__parse_throw()
 
             case StringDelitmiter():
                 self.pop()
@@ -253,13 +268,17 @@ class Parser:
                 case EndOfFile():
                     raise BirdwaySyntaxError(f"hit EOF while parsing block")
 
+                case Punctuation("}"):
+                    self.pop()
+                    break
+
                 case other:
                     block["lines"].append(self.__parse_expression())
 
             if (invalid := self.pop()) != Punctuation(";"):
                 raise BirdwaySyntaxError(f"missing semicolon before {invalid}")
 
-        return prog
+        return block
 
     def __parse_string_literal(self):
         string = {
@@ -287,17 +306,47 @@ class Parser:
 
         return string
 
-    def __parse_print(self, ln=False):
+    def __parse_print(self, ln):
         print_ = {"node": Node.PRINT, "line": ln}
 
         print_["content"] = self.__parse_expression()
 
         return print_
 
-    def __parse_try(self):
-        try_ = {"node": Node.TRY}
+    def __parse_read(self, ln):
+        read = {
+            "node": Node.READ,
+            "line": ln,
+            "source": {"node": Node.NAME, "name": "stdin"},
+        }
 
-        print_["try"] = self.__parse_expression()
+        read["content"] = self.__parse_expression()
+
+        if self.peek() == Keyword("from"):
+            self.pop()
+
+            read["source"] = self.__parse_expression()
+
+        return read
+
+    def __parse_try(self):
+        try_ = {"node": Node.TRY, "handlers": []}
+
+        try_["try"] = self.__parse_expression()
+
+        while self.peek() == Keyword("on"):
+            self.pop()
+
+            err = self.__parse_expression()
+
+            if (invalid := self.pop()) != Keyword("do"):
+                raise BirdwaySyntaxError(f"expected keyword do before {invalid}")
+
+            handling = self.__parse_expression()
+
+            try_["handlers"].append((err, handling))
+
+        return try_
 
     def __parse_function(self):
         function = {"node": Node.FUNCDEF}
@@ -344,3 +393,10 @@ class Parser:
         variable["value"] = self.__parse_expression()
 
         return variable
+
+    def __parse_throw(self):
+        throw = {"node": Node.THROW}
+
+        throw["signal"] = self.__parse_expression()
+
+        return throw
