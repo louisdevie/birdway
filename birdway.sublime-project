@@ -6,14 +6,33 @@
 			"folder_exclude_patterns": ["*"],
 		},
 		{
-			"path": "bootstrap",
-			"name": "Bootstrap compiler",
+			"path": "bw",
+			"name": "Compiler",
 			"folder_exclude_patterns": ["_*"],			
+		},
+		{
+			"path": "bootstrap",
+			"name": "Bootstrap interpreter",
+			"folder_exclude_patterns": ["_*"],			
+		},
+		{
+			"path": "docs/source",
+			"name": "Documentation",			
 		},
 		{
 			"path": "samples",
 			"name": "Code samples",
 			"folder_exclude_patterns": ["_*"],			
 		},
-	]
+		{
+			"path": "sublime-package",
+			"name": "Sublime Text Package",
+			"folder_exclude_patterns": ["_*"],			
+		},
+		{
+			"path": "notes",
+			"name": "Notes",
+			"folder_exclude_patterns": ["_*"],			
+		},
+	],
 }
