@@ -20,9 +20,11 @@ All Birdway implementations should follow the following specifications.
    composites
    userdef
    implicit_conversion
+   operators
    conditionals
    loops
    block
    functions
    signals
+   syntax
    appendices

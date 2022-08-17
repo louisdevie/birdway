@@ -9,7 +9,7 @@ Birdway
 A language to build small command-line applications
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Contents:
 
    specs/index

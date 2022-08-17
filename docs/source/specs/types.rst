@@ -1,8 +1,10 @@
 .. _primitive:
+
 Primitive datatypes
 ===================
 
 .. _void:
+
 Void
 ----
 
@@ -13,6 +15,7 @@ It also cannot be used within composite types.
 
 
 .. _bool:
+
 Boolean
 -------
 
@@ -20,6 +23,7 @@ The type ``Bool`` represents a boolean. It can take two values: ``TRUE`` or ``FA
 
 
 .. _int:
+
 Integer
 -------
 The type ``Int`` represents a 64-bit signed integer.
@@ -36,21 +40,23 @@ Decimal (``123``), hexadecimal (``0x7b``) and binary (``0b1111011``) literals ar
 
 
 .. _float:
+
 Floating-point number
 ---------------------
 
 The type ``Float`` represents a 64-bit (double precision) floating-point number.
-Float literals are written as ``12.3`` or ``0.123E+2``
-(for scientific notation, the E must be uppercase,
+Float literals are written as ``12.3`` or ``0.123e+2``
+(for scientific notation, the e must be lowercase,
 the sign of the exponent must always be present,
 and the number doesn't need to be be between 1 and 10).
 ``Float``s doesn't support NAN and infinity values.
 
 .. warning::
-   Even if ``123E+4`` is technically an integer, it will be interpreted as a ``Float``.
+   Even if ``123e+4`` is technically an integer, it will be interpreted as a ``Float``.
 
 
 .. _str:
+
 String
 ------
 
@@ -86,21 +92,19 @@ the expression wrapped in parentheses, e.g. ``"x² = $(x**2)"``).
 
 
 .. _byte:
+
 Byte
 ----
 
 The ``Byte`` type is an unsigned 8-bit integer used to manipulate binary data.
 
-.. note::
-   This type can be implicitly converted into an :ref:`int` or a :ref:`float`.
-   See :ref:`iconv` for more information.
-
-
-.. _regex:
-RegEx
------
-
 
 .. _file:
+
 File
 ----
+
+.. _sigt:
+
+Signal
+------

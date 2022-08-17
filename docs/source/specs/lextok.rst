@@ -92,22 +92,17 @@ The different operators : ::
 Keyword operators needs to be whole words (there must be a word boundary before and after).
 
 
-Primitives (``&PRIMITIVE``)
---------------------------
-
-Any of the type primitives defined in :ref:`appendix 1 <reserved>`, surrounded by word boundaries.
-
-
 Identifiers (``&IDENT``)
 ------------------------
 
 Identifiers starts with an alphabetic character (ASCII letters) or an underscore,
 followed by zero or more alphanumeric characters (ASCII letters and numbers) or undercores.
-It must not be a keyword, symbol, operator nor primitive.
+It must not be a keyword, symbol nor an operator.
 
 .. note::
    An implementation of the language must support *at least* ASCII identifiers,
-   but may support Unicode identifiers. 
+   but may support Unicode identifiers too. 
+
 
 Delimiters (``&STR-DELIM``)
 ----------------------------

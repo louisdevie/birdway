@@ -11,6 +11,7 @@ Keywords
 
 .. code-block:: text
 
+   break
    const
    do
    else
@@ -24,17 +25,23 @@ Keywords
    let
    limit
    meta
+   on
    option
    param
    print
    println
+   pub
    read
    readln
    return
+   next
    struct
    then
+   throw
    to
+   try
    until
+   use
    while
 
 
@@ -47,21 +54,6 @@ Operators
    not
    or
    xor
-
-
-Types
-^^^^^
-
-.. code-block:: text
-
-   Bool
-   Byte
-   File
-   Float
-   Int
-   RegEx
-   Str
-   Void
 
 
 Literals

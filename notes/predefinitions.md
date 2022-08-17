@@ -1,6 +1,6 @@
 # Predefinitions
 
-Birdway *predefinitions* are the equivalent of a standard library.
+Birdway *predefinitions* are functions, constants and types implemented by the compiler.
 
 
 
@@ -47,28 +47,27 @@ JUSTIFY
 ```
 
 
-
 ## Functions (math)
 
-### `abs(@x: Int) -> Int`
-### `abs(@x: Float) -> Float`
+### `abs(x: Int) -> Int`
+### `abs(x: Float) -> Float`
 
 Returns the absolute value of *x*.
 
-### `sqrt(@x: Int|Float) -> Float`
+### `sqrt(x: Int|Float) -> Float`
 
 Returns the square root of *x*.
 
-### `root(@x: Int|Float, i: Int|Float) -> Float`
+### `root(x: Int|Float, i: Int|Float) -> Float`
 
 Returns the *i*-th root of *x*.  
 
-### `cos(@x: Int|Float) -> Float`
-### `sin(@x: Int|Float) -> Float`
-### `tan(@x: Int|Float) -> Float`
-### `acos(@x: Int|Float) -> Float`
-### `asin(@x: Int|Float) -> Float`
-### `atan(@x: Int|Float) -> Float`
+### `cos(x: Int|Float) -> Float`
+### `sin(x: Int|Float) -> Float`
+### `tan(x: Int|Float) -> Float`
+### `acos(x: Int|Float) -> Float`
+### `asin(x: Int|Float) -> Float`
+### `atan(x: Int|Float) -> Float`
 
 Trigonometry functions.
 
@@ -117,114 +116,97 @@ Returns *a / b*, or `NULL` if *b* = 0.
 
 
 
-## Functions (functional utils)
-
-
-### `cached(f: (...) -> ~) -> (...) -> ~`
-
-Returns a new version of the function that will cache its results.
-
-
-### `partial(f: (...) -> ~, ...) -> (...) -> ~`
-
-Set defaults arguments to a function.
-
-Example: with a `func f(x, y, z) -> ...` and `g = f::partial(1, 2)`, calling `g(x)` will be calling `f(1, 2, x)`.
-
-### `partial_method(f: (...) -> ~) -> (...) -> ~`
-
-Same as `partial`, but lets the first argument as-is. 
-
-
 ## Functions (collections)
 
-### `size(a: Str|Enum|[~]|[~: ~]) -> Int`
+### `size(a: Str|[~]|[~: ~]) -> Int`
 
 Returns the size of *a*.
 
 ### `enumerate(a: Str) -> [(Int, Str)]`
-### `enumerate(a: Enum) -> [(Int, a)]`
-### `enumerate(a: [T]) -> [(Int, T)]`
+### `enumerate(a: [0]) -> [(Int, 0)]`
 
 Returns each element of *a* with its index.
 
 The equivalent for dictionaries is `entries`.
 
 ### `reverse(a: Str) -> Str`
-### `reverse(a: Enum) -> [a]`
-### `reverse(a: [T]) -> [T]`
+### `reverse(a: [0]) -> [0]`
 
 Iterate from the end to the start.
 
-### `zip(a: Str|Enum|[T], ...) -> [(Str|a|T, ...)]`
+### `zip(a: Str|Enum|[0], ...) -> [(Str|a|0, ...)]`
 
 Iterate through multiple collections at once, stopping at the end of the shortest one.
 
-### `zip_longest(a: Str|Enum|[T], ...) -> [(Str?|a?|T?, ...)]`
+### `zip_max(a: Str|Enum|[0], ...) -> [(Str?|a?|0?, ...)]`
 
 Iterate through multiple collections at once, stopping at the end of the longest one.
 If some collections stop before others, `NULL` will be used as a default value.
 
-### `reduce(a: [T], f: (T, T) -> T) -> T`
+### `foldl(a: [0], f: (0, 0) -> 0) -> 0`
+### `foldr(a: [0], f: (0, 0) -> 0) -> 0`
 
-Reduce the list to a single value.
+Reduce a list to a single value.
 
-### `product(a: [T], b: [U], f: (T, U) -> V) -> [[V]]`
+### `product(a: [0], b: [U], f: (0, U) -> V) -> [[V]]`
 
 Creates a matrix containing the result of *f*
 for each value of *a* and each value of *b*.
 
-### `map(a: [T], f: T -> U) -> [U]`
-### `map(a: [K: T], f: T -> U) -> [K: U]`
+### `map(a: [0], f: 0 -> U) -> [U]`
+### `map(a: [K: 0], f: 0 -> U) -> [K: U]`
 
 Maps the elements from *a* to their image by *f*.
 
-### `filter(a: [T], f: T -> Bool) -> [U]`
-### `filter(a: [K: T], f: T -> Bool) -> [K: U]`
+### `filter(a: [0], f: 0 -> Bool) -> [U]`
+### `filter(a: [K: 0], f: 0 -> Bool) -> [K: U]`
 
 Maps the elements from *a* for wich `f(elem)` is `FALSE`.
 
-### `fill(len: Int, val: T) -> [T]`
+### `fill(len: Int, val: 0) -> [0]`
 
 Creates a list of length *len* filled with *val*.
 
-### `map_key(a: [T], f: (Int, T) -> U) -> [U]`
-### `map_key(a: [K: T], f: (K, T) -> U) -> [K: U]`
+### `map_key(a: [1], f: (Int, 1) -> 3) -> [1]`
+### `map_key(a: [2: 1], f: (2, 1) -> 3) -> [2: 3]`
 
 Same as `map`, but the indexes / keys are passed to the mapping function
 
-### `filter_key(a: [T], f: (Int, T) -> Bool) -> [U]`
-### `filter_key(a: [K: T], f: (K, T) -> Bool) -> [K: U]`
+### `filter_key(a: [0], f: (Int, 0) -> Bool) -> [0]`
+### `filter_key(a: [1: 0], f: (1, 0) -> Bool) -> [1: 0]`
 
 Same as `filter`, but the indexes / keys are passed to the filtering function
 
-### `fill_key(len: Int, f: Int -> T) -> [T]`
+### `fill_key(len: Int, f: Int -> 0) -> [0]`
 
 Creates a list of length *len* where an element at index i is f(i).
 
-### `values(dict: [~: T]) -> [T]`
+### `values(dict: [0: 1]) -> [1]`
 
 Iterate through the values of *dict*.
 
-### `entries(dict: [K: T]) -> [(K, T)]`
+### `entries(dict: [0: 1]) -> [(0, 1)]`
 
 Iterate through the key-value pairs of *dict*.
 
-### `sum(list: [Int|Float]) -> Int|Float`
+### `sum(list: [Int]) -> Int`
+### `sum(list: [Float]) -> Float`
 
 Returns the sum of the values of *list*. 
 
-### `min(list: [Int|Float]) -> Int|Float`
+### `min(list: [Int]) -> Int`
+### `min(list: [Float]) -> Float`
 
 Returns the smallest value in *list*.
 
-### `max(list: [Int|Float]) -> Int|Float`
+### `max(list: [Int]) -> Int`
+### `max(list: [Float]) -> Float`
 
 Returns the greatest value in *list*.
 
 ### `any(list: [Bool]) -> Bool`
 
-Returns `FALSE` if all the values in *list* are `FALSE`, `TRUE` otherwise.
+Returns `TRUE` if any value in *list* is `TRUE`, `FALSE` otherwise.
 
 ### `all(list: [Bool]) -> Bool`
 
@@ -249,16 +231,6 @@ or the first value if *val* is the last one.
 
 Returns the value before *val* in the enumeration *E*,
 or the last value if *val* is the first one.
-
-### `force_next(val: E) -> E`
-
-Returns the value after *val* in the enumeration *E*,
-throwing an `ERR_LOOKUP` if *val* is the last value.
-
-### `force_prev(val: E) -> E`
-
-Returns the value before *val* in the enumeration *E*,
-throwing an `ERR_LOOKUP` if *val* is the first value.
 
 ### `ord(a: Str|E) -> Int`
 

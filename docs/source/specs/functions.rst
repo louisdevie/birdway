@@ -5,18 +5,20 @@ Defining functions
 ------------------
 
 .. syntax::
-   | **func** *[* **::** *decorator:* <expr> *] name:* &IDENT **(** *{*
-   |   *[* **@** *] parameter:* &IDENT *[* **:** <type> *] /* **,**
+   | *[* **pub** *]* **func** name:* *[* **$** *]* &IDENT **(** *{*
+   |   *[* **@** *|* **$** *] parameter:* &IDENT *[* **:** <type> *] /* **,**
    | *}* **) ->** *result:* <expr>
 
 A function can be have multiple implementations with different types or number of parameters.
+``func`` declarations are allowed in the program body and blocks.
 
 Parameters
 ^^^^^^^^^^
 
 By default, arguments are passed by immutable reference.
 If the parameter name is preceded by an at symbol ``@``,
-it will be passed by value (and mutable).
+it will be passed by value (and mutable). If it is preceded
+by a dollar sign ``$``, it will be passed by mutable reference.
 
 .. why::
    Originally, function parameters were only passed by immutable reference,
@@ -33,9 +35,6 @@ it will be passed by value (and mutable).
    So I used the at symbol, wich was the last ASCII symbol left unused
    at that time to act as a modifier to have cleaner code.
 
-   It is not possible to pass an argument as a mutable reference,
-   and it will never be, so that it's obvious when a variable is modified.
-
 If a parameter isn't given a type, it becomes generic
 and a different function will be implemented for each
 type passed when calling the function, and the type is valid if the
@@ -43,9 +42,10 @@ function can be be compiled using this type.
 For example, if we have this function :
 
 .. code-block:: bw
+
    func add(a, b) -> a + b
 
-We can call call this function with any numeric types because that is
+We can call call this function with any numeric types because that's what is
 required by the ``+`` operator. The operators and statements you
 use in a function will determine what types can be passed to generic parameters.
 
@@ -64,7 +64,7 @@ Functions can also be declared inline :
 
 .. syntax::
    | **(** *{*
-   |   *[* **@** *] parameter:* &IDENT /* **,**
+   |   *[* **@** *|* **$** *] parameter:* &IDENT /* **,**
    | *}* **) ->** *result:* <expr>
 
 
@@ -115,8 +115,3 @@ argument of the function.
 
    I chose a double colon because I wanted to reserve
    the dor ``.`` for accessing struct/tuple fields only.
-
-
-Decorator calls
-^^^^^^^^^^^^^^^
-
