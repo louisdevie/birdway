@@ -29,6 +29,9 @@ contexts:
     - match: '\b(for|while|in|do)\b'
       scope: keyword.control.loop.birdway
 
+    - match: '\b(break|skip)\b'
+      scope: keyword.control.flow.break.birdway
+
     - match: '\b(meta|param|option|use|alias|is)\b'
       scope: keyword.other.birdway
 
@@ -71,8 +74,14 @@ contexts:
         4: variable.function.birdway
         5: entity.name.function.birdway
 
+    - match: '\bfunc\b'
+      scope: keyword.declaration.function.birdway
+
     - match: ->
       scope: keyword.declaration.birdway
+
+    - match: '\breturn\b'
+      scope: keyword.control.flow.return.birdway
 
     - match: (&&|&|~|##|#|-|\||\^|\+|==|=|%|\*|<<|<=|<|>>|>=|>|\?|//|/|!=|!)
       scope: keyword.operator.birdway

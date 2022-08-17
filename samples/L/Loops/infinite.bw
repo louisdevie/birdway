@@ -3,9 +3,8 @@
 
   https://rosettacode.org/wiki/Loops/Infinite
 
-  Task
-  Print out        SPAM        followed by a   newline   in an infinite loop.
-  
-  Related tasks
-  
+  === Task ===
+  Print out SPAM followed by a newline in an infinite loop.
 ---
+
+func main() -> while TRUE do println "SPAM";

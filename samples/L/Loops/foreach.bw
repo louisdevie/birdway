@@ -4,8 +4,14 @@
   https://rosettacode.org/wiki/Loops/Foreach
 
   Loop through and print each element in a collection in order.
-  Use your language's "for each" loop if it has one, otherwise iterate through the collection in order with some other loop.
-  
-  Related tasks
-  
+  Use your language's "for each" loop if it has one, otherwise iterate
+  through the collection in order with some other loop.
 ---
+
+func main() -> {
+    let dark_side = ["MEMBER", "GROUP", "SCHOOL", "ITEM", "BLOCK"]
+
+    for org in dark_side do {
+        println org;
+    };
+};

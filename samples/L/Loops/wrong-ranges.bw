@@ -7,64 +7,30 @@
   Some languages have syntax or function(s) to generate a range of numeric values from a start value, a stop value, and an increment.
   The purpose of this task is to select the range syntax/function that would generate at least two increasing numbers when given a stop value more than the start value and a positive increment of less than half the difference.   You are then to use that same syntax/function but with different parameters; and show, here, what would happen.
   Use these values if possible:
-  start 
-stop 
-increment 
-Comment
-
-
- -2
-2
-1
-Normal
-
-
- -2
-2
-0
-Zero increment
-
-
- -2
-2
--1
-Increments away from stop value
-
-
- -2
-2
-10
-First increment is beyond stop value
-
-
-2
--2
-1
-Start more than stop: positive increment
-
-
-2
-2
-1
-Start equal stop: positive increment
-
-
-2
-2
--1
-Start equal stop: negative increment
-
-
-2
-2
-0
-Start equal stop: zero increment
-
-
-0
-0
-0
-Start equal stop equal zero: zero increment
-  Related tasks
   
+  start stop increment comment
+
+  -2    2    1         Normal 
+
+  -2    2    0         Zero increment 
+
+  -2    2    -1        Increments away from stop value 
+
+  -2    2    10        First increment is beyond stop value 
+
+  2     -2   1         Start more than stop: positive increment 
+
+  2     2    1         Start equal stop: positive increment 
+
+  2     2    -1        Start equal stop: negative increment 
+
+  2     2    0         Start equal stop: zero increment 
+
+  0     0    0         Start equal stop equal zero: zero increment  
 ---
+
+param start: Int;
+param stop: Int;
+param step: Int;
+
+func main() -> println [start..stop..step]::map(to_string)::join(" ");

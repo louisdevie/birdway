@@ -13,7 +13,7 @@ function_call:
 
 check_file_exists:
   - get: C/check-that-file-exists.bw
-  - compile: check-that-file-exists
+  - compile: check-that-file-exists.bw
 
   - run: check-that-file-exists file.txt
     stdout: |

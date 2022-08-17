@@ -5,15 +5,72 @@
 
   The 24 Game tests one's mental arithmetic.
   
-  Task
-  Write a program that randomly chooses and displays four digits, each from 1 ──► 9 (inclusive) with repetitions allowed.
-  The program should prompt for the player to enter an arithmetic expression using just those, and all of those four digits, used exactly once each. The program should check then evaluate the expression.
+  === Task ===
+  Write a program that randomly chooses and displays four digits,
+  each from 1 → 9 (inclusive) with repetitions allowed.
+  The program should prompt for the player to enter an arithmetic expression using just those,
+  and all of those four digits, used exactly once each.
+  The program should check then evaluate the expression.
   The goal is for the player to enter an expression that (numerically) evaluates to 24.
-  
-  Notes
-  
-  Related tasks
-  
-  Reference
-  
 ---
+
+param a: Int;
+
+func main() -> {
+    let digits = fill(4, () -> random(1, 9));
+
+    println digits::map(to_string)::join(" ");
+
+    let $expr = "";
+    print "> ";
+    readln expr;
+
+    let value = eval_rpn(expr::split(" ")::filter(is_empty), digits);
+
+    println if value == 24 then "Well done !" else "No, this evaluates to $value.";
+};
+
+func eval_rpn(expr, @digits) -> {
+    let $stack = [];
+
+    for e in expr {
+        if is_digit(e) then {
+            let n = to_int(e)::value();
+            if 1 <= n <= 9 then {
+                let i = digits::find(n);
+                if ?i then {
+                    stack::append(n);
+                    digits::remove(i);
+                }
+                else {
+                    throw (ERR_VALUE, "$n has already been used");
+                }
+            }
+            else {
+                throw (ERR_VALUE, "only digits between 1 and 9 may be used");
+            }
+        }
+        else {
+            rhs = stack::pop(-1);
+            lhs = stack::pop(-1);
+
+            if e == "+" then {
+                stack::append(lhs + rhs);
+            }
+            else if e == "-" then {
+                stack::append(lhs - rhs);
+            }
+            else if e == "*" then {
+                stack::append(lhs * rhs);
+            }
+            else if e == "/" then {
+                stack::append(idiv(lhs, rhs)::value("$rhs isn't a factor of $lhs"));
+            }
+            else {
+                throw (ERR_VALUE, "invalid operator $e")
+            }
+        }
+    };
+
+    return stack[0];
+};

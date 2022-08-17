@@ -17,4 +17,4 @@
 func main()->print[-32,12,1,2,-67,-28,12,9,3]::map(n->chr(n+99))::join();
 
 -- 27 characters, if the executable is named "Code Golf" :
--- func main()->print argv(0);
+-- func main()->print argv0();

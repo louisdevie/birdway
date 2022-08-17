@@ -11,6 +11,7 @@ PRINTER = Printer(sys.stdout)
 
 
 def main():
+    gud = True
     PRINTER.print("Loading tests ... ")
     PRINTER.indent()
 
@@ -26,10 +27,12 @@ def main():
 
     if ok == tests.count_total:
         color = GREEN
-    elif (ok / tests.count_total) > (9 / 10):  # more than 1 out of 10 failed
-        color = YELLOW
     else:
-        color = RED
+        gud = False
+        if (ok / tests.count_total) > (9 / 10):  # more than 1 out of 10 failed
+            color = YELLOW
+        else:
+            color = RED
 
     PRINTER.println()
     PRINTER.println(
@@ -38,6 +41,8 @@ def main():
 
     implemented = []
     for root, dirs, files in os.walk(ROOT):
+        if "testenv" in root:
+            continue
         for file in files:
             file = P(root) / P(file)
             if file.suffix == ".bw":
@@ -50,6 +55,7 @@ def main():
     if len(not_tested) == 0:
         PRINTER.println(f"All scripts were tested !", style=GREEN & BOLD)
     else:
+        gud = False
         if (len(not_tested) / len(implemented)) < (
             1 / 10
         ):  # less than 1 out of 10 weren't tested
@@ -63,6 +69,9 @@ def main():
         PRINTER.indent(" → ")
         for f in sorted(not_tested):
             PRINTER.println(f)
+
+    if not gud:
+        exit(1)
 
 
 def load_tests():

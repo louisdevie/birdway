@@ -1,0 +1,62 @@
+---
+  Execute Brain****
+
+  https://rosettacode.org/wiki/Execute_Brain****
+
+  RCBF is a set of Brainf*** compilers and interpreters written for Rosetta Code in a variety of languages.
+  Below are links to each of the versions of RCBF.
+  An implementation need only properly implement the following instructions:
+
+  Any cell size is allowed, EOF (End-O-File) support is optional, as is whether you have bounded or unbounded memory.
+---
+
+param? source: Str;
+
+func main() -> {
+    let $program = NULL;
+
+    if ?source then {
+        let file = open(source, READ);
+        read program from file;
+        file::close();
+    }
+    else {
+        read program; -- read from standard input
+    };
+
+    let $memory = fill(32768, 0);
+    let $cursor = 0;
+    let $brackets = [];
+    let $pc = 0;
+
+    while pc != #program do {
+        switch program[pc]
+        case "+" do {
+            memory[cursor] = $ + 1;
+        }
+        case "-" do {
+            memory[cursor] = $ - 1;
+        }
+        case ">" do {
+            cursor = $ + 1;
+        }
+        case "<" do {
+            cursor = $ - 1;
+        }
+        case "[" do {
+            brackets::append(pc);
+        }
+        case "]" do {
+            if memory[cursor] != 0 then pc = brackets::pop(-1);
+        } 
+        case "." do {
+            print chr(memory[cursor]);
+        }
+        case "," do {
+            let $input = NULL;
+            readln input limit 1;
+            memory[cursor] = ord(input);
+        };
+        pc = pc + 1;
+    };
+};

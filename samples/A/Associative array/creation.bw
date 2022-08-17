@@ -3,10 +3,10 @@
 
   https://rosettacode.org/wiki/Associative_array/Creation
 
-  Task
+  === Task ===
   The goal is to create an associative array (also known as a dictionary, map, or hash).
-  Related tasks:
-  
-  See also
-  
 ---
+
+func main() -> {
+    let level = ["kazari": 1, "kuroko": 4, "mikoto": 5, "ruiko": 0];
+}

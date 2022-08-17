@@ -3,11 +3,8 @@
 
   https://rosettacode.org/wiki/Loops/Continue
 
-  Task
+  === Task ===
   Show the following output using one loop.
   Try to achieve the result by forcing the next iteration within the loop
-upon a specific condition, if your language allows it.
-  
-  Related tasks
-  
+  upon a specific condition, if your language allows it.
 ---

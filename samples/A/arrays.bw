@@ -24,22 +24,22 @@ func main() -> {
     let $list2 = []
 
     -- adding an element at the end
-    list2::insert("after");
+    list2::add("after");
     println list2; --> ["after"]
 
     -- adding an element at a specific index
-    list2::insert("before", 0);
+    list2::add("before", 0);
     println list2; --> ["before", "after"]
 
     -- removing the last element
-    list2::pop();
+    list2::del();
     println list2; --> ["before"]
 
     -- removing an element at a specific index
-    list2::pop(0);
+    list2::del(0);
     println list2; --> []
 
-    -- creating a list from a loop
+    -- creating a list with a loop
     let list3 = for i in 1..10 do i**2;
     println list3; --> [1, 4, 9, 16, 25, 36, 49, 64, 81]
 

@@ -1,5 +1,5 @@
 import yaml
-import os, shutil
+import os, shutil, subprocess
 from pathlib import Path as P
 from abc import ABC, abstractmethod
 from printer import *
@@ -40,7 +40,8 @@ class SingleTest(TestABC):
             p.indent("│     ")
         else:
             p.indent("      ")
-        p.println(msg, style=LIGHTRED)
+        for m in msg:
+            p.println(m, style=LIGHTRED)
         p.unindent()
         p.indent(i)
 
@@ -60,10 +61,30 @@ class SingleTest(TestABC):
                         file = data["get"]
                         fullpath = r / P(file)
                         if not fullpath.is_file():
-                            self.__err(f"No such file : {file}", p)
+                            self.__err(f"No such file {file}", p)
                             return 0, used
                         shutil.copy(fullpath, ENV)
                         used.append(file)
+
+                    case "compile":
+                        result = subprocess.run(
+                            [
+                                "python3.10",
+                                str(r / "../bootstrap/main.py"),
+                                str(r / "../bw/bw.bw"),
+                                str(ENV / data["compile"]),
+                            ],
+                            stdout=subprocess.PIPE,
+                            stderr=subprocess.STDOUT,
+                            text=True,
+                        )
+                        if result.returncode:
+                            self.__err(
+                                [f"Error compiling {data['compile']} :"]
+                                + result.stdout.split("\n"),
+                                p,
+                            )
+                            return 0, used
 
         except Exception as err:
             self.__err(f"Unhandled exception : {err}", p)

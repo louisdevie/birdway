@@ -24,6 +24,6 @@
 ---
 
 param a: Int;
-param a: Int;
+param b: Int;
 
 func main() -> println a + a;

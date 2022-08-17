@@ -3,10 +3,12 @@
 
   https://rosettacode.org/wiki/Loops/For_with_a_specified_step
 
-  
-  Task
-  Demonstrate a   for-loop   where the step-value is greater than one.
-  
-  Related tasks
-  
+  === Task ===
+  Demonstrate a for-loop where the step-value is greater than one.
 ---
+
+func main() -> {
+    for i in [0..21..3] do {
+        println i;
+    };
+};

@@ -8,14 +8,14 @@ Below is the list of all tasks from [rosetta code](https://rosettacode.org) (as 
 
 ## ​#
 
-- [ ] [100 doors](./%23/100-doors.bw)
+- [x] [100 doors](./%23/100-doors.bw)
 - [ ] [100 prisoners](./%23/100-prisoners.bw)
 - [ ] [15 puzzle game](./%23/15-puzzle-game.bw)
 - [ ] [15 puzzle solver](./%23/15-puzzle-solver.bw)
 - [ ] [2048](./%23/2048.bw)
 - [ ] [21 game](./%23/21-game.bw)
-- [ ] [24 game/Solve](./%23/24%20game/solve.bw)
-- [ ] [24 game](./%23/24%20game/24-game.bw)
+- [x] [24 game](./%23/24%20game/24-game.bw)
+  - [ ] [Solve](./%23/24%20game/solve.bw)
 - [ ] [4-rings or 4-squares puzzle](./%23/4-rings-or-4-squares-puzzle.bw)
 - [ ] [9 billion names of God the integer](./%23/9-billion-names-of-god-the-integer.bw)
 - [ ] [99 bottles of beer](./%23/99-bottles-of-beer.bw)
@@ -80,10 +80,10 @@ Below is the list of all tasks from [rosetta code](https://rosettacode.org) (as 
 - [x] [Arrays](./A/arrays.bw)
 - [ ] [Ascending primes](./A/ascending-primes.bw)
 - [ ] [Assertions](./A/assertions.bw)
-- [ ] Associative array
-  - [ ] [Creation](./A/Associative%20array/creation.bw)
-  - [ ] [Iteration](./A/Associative%20array/iteration.bw)
-  - [ ] [Merging](./A/Associative%20array/merging.bw)
+- [x] Associative array
+  - [x] [Creation](./A/Associative%20array/creation.bw)
+  - [x] [Iteration](./A/Associative%20array/iteration.bw)
+  - [x] [Merging](./A/Associative%20array/merging.bw)
 - [ ] [Atomic updates](./A/atomic-updates.bw)
 - [ ] [Attractive numbers](./A/attractive-numbers.bw)
 - [ ] [Average loop length](./A/average-loop-length.bw)

@@ -5,14 +5,45 @@
 
   
   Some languages allow multiple loop ranges, such as the PL/I example (snippet) below.
+
+  [...]
   
-  Task
+  === Task ==
   Simulate/translate the above PL/I program snippet as best as possible in your
-language,   with particular emphasis on the   do   loop construct.
-  The   do   index must be incremented/decremented in the same order shown.
+  language, with particular emphasis on the do loop construct.
+  The do index must be incremented/decremented in the same order shown.
   If feasible, add commas to the two output numbers (being displayed).
   Show all output here.
-  
-  Related tasks
-  
 ---
+
+-- note: translation of Nim
+
+func main() -> {
+    let $prod = 1;
+    let $sum = 0;
+     
+    let x = 5;
+    let y = -5;
+    let z = -2;
+    let one = 1;
+    let three = 3;
+    let seven = 7;
+     
+    func body(j) -> {
+        sum += abs(j);
+        if abs(prod) < 2^27 and j != 0 then prod *= j;
+    }
+     
+    for j in [
+        (-three)..(3^3)..three,
+        (-seven)..seven..x,
+        555..(550 - y),
+        22..(-28)..three,
+        1927..1939,
+        x..y..z,
+        (11^x)..(11^x)..one,
+    ] do body(j);
+     
+    println "sum : $sum";
+    println "prod : $prod";
+}

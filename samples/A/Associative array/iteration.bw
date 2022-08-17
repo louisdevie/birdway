@@ -5,7 +5,17 @@
 
   Show how to iterate over the key-value pairs of an associative array, and print each pair out.
   Also show how to iterate just over the keys, or the values, if there is a separate way to do that in your language.
-  
-  See also
-  
 ---
+
+func main() -> {
+    let level = ["kazari": 1, "kuroko": 4, "mikoto": 5, "ruiko": 0];
+
+    -- iterate over the keys
+    for name in level do println name;
+
+    -- iterate over the values
+    for lvl in values(level) do println lvl;
+
+    -- iterate over the key-value pairs
+    for pair in items(level) do println "$(pair.0): $(pair.1)";
+};

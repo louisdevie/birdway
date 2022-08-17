@@ -27,7 +27,7 @@ arrays:
 
 array_length:
   - get: A/array-length.bw
-  - compile: array.bw
+  - compile: array-length.bw
   - run: array_length
     stdout: |
       2
