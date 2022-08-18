@@ -1,11 +1,13 @@
 <h1>
-	<img src="icons/birdway-color.svg" alt="logo" height="50pt"/>
+	<img src="icons/birdway-color.svg" alt="logo" height="32px"/>
 	Birdway
 </h1>
 
 A programming language for command-line applications
 
 ## Overview
+
+**Status : Draft**
 
 *Birdway* is a functional and imperative programming language, primarily meant
 to create small command-line applications.
