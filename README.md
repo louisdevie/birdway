@@ -21,6 +21,7 @@ and to learn a thing or two about how compilers works.
 * First-class / anonymous functions
 * Full type inference
 * Function overloading
+* Command-line arguments parsing
 
 ## License
 
