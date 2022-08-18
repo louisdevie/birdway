@@ -15,7 +15,6 @@ All Birdway implementations should follow the following specifications.
 
    syntaxdef
    lextok
-   structure
    types
    composites
    userdef

@@ -27,11 +27,14 @@ author = "Louis DEVIE"
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ["sphinx_rtd_theme", "birdway_docs", "sphinxcontrib.spelling"]
+extensions = ["sphinx_rtd_theme", "birdway_docs"]
 
-spelling_lang = "en_GB"
-tokenizer_lang = "en_GB"
-spelling_word_list_filename = "_ext/dictionary_overrides.txt"
+if not os.getenv("READTHEDOCS"):
+    extensions.append("sphinxcontrib.spelling")
+
+    spelling_lang = "en_GB"
+    tokenizer_lang = "en_GB"
+    spelling_word_list_filename = "_ext/dictionary_overrides.txt"
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]
