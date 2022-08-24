@@ -5,7 +5,7 @@ SIGNAL
 │  ├─ ERR_VALUE
 │  │  ├─ ERR_NULL
 │  │  ├─ ERR_MATH
-│  │  └─ ERR_OVERFLOW
+│  │  └─ ERR_RANGE
 │  ├─ ERR_OS
 │  │  ├─ ERR_IO
 │  │  ├─ ERR_NOTFOUND
@@ -17,6 +17,7 @@ SIGNAL
 │  ├─ ERR_FORMAT
 │  ├─ ERR_USERINT
 │  ├─ ERR_MEMORY
+│  ├─ ERR_APP
 │  └─ FAIL
 ├─ RETURN
 ├─ BREAK
@@ -32,8 +33,10 @@ Any other signal can be thrown with a `throw` and caught with a `try`.
 Name        |Meaning                         
 ------------|---------------------------------
 BREAK       |Loop break                       
+ERR_APP     |Error specific to the application
 ERR_ANY     |Base error                       
-ERR_EXISTS  |File/directory already exists    
+ERR_EXISTS  |File/directory already exists
+ERR_FORMAT  |Invalid input format     
 ERR_IO      |I/O error                        
 ERR_LOOKUP  |Invalid index or key             
 ERR_MATH    |Invalid math operation           
@@ -43,13 +46,11 @@ ERR_NOTAFILE|A file was expected
 ERR_NOTFOUND|A path doesn't exists            
 ERR_NULL    |A nullable value was NULL        
 ERR_OS      |Base OS error                    
-ERR_APP     |Error specific to the application
 ERR_OVERFLOW|Integer overflow/underflow       
 ERR_PERM    |Permission denied                
 ERR_USERINT |User interrupt (e.g. Ctrl+C)     
 ERR_VALUE   |Base value error   
-FAIL        |Generic error
-ERR_FORMAT  |Invalid input format              
+FAIL        |Generic error             
 RETURN      |Function return                  
 SIGNAL      |Abstract base signal             
 SKIP        |Loop skip                        

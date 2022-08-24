@@ -50,22 +50,20 @@
   - [ ] Is null
   - [ ] Isn't null
   - [ ] Union
+- [ ] Single element acessing
+- [ ] Command-line parameters
 
-## Features for future versions
+## Features that will be added in future versions
 
 - [ ] Types
   - [ ] RegEx
   - [ ] Byte
-  - [ ] Type definitions
-  - [ ] Unions
+  - [ ] Arrays
 - [ ] Switch statements
-- [ ] Until loops
-- [ ] Infinite loops
-- [ ] `pure` modifier
-- [ ] `safe` modifier
 - [ ] Operator overload 
 - [ ] Operators
   - [ ] Between
+  - [ ] Logical XOR
   - [ ] Bitwise
     - [ ] NOT
     - [ ] OR
@@ -73,3 +71,22 @@
     - [ ] XOR
     - [ ] Left shift
     - [ ] Right shift
+- [ ] List/tuple unpacking (`\` before the sequence ?)
+- [ ] Multiple element acessing
+- [ ] Method call
+- [ ] Operator overload
+- [ ] `pub` modifier
+- [ ] Command-line options and flags
+- [ ] Implicit conversion
+
+## Features that may be added in future versions
+
+- [ ] Types
+  - [ ] Typedefs
+  - [ ] Unions
+- [ ] Until loops
+- [ ] Infinite loops
+- [ ] `pure` modifier
+- [ ] `safe` modifier
+- [ ] declare parameters together
+- [ ] implicit string concatenation

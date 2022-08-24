@@ -60,6 +60,10 @@
 
 #### E232 module already used
 
+#### E241 missing main function
+
+#### E242 main function in module
+
 #### E290 deprecated predefinition
 
 #### E300 type error
@@ -83,6 +87,10 @@
 #### E332 invalid type for `switch`
 
 #### E333 not iterable
+
+#### E341 invalid type for main function
+
+#### E342 invalid type for exit function
 
 #### E400 value error
 

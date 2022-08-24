@@ -1,6 +1,6 @@
 # Predefinitions
 
-Birdway *predefinitions* are functions, constants and types implemented by the compiler.
+Birdway *predefinitions* are functions and constants implemented by the compiler.
 
 
 
@@ -34,17 +34,6 @@ Append mode flag.
 
 Binary mode flag.
 
-### `Enum Alignment`
-
-Text alignment.
-
-Values :
-```
-CENTER
-LEFT
-RIGHT
-JUSTIFY
-```
 
 
 ## Functions (math)
@@ -54,31 +43,38 @@ JUSTIFY
 
 Returns the absolute value of *x*.
 
-### `sqrt(x: Int|Float) -> Float`
+### `sqrt(x: Float) -> Float`
 
 Returns the square root of *x*.
 
-### `root(x: Int|Float, i: Int|Float) -> Float`
+### `root(x: Float, i: Float) -> Float`
 
-Returns the *i*-th root of *x*.  
+Returns the *i*-th root of *x*.
 
-### `cos(x: Int|Float) -> Float`
-### `sin(x: Int|Float) -> Float`
-### `tan(x: Int|Float) -> Float`
-### `acos(x: Int|Float) -> Float`
-### `asin(x: Int|Float) -> Float`
-### `atan(x: Int|Float) -> Float`
+### `cos(ang: Float) -> Float`
+### `sin(ang: Float) -> Float`
+### `tan(ang: Float) -> Float`
+### `acos(cos: Float) -> Float`
+### `asin(sin: Float) -> Float`
+### `atan(tan: Float) -> Float`
 
-Trigonometry functions.
+Trigonometry functions, with the angles in radians.
 
-### `log(x: Int|Float) -> Float`
-### `log(x: Int|Float, b: Int|Float) -> Float`
+### `ln(x: Float) -> Float`
 
-Return the logarithm of *x* to base *b*, or the natural logarithm (base ⅇ) if no base is given.
+Returns the natural logarithm of *x*.
 
-### `exp(x: Int|Float) -> Float`
+### `log(x: Float, b: Float) -> Float`
 
-The exponential function.
+Returns the base *b* logarithm of *x*.
+
+### `exp(x: Float) -> Float`
+
+The exponential function (e^*x*).
+
+### `pow(x: Float, p: Float) -> Float`
+
+Returns *x* to the power of *p*.
 
 ### `round(x: Float) -> Int`
 ### `round(x: Int|Float, r: Int) -> Int`
@@ -92,35 +88,30 @@ Round *x* to the nearest integer, or the nearest multiple of *r* if given.
 
 Round *x* to the nearest integer (or the nearest multiple of *r* if given) **less** than *x*.
 
-### `ceiling(x: Float) -> Int`
-### `ceiling(x: Int|Float, r: Int) -> Int`
-### `ceiling(x: Int|Float, r: Float) -> Float`
+### `ceil(x: Float) -> Int`
+### `ceil(x: Int|Float, r: Int) -> Int`
+### `ceil(x: Int|Float, r: Float) -> Float`
 
 Round *x* to the nearest integer (or the nearest multiple of *r* if given) **greater** than *x*.
 
-### `next_pow(n: Int, b: Int) -> Int`
-
-Returns the smallest integer p such that *b*^p ≥ *n*.
-
-Example: the number of digits needed to write N in decimal is `next_pow(N, 10)`
-
-### `eq(a: Float, b: Float, prec: Int) -> Bool`
+### `almost_eq(a: Float, b: Float, prec: Int) -> Bool`
 
 Test *a* and *b* for equality with *prec* significant digits.
 
 Example: `eq(3.14, PI, 3)` returns `TRUE`
 
-### `div(a: Int|Float, b: Int|Float) -> Float?`
+### `idiv(a: Int, b: Int) -> (Int, Int)?`
 
-Returns *a / b*, or `NULL` if *b* = 0.
+Returns the quotient and the remainder of *a* divided by *b*,
+or `NULL` if *b* = 0.
+
+### `fdiv(a: Float, b: Float) -> Float?`
+
+Returns *a* divided by *b*, or `NULL` if *b* = 0.
 
 
 
 ## Functions (collections)
-
-### `size(a: Str|[~]|[~: ~]) -> Int`
-
-Returns the size of *a*.
 
 ### `enumerate(a: Str) -> [(Int, Str)]`
 ### `enumerate(a: [0]) -> [(Int, 0)]`
@@ -134,11 +125,13 @@ The equivalent for dictionaries is `entries`.
 
 Iterate from the end to the start.
 
-### `zip(a: Str|Enum|[0], ...) -> [(Str|a|0, ...)]`
+### `zip(a: Str, b: Str) -> [(Str, Str)]`
+### `zip(a: [0], b: [1]) -> [(0, 1)]`
 
 Iterate through multiple collections at once, stopping at the end of the shortest one.
 
-### `zip_max(a: Str|Enum|[0], ...) -> [(Str?|a?|0?, ...)]`
+### `zip_max(a: Str, b: Str) -> [(Str?, Str?)]`
+### `zip_max(a: [0], b: [1]) -> [(0?, 1?)]`
 
 Iterate through multiple collections at once, stopping at the end of the longest one.
 If some collections stop before others, `NULL` will be used as a default value.
@@ -148,27 +141,22 @@ If some collections stop before others, `NULL` will be used as a default value.
 
 Reduce a list to a single value.
 
-### `product(a: [0], b: [U], f: (0, U) -> V) -> [[V]]`
-
-Creates a matrix containing the result of *f*
-for each value of *a* and each value of *b*.
-
-### `map(a: [0], f: 0 -> U) -> [U]`
-### `map(a: [K: 0], f: 0 -> U) -> [K: U]`
+### `map(a: [0], f: 0 -> 2) -> [2]`
+### `map(a: [1: 0], f: 0 -> 2) -> [1: 2]`
 
 Maps the elements from *a* to their image by *f*.
 
-### `filter(a: [0], f: 0 -> Bool) -> [U]`
-### `filter(a: [K: 0], f: 0 -> Bool) -> [K: U]`
+### `filter(a: [0], f: 0 -> Bool) -> [0]`
+### `filter(a: [1: 0], f: 0 -> Bool) -> [1: 0]`
 
-Maps the elements from *a* for wich `f(elem)` is `FALSE`.
+Removes the elements from *a* for wich `f(item)` is `TRUE`.
 
 ### `fill(len: Int, val: 0) -> [0]`
 
 Creates a list of length *len* filled with *val*.
 
-### `map_key(a: [1], f: (Int, 1) -> 3) -> [1]`
-### `map_key(a: [2: 1], f: (2, 1) -> 3) -> [2: 3]`
+### `map_key(a: [0], f: (Int, 0) -> 2) -> [0]`
+### `map_key(a: [1: 0], f: (1, 0) -> 2) -> [1: 2]`
 
 Same as `map`, but the indexes / keys are passed to the mapping function
 
@@ -181,11 +169,11 @@ Same as `filter`, but the indexes / keys are passed to the filtering function
 
 Creates a list of length *len* where an element at index i is f(i).
 
-### `values(dict: [0: 1]) -> [1]`
+### `values(dict: [1: 0]) -> [0]`
 
 Iterate through the values of *dict*.
 
-### `entries(dict: [0: 1]) -> [(0, 1)]`
+### `entries(dict: [1: 0]) -> [(1, 0)]`
 
 Iterate through the key-value pairs of *dict*.
 
@@ -234,61 +222,54 @@ or the last value if *val* is the first one.
 
 ### `ord(a: Str|E) -> Int`
 
-Returns the unicode codepoint of a character
+Returns the code of a character
 or the position of a value in an enumeration.
-
-
 
 ## Functions (conversion)
 
 ### `to_int(val: Bool) -> Int`
+
+Maps `FALSE` to `0` and `TRUE` to `1`.
+
 ### `to_int(val: Str) -> Int?`
 
-If *val* is a boolean, `FALSE` becomes `0` and `TRUE` becomes `1`.
-
-If *val* is a string, it will be parsed for an integer literal.
+Scan the string for an integer literal.
 If it is not a valid integer, `NULL` is returned.
 
-Use `round`, `floor` or `ceiling` to convert a `Float` into an `Int`.
-
-### `force_to_int(val: Str) -> Int`
-
-Same as `to_int`, but throws an `ERR_VALUE` if the string is invalid. 
+Use `round`, `floor` or `ceil` to convert a `Float` into an `Int`.
 
 ### `to_float(val: Bool) -> Int`
+
+Maps `FALSE` to `0.0` and `TRUE` to `1.0`.
+
 ### `to_float(val: Str) -> Int?`
 
-If *val* is a boolean, `FALSE` becomes `0.0` and `TRUE` becomes `1.0`.
-
-If *val* is a string, it will be parsed for a float literal.
+Scan the string for a float literal.
 If it is not a valid decimal number, `NULL` is returned.
 
-### `force_to_float(val: Str) -> Float`
-
-Same as `to_float`, but throws an `ERR_VALUE` if the string is invalid.
-
 ### `to_byte(val: Bool) -> Byte`
+
+Maps `FALSE` to `'0` and `TRUE` to `'1`.
+
 ### `to_byte(val: Int) -> Byte?`
 
-If *val* is a boolean, `FALSE` becomes `'0` and `TRUE` becomes `'1`.
+Converts *val* to the equivalent `Byte` if 0 ≤ *val* < 256.
+`NULL` is returned if *val* is outside the range.
 
-If *val* is an integer, is is converted to the equivalent `Byte`
-if 0 ≤ *val* < 256. `NULL` is returned if *val* is outside the range.
-
-### `force_to_byte(val: Int) -> Byte`
-
-Same as `to_byte`, but throws an `ERR_VALUE` if the value is outside of the range.
-
-### `to_bool(val: ~) -> Bool`
+### `to_bool(val: 0) -> Bool`
 
 Converts anything into a boolean.
 
 `NULL`, `'0`, `0`, `0.0`, `""`, `[]`, and a closed `File` are all converted to `FALSE`.
 Anything else than that is converted to `TRUE`.
 
+Can be overloaded.
+
 ### `to_string(val: ~) -> Str`
 
 Gives a representation of *val*, the same way `print val` does.
+
+Can be overloaded.
 
 ### `bin(val: Byte|Int) -> Str`
 
@@ -312,4 +293,8 @@ Returns wether *part* appears in *text*.
 
 Return `TRUE` if *text* contains certain characters only.
 
-### `trim(text -> Str)`
+### `trim(text: Str) -> Str`
+### `triml(text: Str) -> Str`
+### `trimr(text: Str) -> Str`
+
+Removes spaces at the beginning and/or the end of a string.
