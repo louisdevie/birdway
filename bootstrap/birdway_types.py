@@ -1,7 +1,21 @@
 from abc import ABC, abstractmethod
 
-
-__all__ = ["Void", "Bool", "Int", "Float", "Str", "File"]
+__all__ = [
+    "Void",
+    "Bool",
+    "Int",
+    "Float",
+    "Str",
+    "File",
+    "Nullable",
+    "Tuple",
+    "List",
+    "Dictionary",
+    "Function",
+    "Enum",
+    "Struct",
+    "Reference",
+]
 
 
 class Type(ABC):
@@ -274,3 +288,12 @@ class Struct(UserDefined):
     @property
     def fields(self):
         return self.__fields
+
+
+class Reference(UserDefined):
+    def __init__(self, name):
+        self.__name = name
+
+    @property
+    def name(self):
+        return self.__name

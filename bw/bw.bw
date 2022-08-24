@@ -1,12 +1,11 @@
 meta name = "Birdway";
 
-use lexer;
-
-option OUTPUT_DIR: Str = ".";
 param INPUT: Str;
 
+use lexer;
+
 func main() -> {
-    println "WARNING: the Birdway compiler (version A-220808) "
+    println "WARNING: the Birdway compiler (version A-220824) "
          && "doesn't support all the features of the language";
 
     print "Compiling "; print INPUT; println " ...";
@@ -14,14 +13,15 @@ func main() -> {
     let $source_code = "";
     try {
         let source_file = open(INPUT, READ);
-        read source_code from source_file;
-        close(source_file);
-    } on ERR_ANY do {
+        source_code = read from source_file;
+    }
+    on ERR_ANY do {
         print "Unable to read file "; print INPUT; print " : "; println err();
         throw FAIL;
+    }
+    finally {
+        close(source_file);
     };
 
-    print source_code;
-
-    -- let tokens = tokenise(source_code);
+    let tokens = tokenise(source_code);
 };

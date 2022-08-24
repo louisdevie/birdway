@@ -3,6 +3,7 @@ import enum
 from error import BirdwaySyntaxError
 from lexer import *
 from birdway_types import *
+from utils import find_module
 
 
 class Node(enum.Enum):
@@ -20,9 +21,11 @@ class Node(enum.Enum):
 
 
 class Parser:
-    def __init__(self, tokens):
+    def __init__(self, tokens, unit_path):
         self.__tokens = tokens
         self.__buffer = None
+
+        self.__path = unit_path
 
     def pop(self):
         if self.__buffer is None:
@@ -44,11 +47,9 @@ class Parser:
     def __parse_body(self):
         prog = {
             "metadata": [],
-            "uses": [],
             "functions": [],
             "types": [],
             "parameters": [],
-            "flags_options": [],
         }
 
         while True:
@@ -61,16 +62,21 @@ class Parser:
                     self.pop()
                     match self.pop():
                         case Identifier(name):
-                            prog["uses"].append(name)
+                            mod = find_module(name, self.__path)
+                            if mod is None:
+                                raise BirdwayNameError(f"module ‘{name}’ not found")
+
+                            with open(mod, "rt", encoding="utf-8") as f:
+                                source = f.read()
+                            mod_ast = Parser(tokenise(source), mod).parse()
+
+                            prog["functions"].append(mod_ast["functions"])
+                            prog["types"].append(mod_ast["types"])
 
                         case other:
                             raise BirdwaySyntaxError(
-                                f"expected extension name, got {other}"
+                                f"expected module name, got {other}"
                             )
-
-                case Keyword(keyword="option"):
-                    self.pop()
-                    prog["metadata"].append(self.__parse_option())
 
                 case Keyword(keyword="param"):
                     self.pop()
@@ -79,6 +85,10 @@ class Parser:
                 case Keyword(keyword="func"):
                     self.pop()
                     prog["functions"].append(self.__parse_function())
+
+                case Keyword(keyword="struct"):
+                    self.pop()
+                    prog["types"].append(self.__parse_struct())
 
                 case EndOfFile():
                     self.pop()
@@ -186,10 +196,51 @@ class Parser:
                     case other:
                         raise NotImplementedError(f"unhandled primitive type {other}")
 
+            case Identifier(name):
+                t = Reference(name)
+
             case other:
                 raise BirdwaySyntaxError(f"unexpected {other} while parsing type")
 
         return t
+
+    def __parse_struct(self):
+        struct = {"type": "struct"}
+
+        match self.pop():
+            case Identifier(name):
+                struct["name"] = name
+
+            case other:
+                raise BirdwaySyntaxError(f"expected struct name, got {other}")
+
+        if (invalid := self.pop()) != Punctuation("("):
+            raise BirdwaySyntaxError(f"expected ‘(’, got {other}")
+
+        struct["fields"] = self.__parse_comma_separated_values(
+            end=Punctuation(")"),
+            context="struct",
+            value=self.__parse_field,
+        )
+
+        return struct
+
+    def __parse_field(self):
+        field = {}
+
+        match self.pop():
+            case Identifier(name):
+                field["name"] = name
+
+            case other:
+                raise BirdwaySyntaxError(f"expected struct field name, got {other}")
+
+        if (invalid := self.pop()) != Punctuation(":"):
+            raise BirdwaySyntaxError(f"expected ‘:’, got {other}")
+
+        field["type"] = self.__parse_type()
+
+        return field
 
     def __parse_expression(self):
         match self.peek():

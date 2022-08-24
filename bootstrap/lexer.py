@@ -78,6 +78,7 @@ class Primitive:
 
 
 __all__ = [
+    "tokenise",
     "EndOfFile",
     "Keyword",
     "Identifier",

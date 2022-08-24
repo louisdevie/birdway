@@ -13,7 +13,7 @@ def main():
 
     tokens = tokenise(source)
     try:
-        ast = Parser(tokens).parse()
+        ast = Parser(tokens, sys.argv[1]).parse()
 
         # pprint.pprint(ast)
 
