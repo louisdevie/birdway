@@ -52,6 +52,7 @@
   - [ ] Union
 - [ ] Single element acessing
 - [ ] Command-line parameters
+- [ ] ASCII identifiers
 
 ## Features that will be added in future versions
 
@@ -78,6 +79,8 @@
 - [ ] `pub` modifier
 - [ ] Command-line options and flags
 - [ ] Implicit conversion
+- [ ] Unicode identifiers
+- [ ] declare command-line parameters together
 
 ## Features that may be added in future versions
 
@@ -88,5 +91,4 @@
 - [ ] Infinite loops
 - [ ] `pure` modifier
 - [ ] `safe` modifier
-- [ ] declare parameters together
 - [ ] implicit string concatenation
