@@ -1,0 +1,12 @@
+# Configuration for KOMOE static site generator.
+
+komoe_require = '0.0.0'
+
+[project]
+name = 'Birdway'
+
+[build]
+source = 'source'
+templates = 'templates'
+static = 'static'
+output = 'site'
