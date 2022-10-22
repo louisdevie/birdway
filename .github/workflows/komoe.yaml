@@ -27,9 +27,6 @@ jobs:
         with:
           python-version: '3.10'
           cache: 'pip'
-      
-      - name: Setup Komoe
-        run: pip install komoe
 
       - name: Run Komoe
         run: komoe build -P docs --fresh
