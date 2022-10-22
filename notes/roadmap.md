@@ -80,7 +80,8 @@
 - [ ] Command-line options and flags
 - [ ] Implicit conversion
 - [ ] Unicode identifiers
-- [ ] declare command-line parameters together
+- [ ] Declare command-line parameters together
+- [ ] Color output / advanced formatting
 
 ## Features that may be added in future versions
 

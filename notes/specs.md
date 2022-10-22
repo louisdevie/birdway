@@ -1,6 +1,17 @@
 # Language Specifications
 
 
+## Program structure
+
+### Units
+
+Each source code file is a unit, identified by its name. A unit may contain :
+
+The main program is the unit given to the compiler. It must include a function named
+`main`, with no arguments and returning `Void`.
+
+The main program can *use* the functions, constants and types of antoher unit
+
 ## Lexical structure
 
 By default, a Birdway source file should be read as UTF-8.
@@ -15,20 +26,14 @@ Block comments start with three consecutive hyphens `---` and end at the next tr
 > so I decided to use `--` for line comments, as it is not unusual
 > (for example, Lua, Haskell, SQL and Ada uses this style of comments)
 > and `---` for block comments for consistency and simplicity.
-> Plus it let you make nice arrow comments :
-> 
-> ```
-> let a = 5;
-> println a * 3; --> 15
-> ```
 
 
-### Keywords (`KEYWORD`)
+### Keywords
 
 Any of the keywords defined in [appendix 1](#keywords), surrounded by word boundaries.
 
 
-### Symbols (`SYMBOL`)
+### Symbols
 
 The language punctuation :
 
@@ -49,60 +54,71 @@ $    dollar sign
 _    underscore
 ```
 
-### Operators (`OP-*`)
+### Operators
 
 
 The different operators :
 
 ```
-~     tilde                            OP-UN
-#     hash                             OP-UN
-?     question mark                    OP-UN
-!     exclamation mark                 OP-UN
-not   (keyword operator)               OP-UN
+Unary-only operators
 
--     hyphen                           OP-UN-BIN
+~     tilde
+#     hash
+?     question mark
+!     exclamation mark
+not   (keyword operator)
 
-&     ampersand                        OP-BIN
-&&    double ampersand                 OP-BIN
-|     vertical bar                     OP-BIN
-^     caret                            OP-BIN
-+     plus sign                        OP-BIN
-==    double equal sign                OP-BIN
-%     per cent sign                    OP-BIN
-*     asterisk                         OP-BIN
-**    doubme asterisk                  OP-BIN
-/     slash                            OP-BIN
-//    double slash                     OP-BIN
-!=    exclamation mark and equal sign  OP-BIN
-<<    double less than sign            OP-BIN
->     greater than sign                OP-BIN
->=    greater than sign and equal sign OP-BIN
->>    doubel greater than sign         OP-BIN
-and   (keyword operator)               OP-BIN
-or    (keyword operator)               OP-BIN
-xor   (keyword operator)               OP-BIN
 
-<     less than sign                   OP-BIN-TER
-<=    less than sign and equal sign    OP-BIN-TER
+Unary or binary operators
+
+-     hyphen
+
+
+Binary-only operators
+
+&     ampersand
+&&    double ampersand
+|     vertical bar
+^     caret
++     plus sign
+==    double equal sign
+%     per cent sign
+*     asterisk
+**    doubme asterisk
+/     slash
+//    double slash
+!=    exclamation mark and equal sign
+<<    double less than sign
+>     greater than sign
+>=    greater than sign and equal sign
+>>    doubel greater than sign
+and   (keyword operator)
+or    (keyword operator)
+xor   (keyword operator)
+
+
+Binary or ternary operators 
+
+<     less than sign
+<=    less than sign and equal sign
 ```
 
 Keyword operators needs to be whole words (there must be a word boundary before and after).
 
 
-### Identifiers (`IDENT`)
+### Identifiers
 
 Identifiers starts with an alphabetic character (ASCII letters) or an underscore,
 followed by zero or more alphanumeric characters (ASCII letters and numbers) or undercores.
 It must not be a keyword, symbol, operator or literal.
 
 
-### Delimiters (`STR-DELIM`)
+### Delimiters
 
 Double quotes `"` are string literals delimiters.
 
 
-### Text (`TEXT`)
+### Text
 
 Any text inside string literals.
 
@@ -118,37 +134,36 @@ Any text inside string literals.
 > is read as
 >
 > ```
-> STR-DELIM   "
-> TEXT        Hi␣
-> SYMBOL      $
-> IDENT       name
-> TEXT        ␣!
-> STR-DELIM   "
+> string-delimiter   "
+> text               Hi␣
+> symbol             $
+> identifier         name
+> text               ␣!
+> string-delimiter   "
 > ```
 
-### Keyword literals (`NULL` and `BOOL`)
+### Keyword literals
 
-`NULL` tokens are the keyword `NULL`,
-and `BOOL` tokens are the keywords `TRUE` and `FALSE`.
+The keyword `NULL`, `TRUE` and `FALSE`.
 
 
-### Integer literals (`INT-DEC`, `INT-BIN` and `INT-HEX`)
+### Integer literals
 
-A decimal integer `INT-DEC` is a single zero (`0`)
+A decimal integer is a single zero (`0`)
 or a digit (except zero) followed by zero or more digits.
 
-A binary integer `INT-BIN` is `0b` followed by one or more `1` and `0`.
+A binary integer is `0b` followed by one or more `1` and `0`.
 
-An hexadecimal integer `INT-HEX` is `0x`
+An hexadecimal integer is `0x`
 followed by one or more hexadecimal digits (one of `0123456789abcdefABCDEF`).
 
 
-### Byte integer mark (`BYTE-MARK`)
+### Byte integer mark
 
 A single quote `'` is a byte mark.
 
 
-### Decimal literals (`DECIMAL`)
+### Decimal literals
 
 A decimal literal is composed of an integer part, a dot (`.`),
 a decimal part, and an optional exponent part.
@@ -165,6 +180,30 @@ and then a digit (except zero) followed by zero or more digits.
 ### Regular expressions
 
 *[...]*
+
+
+## ?
+
+#### Metadata
+
+Informations about the application, used in the help messages.
+Metadata is declared using the `meta` statement:
+`meta field = value`. The *field* may be one of `name`, `info`, `ver`, `auth` or `url`
+an *value* must be be a constant string.
+
+#### Type definitions
+
+User-defined types, or aliases. An alias can be defined with the `type Name is type`
+where *Name* is the alias and *type* any valid type. See [User-defined types] for
+the definitions of new types.
+
+#### Global constants
+
+...
+
+#### Command-line parameters
+
+
 
 
 ## Primitive datatypes
@@ -249,120 +288,86 @@ These are types that are formed using other types.
 
 ### Nullable types
 
-> **Syntax**
->
-> `"(" <type> ")" "?" | <type> "?"`
-
-Represents a type that may be uninitialised.
+A type that may have no value.
 A nullable type `T?` can be either a value of type `T` or `NULL`.
-Everything that can be done with `T` can be done with `T?`,
-except that an error will occur if it is `NULL`.
 (Example: if `a` has type `Int?`, then `a + 5` is valid and will compile,
 but an error will be thrown at runtime if `a` happens to be `NULL`.)
 
 Void and nested nullables types (`Void?` and `T??` for any type `T`)
 aren't valid types.
 
-
-```
-
 ### Lists
------
 
 A list is an ordered collection of values indexed by integers starting at 0.
-Lists can be created literally using the following syntax :
+Lists can be created literally using the syntax `[val1, val2, ...]`.
 
-.. syntax::
-   | **[** *{ value:* <expr> */* **,** *}* **]**
-
-List types are written as ``[T]`` where T is the type of the values :
-
-.. syntax::
-   | **[** <type> **]**
+List types are written as ``[T]`` where T is the type of the values.
 
 Void lists (``[Void]``) aren't valid.
 
 
-.. _dict:
-Dictionaries
-------------
+### Dictionaries
 
 A dictionary is a collection mapping keys to values.
-Dictionaries can be created literally using the following syntax :
-
-.. syntax::
-   | **[** *{ key:* <expr> **:** *value:* <expr> */* **,** *}* **]**
+Dictionaries can be created literally using the syntax
+`[key1: val1, key2: val2, ...]`.
 
 Dictionary types are represented as ``[K: T]``
-where T is the type of the values and K the type of the keys :
-
-.. syntax::
-   | **[** <type> **:** <type> **]**
+where T is the type of the values and K the type of the keys.
 
 The keys type must be hashable and the values type cannot be ``Void``.
 
 
-.. _union:
-Tuples
-------
+### Tuples
 
-An a tuple is a groups of multiple different types.
-Tuples can be created literally using the following syntax :
-
-.. syntax::
-   | **(** *{ value:* <expr> */* **,** *}* **)** 
+A tuple is a group of different types.
+Tuples can be created literally using the syntax `(val1, val2, val3, ...)`.
 
 Unlike lists, the values can have different types. A tuple type
 is represented as ``(T1, T2, T3, ...)`` where ``Tn`` is the type
-of the nth field :
-
-.. syntax::
-   | **(** *{* <type> */* **,** *}* **)**
+of the nth field.
 
 Tuples must have at least 2 fields,
 as bare parentheses ``()`` are invalid and ``(value)`` evaluates to just ``value``.
 
 
-.. _functype:
-Function types
---------------
+### Function types
 
 The type of a funtion is represented as ``(T1, T2, ...) -> (R)``
 where ``Tn`` is the type of the nth argument and ``R`` the type of
-the result :
+the result.
 
-.. syntax::
-   | **(** *{* <type> */* **,** *}* **) -> (** <type> **)** 
-   | *|* **(** *{* <type> */* **,** *}* **) ->** <type> 
-   | *|* <type> **-> (** <type> **)**
-   | *|* <type> **->** <type> 
+
+## User-defined types
+
+
+### Enumerations
+
+Declaration:
+
+```
+enum MyEnum (A, B, C, ...)
 ```
 
+Create a type *MyEnum* and constants *A*, *B*, *C*, ... of that type.
+Each constant is different, and they're ordered as they were declared:
+*A* ≠ *B* and *A* < *B*.
+
+Empty enumerations/enumerations with only one value are invalid.
+
+### Structures
+
+Declaration:
+
 ```
-User-defined types
-==================
-
-.. _enum:
-Enumerations
-------------
-
-Declaration
-^^^^^^^^^^^
-
-.. syntax::
-   **enum** *name:* &IDENT **(** *{* *value:* &IDENT */* **,** *}* **)**
-
-
-
-.. _struct:
-Structures
-----------
+struct MyStruct (field1: T1, field2: T2, ...)
+```
 
 Structures are used to group together different types.
 Each field is named and has a non-generic type.
-Structures can be created literally
+Structures can then be created literally
 using the syntax ``MyStruct (field1: value1, field2: value2)``.
-```
+
 
 ```
 .. _iconv:

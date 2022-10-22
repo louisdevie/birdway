@@ -15,3 +15,11 @@
 - [ ] TCO
 
 - [ ] Inline functions
+
+- [ ] If a binding is used only once, inline the expression
+
+- [ ] If a function returns one of its parameters by value,
+      pass the argument by reference instead and use it as the return value
+
+- [ ] If an expression is used / may be used multiple times and the value won't change,
+      compute it as soon as possible and use the variable. 

@@ -2,8 +2,8 @@
 *.tree
 *.tok
 
-docs/build
-spelling
+docs/site
+docs/.cache
 
 *.sublime-workspace
 
@@ -12,3 +12,5 @@ build
 __pycache__
 
 _testenv
+
+bootstrap/antlr

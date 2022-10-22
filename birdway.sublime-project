@@ -34,5 +34,9 @@
 			"name": "Notes",
 			"folder_exclude_patterns": ["_*"],			
 		},
+		{
+			"path": "antlr",
+			"name": "ANTLR",		
+		},
 	],
 }
