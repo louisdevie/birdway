@@ -236,7 +236,8 @@ Decimal (`123`), hexadecimal (`0x7b`) and binary (`0b1111011`) literals are inte
 ### Floating-point number
 
 The type `Float` represents a 64-bit (double precision) floating-point number.
-Float literals are written as `12.3` or `0.123e+2`
+Float literals are written as `12.3` or `0.123e+2`.
+
 `Float`s doesn't support NAN and infinity values.
 
 > **Note**
@@ -256,7 +257,7 @@ the expression wrapped in parentheses, e.g. `"x² = $(x**2)"`).
 #### String escape sequences
 
 Escape  |Expansion
-========|=========================================
+--------|-----------------------------------------
 `\\`    |`\`
 `\"`    |`"`
 `\$`    |`$`
@@ -289,9 +290,12 @@ These are types that are formed using other types.
 ### Nullable types
 
 A type that may have no value.
+> **Syntax**
+>
+> `"(" <type> ")" "?" | <type> "?"`
+
+Represents a type that may be uninitialised.
 A nullable type `T?` can be either a value of type `T` or `NULL`.
-(Example: if `a` has type `Int?`, then `a + 5` is valid and will compile,
-but an error will be thrown at runtime if `a` happens to be `NULL`.)
 
 Void and nested nullables types (`Void?` and `T??` for any type `T`)
 aren't valid types.
