@@ -22,8 +22,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      
+      - name: Setup Komoe
+        run: pip install komoe
 
-      - name: Build
+      - name: Run Komoe
         run: komoe build -P docs --fresh
         
       - name: Setup Pages
