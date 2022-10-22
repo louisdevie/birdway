@@ -29,7 +29,7 @@ jobs:
           cache: 'pip'
 
       - name: Run Komoe
-        run: komoe build -P docs --fresh
+        run: python3 -m komoe build -P docs --fresh
         
       - name: Setup Pages
         uses: actions/configure-pages@v2
