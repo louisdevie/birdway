@@ -30,7 +30,7 @@ jobs:
       - run: pip install -r docs/requirements.txt
 
       - name: Run Komoe
-        run: python3 -m komoe build -P docs --fresh
+        run: python3 -m komoe build -P docs
         
       - name: Setup Pages
         uses: actions/configure-pages@v2
