@@ -10,6 +10,7 @@ on:
 permissions:
   contents: read
   pages: write
+  deployments: write
   id-token: write
   
 concurrency:
@@ -19,6 +20,10 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
       - uses: actions/checkout@v3
