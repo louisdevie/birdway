@@ -9,7 +9,7 @@ Below is the list of all tasks from [rosetta code](https://rosettacode.org) (as 
 ## ​#
 
 - [x] [100 doors](./%23/100-doors.bw)
-- [ ] [100 prisoners](./%23/100-prisoners.bw)
+- [x] [100 prisoners](./%23/100-prisoners.bw)
 - [ ] [15 puzzle game](./%23/15-puzzle-game.bw)
 - [ ] [15 puzzle solver](./%23/15-puzzle-solver.bw)
 - [ ] [2048](./%23/2048.bw)
@@ -74,7 +74,7 @@ Below is the list of all tasks from [rosetta code](https://rosettacode.org) (as 
 - [ ] Arithmetic
   - [ ] [Complex](./A/Arithmetic/complex.bw)
   - [x] [Integer](./A/Arithmetic/integer.bw)
-  - [ ] [Rational](./A/Arithmetic/rational.bw)
+  - [x] [Rational](./A/Arithmetic/rational.bw)
 - [x] [Array concatenation](./A/array-concatenation.bw)
 - [x] [Array length](./A/array-length.bw)
 - [x] [Arrays](./A/arrays.bw)
@@ -134,7 +134,7 @@ Below is the list of all tasks from [rosetta code](https://rosettacode.org) (as 
 - [ ] [Box the compass](./B/box-the-compass.bw)
 - [ ] [Brace expansion](./B/brace-expansion.bw)
 - [ ] [Brazilian numbers](./B/brazilian-numbers.bw)
-- [ ] [Break OO privacy](./B/break-oo-privacy.bw)
+- [ ] ~~Break OO privacy~~
 - [ ] [Brilliant numbers](./B/brilliant-numbers.bw)
 - [ ] [Brownian tree](./B/brownian-tree.bw)
 - [ ] [Bulls and cows](./B/bulls-and-cows.bw)
@@ -186,7 +186,7 @@ Below is the list of all tasks from [rosetta code](https://rosettacode.org) (as 
 - [ ] [Circles of given radius through two points](./C/circles-of-given-radius-through-two-points.bw)
 - [ ] [Circular primes](./C/circular-primes.bw)
 - [ ] [Cistercian numerals](./C/cistercian-numerals.bw)
-- [ ] [Classes](./C/classes.bw)
+- [ ] ~~Classes~~
 - [ ] [Closest-pair problem](./C/closest-pair-problem.bw)
 - [ ] [Closures/Value capture](./C/Closures/value-capture.bw)
 - [x] Code Golf
@@ -519,7 +519,7 @@ Below is the list of all tasks from [rosetta code](https://rosettacode.org) (as 
 - [ ] [I before E except after C](./I/i-before-e-except-after-c.bw)
 - [ ] [IBAN](./I/iban.bw)
 - [ ] [ISBN13 check digit](./I/isbn13-check-digit.bw)
-- [ ] [Identity matrix](./I/identity-matrix.bw)
+- [x] [Identity matrix](./I/identity-matrix.bw)
 - [ ] [Idiomatically determine all the characters that can be used for symbols](./I/idiomatically-determine-all-the-characters-that-can-be-used-for-symbols.bw)
 - [ ] [Idiomatically determine all the lowercase and uppercase letters](./I/idiomatically-determine-all-the-lowercase-and-uppercase-letters.bw)
 - [ ] [Image convolution](./I/image-convolution.bw)
@@ -530,13 +530,14 @@ Below is the list of all tasks from [rosetta code](https://rosettacode.org) (as 
 - [x] [Increment a numerical string](./I/increment-a-numerical-string.bw)
 - [ ] [Index finite lists of positive integers](./I/index-finite-lists-of-positive-integers.bw)
 - [ ] [Infinity](./I/infinity.bw)
-- [ ] [Inheritance/Multiple](./I/Inheritance/multiple.bw)
-- [ ] [Inheritance/Single](./I/Inheritance/single.bw)
+- [ ] ~~Inheritance~~
+  - [ ] ~~Multiple~~
+  - [ ] ~~Single~~
 - [x] [Input loop](./I/input-loop.bw)
 - [x] [Integer comparison](./I/integer-comparison.bw)
 - [ ] [Integer overflow](./I/integer-overflow.bw)
 - [ ] [Integer sequence](./I/integer-sequence.bw)
-- [ ] [Interactive programming (repl)](./I/interactive-programming-(repl).bw)
+- [ ] ~~Interactive programming (repl)~~
 - [ ] [Intersecting number wheels](./I/intersecting-number-wheels.bw)
 - [ ] [Introspection](./I/introspection.bw)
 - [ ] [Inverted index](./I/inverted-index.bw)

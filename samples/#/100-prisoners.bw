@@ -3,19 +3,81 @@
 
   https://rosettacode.org/wiki/100_prisoners
 
-  
-  The Problem
-  They can decide some strategy before any enter the room.
- Prisoners enter the room one by one, can open a drawer, inspect the card number in the drawer, then close the drawer.
- A prisoner can open no more than 50 drawers.
- A prisoner tries to find his own number.
- A prisoner finding his own number is then held apart from the others.
-  
-  The task
-  First opening the drawer whose outside number is his prisoner number.
- If the card within has his number then he succeeds otherwise he opens the drawer with the same number as that of the revealed card. (until he opens his maximum).
+  === The Problem ===
+  * 100 prisoners are individually numbered 1 to 100
+  * A room having a cupboard of 100 opaque drawers numbered 1 to 100,
+    that cannot be seen from outside.
+  * Cards numbered 1 to 100 are placed randomly, one to a drawer,
+    and the drawers all closed; at the start.
+  * Prisoners start outside the room
+    * They can decide some strategy before any enter the room.
+    * Prisoners enter the room one by one, can open a drawer,
+      inspect the card number in the drawer, then close the drawer.
+    * A prisoner can open no more than 50 drawers.
+    * A prisoner tries to find his own number.
+    * A prisoner finding his own number is then held apart from the others.
+  * If all 100 prisoners find their own numbers then they will all be pardoned.
+    If any don't then all sentences stand.
+
+  === The task ===
+  * Simulate several thousand instances of the game where the prisoners randomly open drawers
+  * Simulate several thousand instances of the game where the prisoners use the optimal strategy
+    mentioned in the Wikipedia article, of:
+    * First opening the drawer whose outside number is his prisoner number.
+    * If the card within has his number then he succeeds otherwise he opens the drawer with
+      the same number as that of the revealed card. (until he opens his maximum).
+
   Show and compare the computed probabilities of success for the two strategies, here, on this page.
-  
-  References
-  
 ---
+
+func main() -> {
+    let results = for _ in [1..10000] do {
+        let drawers = shuffle([1..100]);
+
+        let result = for p in [1..100] do (
+            random_strategy(p, drawers),
+            optimal_strategy(p, drawers),
+        );
+
+        (to_int(all(result.0)), to_int(all(result.1)))
+    }
+
+    println "Random strategy: $(results.0 / 100)% runs were successful";
+    println "Optimal strategy: $(results.1 / 100)% runs were successful";
+};
+
+func random_strategy(prisoner, drawers) -> {
+    any(
+        shuffle([1..100])[..50]
+        ::map(i -> drawers[i] == prisoner)
+    )
+};
+
+func optimal_strategy(prisoner, drawers) -> {
+    func try_drawer(drawer, tries_left) -> {
+        if tries_left == 0 then {
+            FALSE
+        }
+        else if drawers[drawer] == prisoner {
+            TRUE
+        }
+        else {
+            try_drawer(drawers[drawer], tries_left-1)
+        }
+    };
+
+    try_drawer(random(1, 100), 50)
+};
+
+
+func shuffle(@list) -> {
+    for i, _ in enumerate(list) do {
+        let swap = random(i, #list)
+
+        let tmp = list[i];
+        list[i] = list[swap];
+        list[swap] = tmp;
+    }
+
+    list
+};

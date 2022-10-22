@@ -9,7 +9,7 @@
 ---
 
 func main() -> {
-    let dark_side = ["MEMBER", "GROUP", "SCHOOL", "ITEM", "BLOCK"]
+    let dark_side = ["MEMBER", "GROUP", "SCHOOL", "ITEM", "BLOCK", "Scavengers"]
 
     for org in dark_side do {
         println org;

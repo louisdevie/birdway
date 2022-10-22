@@ -3,17 +3,90 @@
 
   https://rosettacode.org/wiki/Arithmetic/Rational
 
-  Task
-  Create a reasonably complete implementation of rational arithmetic in the particular language using the idioms of the language.
+  === Task ===
+  Create a reasonably complete implementation of rational arithmetic
+  in the particular language using the idioms of the language.
   
-  Example
-  Define a new type called frac with binary operator "//" of two integers that returns a structure made up of the numerator and the denominator (as per a rational number).
-  Further define the appropriate rational unary operators abs and '-', with the binary operators for addition '+', subtraction '-', multiplication '×', division '/', integer division '÷', modulo division, the comparison operators (e.g. '<', '≤', '>', & '≥') and equality operators (e.g. '=' & '≠').
+  === Example ===
+  Define a new type called frac with binary operator "//" of two integers that
+  returns a structure made up of the numerator and the denominator (as per a
+  rational number).
+  Further define the appropriate rational unary operators abs and '-', with the
+  binary operators for addition '+', subtraction '-', multiplication '×',
+  division '/', integer division '÷', modulo division, the comparison operators
+  (e.g. '<', '≤', '>', & '≥') and equality operators (e.g. '=' & '≠').
   Define standard coercion operators for casting int to frac etc.
   If space allows, define standard increment and decrement operators (e.g. '+:=' & '-:=' etc.).
   Finally test the operators:
-Use the new type frac to find all perfect numbers less than 219 by summing the reciprocal of the factors.
-  
-  Related task
-  
+    Use the new type frac to find all perfect numbers less than 2^19 by summing the reciprocal of the factors.
+
+  Note: translation of Rust code
 ---
+
+func gcd(a, b) -> if b == 0 then a else gcd(b, a % b);
+
+struct Rational (numerator: Int, denominator: Int);
+
+func simplify(@r) -> {
+    let divisor = gcd(numerator, denominator);
+    
+    r.numerator = $ / divisor;
+    r.denominator = $ / divisor;
+
+    r
+};
+
+func add(lhs: Rational, rhs: Rational) -> {
+    Rational (
+        numerator: (lhs.numerator * rhs.denominator) + (rhs.numerator * lhs.denominator),
+        denominator: lhs.denominator * rhs.denominator,
+    )::simplify()
+};
+
+func sub(lhs: Rational, rhs: Rational) -> lhs + -rhs;
+
+func mul(lhs: Rational, rhs: Rational) -> {
+    Rational (
+        numerator: self.numerator * other.numerator,
+        denominator: self.denominator * other.denominator,
+    )::simplify()
+}
+
+func div(lhs: Rational, rhs: Rational) -> {
+    lhs * Rational (
+        numerator: rhs.denominator,
+        denominator: lhs.numerator,
+    )
+};
+
+func neg(rhs: Rational) -> {
+    Rational (
+        numerator: -self.numerator,
+        denominator: self.denominator,
+    )
+};
+
+func cmp(lhs: Rational, rhs: Rational) -> {
+    cmp(lhs.numerator * rhs.denominator, lhs.denominator * rhs.numerator)
+};
+
+func to_rational(n) -> Rational(numerator: n, denominator: 1);
+
+func main() -> {
+    let max = 1 << 19;
+
+    for candidate in [2..max] do {
+        let $sum = Rational (1, candidate);
+
+        for factor in [2..candidate::sqrt()::ceil()] do {
+            if candidate % factor == 0 {
+                sum = $ + Rational (1, factor);
+                sum = $ + Rational (1, candidate // factor);
+            }
+        }
+
+        if sum == to_rational(1) {
+            println!("{} is perfect", candidate);
+        }
+    };
+};

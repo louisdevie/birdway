@@ -3,8 +3,42 @@
 
   https://rosettacode.org/wiki/Roman_numerals/Encode
 
-  Task
-  Create a function taking a positive integer as its parameter and returning a string containing the Roman numeral representation of that integer. Modern Roman numerals are written by expressing each digit separately, starting with the left most digit and skipping any digit with a value of zero.
+  === Task ===
+  Create a function taking a positive integer as its parameter
+  and returning a string containing the Roman numeral representation of that integer.
+  Modern Roman numerals are written by expressing each digit separately,
+  starting with the left most digit and skipping any digit with a value of zero.
   In Roman numerals:
-  
+  * 1990 is rendered: 1000=M, 900=CM, 90=XC; resulting in MCMXC
+  * 2008 is written as 2000=MM, 8=VIII; or MMVIII
+  * 1666 uses each Roman symbol in descending order: MDCLXVI
 ---
+
+param n: Int;
+
+func main() -> println to_roman(n);
+
+func to_roman(n) -> {
+    let units = n % 10;
+    let tens = (n // 10) % 10;
+    let hundreds = (n // 100) % 10;
+    let thousands = n // 1000;
+
+    let units_roman = digit_roman(units, "I", "V", "X");
+    let tens_roman = digit_roman(tens, "X", "L", "C");
+    let hundreds_roman = digit_roman(hundreds, "C", "D", "M");
+    let thousands_roman = repeat("M", thousands);
+
+    thousands_roman && hundreds_roman && tens_roman && units_roman
+};
+
+func digit_roman(d, one, five, ten) -> {
+    if d < 4 then
+        repeat(one, d) -- nothing, I, II, ...
+    else if d == 4 then
+        one && five -- IV
+    else if d < 9 then
+        five && repeat(one, d-5) -- V, VI, ...
+    else
+        one && ten -- IX
+}

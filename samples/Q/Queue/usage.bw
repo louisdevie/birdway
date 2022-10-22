@@ -3,14 +3,29 @@
 
   https://rosettacode.org/wiki/Queue/Usage
 
-  Task
+  === Task ===
   Create a queue data structure and demonstrate its operations.
   (For implementations of queues, see the FIFO task.)
   Operations:
-  push       (aka enqueue) - add element
-   pop         (aka dequeue) - pop first element
-   empty     - return truth value when empty
-  
-  See also
-  
+  * push (aka enqueue) - add element
+  * pop (aka dequeue) - pop first element
+  * empty - return truth value when empty
 ---
+
+func main() -> {
+    -- use lists for queues
+    let $queue = [];
+
+    -- push
+    queue::add(9);
+    queue::add(3);
+    queue::add(1);
+
+    -- pop
+    println queue::pop(0); --> 9
+    println queue::pop(0); --> 3
+    println queue::pop(0); --> 1
+
+    -- empty
+    println is_empty(queue); --> TRUE
+}
