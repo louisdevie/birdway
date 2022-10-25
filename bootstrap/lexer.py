@@ -1,10 +1,10 @@
 import re
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 from error import BirdwayLexicalError
 
 RE_KEYWORD = re.compile(
-    r"\b(const|do|else|enum|flag|for|from|func|if|in|let|limit|meta|option|on|param|print|println|read|readln|return|struct|then|throw|to|try|until|use|while)\b"
+    r"\b(break|const|do|else|enum|finally|flag|for|from|func|if|in|let|limit|meta|option|on|param|print|println|read|readln|return|struct|then|throw|to|try|until|use|while)\b"
 )
 RE_SPACE = re.compile(r"\s+")
 RE_LINE_COMMENT = re.compile(r"--.*\n")
@@ -12,7 +12,7 @@ RE_IDENTIFIER = re.compile(r"\b\w+\b")
 RE_STRINGDELIMITER = re.compile(r'"')
 RE_PUNCTUATION = re.compile(r"{|;|}|\(|,|\)|\[|\.|]|::|:|->|\$")
 RE_OPERATOR = re.compile(
-    r"&&|&|~|#|-|\||\^|\+|==|=|%|\*\*|\*|<=|<<|<|>=|>>|>|\?|//|/|!=|!|\band\b|\bnot\b|\bor\b|\bxor\b"
+    r"~|#|\?|!|\bnot\b|-|&&|&|\||\^|\+|==|=|%|\*\*|\*|<=|<<|<|>=|>>|>|//|/|!=|\band\b|\bor\b|\bxor\b|<=|<"
 )
 RE_PRIMITIVE = re.compile(r"\b(Bool|Byte|File|Float|Int|RegEx|Str|Void)\b")
 
@@ -47,9 +47,16 @@ class Punctuation:
         return f"‘{self.symbol}’"
 
 
+ARITY = {"==": "binary", "=": "binary", "?": "unary", "#": "unary"}
+
+
 @dataclass
 class Operator:
     operator: str
+    arity: str = field(init=False)
+
+    def __post_init__(self):
+        self.arity = ARITY[self.operator]
 
     def __str__(self):
         return f"operator ‘{self.operator}’"

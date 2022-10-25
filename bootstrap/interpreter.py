@@ -39,7 +39,7 @@ class Interpreter:
     def __pop_context(self):
         self.__ctx.pop(0)
 
-    def __resolve(self, name):
+    def resolve(self, name):
         for ctx in self.__ctx:
             if name in ctx:
                 return ctx[name]
@@ -57,10 +57,10 @@ class Interpreter:
             self.__declare_var(param["name"], Str(), sys.argv[i + 2], False)
 
     def __call(self, name, *args):
-        func = self.__resolve(name)
+        func = self.resolve(name)
 
         if isinstance(func, list):
-            return self.__run_dispatch(func[0]["result"])
+            return self.run_dispatch(func[0]["result"])
 
         elif callable(func):
             return func(*args)
@@ -69,9 +69,9 @@ class Interpreter:
             raise BirdwayTypeError(f"{name} is not a function")
 
     def __read(self, name):
-        return self.__resolve(name).get()
+        return self.resolve(name).get()
 
-    def __run_dispatch(self, obj):
+    def run_dispatch(self, obj):
         match obj["node"]:
             case Node.PRINT:
                 return self.__run_print(obj)
@@ -110,11 +110,11 @@ class Interpreter:
         return Value(Str(), string["content"][0])
 
     def __run_print(self, prints):
-        content = self.__run_dispatch(prints["content"])
+        content = self.run_dispatch(prints["content"])
+        dest = self.run_dispatch(prints["destination"])
 
-        print(
-            predef.to_string(content).internal_object,
-            end="\n" if prints["line"] else "",
+        dest.internal_object.write(
+            predef.to_string(content).internal_object + ("\n" if prints["line"] else "")
         )
 
         return Value(Void(), None)
@@ -123,27 +123,24 @@ class Interpreter:
         self.__push_context()
 
         for line in block["lines"]:
-            self.__run_dispatch(line)
+            self.run_dispatch(line)
 
         self.__pop_context()
 
         return Value(Void(), None)
 
     def __run_binop(self, op):
-        lhs = self.__run_dispatch(op["lhs"])
-        rhs = self.__run_dispatch(op["rhs"])
-
-        return OP_BIN[op["op"]](lhs, rhs)
+        return OP_BIN[op["op"]](op["lhs"], op["rhs"], self)
 
     def __run_fcall(self, fcall):
-        args = (self.__run_dispatch(a) for a in fcall["args"])
+        args = (self.run_dispatch(a) for a in fcall["args"])
         return self.__call(fcall["func"]["name"], *args)
 
     def __run_name(self, name):
         return self.__read(name["name"])
 
     def __run_var(self, var):
-        init_value = self.__run_dispatch(var["value"])
+        init_value = self.run_dispatch(var["value"])
 
         self.__declare_var(
             var["name"], init_value.type, init_value.internal_object, var["mutable"]
@@ -151,26 +148,25 @@ class Interpreter:
 
     def __run_try(self, trys):
         try:
-            self.__run_dispatch(trys["try"])
+            self.run_dispatch(trys["try"])
         except ErrorSignal as err:
             for h, r in trys["handlers"]:
-                handler = self.__run_dispatch(h)
+                handler = self.run_dispatch(h)
                 if isinstance(err, handler.internal_object):
-                    self.__run_dispatch(r)
+                    self.run_dispatch(r)
                     break
 
     def __run_throw(self, throw):
-        raise self.__run_dispatch(throw["signal"]).internal_object
+        raise self.run_dispatch(throw["signal"]).internal_object
 
     def __run_read(self, read):
         if read["line"]:
-            raise NotImplementedError("readln isn't implemented yet")
+            raise NotImplementedError("readln isn't implemented")
 
         else:
-            source = self.__run_dispatch(read["source"])
-            storage = self.__resolve(read["content"]["name"])
+            source = self.run_dispatch(read["source"])
 
-            storage.set(Str(), source.internal_object.read())
+            return Value(Str(), source.internal_object.read())
 
 
 class Storage:

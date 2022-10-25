@@ -5,9 +5,6 @@ param INPUT: Str;
 use lexer;
 
 func main() -> {
-    println "WARNING: the Birdway compiler (version A-220824) "
-         && "doesn't support all the features of the language";
-
     print "Compiling "; print INPUT; println " ...";
 
     let $source_code = "";
@@ -23,5 +20,6 @@ func main() -> {
         close(source_file);
     };
 
-    let tokens = tokenise(source_code);
+    let tokens = lexer.tokenise(source_code);
+    println tokens;
 };

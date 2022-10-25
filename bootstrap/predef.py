@@ -1,6 +1,7 @@
 from birdway_types import *
 from operators import Value
 from signals import *
+import sys
 
 
 def to_string(value):
@@ -54,4 +55,5 @@ NAMES = {
     "ERR_ANY": PredefConst(None, ErrorSignal),
     "err": err,
     "FAIL": PredefConst(None, FailSignal),
+    "STDOUT": PredefConst(File(), sys.stdout),
 }

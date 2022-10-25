@@ -1,9 +1,21 @@
--- lexical tokens 
 struct Token (
 	type: TokenType,
 	value: Str,
 );
 
 enum TokenType (
-	KEYWORD_META,
+	KEYWORD,
 );
+
+func tokenise(code) -> {
+	let $cursor = 0;
+
+	while TRUE do {
+		if cursor == #code then break;
+
+		let tok = Token (type: KEYWORD, value: code[0]);
+		cursor = cursor + 1;
+
+		tok
+	}
+};

@@ -18,6 +18,11 @@ class Node(enum.Enum):
     TRY = enum.auto()
     READ = enum.auto()
     THROW = enum.auto()
+    WHILE = enum.auto()
+    IF = enum.auto()
+    KWLITERAL = enum.auto()
+    UNOP = enum.auto()
+    BREAK = enum.auto()
 
 
 class Parser:
@@ -70,8 +75,8 @@ class Parser:
                                 source = f.read()
                             mod_ast = Parser(tokenise(source), mod).parse()
 
-                            prog["functions"].append(mod_ast["functions"])
-                            prog["types"].append(mod_ast["types"])
+                            prog["functions"] += mod_ast["functions"]
+                            prog["types"] += mod_ast["types"]
 
                         case other:
                             raise BirdwaySyntaxError(
@@ -89,6 +94,10 @@ class Parser:
                 case Keyword(keyword="struct"):
                     self.pop()
                     prog["types"].append(self.__parse_struct())
+
+                case Keyword(keyword="enum"):
+                    self.pop()
+                    prog["types"].append(self.__parse_enum())
 
                 case EndOfFile():
                     self.pop()
@@ -242,6 +251,35 @@ class Parser:
 
         return field
 
+    def __parse_enum(self):
+        enum = {"type": "enum"}
+
+        match self.pop():
+            case Identifier(name):
+                enum["name"] = name
+
+            case other:
+                raise BirdwaySyntaxError(f"expected enum name, got {other}")
+
+        if (invalid := self.pop()) != Punctuation("("):
+            raise BirdwaySyntaxError(f"expected ‘(’, got {other}")
+
+        enum["fields"] = self.__parse_comma_separated_values(
+            end=Punctuation(")"),
+            context="enum",
+            value=self.__parse_enum_value,
+        )
+
+        return enum
+
+    def __parse_enum_value(self):
+        match self.pop():
+            case Identifier(name):
+                return name
+
+            case other:
+                raise BirdwaySyntaxError(f"expected enum value name, got {other}")
+
     def __parse_expression(self):
         match self.peek():
             case Keyword(keyword="print"):
@@ -255,6 +293,18 @@ class Parser:
             case Keyword(keyword="read"):
                 self.pop()
                 lhs = self.__parse_read(ln=False)
+
+            case Keyword(keyword="if"):
+                self.pop()
+                lhs = self.__parse_if()
+
+            case Keyword(keyword="while"):
+                self.pop()
+                lhs = self.__parse_while()
+
+            case Keyword(keyword="break"):
+                self.pop()
+                lhs = self.__parse_break()
 
             case Keyword(keyword="try"):
                 self.pop()
@@ -276,12 +326,22 @@ class Parser:
                 self.pop()
                 lhs = {"node": Node.NAME, "name": name}
 
+            case Operator(operator=op, arity="unary"):
+                self.pop()
+                return {
+                    "node": Node.UNOP,
+                    "op": op,
+                    "rhs": self.__parse_expression(),
+                }
+
             case other:
                 raise BirdwaySyntaxError(f"unexpected {other} while parsing expression")
 
         match self.peek():
-            case Operator(operator="&&"):
-                op = self.pop().operator
+            case Operator(operator=op, arity="binary") | Operator(
+                operator=op, arity="unary/binary"
+            ):
+                self.pop()
                 return {
                     "node": Node.BINOP,
                     "op": op,
@@ -291,15 +351,7 @@ class Parser:
 
             case Punctuation("("):
                 self.pop()
-                return {
-                    "node": Node.FUNCCALL,
-                    "func": lhs,
-                    "args": self.__parse_comma_separated_values(
-                        end=Punctuation(")"),
-                        context="function arguments",
-                        value=self.__parse_expression,
-                    ),
-                }
+                return self.__parse_function_or_struct()
 
         return lhs
 
@@ -357,8 +409,43 @@ class Parser:
 
         return string
 
+    def __parse_function_or_struct(self):
+        items = self.__parse_comma_separated_values(
+            end=Punctuation(")"),
+            context="function arguments",
+            value=self.__parse_argument_or_field,
+        )
+
+        print(items)
+
+        raise Exception()
+
+        return {
+            "node": Node.FUNCCALL,
+            "func": lhs,
+            "args": 0,
+        }
+
+    def __parse_argument_or_field(self):
+        a = self.__parse_expression()
+
+        if self.peek() == Punctuation(":"):
+            self.pop()
+
+            if a["node"] != Node.NAME:
+                raise BirdwaySyntaxError(f"{a} is not a valid field name")
+
+            return (a, self.__parse_expression())
+
+        else:
+            return (None, a)
+
     def __parse_print(self, ln):
-        print_ = {"node": Node.PRINT, "line": ln}
+        print_ = {
+            "node": Node.PRINT,
+            "line": ln,
+            "destination": {"node": Node.NAME, "name": "STDOUT"},
+        }
 
         print_["content"] = self.__parse_expression()
 
@@ -368,10 +455,8 @@ class Parser:
         read = {
             "node": Node.READ,
             "line": ln,
-            "source": {"node": Node.NAME, "name": "stdin"},
+            "source": {"node": Node.NAME, "name": "STDIN"},
         }
-
-        read["content"] = self.__parse_expression()
 
         if self.peek() == Keyword("from"):
             self.pop()
@@ -397,6 +482,11 @@ class Parser:
 
             try_["handlers"].append((err, handling))
 
+        if self.peek() == Keyword("finally"):
+            self.pop()
+
+            try_["finally"] = self.__parse_expression()
+
         return try_
 
     def __parse_function(self):
@@ -412,10 +502,11 @@ class Parser:
         if (invalid := self.pop()) != Punctuation("("):
             raise BirdwaySyntaxError(f"expected ‘(’, got {invalid}")
 
-        while self.peek() != Punctuation(")"):
-            ...
-
-        self.pop()
+        function["params"] = self.__parse_comma_separated_values(
+            end=Punctuation(")"),
+            context="function parameters",
+            value=self.__parse_func_param,
+        )
 
         if (invalid := self.pop()) != Punctuation("->"):
             raise BirdwaySyntaxError(f"expected ‘->’, got {invalid}")
@@ -423,6 +514,14 @@ class Parser:
         function["result"] = self.__parse_expression()
 
         return function
+
+    def __parse_func_param(self):
+        match self.pop():
+            case Identifier(name):
+                return name
+
+            case other:
+                raise BirdwaySyntaxError(f"expected parameter name, got {other}")
 
     def __parse_variable(self):
         variable = {"node": Node.LETVAR, "mutable": False}
@@ -451,3 +550,40 @@ class Parser:
         throw["signal"] = self.__parse_expression()
 
         return throw
+
+    def __parse_while(self):
+        while_ = {"node": Node.WHILE}
+
+        while_["condition"] = self.__parse_expression()
+
+        if (invalid := self.pop()) != Keyword("do"):
+            raise BirdwaySyntaxError(f"expected keyword ‘do’, got {invalid}")
+
+        while_["body"] = self.__parse_expression()
+
+        return while_
+
+    def __parse_if(self):
+        if_ = {"node": Node.IF}
+
+        if_["condition"] = self.__parse_expression()
+
+        if (invalid := self.pop()) != Keyword("then"):
+            raise BirdwaySyntaxError(f"expected keyword ‘do’, got {invalid}")
+
+        if_["result"] = self.__parse_expression()
+
+        if self.peek() == Keyword("else"):
+            self.pop()
+
+            if_["alternative"] = self.__parse_expression()
+
+        else:
+            if_["alternative"] = {"node": Node.KWLITERAL, "keyword": "NULL"}
+
+        return if_
+
+    def __parse_break(self):
+        break_ = {"node": Node.BREAK}
+
+        return break_
