@@ -1,6 +1,6 @@
 <h1>
 	<img src="icons/birdway-color.svg" alt="logo" height="32px"/>
-	Birdway
+	<a href="https://birdway.netlify.app">Birdway</a>
 </h1>
 
 A programming language for command-line applications
@@ -11,6 +11,7 @@ A programming language for command-line applications
 
 *Birdway* is a functional and imperative programming language, primarily meant
 to create small command-line applications.
+
 This language was created for my personal use
 and to learn a thing or two about how compilers work.
 
