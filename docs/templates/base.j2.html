@@ -3,9 +3,38 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ TITLE }}</title>
+
+    <link rel="stylesheet" href="{{ STATIC }}/theme.css"></link>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Mulish:wght@800&display=swap"
+        rel="stylesheet"> 
+
+    {% block head %}
+        <title>{{ TITLE }} — Birdway</title>
+    {% endblock %}
 </head>
 <body>
-    {{ CONTENT }}
+    <header>
+        <img class="image" src="{{ STATIC }}/images/icon.svg">
+        <div class="top">
+            <a href="{{ ROOT }}">Birdway</a>
+        </div>
+        <div class="bottom">
+            <a href="about">About</a>
+            <a href="docs">Documentation</a>
+        </div>
+    </header>
+    <main>
+        {% block body %}
+            {{ CONTENT }}
+        {% endblock %}
+    </main>
+    <footer>
+        <span>&copy; 2021-2022 Louis DEVIE</span>
+        <a href="https://github.com/louisdevie/birdway">GitHub repository</a>
+    </footer>
 </body>
 </html>

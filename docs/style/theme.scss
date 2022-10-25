@@ -1,0 +1,91 @@
+$darkblue: #15405b;
+$lightyellow: #ffffcf;
+$lightgrey: #f8f8f8;
+
+@mixin header-footer ($height, $color) {
+	height: $height;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+
+	@if $color {
+		background-color: $darkblue;
+	}
+}
+
+body {
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+
+	font-family: 'Fira Sans', sans-serif;
+	font-size: 12pt;
+}
+
+header {
+	height: 100px;
+
+	.image {
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100px;
+		width: 100px;
+	}
+
+	.top {
+		@include header-footer(50px, true);
+
+		padding-left: 100px;
+
+		a {
+			color: $lightyellow;
+			font-family: 'Mulish', sans-serif;
+			font-size: 35px;
+			text-decoration: none;
+		}
+	}
+
+	.bottom {
+		@include header-footer(50px, false);
+
+		padding-right: 20px;
+		justify-content: flex-end;
+
+		font-size: 12pt;
+		color: $darkblue;
+
+		> * {
+			padding: 10px 20px;
+		}
+	}
+}
+
+main {
+	flex-grow: 1;
+	max-width: 800px;
+	margin: 0 auto;
+}
+
+footer {
+	@include header-footer(40px, true);
+
+	padding: 0 20px;
+
+	color: $lightgrey;
+	font-size: 12pt;
+
+	> * {
+		margin: 0 20px;
+	}
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+
+	&:hover {
+		text-decoration: underline;
+	}
+}

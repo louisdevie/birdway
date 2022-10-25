@@ -10,3 +10,8 @@ source = 'source'
 templates = 'templates'
 static = 'static'
 output = 'site'
+
+[plugin.sass]
+package = "komoe_sass"
+config.path = "style"
+config.command = "sassc {input} {output}"
