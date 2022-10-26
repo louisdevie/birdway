@@ -18,7 +18,10 @@
 </head>
 <body>
     <header>
-        <img class="image" src="{{ STATIC }}/images/icon.svg">
+        <picture class="logo" >
+            <source srcset="{{ STATIC }}/images/icon-dark.svg" media="(prefers-color-scheme: dark)">
+            <img src="{{ STATIC }}/images/icon.svg">
+        </picture>
         <div class="top">
             <a href="{{ ROOT }}">Birdway</a>
         </div>

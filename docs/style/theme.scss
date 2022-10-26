@@ -1,6 +1,8 @@
 $darkblue: #15405b;
 $lightyellow: #ffffcf;
 $lightgrey: #f8f8f8;
+$darkgrey: #333333;
+$lightblue: #15405b;
 
 /* GENERIC STYLES */
 
@@ -14,6 +16,11 @@ body {
 	font-size: 12pt;
 	background-color: white;
 	color: black;
+
+	@media screen and (prefers-color-scheme: dark) {
+		background-color: $darkgrey;
+		color: $lightgrey;
+	}
 }
 
 a {
@@ -27,6 +34,10 @@ a {
 
 @mixin h {
 	color: $darkblue;
+
+	@media screen and (prefers-color-scheme: dark) {
+		color: $lightyellow;
+	}
 }
 
 h1 {
@@ -84,6 +95,39 @@ h6 {
 	font-weight: normal;
 }
 
+/* ADMONITIONS */
+
+@mixin admonition-color($color) {
+	border-color: $color;
+
+	.admonition-title {
+		background-color: $color;
+	}
+}
+
+.admonition {
+	margin: 10px;
+
+	border: 2px solid #aaa;
+
+	p {
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+
+	.admonition-title {
+		margin: 0;
+		padding: 5px;
+
+		font-weight: bold;
+		color: $darkgrey;
+		background-color: #aaa;
+	}
+
+	&.warning { @include admonition-color(#ea2); }
+}
+
+
 /* PAGE STRUCTURE */
 
 @mixin header-footer ($height, $color) {
@@ -95,6 +139,18 @@ h6 {
 	@if $color {
 		background-color: $darkblue;
 	}
+	@else {
+		background-color: white;
+	}
+
+	@media screen and (prefers-color-scheme: dark) {
+		@if $color {
+			background-color: $lightyellow;
+		}
+		@else {
+			background-color: $darkgrey;
+		}
+	}
 }
 
 header {
@@ -102,24 +158,34 @@ header {
 	position: sticky;
 	top: -50px;
 
-	.image {
+	.logo {
 		position: absolute;
 		top: 0;
 		left: 0;
 		height: 100px;
 		width: 100px;
+
+		img {
+			width: 100%;
+			height: 100%;
+		}
 	}
 
 	.top {
 		@include header-footer(50px, true);
 
 		padding-left: 100px;
+		overflow: hidden;
 
 		a {
 			color: $lightyellow;
 			font-family: 'Mulish', sans-serif;
 			font-size: 35px;
 			text-decoration: none;
+
+			@media screen and (prefers-color-scheme: dark) {
+				color: $darkblue;
+			}
 		}
 	}
 
@@ -131,8 +197,12 @@ header {
 
 		font-size: 12pt;
 		color: $darkblue;
-		background-color: white;
 		border-bottom: 2px solid $darkblue;
+
+		@media screen and (prefers-color-scheme: dark) {
+			color: $lightyellow;
+			border-bottom-color: $lightyellow;
+		}
 
 		> * {
 			padding: 10px 20px;
@@ -142,7 +212,7 @@ header {
 
 main {
 	flex-grow: 1;
-	width: 100%;
+	width: calc(100% - 40px);
 	max-width: 800px;
 	margin: 0 auto;
 	padding: 0 20px;
@@ -157,7 +227,17 @@ footer {
 	color: $lightgrey;
 	font-size: 12pt;
 
+	@media screen and (prefers-color-scheme: dark) {
+		color: black;
+	}
+
 	> * {
 		margin: 0 20px;
+	}
+
+	@media screen and (max-width: 600px) {
+		flex-direction: column;
+		height: 80px;
+		justify-content: space-around;
 	}
 }

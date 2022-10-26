@@ -38,7 +38,7 @@ anywhere like any other type.
 ### Full type inference
 
 Birdway is statically and strongly typed, but doesn't require bindings,
-function arguments and return values to be typed. The types of a value is
+function arguments and return values to be typed. The type of a value is
 determined by how it is created and used.
 
 ### Other features
