@@ -47,7 +47,6 @@
     - [ ] AND
   - [ ] Concatenation
   - [ ] Size
-  - [ ] Is null
   - [ ] Isn't null
   - [ ] Union
 - [ ] Single element acessing
@@ -72,6 +71,7 @@
     - [ ] XOR
     - [ ] Left shift
     - [ ] Right shift
+  - [ ] Is null
 - [ ] List/tuple unpacking (`\` before the sequence ?)
 - [ ] Multiple element acessing
 - [ ] Method call
@@ -82,6 +82,8 @@
 - [ ] Unicode identifiers
 - [ ] Declare command-line parameters together
 - [ ] Color output / advanced formatting
+- [ ] CFFI
+- [ ] Program metadata
 
 ## Features that may be added in future versions
 

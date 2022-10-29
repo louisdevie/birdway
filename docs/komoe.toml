@@ -16,5 +16,5 @@ package = "komoe_sass"
 config.path = "style"
 config.command = "npx sass {input} {output}"
 
-[plugin.permalink]
-script = "plugins/permalink.py"
+[plugin.bw]
+script = "plugins/bw-plugin.py"
