@@ -1,2 +1,2 @@
-komoe==0.2.2
+komoe==0.3.1
 komoe-sass==0.1.0
