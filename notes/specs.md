@@ -24,7 +24,7 @@ Block comments start with three consecutive hyphens `---` and end at the next tr
 > 
 > Both `//` and `#` were already in use as operators,
 > so I decided to use `--` for line comments, as it is not unusual
-> (for example, Lua, Haskell, SQL and Ada uses this style of comments)
+> (for example, Lua, Haskell, SQL and Ada use this style of comments)
 > and `---` for block comments for consistency and simplicity.
 
 

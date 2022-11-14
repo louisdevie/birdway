@@ -4,35 +4,35 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="{{ STATIC }}/theme.css"></link>
+    <link rel="stylesheet" href={{ static('theme.css') }}>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Mulish:wght@800&display=swap"
-        rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,700;1,400;1,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@800&display=swap" rel="stylesheet"> 
 
     {% block head %}
-        <title>{{ TITLE }} — Birdway</title>
+        <title>{{ title }} — Birdway</title>
     {% endblock %}
 </head>
 <body>
     <header>
-        <picture class="logo" >
-            <source srcset="{{ STATIC }}/images/icon-dark.svg" media="(prefers-color-scheme: dark)">
-            <img src="{{ STATIC }}/images/icon.svg">
-        </picture>
+        <img class="logo" src={{ static('images/icon.svg') }}>
         <div class="top">
-            <a href="{{ ROOT }}">Birdway</a>
+            <a href={{ absolute('') }}>Birdway</a>
         </div>
         <div class="bottom">
-            <a href="{{ ROOT }}/about">About</a>
-            <a href="{{ ROOT }}/docs/">Documentation</a>
+            <a href={{ absolute('/about') }}>About</a>
+            <a href={{ absolute('/docs/') }}>Documentation</a>
         </div>
     </header>
     <main>
         {% block body %}
-            {{ CONTENT }}
+            <nav>
+                {{ document_path(maxdepth=3, include=False) }} /
+            </nav>
+            {{ content }}
         {% endblock %}
     </main>
     <footer>

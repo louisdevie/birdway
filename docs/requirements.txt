@@ -1,2 +1,4 @@
-komoe==0.2.2
-komoe-sass==0.1.0
+Komoe==0.4.0
+komoe-sass==0.1.1
+Pygments==2.13.0
+pymdown-extensions==9.7

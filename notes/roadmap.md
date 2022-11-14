@@ -59,7 +59,7 @@
   - [ ] RegEx
   - [ ] Byte
   - [ ] Arrays
-- [ ] Switch statements
+- [ ] Case statements
 - [ ] Operator overload 
 - [ ] Operators
   - [ ] Between
@@ -72,18 +72,23 @@
     - [ ] Left shift
     - [ ] Right shift
   - [ ] Is null
-- [ ] List/tuple unpacking (`\` before the sequence ?)
+  - [ ] Composition
+- [ ] List/tuple unpacking
+- [ ] Variable arguments/tuple size handling
+- [ ] Ranges syntax
 - [ ] Multiple element acessing
 - [ ] Method call
+- [ ] Optional semicolons
 - [ ] Operator overload
 - [ ] `pub` modifier
+- [ ] Module namespaces
 - [ ] Command-line options and flags
 - [ ] Implicit conversion
 - [ ] Unicode identifiers
-- [ ] Declare command-line parameters together
 - [ ] Color output / advanced formatting
 - [ ] CFFI
 - [ ] Program metadata
+- [ ] Raw strings
 
 ## Features that may be added in future versions
 
@@ -92,6 +97,4 @@
   - [ ] Unions
 - [ ] Until loops
 - [ ] Infinite loops
-- [ ] `pure` modifier
-- [ ] `safe` modifier
 - [ ] implicit string concatenation

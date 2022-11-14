@@ -1,0 +1,10 @@
+<svg
+    width="20mm"
+    height="20mm"
+    viewBox="-7 -7 34 34"
+    xmlns="http://www.w3.org/2000/svg">
+    <path
+        style="fill:#f8f8f8;stroke:none;"
+        d="M 10,0 A 10,10 0 0 0 10,20 10,10 0 0 0 10,0 M 8.5,4 l 3,0 0,3 -3,0 0,-3 M 6.5,9 l 5,0 0,7 -3,0 0,-4 -2,0 0,-3"
+    />
+</svg>

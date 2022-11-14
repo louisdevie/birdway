@@ -3,8 +3,13 @@ $lightyellow: #ffffcf;
 $lightgrey: #f8f8f8;
 $darkgrey: #333333;
 $lightblue: #15405b;
+$blue: #3080b6;
 
 /* GENERIC STYLES */
+
+:root {
+	scroll-padding-top: 70px;
+}
 
 body {
 	margin: 0;
@@ -16,43 +21,95 @@ body {
 	font-size: 12pt;
 	background-color: white;
 	color: black;
+}
 
-	@media screen and (prefers-color-scheme: dark) {
-		background-color: $darkgrey;
-		color: $lightgrey;
-	}
+p, li {
+	line-height: 150%;
 }
 
 a {
-	color: inherit;
+	color: $blue;
 	text-decoration: none;
 
-	&:hover {
+	&[href]:hover {
 		text-decoration: underline;
 	}
 }
 
-@mixin h {
-	color: $darkblue;
+code, pre {
+	padding: 0 4px;
 
-	@media screen and (prefers-color-scheme: dark) {
-		color: $lightyellow;
+	border: 1px solid #aaa;
+	background-color: #eee;
+	color: $darkgrey;
+	font-family: 'Fira Mono', monospace;
+}
+
+pre {
+	padding: 4px 10px; 
+
+	code {
+		padding: 0;
+		border: none;
+	} 
+}
+
+div.highlight {
+	.filename {
+		margin-bottom: 0;
+		padding: 4px 10px;
+		display: block;
+
+		border: 1px solid #aaa;
+		border-bottom-style: none;
+		font-style: italic;
+		background-color: #d4d4d4;
+	}
+
+	pre {
+		margin-top: 0;
+	}
+}
+
+h1, h2, h3, h4, h5, h6 {
+	position: relative;
+
+	color: $darkblue;
+	font-family: "Fira Sans", sans-serif;
+
+	&:hover .headerlink {
+		opacity: 1;
+	}
+}
+
+.headerlink {
+	display: block;
+	position: absolute;
+	left: -1.5ch;
+	bottom: 0;
+	width: 1.5ch;
+	opacity: 0;
+	color: grey;
+
+	&[href]:hover {
+		color: $darkblue;
+		text-decoration: none;
 	}
 }
 
 h1 {
-	@include h;
-	
 	margin: 30pt 0 30pt 0;
 
 	text-align: center;
 	font-size: 24pt;
 	font-weight: bold;
+
+	.headerlink {
+		display: none;
+	}
 }
 
 h2 {
-	@include h;
-
 	margin: 30pt 0 10pt 0;
 	
 	font-size: 20pt;
@@ -60,8 +117,6 @@ h2 {
 }
 
 h3 {
-	@include h;
-
 	margin: 20pt 0 8pt 0;
 	
 	font-size: 16pt;
@@ -69,8 +124,6 @@ h3 {
 }
 
 h4 {
-	@include h;
-
 	margin: 10pt 0 6pt 0;
 	
 	font-size: 14pt;
@@ -78,8 +131,6 @@ h4 {
 }
 
 h5 {
-	@include h;
-
 	margin: 8pt 0 6pt 0;
 	
 	font-size: 12pt;
@@ -87,28 +138,60 @@ h5 {
 }
 
 h6 {
-	@include h;
-
 	margin: 6pt 0 6pt 0;
 	
 	font-size: 12pt;
 	font-weight: normal;
 }
 
+table {
+	border-collapse: collapse;
+}
+
+th, td {
+	border: 1px solid #aaa;
+	padding: 6px;
+}
+
+tr:nth-child(2n) {
+	background-color: #eee;
+}
+
+th {
+	background-color: #d4d4d4;
+}
+
+/* SYNTAX HIGHLIGHTING */
+
+code {
+	.k  { color: #85a; }
+	.nf { color: cyan;   }
+	.kt { color: blue;  font-style: italic; }
+	.nb { color: blue;   }
+	.o  { color: #e62; }
+	.mi { color: yellow; }
+	.kc { color: red;   font-style: italic; }
+	.s, { color: #591;  }
+	.s2 { color: #591;   }
+}
+
 /* ADMONITIONS */
 
-@mixin admonition-color($color) {
-	border-color: $color;
+@mixin admonition-style($fg, $bg, $image) {
+	border-color: $bg;
+	background-color: $bg;
 
 	.admonition-title {
-		background-color: $color;
+		background-color: $fg;
+		background-image: url("admonition-icons/#{$image}.svg");
 	}
 }
 
 .admonition {
 	margin: 10px;
 
-	border: 2px solid #aaa;
+	background-color: #eee;
+	border-bottom: solid #eee 1px;
 
 	p {
 		margin-left: 10px;
@@ -117,14 +200,32 @@ h6 {
 
 	.admonition-title {
 		margin: 0;
-		padding: 5px;
+		padding: 5px 5px 5px 2em;
 
 		font-weight: bold;
-		color: $darkgrey;
+		color: $lightgrey;
 		background-color: #aaa;
+		background-size: contain;
+		background-repeat: no-repeat;
 	}
 
-	&.warning { @include admonition-color(#ea2); }
+	&.inline {
+		display: flex;
+		flex-direction: row;
+
+		p {
+			margin: 0;
+			padding: 5px 1em;
+		}
+
+		.admonition-title {
+			padding-left: 2em;
+		}
+	}
+
+	&.warning { @include admonition-style(#e90, #ffedcc, "warning"); }
+
+	&.note { @include admonition-style(#6ae, #e7f2fa, "note"); }
 }
 
 
@@ -136,6 +237,8 @@ h6 {
 	flex-direction: row;
 	align-items: center;
 
+	font-family: 'Fira Sans', sans-serif;
+
 	@if $color {
 		background-color: $darkblue;
 	}
@@ -143,13 +246,8 @@ h6 {
 		background-color: white;
 	}
 
-	@media screen and (prefers-color-scheme: dark) {
-		@if $color {
-			background-color: $lightyellow;
-		}
-		@else {
-			background-color: $darkgrey;
-		}
+	a {
+		color: inherit;
 	}
 }
 
@@ -157,6 +255,7 @@ header {
 	height: 100px;
 	position: sticky;
 	top: -50px;
+	z-index: 1;
 
 	.logo {
 		position: absolute;
@@ -164,11 +263,6 @@ header {
 		left: 0;
 		height: 100px;
 		width: 100px;
-
-		img {
-			width: 100%;
-			height: 100%;
-		}
 	}
 
 	.top {
@@ -183,8 +277,8 @@ header {
 			font-size: 35px;
 			text-decoration: none;
 
-			@media screen and (prefers-color-scheme: dark) {
-				color: $darkblue;
+			&:hover {
+				text-decoration: none;				
 			}
 		}
 	}
@@ -198,11 +292,6 @@ header {
 		font-size: 12pt;
 		color: $darkblue;
 		border-bottom: 2px solid $darkblue;
-
-		@media screen and (prefers-color-scheme: dark) {
-			color: $lightyellow;
-			border-bottom-color: $lightyellow;
-		}
 
 		> * {
 			padding: 10px 20px;
@@ -227,10 +316,6 @@ footer {
 	color: $lightgrey;
 	font-size: 12pt;
 
-	@media screen and (prefers-color-scheme: dark) {
-		color: black;
-	}
-
 	> * {
 		margin: 0 20px;
 	}
@@ -240,4 +325,22 @@ footer {
 		height: 80px;
 		justify-content: space-around;
 	}
+}
+
+nav {
+	margin-top: 20px;
+}
+
+.toctitle {
+	@extend h3;
+
+	display: block;
+	margin-left: 20px;
+}
+
+
+.toc ul {
+	list-style: none;
+	padding-left: 25px;
+	margin: 0;
 }

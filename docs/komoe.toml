@@ -1,6 +1,6 @@
 # Configuration for KOMOE static site generator.
 
-komoe_require = '0.2.0'
+komoe_require = '0.4.0'
 
 [project]
 name = 'Birdway'
@@ -14,7 +14,7 @@ output = 'site'
 [plugin.sass]
 package = "komoe_sass"
 config.path = "style"
-config.command = "npx sass {input} {output}"
+config.command = "sassc {input} {output}"
 
 [plugin.bw]
-script = "plugins/bw-plugin.py"
+script = "bw-plugin.py"

@@ -1,0 +1,52 @@
+# Features of version 0.1
+
+- [ ] Types
+  - [x] Void
+  - [ ] Bool
+  - [ ] Int
+  - [ ] Float
+  - [ ] Str
+  - [ ] File
+  - [ ] Signal
+  - [ ] Lists
+  - [ ] Dictionaries
+  - [ ] Tuples
+  - [ ] Functions
+  - [ ] Nullables
+  - [ ] Structures
+  - [ ] Enumerations
+- [ ] Functions
+  - [ ] Declaration
+  - [ ] Call
+  - [ ] Anonymous functions
+- [ ] If statements
+- [ ] For loops
+- [ ] While loops
+- [ ] Try statements
+- [ ] Blocks
+- [ ] Operators
+  - [ ] Arithmetic
+    - [ ] Addition
+    - [ ] Substraction
+    - [ ] Multiplication
+    - [ ] Division
+    - [ ] Integer division
+    - [ ] Modulo
+  - [ ] Comparison
+    - [ ] Equal
+    - [ ] Not equal
+    - [ ] Less than
+    - [ ] Greater than
+    - [ ] Less or equal
+    - [ ] Greater or equal
+  - [ ] Logic
+    - [ ] NOT
+    - [ ] OR
+    - [ ] AND
+  - [ ] Concatenation
+  - [ ] Size
+  - [ ] Isn't null
+  - [ ] Union
+- [ ] Single element acessing
+- [ ] Command-line parameters
+- [ ] ASCII identifiers
