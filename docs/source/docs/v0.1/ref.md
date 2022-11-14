@@ -78,7 +78,7 @@ The unary operators are `#`, `?` and the keyword `not`.
 The only unary and binary operator is `-`.
 
 The binary operators are `&`, `|`, `^`, `+`, `==`, `%`, `*`, `/`, `//`, `:=`,
-`!=`, `>`, `>=`, `<`, `<=`, and the keywords `and` and `or`.
+`!=`, `>`, `>>`, `>=`, `<`, `<<`, `<=`, and the keywords `and` and `or`.
 
 
 #### 2.1.5. Keywords
@@ -199,9 +199,6 @@ parentheses. These expressions are read using the main context.
 The options can be a single interrogation mark `?`, two interrogation marks 
 `??`, or nothing.
 
-If the type of a binding or expression given to format is
-incompatible with the formatting function, it should result in a type error.
-
 
 #### 2.2.3. End of string
 
@@ -235,42 +232,98 @@ The `Bool` type can take only two values, the constants
 [`true`](#412-boolean-constants) and [`false`](#412-boolean-constants).
 
 
-#### 3.1.4. Integers
+#### 3.1.3. Integers
 
-The `Int` type is a 32-bit signed integer. It thus can take values between
--2<sup>31</sup> (included) and 2<sup>31</sup> (excluded).
+The `Int` type is a 32-bit signed integer.
 
 
-#### 3.1.5. Floating-point numbers
+#### 3.1.4. Floating-point numbers
 
 The `Float` type is a double precision (64 bits) floating-point number.
 
 
-#### 3.1.6. Strings
+#### 3.1.5. Strings
+
+The `Str` type is a string of unicode characters. 
 
 
-#### 3.1.7. Files
+#### 3.1.6. Files
+
+The `File` type represents an opened file.
 
 
-#### 3.1.8. Signals
+#### 3.1.7. Signals
+
+The `Signal` type represents an error.
 
 
 ### 3.2. Composite types
 
+Composite types are built using primitive type or other composite types.
+
 
 #### 3.2.1. Nullable types
+
+```{ .ebnf title="Syntax" }
+nullable_type = type, "?";
+```
+
+A nullable type `T?` can hold values of type `T` and `null`.
+
+`T` cannot be `Void` or another nullable type.
 
 
 #### 3.2.2. Lists
 
+```{ .ebnf title="Syntax" }
+list_type = "[", type, "]";
+```
+
+A list type `[T]` is a dynamic collection of `T`.
+
+`T` cannot be `Void`, and all the values should all have the same type, or be
+able to be converted into a single type through
+[implicit conversion](#34-implicit-conversion).
+
 
 #### 3.2.3. Dictionaries
+
+```{ .ebnf title="Syntax" }
+dict_type = "[", type, ":", type "]";
+```
+
+A dictionary type `[T: U]` is a mapping of `T` values to `U` values.
+
+`T` and `U` cannot be `Void`, and `T` must be hashable (that is, accepted by
+the [`hash`]() function).
+
+The types of the keys must be the same (or beign compatible for
+[implicit conversion](#34-implicit-conversion) like in lists) and the types of
+the values as well.
 
 
 #### 3.2.4. Tuples
 
+```{ .ebnf title="Syntax" }
+tuple_type = "(", type, { ",", type } [ "," ] ")";
+```
+
+A tuple type `(T1, T2, ...)` is a group of different types.
+
+Tuple fields cannot be `Void`, and a tuple with zero fields is illegal. A tuple
+with only one field is the same as the type of its field.
+
 
 #### 3.2.5. Function types
+
+```{ .ebnf title="Syntax" }
+func_type = ( type | tuple_type ), "->", type;
+```
+
+A function type `T -> R` is the type of a function that takes an argument of
+type `T` and return a value of type `R`. A function type `(T1, T2, ...) -> R` is
+the type of a function that takes zero, one or more arguments of type `T1`,
+`T2`, ... and return a value of type `R`.
 
 
 ### 3.3. User-defined types
@@ -278,23 +331,58 @@ The `Float` type is a double precision (64 bits) floating-point number.
 
 #### 3.3.1. Enumerations
 
+Enumerations are primitive types that can take a specific list of values.
+
 
 #### 3.3.2. Structures
+
+Structures are groups of types like tuples, except that their fields are named. 
 
 
 ### 3.4. Implicit conversion
 
+If a value can be of type `T` or `Void`, then its type will be `T?`.
+
+If a value can be of type `Int` or `Float`, then its type will be `Float`.
+
+If an `Int` value is found where a `Float` value was expected, it is also
+converted to `Float` implicitly.
+
 
 ### 3.5. Type inference
 
+The type of a binding, if omitted, is deduced from the value it is assigned,
+and the types of function parameters are generic by default. A generic function
+parameter can take any type that follows the [constraints](#36-type-constraints)
+and is valid within the function.
 
-### 3.5.1. Partial types
+
+#### 3.5.1. Partial types
+
+Sometimes, the exact type of an expression is unknown, and in that case the
+types that cannot be determined should represented as `~` (for displaying
+purposes only, it is not valid syntax).
+
+For example, an empty list could be a list of anything, and as such its type
+will be `[~]`.
+
+If a partial type is never resolved, the program is still valid because it means
+that the actual type is not important.
+
+### 3.6. Type constraints
+
+Integers can be used where a type is expected to indicate a generic type. Two
+generic types with the same number must then be resolved with the same type.
 
 
 ## 4. Expressions
 
 
 ### 4.1. Constant values
+
+!!! note
+    The types [`File`](#316-files) and [`Signal`](#317-signals) have no literal
+    representation. They are created by or declared as built-ins.
 
 
 #### 4.1.1. Null
@@ -308,16 +396,77 @@ The keywords `true` and `false` are the two values of the
 [`Bool`](#312-booleans) type.
 
 
+#### 4.1.3. Integer constants
+
+[Decimal](#2171-decimal-integer-literals),
+[hexadecimal](#2171-hexadecimal-integer-literals) and
+[binay](#2171-binary-integer-literals) integer literals evaluates to a value of
+the [`Int`](#313-integers) type.
+
+
+#### 4.1.4. Floating-point constants
+
+[Floating-point literals](#2174-floating-point-literals) evaluates to a value of
+the [`Float`](#314-floating-point-numbers) type.
+
+
+#### 4.1.5. Strings
+
+[String literals](#219-string-literals) evaluates to a value of the
+[`Str`](#315-strings) type.
+
+Formatting fields where the value is an integer will be left as-is to be
+formatted later by [`fmt`](). Otherwise, if the value is an identifier, the
+value bound to that identifier in the current scope will be used. Finally, if
+the value is an expression, the result of this expression evaluated in the scope
+of the string literal will be used.
+
+No options means that [`to_string`]() will be used, and one or two interrogation
+marks means that [`debug`]() will be used instead, with *inline* set to `true`
+if a single `?` is used.
+
+If the type of a binding or expression given to format is
+incompatible with the formatting function, it should result in a type error.
+
+
 ### 4.2. Composite types literals
+
+!!! note
+    Nullable values are created through
+    [implicit conversion](#34-implicit-conversion) and functions will be dealt
+    with in [another section](#48-functions).
 
 
 #### 4.2.1. List literals
 
+```{ .ebnf title="Syntax" }
+list_literal = "[", expr, { ",", expr } [ "," ] "]";
+```
+
+List literals are values separated by commas and surrounded by square brackets.
+A list containing `T` values will be of type `[T]` and an empty list will have
+the partial type `[~]`.
+
 
 #### 4.2.2. Dictionary literals
 
+```{ .ebnf title="Syntax" }
+key_value = expr, ":", expr;
+
+dict_literal = "{", key_value, { ",", key_value } [ "," ] "}";
+```
+
+Dictionary literals are key-value pairs of the form `key: value` separated by
+commas and surrounded by square brackets. A dictionary containing `T` keys and
+`U` values will be of type `[T: U]`, and an empty dictionary will have the
+partial type `[~: ~]`.
+
 
 #### 4.2.3. Tuple literals
+
+```{ .ebnf title="Syntax" }
+tuple_literal = "(", expr, { ",", expr } [ "," ] ")";
+```
 
 
 #### 4.2.4. Structure literals

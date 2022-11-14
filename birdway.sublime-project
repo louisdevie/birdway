@@ -12,7 +12,7 @@
 		},
 		{
 			"path": "bootstrap",
-			"name": "Bootstrap interpreter",
+			"name": "Bootstrap compiler",
 			"folder_exclude_patterns": ["_*"],			
 		},
 		{

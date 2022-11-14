@@ -39,7 +39,6 @@ a {
 code, pre {
 	padding: 0 4px;
 
-	border: 1px solid #aaa;
 	background-color: #eee;
 	color: $darkgrey;
 	font-family: 'Fira Mono', monospace;
@@ -47,6 +46,8 @@ code, pre {
 
 pre {
 	padding: 4px 10px; 
+	
+	border: 1px solid #aaa;
 
 	code {
 		padding: 0;
@@ -164,15 +165,16 @@ th {
 /* SYNTAX HIGHLIGHTING */
 
 code {
-	.k  { color: #85a; }
+	.k  { color: #85a;   }
 	.nf { color: cyan;   }
-	.kt { color: blue;  font-style: italic; }
+	.kt { color: blue;   font-style: italic; }
 	.nb { color: blue;   }
-	.o  { color: #e62; }
+	.o  { color: #e62;   }
 	.mi { color: yellow; }
-	.kc { color: red;   font-style: italic; }
-	.s, { color: #591;  }
+	.kc { color: red;    font-style: italic; }
+	.s, { color: #591;   }
 	.s2 { color: #591;   }
+	.c  { color: #777;   }
 }
 
 /* ADMONITIONS */

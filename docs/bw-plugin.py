@@ -1,7 +1,5 @@
 from komoe.plugin import *
 
-import pygments
-
 
 @setup
 def setup(ctx, cfg):

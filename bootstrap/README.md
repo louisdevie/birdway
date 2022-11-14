@@ -1,13 +1,7 @@
-# BirdwayZero bootstrap interpreter
+# BwZero bootstrap compiler
 
-Although Birdway is meant to be a compiled language,
-it's first implementation will be an interpreter written
-in Python: the goal here is to have an implementation
-of (a subset of) the language ASAP, at the expense of performance and reliability.
-
-## Features
-
-* simple command-line parameters
-* primitive types : `Void`, `Bool`, `Int`, `Str` and `File` only
-* composite types : lists and tuples only
-* basic terminal and file I/O (read from file, write to standard output)
+A birdway compiler written in Rust (because it shares some syntax and concepts
+with Birdway). The goal here is to have an implementation of the version 0.1 of
+the language ASAP. The code will not be an exmaple of good rust code as I will
+write to look like birdway code to simplify the future rewrite of the compiler
+in Birdway.
