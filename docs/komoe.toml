@@ -14,7 +14,7 @@ output = 'site'
 [plugin.sass]
 package = "komoe_sass"
 config.path = "style"
-config.command = "sassc {input} {output}"
+config.command = "npx sass {input} {output}"
 
 [plugin.bw]
 script = "bw-plugin.py"
