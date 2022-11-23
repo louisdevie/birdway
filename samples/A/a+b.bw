@@ -26,4 +26,4 @@
 param a: Int;
 param b: Int;
 
-func main() -> println a + a;
+func main() -> println a + b;

@@ -36,6 +36,6 @@ func main() -> {
 
     let update = ["price": 15.25, "color": "red", "year": 1974];
 
-    let merged = base || update;
+    let merged = base | update;
     println merged;
 }

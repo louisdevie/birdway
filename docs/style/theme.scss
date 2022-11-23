@@ -23,8 +23,13 @@ body {
 	color: black;
 }
 
-p, li {
+p {
 	line-height: 150%;
+}
+
+p, li {
+	margin-top: 16px;
+	margin-bottom: 16px;
 }
 
 a {
@@ -36,10 +41,14 @@ a {
 	}
 }
 
+
+code {
+	background-color: #00000017;
+}
+
 code, pre {
 	padding: 0 4px;
 
-	background-color: #eee;
 	color: $darkgrey;
 	font-family: 'Fira Mono', monospace;
 }
@@ -48,10 +57,12 @@ pre {
 	padding: 4px 10px; 
 	
 	border: 1px solid #aaa;
+	background-color: #eee;
 
 	code {
 		padding: 0;
 		border: none;
+		background-color: #eee;
 	} 
 }
 
@@ -69,6 +80,7 @@ div.highlight {
 
 	pre {
 		margin-top: 0;
+		overflow-x: scroll;
 	}
 }
 
@@ -162,6 +174,17 @@ th {
 	background-color: #d4d4d4;
 }
 
+blockquote {
+	padding: 1px 0 0 20px;
+	margin: -16px 0 32px 0;
+
+	border-left: 2px solid #777;
+}
+
+dd {
+	margin: 2px 0 10px 20px;
+}
+
 /* SYNTAX HIGHLIGHTING */
 
 code {
@@ -175,6 +198,7 @@ code {
 	.s, { color: #591;   }
 	.s2 { color: #591;   }
 	.c  { color: #777;   }
+	.cm { color: #777;   }
 }
 
 /* ADMONITIONS */

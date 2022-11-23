@@ -1,16 +1,16 @@
 a_plus_b:
-  - get: A/a+b.bw
-  - compile: a+b.bw
-    flags: --name=aplusb
-  - run: aplusb 3 6
-    stdout: |
-      9
-  - run: aplusb -7 4
-    stdout: |
-      3
-  - run: aplusb 123 -456
-    stdout: |
-      -333
+  get:
+    - A/a+b.bw
+  run:
+    - args: 3 6
+      stdout: |
+        9
+    - args: -7 4
+      stdout: |
+        3
+    - args: 123 -456
+      stdout: |
+        -333
 
 array_concat:
   - get: A/array-concatenation.bw

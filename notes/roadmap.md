@@ -73,7 +73,8 @@
     - [ ] Right shift
   - [ ] Is null
   - [ ] Composition
-- [ ] List/tuple unpacking
+- [ ] List and tuple (un)packing
+- [ ] Infinite lists
 - [ ] Variable arguments/tuple size handling
 - [ ] Ranges syntax
 - [ ] Multiple element acessing
@@ -83,12 +84,15 @@
 - [ ] `pub` modifier
 - [ ] Module namespaces
 - [ ] Command-line options and flags
+- [ ] Advanced parameters
+- [ ] Subcommands
 - [ ] Implicit conversion
 - [ ] Unicode identifiers
 - [ ] Color output / advanced formatting
 - [ ] CFFI
 - [ ] Program metadata
 - [ ] Raw strings
+- [ ] Depth of `break` and `skip`
 
 ## Features that may be added in future versions
 
