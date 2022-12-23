@@ -7,7 +7,7 @@ contexts:
   main:
     - match: '"'
       scope: punctuation.definition.string.begin.birdway
-      push: double_quoted_string
+      push: string
 
     - match: '---'
       scope: punctuation.definition.comment.begin.birdway
@@ -17,10 +17,7 @@ contexts:
       scope: punctuation.definition.comment.birdway
       push: line_comment
 
-    - match: \b(READ|TEXT)\b
-      scope: support.constant.birdway
-
-    - match: \b(ERROR|ERR_IO|FAIL)\b
+    - match: \b(READ|TEXT|ERROR|ERR_IO|FAIL)\b
       scope: support.constant.birdway
 
     - match: '\b(if|else|then|switch|case|default)\b'
@@ -29,10 +26,10 @@ contexts:
     - match: '\b(for|while|in|do)\b'
       scope: keyword.control.loop.birdway
 
-    - match: '\b(break|skip)\b'
+    - match: '\b(break|continue)\b'
       scope: keyword.control.flow.break.birdway
 
-    - match: '\b(meta|param|option|use|alias|is)\b'
+    - match: '\b(meta|params|option|use)\b'
       scope: keyword.other.birdway
 
     - match: '\b(throw|try|on)\b'
@@ -143,7 +140,7 @@ contexts:
       scope: punctuation.definition.comment.end.birdway
       pop: true
 
-  double_quoted_string:
+  string:
     - match: '\\(n|r|e|t|\\|")'
       scope: constant.character.escape.birdway
 

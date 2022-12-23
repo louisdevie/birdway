@@ -13,8 +13,7 @@
 
 Each source file is a unit.
 
-A program is made of one [entry point unit](#112-entry-point) and zero or
-more [module units](#113-module-units).
+A program is made of one entry point unit and zero or more module units.
 
 
 ### 1.1. File format
@@ -48,8 +47,10 @@ context*. The context at the beginning of a file is always the main context.
 
 #### 2.1.1. Whitespaces
 
-Horizontal tabs, line feeds, carriage return and spaces are always valid but
-ignored.
+Horizontal tabs, carriage return and spaces are always valid but ignored. Line
+feeds, however, are part of the language syntax. There is two types of line
+feeds: those who are followed by blank line (that is, a line which contains only
+the previous whitespace characters), and those who are not.
 
 
 #### 2.1.2. Comments
@@ -66,9 +67,9 @@ Comments are also ignored.
 #### 2.1.3. Punctuation
 
 The punctuators of the language includes: braces `{` `}`, parentheses `(` `)`,
-square brackets `[` `]`, dots `.`, commas `,`, semicolons `;`, colons `:` and
-double colons `::`, at symbols `@`, dollar signs `$`, single underscores `_`,
-arrows `->` and equal signs `=`.
+square brackets `[` `]`, dots `.`, commas `,`, semicolons `;`, colons `:`, at
+symbols `@`, dollar signs `$`, single underscores `_`, arrows `->` and equal
+signs `=`.
 
 
 #### 2.1.4. Operators
@@ -88,20 +89,20 @@ primitive types):
 
 ```
 break     params
-const     print
-do        println
-else      read
-enum      readln
-false     return
-for       struct
-from      then
-func      throw
-if        to
-in        true
-let       try
-next      use
-null      while
-on
+catch     print
+const     println
+continue  read
+do        readln
+else      return
+enum      struct
+false     then
+for       throw
+from      to
+func      true
+if        try
+in        use
+let       while
+null      
 ```
 
 
@@ -172,26 +173,27 @@ switch to the string context.
 
 #### 2.2.1. Escape sequences
 
-Certain characters can be preceded by a backslash `\` to remove/give them a
-special meaning:
+Certain characters can be preceded by a backslash `\` (or doubled) to
+remove/give them a special meaning:
 
 Escape  |Expansion
 --------|-----------------------------------------
 `\\`    |`\`
 `\"`    |`"`
-`\{`    |`{`
 `\n`    |A newline (ASCII character 10/LF)
 `\t`    |A tabulation (ASCII character 9/TAB)
 `\r`    |A carriage return (ASCII character 13/CR)
+`{{`    |`{`
+`}}`    |`}`
 
-Any other character cannot be escaped.
+Any other character cannot be escaped by a backslash.
 
 
 #### 2.2.2. Formatting
 
 An opening brace `{` mark the beginning of a formatting field. A field is made
 of a value and formatting options. The three types of values are decribed in the
-next sections.
+continue sections.
 
 The value may be an integer, an identifier, or an expression bewteen
 parentheses. These expressions are read using the main context. 
@@ -298,19 +300,18 @@ items also of type `T`.
 #### 3.2.3. Dictionaries
 
 ```{ .ebnf title="Syntax" }
-dict type = "[", type, ":", type "]";
+dict type = "[", type, "->", type "]";
 ```
 
-A dictionary type `[T: U]` is a mapping of `T` values to `U` values.
+A dictionary type `[T -> U]` is a mapping of `T` values to `U` values.
 
 `T` and `U` cannot be [`Void`](#311-void), and `T` must be hashable (that is,
 accepted by the [`hash`]() function).
 
-The types of the keys must be the same (or beign compatible for
-[implicit conversion](#34-implicit-conversion) like in lists) and the types of
-the values as well.
+The types of the keys must be the same and the types of the values must be the
+same too.
 
-A dictionary `[T: U]` is iterable with items of type `T`, and indexable by `T`
+A dictionary `[T -> U]` is iterable with items of type `T`, and indexable by `T`
 with items of type `U`.
 
 #### 3.2.4. Tuples
@@ -325,7 +326,18 @@ Tuple fields cannot be [`Void`](#311-void), and a tuple with zero fields is
 illegal. A tuple with only one field is the same as the type of its field.
 
 
-#### 3.2.5. Function types
+#### 3.2.5. Records
+
+```{ .ebnf title="Syntax" }
+record field = IDENTIFIER, ":", type;
+
+record type = "(", [ record field, { ",", record field } [ "," ] ] ")";
+```
+
+Records are groups of types like tuples, except that their fields are named. 
+
+
+#### 3.2.6. Function types
 
 ```{ .ebnf title="Syntax" }
 function type = type, "->", type;
@@ -344,10 +356,8 @@ the type of a function that takes zero, one or more arguments of type `T1`,
 
 Enumerations are primitive types that can take a specific list of values.
 
-
-#### 3.3.2. Structures
-
-Structures are groups of types like tuples, except that their fields are named. 
+!!! note "See also"
+    [Enumeration declarations](6121-enumeration-declarations)
 
 
 ### 3.4. Never type
@@ -361,24 +371,41 @@ value, whereas [`Void`](#311-void) has one and only one value.
 
 ### 3.5. Implicit conversion
 
-If a value can be of type `T` or [`Void`](#311-void), then its type will be
-`T?`.
+Implicit conversion can happen in two situations: when a value doesn't meet a
+type requirement and an implicit conversion is possible, or when several
+expressions are required to have the same type and there exists implicit
+conversions that can convert all the types into one.
 
-If a value can be of type [`Int`](#313-integers) or
-[`Float`](#314-floating-point-numbers), then its type will be
+
+#### 3.5.1. With `Void`
+
+Values of type `T` and [`Void`](#311-void) can be converted into `T?`.
+
+
+#### 3.5.2. Between numeric types
+
+Values of type [`Int`](#313-integers) can be converted into
 [`Float`](#314-floating-point-numbers).
 
-If an [`Int`](#313-integers) value is found where a
-[`Float`](#314-floating-point-numbers) value was expected, it is also converted
-to [`Float`](#314-floating-point-numbers) implicitly.
 
-The never type `!` can be implictly converted into any other type.
+#### 3.5.3. Mutable types
 
-A mutable type can be used where the immutable version of the same type is 
-expected. 
+Any mutable value of type type `$T` can be converted into its immutable version
+`T`.
 
-Whenever several expressions are required to have the same type, it is valid if
-different types that be converted implicitly into a single type are given. 
+
+#### 3.5.4. Never an partial type
+
+The [never type](#34-never-type) `!` and [partial type](#361-partial-types) `~`
+can be converted into and type.
+
+
+#### 3.5.6. Composite types
+
+If `T` can be converted into `U`, a composite type containing a type `T` can be
+converted into the same composite type with `U` instead of `T`.
+
+The empty list type `[~]` can be converted into both a list and a dictionary.
 
 
 ### 3.6. Type inference
@@ -437,7 +464,7 @@ expression = binary operation
            | while expression
            | try expression
            | function call
-           | input output expression
+           | io expression
            | block
            | block statements
            | flow control expressions;
@@ -519,15 +546,16 @@ the partial type `[~]`.
 #### 4.2.2. Dictionary literals
 
 ```{ .ebnf title="Syntax" }
-key value = expression, ":", expression;
+key value = expression, "->", expression;
 
 dict literal = "{", [ key value, { ",", key value } [ "," ] ], "}";
 ```
 
-Dictionary literals are key-value pairs of the form `key: value` separated by
+Dictionary literals are key-value pairs of the form `key -> value` separated by
 commas and surrounded by square brackets. A dictionary containing `T` keys and
-`U` values will be of type `[T: U]`, and an empty dictionary will have the
-partial type `[~: ~]`.
+`U` values will be of type `[T -> U]`, and an empty dictionary willl have the
+partial type `[~]` (there is no difference between an empty list and an empty
+dictionary).
 
 
 #### 4.2.3. Tuple literals
@@ -536,9 +564,25 @@ partial type `[~: ~]`.
 tuple literal = "(", [ expression ], { ",", expression } [ "," ] ")";
 ```
 
-List literals are values separated by commas and surrounded by parentheses. The
+Tuple literals are values separated by commas and surrounded by parentheses. The
 type of the tuple will be a [tuple type](#324-tuples) of the types of the
 values.
+
+A tuple cannot be empty, and a tuple with a single value will evaulate to that
+value.
+
+
+#### 4.2.4. Record literals
+
+```{ .ebnf title="Syntax" }
+field literal = IDENTIFIER, ":", expression;
+
+tuple literal = "(", [ field literal ], { ",", field literal } [ "," ] ")";
+```
+
+Record literals are field names and values values separated by commas and
+surrounded by parentheses. The type of the record will be a
+[record type](#325-records) with the corresponding field names and types.
 
 A tuple cannot be empty, and a tuple with a single value will evaulate to that
 value.
@@ -555,7 +599,7 @@ The value of an identifier if the value bound to it via a `let` or `const`.
 #### 4.4.1. Unary operations
 
 ```{ .ebnf title="Syntax" }
-unary operation = ( UNARY ONLY | UNARY OR BINARY ), primary expression;
+unary operation = ( UNARY ONLY | UNARY OR BINARY ), expression;
 ```
 
 Apply an unary operator to an expression.
@@ -564,7 +608,7 @@ Apply an unary operator to an expression.
 #### 4.4.2. Binary operations
 
 ```{ .ebnf title="Syntax" }
-unary operation = secondary expression,
+binary operation = secondary expression,
                   ( UNARY OR BINARY | BINARY ONLY ),
                   expression;
 ```
@@ -651,8 +695,8 @@ In case the expressions are of type [`Void`](#311-void), the loop just evaluates
 to [`null`](#411-null).
 
 If a break signal is caught, the loop stops and return the list of expressions
-evaluated so far. If a continue signal is caught, the loop continues its
-execution and ignore one of the expressions.
+evaluated so far. If a continue signal is caught, the loop jumps to the next
+iteration.
 
 
 #### 4.6.2. While loops
@@ -722,9 +766,7 @@ parameters) is chosen.
 #### 4.8.2. Anonymous functions
 
 ```{ .ebnf title="Syntax" }
-anonymous function = ( "(", 
-                       [ IDENTIFIER, { ",", IDENTIFIER }, [ "," ] ],
-                       ")"
+anonymous function = ( "(", [ IDENTIFIER, { ",", IDENTIFIER }, [ "," ] ], ")"
                      | IDENTIFIER
                      ),
                      "->", expression; (* body *)
@@ -783,7 +825,7 @@ The limit must be of type [`Int`](#313-integers) and the stream of type
 
 ```{ .ebnf title="Syntax" }
 block = "{",
-        { expression | block statement, ";" },
+        { expression | block statement },
         [ expression (* tail *) ],
         "}"; 
 ```
@@ -791,11 +833,13 @@ block = "{",
 Evaluates each expression after another. The value of the block is the value of
 the tail expression, if there is one, or [`null`](#411-null) otherwise.
 
+An expression/statement ends when 
+
 
 ### 4.11. The black hole
 
-A single undercore `_` is the *"black hole"*. It acts like a binding, except its
-type is `$Void`. It should behave like `null` under most circumstances.
+A single undercore `_` is the *"black hole"*. It acts like a binding whose type
+is `$Void`.
 
 !!! note "See also"
     [The assignment operator](#547-assignment)
@@ -809,19 +853,24 @@ The type of all these expressions is the [never type](#34-never-type).
 ##### 4.12.1. Continue
 
 ```{ .ebnf title="Syntax" }
-continue expression = "continue";
+continue expression = "continue", [ expression ];
 ```
 
 Throws a *continue* signal. It can only be used inside of a loop.
+
+If is an expression following `continue`, it is used as the current loop
+expression. Otherwise the current iteration is just ignored.
 
 
 ##### 4.12.2. Break
 
 ```{ .ebnf title="Syntax" }
-break expression = "break";
+break expression = "break", [ expression ];
 ```
 
 Throws a *break* signal. It can only be used inside of a loop.
+
+If is an expression following `continue`, a last value is yielded by the loop.
 
 
 ##### 4.12.3. Return
@@ -1085,8 +1134,8 @@ Left operand    |Right operand   |Result
 ----------------|----------------|---------
 `$T`            |`T`             |`T`
 
-If the expression assigned has not been computed yet because of laziness, it
-gets computed before being assigned.
+If the expression assigned has not been evaluated yet because of laziness, it
+gets evaluated before being assigned.
 
 Any value can be assigned to the black hole binding, in wich case that value is
 discarded and the assignment evaluates to `null`.
@@ -1118,35 +1167,31 @@ source, with the given name and a `.bw` extension.
 
 ```{ .ebnf title="Syntax" }
 enum declaration = "enum", TYPE NAME, "(",
-                   [ IDENTIFIER, { ",", IDENTIFIER }, [ "," ], (* values *) ],
+                   [ IDENTIFIER, { ",", IDENTIFIER }, [ "," ], ], (* values *)
                    ")"; 
 ```
 
-Declare an enum type that can take one of the values. All values are declared as
-constants, and there must be at least one.
+Declare an enum type that can take one of the *values*. All values are declared
+as global constants, and there must be at least one.
 
 
-##### 6.1.2.2. Structure declarations
+##### 6.1.2.2. Type aliases
 
 ```{ .ebnf title="Syntax" }
-struct field = IDENTIFIER, ":", type;
-
-struct declaration = "struct", TYPE NAME, "(",
-                     [ struct field, { ",", struct field }, [ "," ] ],
-                     ")"; 
+alias declaration = "type", TYPE NAME, "=", type;
 ```
 
-Declare a struct with the given fields. All the types must be non-generic,
-complete types (i.e. not partial). There must be at least one field.
+Declare a type alias. The alias can be used in place of the original and
+vice-versa.
+
 
 #### 6.1.3. Command-line arguments
 
 ```{ .ebnf title="Syntax" }
 program parameter = IDENTIFIER, ":", type;
 
-params declaration = "params", "(",
-                     [ program parameter, { ",", program parameter }, [ "," ] ],
-                     ")";
+params declaration = "params",
+                     [ program parameter, { ",", program parameter }, [ "," ] ];
 ```
 
 Declare command-line parameters. The following types can be used:
@@ -1180,28 +1225,27 @@ function parameters = "(", [
                       ], ")";
 
 function delcaration = "func", IDENTIFIER, function parameters,
-                       [ type ] (* return type *) "->", expression; (* body *)
+                       [ ":", type ] (* return type *)
+                       "->", expression; (* body *)
 ```
 
 Declares a function with a given name and parameters, and returning the body
 when called.
 
-By default, all arguments are passed by copy. They may actually be passed by
-reference for optimisation reasons, but since they aren't mutable, it should
-behave the same way.
+By default, all arguments are passed by value and aren't mutable.
 
 When a parameter is preceded by a `$` modifier, arguments will be passed to it
 by mutable reference, and as such, they must be mutable bindings.
 
-When a parameter is preceded by a `@` modifier, arguments are still passed to it
-by copy, but the binding inside the function is mutable.
+When a parameter is preceded by a `@` modifier, arguments will be passed to it
+by copy, and the binding inside the function will be mutable.
 
 If the return type is specified, the type of the body must be the same.
 Otherwise, the return type of the function is inferred from the type of the
 body.
 
 Functions may be overloaded, that is, a function may have different
-implementations with different parameters. 
+implementations with different parameters.
 
 
 ### 6.2. Block-level statement
@@ -1209,11 +1253,9 @@ implementations with different parameters.
 These statements can only be used inside [blocks](#410-blocks).
 
 
-#### 6.2.1. Constants and functions
+#### 6.2.1. Constants
 
-Constants and functions can also be declared inside blocks, just like in the
-program body. The difference is that functions will have a closure like
-anonymous functions do.
+Constants can also be declared inside blocks, just like in the program body.
 
 
 #### 6.2.2. Bindings
@@ -1287,14 +1329,14 @@ be caught and terminate the program.
 ## 9. Built-ins
 
 Built-ins are functions and constants that are defined in any unit, and that may
-be shadowed by user declarations, including inside the body. They should be
+be shadowed by user declarations, including inside the body. They are
 implemented by the compiler. 
 
 
 ### 9.1. Input/Output
 
-`func open(path: Str) File`  
-`func open(path: Str, mode: FileMode) File`
+`func open(path: Str) : File`  
+`func open(path: Str, mode: FileMode) : File`
 
 > Open the file at the specified path.
 >
@@ -1304,7 +1346,7 @@ implemented by the compiler.
     <dt>`path`<dt>
     <dd>The path of the file, absolute or relative to the CWD.</dd>
     <dt>`mode`</dt>
-    <dd>The mode to open the file with.</dd>
+    <dd>The mode to open the file with. Defaults to `READ_ONLY`.</dd>
     </dl>
 >
 > **Returns**
@@ -1329,7 +1371,7 @@ implemented by the compiler.
 
 > File opening modes.
 
-`func close($file: File) Void`
+`func close($file: File) : Void`
 
 > Closes an opened file.
 >
@@ -1349,9 +1391,9 @@ implemented by the compiler.
 
 ### 9.2. Conversions
 
-`func to_int(value: Bool) Int`  
-`func to_int(value: Float) Int`  
-`func to_int(value: String) Int?`
+`func to_int(value: Bool) : Int`  
+`func to_int(value: Float) : Int`  
+`func to_int(value: String) : Int?`
 
 > If the value is a `Bool`, then `false` is mapped to `0` and `true` to `1`.
 > 
@@ -1370,9 +1412,9 @@ implemented by the compiler.
 >
 > The value converted to an integer, or `null` if the conversion fails.
 
-`func to_float(value: Bool) Float`  
-`func to_float(value: Int) Float`  
-`func to_float(value: String) Float?`
+`func to_float(value: Bool) : Float`  
+`func to_float(value: Int) : Float`  
+`func to_float(value: String) : Float?`
 
 > If the value is a `Bool`, then `false` is mapped to `0.0` and `true` to `1.0`.
 >
@@ -1389,8 +1431,8 @@ implemented by the compiler.
 >
 > The value converted to a float, or `null` if the conversion fails.
 
-`func to_string(value: Int) Str`  
-`func to_string(value: Float) Str`
+`func to_string(value: Int) : Str`  
+`func to_string(value: Float) : Str`
 
 > Converts a number to its decimal representation.
 >
@@ -1405,8 +1447,8 @@ implemented by the compiler.
 >
 > The value converted to a string.
 
-`func debug(value: 1) Str`  
-`func debug(value, inline: Bool) Str`
+`func debug(value: 1) : Str`  
+`func debug(value, inline: Bool) : Str`
 
 > Convert any value to its literal representation, or, in case it has no literal
 > form, to a representation giving enough information to recreate the value. 
@@ -1428,7 +1470,7 @@ implemented by the compiler.
 >
 > The value converted to a string.
 
-`func to_hex(value: Int) Str`
+`func to_hex(value: Int) : Str`
 
 > Convert an integer to its hexadecimal representation. 
 >
@@ -1443,7 +1485,7 @@ implemented by the compiler.
 >
 > The value converted to a string.
 
-`func to_bin(value: Int) Str`
+`func to_bin(value: Int) : Str`
 
 > Convert an integer to its binary representation. 
 >
@@ -1461,7 +1503,7 @@ implemented by the compiler.
 
 ### 9.3. Operations on nullable values
 
-`func unwrap(maybe: 1?) 1`
+`func unwrap(maybe: 1?) : 1`
 
 > Return the inner value of *maybe*, or throws an `ERR_NULL` if it was `null`.
 >
@@ -1483,7 +1525,7 @@ implemented by the compiler.
     <dd>If *maybe* was `null`.</dd>
     </dl>
 
-`func default(maybe: 1?, default: 1) 1`
+`func default(maybe: 1?, default: 1) : 1`
 
 > Return the inner value of *maybe*, or *default* it was `null`.
 >
@@ -1498,7 +1540,7 @@ implemented by the compiler.
 >
 > The inner value or *default*.
 
-`func then(maybe: 1?, f: 1 -> 2) 2?`
+`func then(maybe: 1?, f: 1 -> 2) : 2?`
 
 > Return `null` if *maybe* is `null`, or the image of *maybe* by *f*.
 >
@@ -1515,7 +1557,7 @@ implemented by the compiler.
 >
 > A new nullable value.
 
-`func expect(maybe: 1?, err: Signal) 1`
+`func expect(maybe: 1?, err: Signal) : 1`
 
 > Return the inner value of *maybe*, or throws *err* if it was `null`.
 >
@@ -1542,109 +1584,109 @@ implemented by the compiler.
 
 ### 9.4. Signals
 
-`const SUCCESS: Signal = ....`
+`const SUCCESS: Signal = ...`
 
 > Stop the program with success.
 >
 > *Exit code 0*
 
-`const ERR_VALUE: Signal = ....`
+`const ERR_VALUE: Signal = ...`
 
 > A value was not valid.
 >
 > *Exit code 70*
 
-`const ERR_NULL: Signal = ....`
+`const ERR_NULL: Signal = ...`
 
 > A nullable value was `null`.
 >
 > *Exit code 70*
 
-`const ERR_MATH: Signal = ....`
+`const ERR_MATH: Signal = ...`
 
 > A mathematical operation was not valid (e.g. division by zero) 
 >
 > *Exit code 70*
 
-`const ERR_RANGE: Signal = ....`
+`const ERR_RANGE: Signal = ...`
 
 > A numeric value overflowed.
 >
 > *Exit code 70*
 
-`const ERR_OS: Signal = ....`
+`const ERR_OS: Signal = ...`
 
 > Generic OS error.
 >
 > *Exit code 71*
 
-`const ERR_IO: Signal = ....`
+`const ERR_IO: Signal = ...`
 
 > I/O error.
 >
 > *Exit code 74*
 
-`const ERR_NOTFOUND: Signal = ....`
+`const ERR_NOTFOUND: Signal = ...`
 
 > A file didn't exists.
 >
 > *Exit code 71*
 
-`const ERR_PERM: Signal = ....`
+`const ERR_PERM: Signal = ...`
 
 > The user didn't have the permission to perform an operation.
 >
 > *Exit code 77*
 
-`const ERR_NOTAFILE: Signal = ....`
+`const ERR_NOTAFILE: Signal = ...`
 
 > A path pointed to a directory when a file was expected.
 >
 > *Exit code 71*
 
-`const ERR_NOTADIR: Signal = ....`
+`const ERR_NOTADIR: Signal = ...`
 
 > A path pointed to a file when a directory was expected.
 >
 > *Exit code 71*
 
-`const ERR_EXISTS: Signal = ....`
+`const ERR_EXISTS: Signal = ...`
 
 > A file already existed.
 >
 > *Exit code 71*
 
-`const ERR_LOOKUP: Signal = ....`
+`const ERR_LOOKUP: Signal = ...`
 
 > An [item access](#444-item-access) failed.
 >
 > *Exit code 70*
 
-`const ERR_FORMAT: Signal = ....`
+`const ERR_FORMAT: Signal = ...`
 
 > A value was not in the correct format.
 >
 > *Exit code 65*
 
-`const ERR_USERINT: Signal = ....`
+`const ERR_USERINT: Signal = ...`
 
 > Thrown when the user interrupts the program with Ctrl+C.
 >
 > *Exit code 130*
 
-`const ERR_MEMORY: Signal = ....`
+`const ERR_MEMORY: Signal = ...`
 
 > An error ocurred when trying to allocate dynamic memory.
 >
 > *Exit code 70*
 
-`const ERR_APP: Signal = ....`
+`const ERR_APP: Signal = ...`
 
 > Application-specific error.
 >
 > *Exit code 80*
 
-`const FAIL: Signal = ....`
+`const FAIL: Signal = ...`
 
 > Generic error.
 >

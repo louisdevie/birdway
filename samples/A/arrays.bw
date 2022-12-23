@@ -43,10 +43,10 @@ func main() -> {
     let list3 = for i in 1..10 do i**2;
     println list3; --> [1, 4, 9, 16, 25, 36, 49, 64, 81]
 
-    -- lists inside a list ...
+    -- lists inside lists ...
     let list4 = [
-        [2,  4,  6 ],
-        [7,  14],     -- ... can have different sizes
+        [2, 4, 6],
+        [7, 14], -- ... can have different sizes
         [12, 24, 36],
     ];
 };

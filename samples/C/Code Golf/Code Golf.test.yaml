@@ -1,5 +1,0 @@
-code_golf:
-  - get: C/Code Golf/code-golf.bw
-  - compile: code-golf.bw
-  - run: code-golf
-    stdout: Code Golf

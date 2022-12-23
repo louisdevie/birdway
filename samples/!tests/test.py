@@ -1,10 +1,10 @@
 import yaml
 import os, shutil, subprocess
-from pathlib import Path as P
+from pathlib import Path
 from abc import ABC, abstractmethod
 from printer import *
 
-ENV = P(__file__).parent / "_testenv"
+ENV = Path(__file__).parent / "_testenv"
 
 
 class TestABC(ABC):
@@ -57,37 +57,36 @@ class SingleTest(TestABC):
         try:
             for step, data in self.__steps:
                 match step:
-                    case "get":
-                        file = data["get"]
-                        fullpath = r / P(file)
+                    case "target":
+                        fullpath = r / Path(data)
                         if not fullpath.is_file():
-                            self.__err(f"No such file {file}", p)
+                            self.__err(f"No such file {data}", p)
                             return 0, used
-                        shutil.copy(fullpath, ENV)
-                        used.append(file)
+                        dest = shutil.copy(fullpath, ENV)
+                        used.append(data)
 
-                    case "compile":
                         result = subprocess.run(
                             [
-                                "python3.10",
-                                str(r / "../bootstrap/main.py"),
-                                str(r / "../bw/bw.bw"),
-                                str(ENV / data["compile"]),
+                                "cargo",
+                                "run",
+                                "--color=never",
+                                dest,
                             ],
+                            cwd="../bootstrap/",
                             stdout=subprocess.PIPE,
                             stderr=subprocess.STDOUT,
                             text=True,
                         )
                         if result.returncode:
                             self.__err(
-                                [f"Error compiling {data['compile']} :"]
+                                [f"Error compiling {data} :"]
                                 + result.stdout.split("\n"),
                                 p,
                             )
                             return 0, used
 
         except Exception as err:
-            self.__err(f"Unhandled exception : {err}", p)
+            self.__err([f"Unhandled exception : {err}"], p)
             return 0, used
 
         p.println(" OK", style=GREEN & BOLD)
@@ -173,9 +172,9 @@ class Tests:
         group.add(SingleTest(name, [self.__parse_step(s) for s in steps]))
 
     def __parse_step(self, data):
-        for type_key in ["get", "compile", "run"]:
+        for type_key in ["target", "run"]:
             if type_key in data:
-                return (type_key, data)
+                return (type_key, data[type_key])
 
     @property
     def count_total(self):

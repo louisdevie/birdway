@@ -4,7 +4,7 @@
   https://rosettacode.org/wiki/Closures/Value_capture
 
   Task
-  Create a list of ten functions, in the simplest manner possible   (anonymous functions are encouraged),   such that the function at index    i     (you may choose to start     i     from either    0    or    1),    when run, should return the square of the index,   that is,     i  2.
+  Create a list of ten functions, in the simplest manner possible (anonymous functions are encouraged), such that the function at index  i     (you may choose to start     i     from either    0    or    1),    when run, should return the square of the index,   that is,     i  2.
   Display the result of running any but the last function, to demonstrate that the function indeed remembers its value.
   
   Goal

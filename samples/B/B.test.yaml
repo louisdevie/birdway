@@ -1,5 +1,0 @@
-boolean_values:
-  - get: B/boolean-values.bw
-  - compile: boolean-values.bw
-  - run: boolean-values
-    stdout: ''

@@ -1,11 +1,11 @@
 import os, sys
-from pathlib import Path as P
+from pathlib import Path
 from pprint import pprint
 
 from printer import *
 from test import Tests
 
-ROOT = P(__file__).parent.parent
+ROOT = Path(__file__).parent.parent
 
 PRINTER = Printer(sys.stdout)
 
@@ -29,7 +29,7 @@ def main():
         color = GREEN
     else:
         gud = False
-        if (ok / tests.count_total) > (9 / 10):  # more than 1 out of 10 failed
+        if (ok / tests.count_total) > (9 / 10):  # more than 9 out of 10 succeeded
             color = YELLOW
         else:
             color = RED
@@ -44,7 +44,7 @@ def main():
         if "testenv" in root:
             continue
         for file in files:
-            file = P(root) / P(file)
+            file = Path(root) / Path(file)
             if file.suffix == ".bw":
                 with open(file, "rt") as f:
                     content = f.read()
@@ -78,7 +78,7 @@ def load_tests():
     tests = Tests()
 
     for root, dirs, files in os.walk(ROOT):
-        root = P(root)
+        root = Path(root)
 
         for file in files:
             path = root / file

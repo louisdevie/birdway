@@ -1,7 +1,6 @@
 a_plus_b:
-  get:
-    - A/a+b.bw
-  run:
+  - target: A/a+b.bw
+  - run:
     - args: 3 6
       stdout: |
         9
@@ -11,23 +10,3 @@ a_plus_b:
     - args: 123 -456
       stdout: |
         -333
-
-array_concat:
-  - get: A/array-concatenation.bw
-  - compile: array-concatenation.bw
-  - run: array-concatenation
-    stdout: |
-      [1, 2, 3, 4, 5, 6]
-
-arrays:
-  - get: A/arrays.bw
-  - compile: arrays.bw
-  - run: arrays
-    stdout: ''
-
-array_length:
-  - get: A/array-length.bw
-  - compile: array-length.bw
-  - run: array_length
-    stdout: |
-      2

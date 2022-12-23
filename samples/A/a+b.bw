@@ -23,7 +23,8 @@
   3 2   5
 ---
 
-param a: Int;
-param b: Int;
+params
+  a: Int,
+  b: Int,
 
-func main() -> println a + b;
+func main() -> println a + b
