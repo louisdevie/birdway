@@ -147,7 +147,7 @@ impl Filter {
 }
 
 pub struct TokenStream<'a> {
-    file: &'a str,
+    file_id: u64,
     source: Chars<'a>,
     scanner: Scanner,
     chars_count: usize,
@@ -158,9 +158,9 @@ pub struct TokenStream<'a> {
 }
 
 impl<'a> TokenStream<'a> {
-    pub fn from(file: &'a str, source: &'a str) -> Self {
+    pub fn from(file_id: u64, source: &'a str) -> Self {
         Self {
-            file,
+            file_id,
             source: source.chars(),
             scanner: Scanner::Ready,
             chars_count: 0,
@@ -214,7 +214,8 @@ impl<'a> TokenStream<'a> {
     }
 
     pub fn report_error(&mut self, message: String, code: ErrorCode, location: Option<Location>) {
-        self.report.error(message, code, location);
+        self.report
+            .recovered_error(message, code, location.or(Some(self.current_location())));
     }
 
     pub fn into_report(self) -> Report {
@@ -231,21 +232,15 @@ impl<'a> TokenStream<'a> {
 
     fn yield_token(&mut self, token: TokenType) {
         self.buffer.push_back(Token::new(
-            Location::between(
-                String::from(self.file),
-                self.last_token,
-                self.chars_count + 1,
-            ),
+            Location::between(self.file_id, self.last_token, self.chars_count + 1),
             token,
         ));
         self.last_token = self.chars_count + 1;
     }
 
     fn yield_token_at(&mut self, start: usize, span: usize, token: TokenType) {
-        self.buffer.push_back(Token::new(
-            Location::from(String::from(self.file), start, span),
-            token,
-        ));
+        self.buffer
+            .push_back(Token::new(Location::from(self.file_id, start, span), token));
         self.last_token = start + span;
     }
 
@@ -257,18 +252,12 @@ impl<'a> TokenStream<'a> {
         self.last_token = position;
     }
 
-    fn error(&mut self, message: String, code: ErrorCode) {
-        self.report
-            .error(message, code, Some(self.current_location()));
-        self.last_token = self.chars_count + 1;
-    }
-
     fn current_location(&self) -> Location {
-        Location::at(String::from(self.file), self.chars_count)
+        Location::at(self.file_id, self.chars_count)
     }
 
     fn last_token_location(&self) -> Location {
-        Location::at(String::from(self.file), self.last_token)
+        Location::at(self.file_id, self.last_token)
     }
 
     fn scanner_next(&mut self, c: char) {
@@ -297,9 +286,10 @@ impl<'a> TokenStream<'a> {
 
                 '-' => self.scanner = Scanner::OneHyphen,
 
-                _ => self.error(
+                _ => self.report_error(
                     format!("unexpected \"{}\"", c),
                     ErrorCode::E110InvalidCharacter,
+                    None,
                 ),
             },
 
@@ -328,7 +318,7 @@ impl<'a> TokenStream<'a> {
                 '-' => self.scanner = Scanner::TwoHyphens,
 
                 other => {
-                    self.report.error(
+                    self.report_error(
                         String::from("unexpected \"-\""),
                         ErrorCode::E110InvalidCharacter,
                         Some(self.last_token_location()),
@@ -342,7 +332,7 @@ impl<'a> TokenStream<'a> {
                 '>' => {
                     let location = self.last_token_location();
                     let position = location.position();
-                    self.report.error(
+                    self.report_error(
                         String::from("unexpected \"-\""),
                         ErrorCode::E110InvalidCharacter,
                         Some(location),
@@ -355,7 +345,7 @@ impl<'a> TokenStream<'a> {
 
                 other => {
                     self.scanner = Scanner::Ready;
-                    self.report.error(
+                    self.report_error(
                         String::from("unexpected \"-\""),
                         ErrorCode::E110InvalidCharacter,
                         Some(self.last_token_location()),
@@ -400,27 +390,31 @@ impl<'a> TokenStream<'a> {
         match &self.scanner {
             Scanner::Ready => {}
 
-            Scanner::NewLine => self.yield_token_at(self.last_token, 1, TokenType::BlankLineBreak),
+            Scanner::NewLine => {
+                self.yield_token_at(self.last_token, 1, TokenType::BlankLineBreak);
+                self.scanner = Scanner::Ready;
+            }
 
-            Scanner::OneHyphen => self.report.error(
+            Scanner::OneHyphen => self.report_error(
                 String::from("unexpected \"-\""),
                 ErrorCode::E110InvalidCharacter,
                 Some(self.current_location()),
             ),
 
             Scanner::Identifier(ident) => {
-                let token = TokenType::from_identifier(ident);
-                self.yield_token(token);
+                let len = ident.len();
+                let token = TokenType::from_identifier(&ident);
+                self.yield_token_at(self.last_token, len, token);
                 self.scanner = Scanner::Ready;
             }
 
             Scanner::TwoHyphens => {
-                self.report.error(
+                self.report_error(
                     String::from("unexpected \"-\""),
                     ErrorCode::E110InvalidCharacter,
                     Some(self.last_token_location()),
                 );
-                self.report.error(
+                self.report_error(
                     String::from("unexpected \"-\""),
                     ErrorCode::E110InvalidCharacter,
                     Some(self.current_location()),
@@ -429,7 +423,7 @@ impl<'a> TokenStream<'a> {
             Scanner::BlockComment
             | Scanner::BlockCommentOneHyphen
             | Scanner::BlockCommentTwoHyphens => {
-                self.report.error(
+                self.report_error(
                     String::from("unterminated block comment"),
                     ErrorCode::E120UnexpectedEof,
                     Some(self.current_location()),
@@ -447,6 +441,7 @@ impl<'a> Iterator for TokenStream<'a> {
 
         match filter.apply(self.buffer.pop_front()) {
             Some(token) => return Some(token),
+
             None => {}
         }
 
@@ -458,6 +453,7 @@ impl<'a> Iterator for TokenStream<'a> {
 
                     match filter.apply(self.buffer.pop_front()) {
                         Some(token) => break Some(token),
+
                         None => {}
                     }
                 }

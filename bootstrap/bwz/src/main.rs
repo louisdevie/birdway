@@ -1,5 +1,6 @@
 use std::env;
 
+mod checks;
 mod language;
 mod nodes;
 mod parser;
@@ -48,9 +49,13 @@ fn main() {
 fn compile(source: &str, units: &mut Units) -> ReportResult<()> {
     let mut report = Report::new();
 
-    let mut p = parser::Parser::new(source, units);
+    let p = parser::Parser::new(source, units);
 
-    report.unwrap_strict(p.parse())?;
+    let mut ast = report.unwrap_strict(p.parse())?;
+
+    report.unwrap_strict(checks::run_all(&mut ast))?;
+
+    println!("{:#?}", ast);
 
     report.wrap(())
 }

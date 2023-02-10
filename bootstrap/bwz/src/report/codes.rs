@@ -6,6 +6,7 @@ pub enum ErrorCode {
     E100InvalidSyntax,
     E110InvalidCharacter,
     E120UnexpectedEof,
+    E211ValueNotFound,
     E250ParametersRedeclaration,
 }
 
@@ -19,6 +20,7 @@ impl fmt::Display for ErrorCode {
                 Self::E100InvalidSyntax => "Invalid syntax [E100]",
                 Self::E110InvalidCharacter => "Invalid character [E110]",
                 Self::E120UnexpectedEof => "Unexpected EOF [E120]",
+                Self::E211ValueNotFound => "Value not found [E221]",
                 Self::E250ParametersRedeclaration => "Parameters are already declared [E250]",
             }
         )?;

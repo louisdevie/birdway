@@ -52,9 +52,9 @@
 
 #### E212 redeclaration of a variable or constant
 
-#### E211 use of undeclared type
+#### E221 use of undeclared type
 
-#### E212 redeclaration of a type
+#### E222 redeclaration of a type
 
 #### E231 module not found
 

@@ -52,6 +52,7 @@
 - [ ] Single element acessing
 - [ ] Command-line parameters
 - [ ] ASCII identifiers
+- [ ] Implicit conversion
 
 ## Features that will be added in future versions
 
@@ -74,6 +75,7 @@
   - [ ] Is null
   - [ ] Composition
 - [ ] List and tuple (un)packing
+- [ ] More precise type constraints
 - [ ] Infinite lists
 - [ ] Variable arguments/tuple size handling
 - [ ] Ranges syntax
@@ -81,12 +83,11 @@
 - [ ] Method call
 - [ ] Optional semicolons
 - [ ] Operator overload
-- [ ] `pub` modifier
+- [ ] Visibility modifiers
 - [ ] Module namespaces
 - [ ] Command-line options and flags
 - [ ] Advanced parameters
 - [ ] Subcommands
-- [ ] Implicit conversion
 - [ ] Unicode identifiers
 - [ ] Color output / advanced formatting
 - [ ] CFFI
@@ -96,9 +97,7 @@
 
 ## Features that may be added in future versions
 
-- [ ] Types
-  - [ ] Typedefs
-  - [ ] Unions
+- [ ] Union types
 - [ ] Until loops
 - [ ] Infinite loops
-- [ ] implicit string concatenation
+- [ ] Implicit string concatenation

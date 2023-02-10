@@ -79,7 +79,7 @@ The unary operators are `#`, `?` and the keyword `not`.
 The only unary and binary operator is `-`.
 
 The binary operators are `&`, `|`, `^`, `+`, `==`, `%`, `*`, `/`, `//`, `:=`,
-`!=`, `>`, `>>`, `>=`, `<`, `<<`, `<=`, and the keywords `and` and `or`.
+`!=`, `>`, `>>`, `>=`, `<`, `<<`, `<=`, `#`, and the keywords `and` and `or`.
 
 
 #### 2.1.5. Keywords
@@ -294,8 +294,9 @@ A list type `[T]` is a dynamic collection of `T`.
 type, or be able to be converted into a single type through
 [implicit conversion](#34-implicit-conversion).
 
-A list `[T]` is iterable with items of type `T`, and indexable by `int` with
-items also of type `T`.
+A list `[T]` is iterable/indexable with keys of type `Int` and items of type
+`T`.
+
 
 #### 3.2.3. Dictionaries
 
@@ -303,16 +304,17 @@ items also of type `T`.
 dict type = "[", type, "->", type "]";
 ```
 
-A dictionary type `[T -> U]` is a mapping of `T` values to `U` values.
+A dictionary type `[K -> V]` is a mapping of `K` values to `V` values.
 
-`T` and `U` cannot be [`Void`](#311-void), and `T` must be hashable (that is,
+`K` and `V` cannot be [`Void`](#311-void), and `K` must be hashable (that is,
 accepted by the [`hash`]() function).
 
 The types of the keys must be the same and the types of the values must be the
 same too.
 
-A dictionary `[T -> U]` is iterable with items of type `T`, and indexable by `T`
-with items of type `U`.
+A dictionary `[K -> V]` is iterable/indexable with keys of type `K`, and items
+of type `V`.
+
 
 #### 3.2.4. Tuples
 
@@ -349,10 +351,7 @@ the type of a function that takes zero, one or more arguments of type `T1`,
 `T2`, ... and return a value of type `R`.
 
 
-### 3.3. User-defined types
-
-
-#### 3.3.1. Enumerations
+### 3.3. User-defined enumerations
 
 Enumerations are primitive types that can take a specific list of values.
 
@@ -412,7 +411,7 @@ The empty list type `[~]` can be converted into both a list and a dictionary.
 
 The type of a binding, if omitted, is deduced from the value it is assigned,
 and the types of function parameters are generic by default. A generic function
-parameter can take any type that follows the [constraints](#37-type-constraints)
+parameter can take any type that follows its [constraints](#37-type-constraints)
 and is valid within the function.
 
 
@@ -430,8 +429,16 @@ that the actual type is not important.
 
 ### 3.7. Type constraints
 
+Type constraints are used in function parameters and custom types types to make
+generic declarations. They cannot be used anywhere else.
+
+
+### 3.7.1. Equivalence constraints
+
 Integers can be used where a type is expected, indicating a generic type. Two
 generic types with the same number must then be resolved with the same type.
+
+This constraint can appear in the return type of a function.
 
 
 ## 4. Expressions

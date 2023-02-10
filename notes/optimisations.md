@@ -17,6 +17,3 @@
 - [ ] Inline functions
 
 - [ ] If a binding is used only once, inline the expression
-
-- [ ] If an expression is used / may be used multiple times and the value won't change,
-      compute it as soon as possible and store it. 

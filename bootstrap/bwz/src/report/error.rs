@@ -3,7 +3,7 @@ use super::Location;
 use crate::parser::Units;
 use std::fmt;
 
-#[derive(Copy, Clone)]
+#[derive(Copy, Clone, PartialEq)]
 pub enum ErrorKind {
     Warning,
     Recoverable,
@@ -27,7 +27,7 @@ impl Error {
             location,
         }
     }
-    pub fn error(message: String, code: ErrorCode, location: Option<Location>) -> Self {
+    pub fn recoverable(message: String, code: ErrorCode, location: Option<Location>) -> Self {
         Self {
             kind: ErrorKind::Recoverable,
             message,
@@ -44,7 +44,17 @@ impl Error {
         }
     }
 
-    pub fn display(&self, units: &Units, formatter: &mut fmt::Formatter<'_>) -> fmt::Result {
+    pub fn kind(&self) -> ErrorKind {
+        self.kind
+    }
+
+    pub fn _set_location(&mut self, location: Location) {
+        self.location = Some(location);
+    }
+}
+
+impl super::Display for Error {
+    fn fmt(&self, units: &Units, formatter: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self.kind {
             ErrorKind::Warning => write!(formatter, "\x1b[1;33m")?,
             ErrorKind::Recoverable | ErrorKind::Fatal => write!(formatter, "\x1b[1;31m")?,
@@ -68,20 +78,13 @@ impl Error {
         writeln!(formatter, "\x1b[0m")?;
 
         match &self.location {
-            Some(loc) => loc.display(units, formatter)?,
+            Some(loc) => {
+                loc.display(units, formatter)?;
+                writeln!(formatter)?;
+            }
             None => {}
         }
 
-        writeln!(formatter)?;
-
         Ok(())
-    }
-
-    pub fn kind(&self) -> ErrorKind {
-        self.kind
-    }
-
-    pub fn _set_location(&mut self, location: Location) {
-        self.location = Some(location);
     }
 }

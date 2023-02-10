@@ -1,11 +1,17 @@
-use crate::nodes::{BinaryOperation, BoundValue, Print, Program, TypeName};
-use crate::nodes::{Item, Type, Value};
-use crate::report::{ErrorCode, Report, ReportResult};
+use crate::nodes::BinaryOperation;
+use crate::nodes::BoundValue;
+use crate::nodes::Print;
+use crate::nodes::Program;
+use crate::nodes::TypeName;
+use crate::nodes::{TypeNode, ValueNode};
+use crate::report::{ErrorCode, Location, Report, ReportResult};
 
+mod items;
 pub mod recovery;
 mod scanner;
 mod units;
 
+use items::Item;
 pub use recovery::Recover;
 pub use scanner::{Filter, TokenStream, TokenType};
 pub use units::Units;
@@ -27,24 +33,29 @@ impl<'a> Parser<'a> {
         }
     }
 
-    pub fn parse(&mut self) -> ReportResult<()> {
+    pub fn parse(mut self) -> ReportResult<Program> {
         let mut report = Report::new();
 
         report.unwrap(self.parse_entry_point())?;
 
-        println!("{:#?}", self.ast);
-
-        report.wrap(())
+        report.wrap(self.ast)
     }
 
     fn parse_entry_point(&mut self) -> ReportResult<()> {
         let mut report = Report::new();
 
-        let source = report.unwrap(self.units.load(&self.entry_point))?;
-        let mut tokens = TokenStream::from(&self.entry_point, source);
+        let file_id = report.unwrap(self.units.load(&self.entry_point))?;
+        let source = self
+            .units
+            .file_content(file_id)
+            .expect("couldn't retrieve file content");
 
-        self.ast.parse(&mut tokens);
+        let mut tokens = TokenStream::from(file_id, source);
 
+        // ignore any error here ...
+        items::parse_unit(&mut self.ast, &mut tokens).unwrap_or(());
+
+        // ... as eveything is handled by this
         report.collect(tokens.into_report())?;
 
         report.wrap(())
@@ -73,10 +84,14 @@ pub fn expect(stream: &mut TokenStream, token: TokenType, context: &str) -> Resu
     }
 }
 
-pub fn expect_identifier(stream: &mut TokenStream, purpose: &str, context: &str) -> Result<String> {
+pub fn expect_identifier(
+    stream: &mut TokenStream,
+    purpose: &str,
+    context: &str,
+) -> Result<(String, Location)> {
     match stream.next() {
         Some(t) => match t.type_ {
-            TokenType::Identifier(name) => Ok(name),
+            TokenType::Identifier(name) => Ok((name, t.location)),
             invalid => Err(stream.report_error(
                 format!("Expected {}, found {}", purpose, invalid),
                 ErrorCode::E100InvalidSyntax,
@@ -145,7 +160,7 @@ pub fn parse_static_csl<I: Item>(
     Ok(nodes)
 }
 
-pub fn parse_type(stream: &mut TokenStream) -> Result<Box<dyn Type>> {
+pub fn parse_type(stream: &mut TokenStream) -> Result<Box<dyn TypeNode>> {
     if TypeName::may_parse(stream) {
         Ok(Box::new(TypeName::parse(stream)?))
     } else {
@@ -164,7 +179,7 @@ pub fn parse_type(stream: &mut TokenStream) -> Result<Box<dyn Type>> {
     }
 }
 
-pub fn parse_expression(stream: &mut TokenStream) -> Result<Box<dyn Value>> {
+pub fn parse_expression(stream: &mut TokenStream) -> Result<Box<dyn ValueNode>> {
     if Print::may_parse(stream) {
         Ok(Box::new(Print::parse(stream)?))
     } else {
@@ -174,8 +189,14 @@ pub fn parse_expression(stream: &mut TokenStream) -> Result<Box<dyn Value>> {
             Some(TokenType::Plus) => {
                 let op = stream.next().unwrap().type_.into();
                 let rhs = parse_expression(stream)?;
+                let location = lhs.location() & rhs.location();
 
-                Ok(Box::new(BinaryOperation::new(op, lhs, rhs)))
+                Ok(Box::new(BinaryOperation {
+                    op,
+                    lhs,
+                    rhs,
+                    location,
+                }))
             }
 
             _ => Ok(lhs),
@@ -183,11 +204,11 @@ pub fn parse_expression(stream: &mut TokenStream) -> Result<Box<dyn Value>> {
     }
 }
 
-fn parse_secondary_expression(stream: &mut TokenStream) -> Result<Box<dyn Value>> {
+fn parse_secondary_expression(stream: &mut TokenStream) -> Result<Box<dyn ValueNode>> {
     parse_primary_expression(stream)
 }
 
-fn parse_primary_expression(stream: &mut TokenStream) -> Result<Box<dyn Value>> {
+fn parse_primary_expression(stream: &mut TokenStream) -> Result<Box<dyn ValueNode>> {
     if BoundValue::may_parse(stream) {
         Ok(Box::new(BoundValue::parse(stream)?))
     } else {

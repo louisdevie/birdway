@@ -31,11 +31,28 @@ impl Report {
         self.errors.push(Error::warning(message, code, location));
     }
 
-    pub fn error(&mut self, message: String, code: ErrorCode, location: Option<Location>) {
-        self.errors.push(Error::error(message, code, location));
+    pub fn recovered_error(
+        &mut self,
+        message: String,
+        code: ErrorCode,
+        location: Option<Location>,
+    ) {
+        self.errors
+            .push(Error::recoverable(message, code, location));
     }
 
-    pub fn fatal<T>(
+    pub fn recoverable_error<T>(
+        mut self,
+        message: String,
+        code: ErrorCode,
+        location: Option<Location>,
+    ) -> ReportResult<T> {
+        self.errors
+            .push(Error::recoverable(message, code, location));
+        Err(self)
+    }
+
+    pub fn fatal_error<T>(
         mut self,
         message: String,
         code: ErrorCode,
@@ -87,14 +104,12 @@ impl Report {
 
     pub fn unwrap<T>(&mut self, result: ReportResult<T>) -> Result<T, Report> {
         match result {
-            Ok((value, mut report)) => {
-                self.errors.append(&mut report.errors);
-                Ok(value)
-            }
+            Ok((value, report)) => self.collect(report).map(|_| value),
             Err(mut report) => {
-                let mut errs = self.errors.clone();
-                errs.append(&mut report.errors);
-                Err(Self { errors: errs })
+                report.errors.append(&mut self.errors);
+                Err(Self {
+                    errors: report.errors,
+                })
             }
         }
     }
@@ -103,30 +118,42 @@ impl Report {
         match result {
             Ok((value, report)) => self.collect_strict(report).map(|_| value),
             Err(mut report) => {
-                let mut errs = self.errors.clone();
-                errs.append(&mut report.errors);
-                Err(Self { errors: errs })
+                report.errors.append(&mut self.errors);
+                Err(Self {
+                    errors: report.errors,
+                })
             }
         }
     }
 
-    pub fn error_count(&self) -> u32 {
-        let mut count = 0;
-        for err in &self.errors {
-            match err.kind() {
-                ErrorKind::Recoverable | ErrorKind::Fatal => count += 1,
-                ErrorKind::Warning => {}
-            }
+    pub fn unwrap_recover<T>(&mut self, result: ReportResult<T>) -> Result<Option<T>, Report> {
+        match result {
+            Ok((value, report)) => self.collect(report).map(|_| Some(value)),
+            Err(report) => match self.collect(report) {
+                Ok(()) => Ok(None),
+                Err(report) => Err(report),
+            },
         }
-        count
     }
 
-    fn display(&self, units: &Units, formatter: &mut fmt::Formatter<'_>) -> fmt::Result {
-        for err in &self.errors {
-            writeln!(formatter)?;
-            err.display(units, formatter)?;
+    pub fn unwrap_recover_strict<T>(
+        &mut self,
+        result: ReportResult<T>,
+    ) -> Result<Option<T>, Report> {
+        match result {
+            Ok((value, report)) => self.collect_strict(report).map(|_| Some(value)),
+            Err(report) => match self.collect_strict(report) {
+                Ok(()) => Ok(None),
+                Err(report) => Err(report),
+            },
         }
-        Ok(())
+    }
+
+    pub fn error_count(&self) -> usize {
+        self.errors
+            .iter()
+            .filter(|err| err.kind() != ErrorKind::Warning)
+            .count()
     }
 
     pub fn bind(self, units: &Units) -> BoundReport {
@@ -137,6 +164,10 @@ impl Report {
     }
 }
 
+trait Display {
+    fn fmt(&self, units: &Units, formatter: &mut fmt::Formatter) -> fmt::Result;
+}
+
 pub struct BoundReport<'a> {
     report: Report,
     units: &'a Units,
@@ -144,6 +175,10 @@ pub struct BoundReport<'a> {
 
 impl fmt::Display for BoundReport<'_> {
     fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result {
-        self.report.display(self.units, formatter)
+        for err in &self.report.errors {
+            writeln!(formatter)?;
+            err.fmt(self.units, formatter)?;
+        }
+        Ok(())
     }
 }
