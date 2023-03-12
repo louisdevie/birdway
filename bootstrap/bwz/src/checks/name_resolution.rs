@@ -2,7 +2,8 @@ use crate::checks::Check;
 use crate::nodes::context::{Context, SymbolCell};
 use crate::nodes::visit::{VisitMut, VisitorMut};
 use crate::nodes::{self, Node};
-use crate::report::{ErrorCode, Report};
+use crate::report::{ErrorCode, Location, Report};
+use std::rc::Rc;
 
 pub struct NameResolution {
     report: Report,
@@ -25,10 +26,12 @@ impl NameResolution {
             .find_map(|frame| frame.look_up(name))
     }
 
-    fn register_symbol(&mut self, name: String) -> Option<&SymbolCell> {
-        self.stack
-            .last_mut()
-            .and_then(|frame| Some(frame.register(name)))
+    fn register_symbol(
+        &mut self,
+        name: String,
+        location: Location,
+    ) -> Result<&SymbolCell, &SymbolCell> {
+        self.stack.last_mut().unwrap().register(name, location)
     }
 }
 
@@ -49,12 +52,37 @@ impl VisitMut<nodes::Program> for NameResolution {
     fn visit_mut(&mut self, node: &mut nodes::Program) {
         self.push_new_context();
 
-        for param in node.params() {
-            self.register_symbol(param.name.clone());
+        for param in node.params_mut() {
+            match self.register_symbol(param.name.clone(), param.location) {
+                Ok(added) => param.symbol = Some(Rc::clone(added)),
+                Err(_previous) => self.report.recovered_error(
+                    format!("'{}' is defined multiple times", param.name),
+                    ErrorCode::E212ValueAlreadyExists,
+                    Some(param.location),
+                ),
+            }
         }
 
         for func in &mut node.functions {
+            match self.register_symbol(func.name.clone(), func.location) {
+                Ok(added) => func.symbol = Some(Rc::clone(added)),
+                Err(_previous) => self.report.recovered_error(
+                    format!("'{}' is defined multiple times", func.name),
+                    ErrorCode::E212ValueAlreadyExists,
+                    Some(func.location),
+                ),
+            }
             self.visit_mut(func);
+        }
+
+        // check for main function
+        match self.look_up_symbol("main") {
+            Some(symbol) => node.entry_point = Some(Rc::clone(symbol)),
+            None => self.report.recovered_error(
+                format!("'main' function not found"),
+                ErrorCode::E211ValueNotFound,
+                Some(node.location()),
+            ),
         }
 
         node.context = self.pop_context();

@@ -1,5 +1,5 @@
-mod operator;
+mod operators;
 mod types;
 
-pub use operator::BinaryOperator;
+pub use operators::BinaryOperator;
 pub use types::Type;

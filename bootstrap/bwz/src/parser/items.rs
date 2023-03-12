@@ -100,6 +100,7 @@ impl Item for nodes::NamedFunction {
             params,
             body,
             context: None,
+            symbol: None,
         })
     }
 
@@ -217,9 +218,9 @@ impl Item for nodes::Parameters {
 
 impl Item for nodes::Parameter {
     fn parse(stream: &mut TokenStream) -> Result<Self, ()> {
-        let name = match stream.next() {
+        let (name, location) = match stream.next() {
             Some(token) => match token.type_ {
-                TokenType::Identifier(name) => name,
+                TokenType::Identifier(name) => (name, token.location),
                 invalid => {
                     return Err(stream.report_error(
                         format!("Expected command-line parameter name, found {}", invalid),
@@ -259,7 +260,12 @@ impl Item for nodes::Parameter {
 
         let type_ = parser::parse_type(stream)?;
 
-        Ok(Self { name, type_ })
+        Ok(Self {
+            name,
+            location,
+            type_,
+            symbol: None,
+        })
     }
 
     fn may_parse(stream: &mut TokenStream) -> bool {

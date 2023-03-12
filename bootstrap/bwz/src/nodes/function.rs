@@ -1,4 +1,4 @@
-use crate::nodes::context::Context;
+use crate::nodes::context::{Context, SymbolCell};
 use crate::nodes::{Node, ValueNode};
 use crate::report::Location;
 
@@ -6,6 +6,7 @@ use crate::report::Location;
 pub struct NamedFunction {
     pub location: Location,
     pub name: String,
+    pub symbol: Option<SymbolCell>,
     pub params: Vec<FunctionParameter>,
     pub body: Box<dyn ValueNode>,
     pub context: Option<Context>,

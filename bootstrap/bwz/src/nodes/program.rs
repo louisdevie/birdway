@@ -1,8 +1,8 @@
-use crate::nodes::context::Context;
-use crate::nodes::NamedFunction;
-use crate::nodes::Node;
-use crate::nodes::Parameter;
-use crate::nodes::Parameters;
+use super::context::{Context, SymbolCell};
+use super::NamedFunction;
+use super::Node;
+use super::Parameter;
+use super::Parameters;
 use crate::report::Location;
 
 #[derive(Debug)]
@@ -10,6 +10,7 @@ pub struct Program {
     params: Option<Parameters>,
     pub functions: Vec<NamedFunction>,
     pub context: Option<Context>,
+    pub entry_point: Option<SymbolCell>,
 }
 
 impl Program {
@@ -18,6 +19,7 @@ impl Program {
             params: None,
             functions: Vec::new(),
             context: None,
+            entry_point: None,
         }
     }
 
@@ -27,8 +29,15 @@ impl Program {
 
     pub fn params(&self) -> &[Parameter] {
         match &self.params {
-            Some(params) => &params,
+            Some(params) => params,
             None => &[],
+        }
+    }
+
+    pub fn params_mut(&mut self) -> &mut [Parameter] {
+        match &mut self.params {
+            Some(params) => params,
+            None => &mut [],
         }
     }
 
@@ -38,11 +47,11 @@ impl Program {
 }
 
 impl Node for Program {
-    fn accept(&self, visitor: &mut dyn crate::nodes::visit::Visitor) {
+    fn accept(&self, visitor: &mut dyn super::visit::Visitor) {
         visitor.visit(self)
     }
 
-    fn accept_mut(&mut self, visitor: &mut dyn crate::nodes::visit::VisitorMut) {
+    fn accept_mut(&mut self, visitor: &mut dyn super::visit::VisitorMut) {
         visitor.visit_mut(self)
     }
 
