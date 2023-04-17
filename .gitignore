@@ -1,17 +1,20 @@
-*.bwtmp.c
+# Bw temp files
+*.bw.c
 *.tree
 *.tok
 
+# Generated documentation
 docs/site
 docs/.cache
 
+# Sublime Text
 *.sublime-workspace
 
-build
-
+# Python
 __pycache__
-
 _testenv
 
+# Rust
 target
+!/bootstrap/bwz/src/target
 Cargo.lock

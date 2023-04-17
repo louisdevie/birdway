@@ -1,6 +1,6 @@
 use std::fmt;
 
-#[derive(PartialEq, Clone)]
+#[derive(Debug, PartialEq, Clone)]
 pub enum ErrorCode {
     None,
     E100InvalidSyntax,

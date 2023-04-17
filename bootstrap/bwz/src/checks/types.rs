@@ -1,7 +1,7 @@
 use crate::checks::Check;
 use crate::language::Type;
-use crate::nodes::visit::{TypeVisitor, ValueVisitor, Visit, VisitMut, VisitorMut};
-use crate::nodes::{self, TypeNode};
+use crate::nodes;
+use crate::nodes::visit::{TypeVisitor, Visit, VisitMut, VisitorMut};
 use crate::report::{ErrorCode, Report};
 
 macro_rules! maybe {
@@ -39,7 +39,7 @@ impl VisitMut<nodes::Program> for TypeChecking {
             if let Some(symbol) = &param.symbol {
                 let mut type_resolver = TypeResolution::new();
                 type_resolver.visit_type(param.type_.as_ref());
-                self.report.collect(type_resolver.report);
+                self.report.collect(type_resolver.report).unwrap();
 
                 if let Some(type_) = type_resolver.result {
                     *symbol.borrow_mut().type_mut() = Some(type_);
@@ -101,8 +101,8 @@ impl VisitMut<nodes::BinaryOperation> for TypeChecking {
         if self.result.is_none() {
             self.report.recovered_error(
                 format!(
-                    "Invalid operand types for + ({} and {})",
-                    lhs_type, rhs_type
+                    "Invalid operand types for {} ({} and {})",
+                    node.op, lhs_type, rhs_type
                 ),
                 ErrorCode::E300TypeError,
                 Some(node.location),

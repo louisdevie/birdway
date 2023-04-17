@@ -3,14 +3,14 @@ use super::Location;
 use crate::parser::Units;
 use std::fmt;
 
-#[derive(Copy, Clone, PartialEq)]
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum ErrorKind {
     Warning,
     Recoverable,
     Fatal,
 }
 
-#[derive(Clone)]
+#[derive(Debug, Clone)]
 pub struct Error {
     kind: ErrorKind,
     code: ErrorCode,

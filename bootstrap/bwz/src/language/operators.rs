@@ -1,5 +1,6 @@
 use crate::language::Type;
 use crate::parser::TokenType;
+use std::fmt;
 
 #[derive(Debug)]
 pub enum BinaryOperator {
@@ -27,5 +28,17 @@ impl From<TokenType> for BinaryOperator {
             TokenType::Plus => Self::Addition,
             _ => unreachable!(),
         }
+    }
+}
+
+impl fmt::Display for BinaryOperator {
+    fn fmt(&self, formatter: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            formatter,
+            "{}",
+            match self {
+                Self::Addition => "+",
+            }
+        )
     }
 }

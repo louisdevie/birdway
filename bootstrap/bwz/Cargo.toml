@@ -7,3 +7,7 @@ edition = "2021"
 
 [dependencies]
 bwz_derive = { path = "../bwz_derive" }
+
+[features]
+default = ["c_backend"]
+c_backend = []

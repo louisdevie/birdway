@@ -113,7 +113,7 @@ impl Item for nodes::NamedFunction {
 }
 
 impl Item for nodes::FunctionParameter {
-    fn parse(stream: &mut TokenStream) -> parser::Result<Self> {
+    fn parse(_stream: &mut TokenStream) -> parser::Result<Self> {
         Ok(Self {})
     }
 

@@ -9,6 +9,7 @@ pub use codes::ErrorCode;
 use error::{Error, ErrorKind};
 pub use location::Location;
 
+#[derive(Debug)]
 pub struct Report {
     errors: Vec<Error>,
 }
