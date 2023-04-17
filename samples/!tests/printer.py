@@ -55,9 +55,12 @@ class Style:
         return "\x1b[" + self.__esc + "m"
 
 
-YELLOW = Style("93", 1)
-GREEN = Style("32", 1)
-RED = Style("31", 1)
-LIGHTRED = Style("91", 1)
-BOLD = Style("1", 2)
-RESET = Style("0", 3)
+CAT_COLOR = 1
+CAT_BOLD = 2
+
+YELLOW = Style("93", CAT_COLOR)
+GREEN = Style("32", CAT_COLOR)
+RED = Style("31", CAT_COLOR)
+LIGHTRED = Style("91", CAT_COLOR)
+BOLD = Style("1", CAT_BOLD)
+RESET = Style("0", CAT_COLOR & CAT_BOLD)
